@@ -1,0 +1,53 @@
+/*
+ * ks.box.css
+ * 2013-11-04
+ * 情封
+*/
+.ks_box{}
+
+.ks_box .ks_hd{
+    background: #46B9DF;
+    padding-left: 5px;
+}
+.ks_box .ks_title{
+    background: #FDFDFD;
+    border: 1px solid #C9E1E8;
+    border-left: 0;
+    border-bottom: 1px solid #E3E1DD;
+    height: 35px;
+    overflow: hidden;
+}
+.ks_box .ks_h{
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    color: #333;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+    font-weight: normal;
+}
+.ks_box .ks_more{
+    float: right;
+    line-height: 36px;
+    display: inline;
+    margin-right: 15px;
+    color:#1C8ED3;
+}
+.ks_box .ks_more:hover{
+    color:#f60;
+}
+
+.ks_box .ks_hd .ks_lt{}
+.ks_box .ks_hd .ks_rt{}
+
+
+.ks_box .ks_bd{
+    border-width:0 1px 1px;
+    border-color:#C9E1E8;
+    border-style: solid;
+    height:300px;
+}
+
+.ks_box .ks_fd{}
+.ks_box .ks_fd .ks_lb{}
+.ks_box .ks_fd .ks_rb{}

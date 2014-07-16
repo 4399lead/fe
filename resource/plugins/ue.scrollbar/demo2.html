@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.scrollbar.js"></script>
+<title>滚动条组件</title>
+</head>
+<style>
+	.box{ height:360px; position:relative; width:300px; border:5px solid #C60;padding:5px;border-radius:3px;overflow:hidden;}
+	.box_inner{ height:100%; overflow:hidden;}
+	.box_main{ position:absolute}
+	.h_scrollbar{position:absolute;height:7px;bottom:2px;left:5px; width:300px; display:none;cursor:pointer;}
+	.h_scrollbar_bg{position:absolute;bottom:0;height:7px;width:100%; background-color:#09F;filter:alpha(opacity=40);opacity:0.4; overflow:hidden }
+	.h_scrollbar_btn{ overflow:hidden; position:absolute;height:5px; border:1px solid #000;-moz-border-radius:3px; -o-border-radius:3px;-webkit-border-radius:3px; z-index:100px;filter:alpha(opacity=40);opacity:0.4; border-radius:3px; background-color:#555; }
+</style>
+<body>
+	<div style="width:960px; margin:30px auto;">
+        <div class="box">
+            <div class="box_inner">
+            	<div class="box_main">
+                    <h1>标题标题</h1>
+                    <ul>
+                        <li>55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555</li>
+                        <li>5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555</li>
+                        <li>5555555555555555555555</li>
+                        <li>5555555555555555555555</li>
+                        <li>5555555555555555555555</li>
+                        <li>666666666666666666666</li>
+                        <li>7777777777777777777777777</li>
+                        <li>1111111111111</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="h_scrollbar">
+                <div class="h_scrollbar_bg"></div>
+                <div class="h_scrollbar_btn"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		ue.scrollbar({
+			width : 300,//内容区域的大小并且表示横向滚动
+			scroll_per : 20,//每次滚动滑轮，滚动条移动10像素
+			target : $(".box"),//含有滚动条的容器
+			box : $(".box_main"),//包含内容的容器
+			scrollbarbg : $(".h_scrollbar_bg"),//滚动条背景
+			scrollbar : $(".h_scrollbar"),//滚动条容器
+			btn : $(".h_scrollbar_btn")//滚动条按钮
+		});
+	})
+</script>

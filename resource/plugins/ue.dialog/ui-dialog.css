@@ -1,0 +1,52 @@
+/*a风格弹窗*/
+.ui-dialog-a{} 
+.ui-dialog-a .ui-dialog-shadow{ position:absolute; height:100%; width:100%; z-index:-1; background-color:#000; opacity:0.2; filter:alpha(opacity=20)}
+.ui-dialog-a .ui-dialog-custom{padding:3px;}
+.ui-dialog-a .ui-dialog-custom .ui-dialog-custom-inner{background:#fff; border:#999 1px solid; overflow:hidden;}
+.ui-dialog-a1 .ui-dialog-custom .ui-dialog-custom-inner{border:#555 1px solid;}/*有按钮弹窗 的border跟其他的弹窗不一样，增加ui-dialog-a1 特例样式*/
+
+.ui-dialog-a .ui-dialog-custom .ui-dialog-header{ background:url(pop_hd.jpg) repeat-x; height:40px; line-height:40px; border-bottom:#e3edf5 1px solid; padding:0 15px; }
+.ui-dialog-a .ui-dialog-custom .ui-dialog-header .ui-dialog-close_btn{ background:url(close_btn.jpg) no-repeat; width:10px; height:10px; display:block;float:right; margin-top:15px; line-height:10px; overflow:hidden;}
+.ui-dialog-a .ui-dialog-custom .ui-dialog-header .ui-dialog-close_btn:hover{ background-position:0 -10px;}
+.ui-dialog-a .ui-dialog-custom .ui-dialog-header h2{ color:#333; font-size:14px; font-weight:700;}
+.ui-dialog-a .ui-dialog-custom .ui-dialog-body{ padding:10px; min-height:60px; _height:60px;}
+.ui-dialog-a .ui-dialog-tip .ui-dialog-body{ padding:10px 15px; line-height:2em; text-align:center;}
+.ui-dialog-a .ui-dialog-custom .ui-dialog-footer{ background:#f8fafb; padding:0 10px; border-top:#e9ebec 1px solid; text-align:right;}
+
+.ui-dialog-a .ui-dialog-confirm .ui-dialog-body{ font-size:14px; line-height:1.5em; padding:10px 30px;}
+.ui-dialog-a .ui-dialog-confirm .ui-dialog-body b{ font-weight:bold; color:#F90}
+/*通用按钮*/
+.ui-btn,
+.ui-btn span{background:url(global_btn.jpg) no-repeat 0 0;text-decoration:none;cursor:pointer;}
+
+.ui-btn-s{height:31px; line-height:31px; display:inline-block; zoom:1; padding-left:21px; margin:1.2em 0.6em 1.2em 0.6em;}
+.ui-btn-s span{color:#333; padding-right:21px; display:inline-block;zoom:1;}
+
+.ui-btn-s-disabled{background-position:0 -132px;}
+.ui-btn-s-disabled span{ background-position:100% -132px; color:#999; cursor:default;}
+
+.ui-btn-s1{background-position:0 0;}
+.ui-btn-s2{background-position:0 -66px;}
+.ui-btn-s3{background-position:0 -337px}
+
+.ui-btn-s1 span{ background-position:100% 0; color:#333;}
+.ui-btn-s2 span{ background-position:100% -66px; color:#fff;}
+.ui-btn-s3 span{ background-position:100% -337px; color:#fff;}
+
+.ui-btn-s1:hover{ background-position:0 -33px; text-decoration:none; }
+.ui-btn-s1:hover span{ background-position:100% -33px;}
+
+.ui-btn-s2:hover{ background-position:0 -99px; text-decoration:none;}
+.ui-btn-s2:hover span{ background-position:100% -99px;}
+
+.ui-btn-s3:hover{ background-position:0 -370px; text-decoration:none;}
+.ui-btn-s3:hover span{ background-position:100% -370px;}
+
+/*对话框icon*/
+
+.ui-dialog-icon{ background:url(dialog_icons.png) no-repeat; float:left; display:inline; margin:20px; }
+.ui-dialog-failure_icon{height:120px; width:80px;}
+.ui-dialog-add_icon{ background-position:-87px 0; width:90px;height:120px;}
+.ui-dialog-info_icon{background-position:-190px 0;width:50px;height:80px;}
+.ui-dialog-icon-text{ float:left; *float:none; margin-top:40px; font-size:14px; margin-right:30px;}
+.ui-dialog-arrow{ background:url(ui-dialog-arrow.png) no-repeat; _background:url(ui-dialog-arrow.gif) no-repeat;position:absolute; height:10px; width:12px; overflow:hidden; top:-6px; left:40px;}

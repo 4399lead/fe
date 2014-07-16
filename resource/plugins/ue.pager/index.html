@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../api.css"  rel="stylesheet"/>
+<title>静态分页组件 ue.pager</title>
+</head>
+
+<body>
+    <div class="wrap">
+		<h2 class="api_h2">静态分页组件 ue.pager</h2>
+        <h3 class="api_h3">参数列表</h3>
+        <table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>formTarget</th>
+                    <td>放置表单分页跳转jquery对象</td>
+                </tr>
+                <tr>
+                    <th>pagerTarget</th>
+                    <td>放置表单分页页码对象</td>
+                </tr>
+                <tr>
+                    <th>first</th>
+                    <td>首页的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_first pager_item&quot;&gt;首页&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>firstDisabled</th>
+                    <td>首页不可点击的模版，默认为&lt;span class=&quot;pager_first pager_item&quot;&gt;首页&lt;/span&gt;</td>
+                </tr>
+                <tr>
+                    <th>last</th>
+                    <td>末页的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_last pager_item&quot;&gt;末页&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>lastDisabled</th>
+                    <td>首页不可点击的模版，默认为&lt;span class=&quot;pager_last pager_item&quot;&gt;末页&lt;/span&gt;</td>
+                </tr>
+			
+                <tr>
+                    <th>prev</th>
+                    <td>上一页的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_prev pager_item&quot;&gt;上一页&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>prevDisabled</th>
+                    <td>上一页不可点击的模版，默认为&lt;span class=&quot;pager_prev pager_item&quot;&gt;上一页&lt;/span&gt;</td>
+                </tr>
+                <tr>
+                    <th>next</th>
+                    <td>下一页的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_next pager_item&quot;&gt;下一页&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>nextDisabled</th>
+                    <td>下一页不可点击的模版，默认为&lt;span class=&quot;pager_next pager_item&quot;&gt;下一页&lt;/span&gt;</td>
+                </tr>
+                <tr>
+                    <th>current</th>
+                    <td>当前页的模版，默认为&lt;span class=&quot;pager_page pager_item pager_current&quot;&gt;@{page}&lt;/span&gt;</td>
+                </tr>
+                <tr>
+                    <th>page</th>
+                    <td>数字页码的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_page pager_item&quot;&gt;@{page}&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>tip</th>
+                    <td>分页信息的模版，默认为&lt;span class=&quot;pager_item pager_tip&quot;&gt;@{nowPage}/@{pageCount}&lt;/span&gt;</td>
+                </tr>
+                <tr>
+                    <th>goto</th>
+                    <td>表单分页跳转的模版，默认为&lt;form&gt;&lt;input class=&quot;pager_input&quot;/&gt;&lt;input type=&quot;submit&quot; value=&quot;go&quot; class=&quot;pager_goto&quot;/&gt;&lt;/form&gt;</td>
+                </tr>
+                <tr>
+                    <th>gotobtn</th>
+                    <td>调整按钮的选择符，默认为.pager_goto</td>
+                </tr>
+                <tr>
+                    <th>input</th>
+                    <td>页码输入框的选择符，默认为".pager_input"</td>
+                </tr>
+                <tr>
+                    <th>now</th>
+                    <td>当前显示的页码，默认是1</td>
+                </tr>
+                <tr>
+                    <th>maxPage</th>
+                    <td>显示最大数字页码的个数，默认为5</td>
+                </tr>
+                <tr>
+                    <th>per</th>
+                    <td>每页的记录条数，默认为5</td>
+                </tr>
+                <tr>
+                    <th>count</th>
+                    <td>所有记录的总数</td>
+                </tr>
+                <tr>
+                    <th>onchange</th>
+                    <td>点击翻页时的回调函数，传递的第一个参数为将要跳转的页面的页码</td>
+                </tr>
+				<tr>
+                    <td colspan="2">新增</td>
+                </tr>
+				<tr>
+                    <th>showFirstAndLastNum</th>
+                    <td>是否显示数字的首页末页 即 1代表首页 总页数代表末页 默认是 false</td>
+                </tr>
+				
+				<tr>
+                    <th>firstNum</th>
+                    <td>首页数字模式的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_firstnum pager_item&quot;&gt;1&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>firstNumDisabled</th>
+                    <td>首页数字模式不可点击的模版，默认为&lt;span class=&quot;pager_firstnum pager_item&quot;&gt;1&lt;/span&gt;'</td>
+                </tr>
+                <tr>
+                    <th>lastNum</th>
+                    <td>末页数字模式的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_lastnum pager_item&quot;&gt;@{pageCount}&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>lastNumDisabled</th>
+                    <td>首页数字模式不可点击的模版，默认为&lt;span class=&quot;pager_lastnum pager_item&quot;&gt;@{pageCount}&lt;/span&gt;</td>
+                </tr>
+				
+				<tr>
+                    <th>showMore</th>
+                    <td>是否显示更多翻页 默认是 false</td>
+                </tr>
+				<tr>
+                    <th>prevMore</th>
+                    <td>向前更多页的模版，默认为 : &lt;a href=&quot;#&quot; class=&quot;pager_prevmore pager_item&quot;&gt;...&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>prevMoreDisabled</th>
+                    <td>向前更多页不可点击的模版，默认为&lt;span class=&quot;pager_firstnum pager_item&quot;&gt;1&lt;/span&gt;'</td>
+                </tr>
+                <tr>
+                    <th>nextMore</th>
+                    <td>向后更多页的模版，默认为&lt;a href=&quot;#&quot; class=&quot;pager_nextmore pager_item&quot;&gt;...&lt;/a&gt;</td>
+                </tr>
+                <tr>
+                    <th>nextMoreDisabled</th>
+                    <td>向后更多页不可点击的模版，默认为&lt;span class=&quot;pager_nextmore pager_item&quot;&gt;...&lt;/span&gt;</td>
+                </tr>
+			
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>静态分页组件 demo1</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="demo1.rar">下载</a></dd>
+			<dt>静态分页组件 demo2【更多页 数字首页末页】</dt>
+        	<dd><a href="demo2.html" target="_blank">查看</a> | <a href="demo2.rar">下载</a></dd>
+        </dl>
+    </div>
+</body>
+</html>

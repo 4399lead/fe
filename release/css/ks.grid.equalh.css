@@ -1,0 +1,19 @@
+/*
+ * ks.grid.equalh.css 多列等高
+ * 2013-11-11
+ * 情封
+*/
+.ks_grid_equalh{
+  overflow: hidden;
+  zoom:1;
+}
+.ks_grid_equalh .ks_section{
+    float: left;
+    padding-bottom: 9999em;
+    margin-bottom: -9999em;
+}
+.ks_grid_equalh .ks_aside{
+    float: left;
+    padding-bottom: 9999em;
+    margin-bottom: -9999em;
+}

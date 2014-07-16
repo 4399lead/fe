@@ -1,0 +1,17 @@
+/*
+ * ks.verhor.css 不定高垂直水平居中
+ * 2013-11-11
+ * 情封
+ * font-size:height*0.873
+*/
+.ks_verhor{
+    width:108px;
+    height:110px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    *display: block;
+    *font-size: 96.03px;
+    *font-family:Arial;
+}
+.ks_verhor .ks_verhor_content{ vertical-align:middle;}

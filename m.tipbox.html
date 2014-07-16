@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>前端通用模块 - 细三久久</title>
+    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+</head>
+<body class="clearfix">
+    <!--jks_section-->
+    <div class="jks_section">
+        <h2>提示框</h2>
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-pencil"></i>使用示例</h3>
+            <!--mod_demo_box-->
+            <div class="m_demo_box clearfix">
+                <div class="mod_demo_box">
+                    <iframe src="template/tpl.tipbox.up.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                </div>
+                <ul class="mod_demo_tab" id="j-demo-tab">
+                    <li class="cur"><a href="template/tpl.tipbox.up.html">向上型,固高</a></li>
+                    <li><a href="template/tpl.tipbox.down.html">向下型,固高</a></li>
+                    <li><a href="template/tpl.tipbox.left.html">向左型,固高</a></li>
+                    <li><a href="template/tpl.tipbox.right.html">向右型,固高</a></li>
+                </ul>
+            </div>
+            <!--/mod_demo_box-->
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-stack"></i>说明</h3>
+            <div class="m_demo_box">
+                <p>此模块，属于固定高度提示浮窗。</p>
+                <p>不同的方式只需要追加对应的类名即可。ks_tipbox_(left|right|top|down)</p>
+            </div>
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo m_view">
+            <h3><i class="icon-eye"></i>查看当前代码</h3>
+            <div class="m_demo_box mod_code">
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>CSS</h4>
+                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.tipbox.css</pre>
+                </div>
+                <!--/m_code-->
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>HTML</h4>
+                    <pre class="prettyprint">
+&lt;!--ks_tipbox--&gt;
+&lt;div class="ks_tipbox ks_tipbox_left"&gt;
+    &lt;div class="ks_tipbox_shadow"&gt;
+        &lt;b class="ks_tipbox_arrow_o"&gt;◆&lt;/b&gt;
+        &lt;div class="ks_tipbox_shadow_bg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="ks_tipbox_body"&gt;
+        &lt;b class="ks_tipbox_arrow_t"&gt;◆&lt;/b&gt;
+        &lt;b class="ks_tipbox_arrow_f"&gt;◆&lt;/b&gt;
+        &lt;div class="ks_tipbox_content"&gt;
+            &lt;!--demo_tipbox--&gt;
+            &lt;div class="demo_tipbox"&gt;
+                箭头向左
+            &lt;/div&gt;
+            &lt;!--/demo_tipbox--&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!--/ks_tipbox--&gt;</pre>
+                </div>
+                <!--/m_code-->
+            </div>
+        </div>
+        <!--/m_demo-->
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <!--/jks_aside-->
+    <script src="release/lib/seajs/sea.js"></script>
+    <script src="resource/js/config.js"></script>
+    <script>
+        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+            $("#j-demo-tab li").click(function(e){
+                var _iframeHref = $(e.target).attr('href');
+                $("#j-iframe").attr('src',_iframeHref);
+                $(this).addClass('cur').siblings().removeClass('cur');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            JKS.html('tipbox');
+            (function(){
+                var _click = 0;
+                $(".m_view h3").bind('click',function(){
+                    var $target = $(".m_view").find('.mod_code');
+                    if(_click){
+                        _click = 0;
+                        $target.hide();
+                    }else{
+                        $target.show();
+                        _click = 1;
+                    }
+                })
+            })();
+
+        });
+        seajs.use('./resource/js/codeLight.js');
+    </script>
+</body>
+</html>

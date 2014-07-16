@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>前端通用模块 - 细三久久</title>
+    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+</head>
+<body class="clearfix">
+    <!--jks_section-->
+    <div class="jks_section">
+        <h2>分页</h2>
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-pencil"></i>使用示例</h3>
+            <!--mod_demo_box-->
+            <div class="m_demo_box clearfix">
+                <div class="mod_demo_box">
+                    <iframe src="template/tpl.page.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                </div>
+                <ul class="mod_demo_tab" id="j-demo-tab">
+                    <li class="cur"><a href="template/tpl.page.html">居中,简易版</a></li>
+                </ul>
+            </div>
+            <!--/mod_demo_box-->
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-stack"></i>说明</h3>
+            <div class="m_demo_box">
+                <p>a）如居左，.ks_page新增float:left,如居右，.ks_page新增float:right;亲，记得clearfix</p>
+                <p>b）不能点击状态，html标签改成span并添加ks_disable.当前页添加.ks_cur</p>
+            </div>
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo m_view">
+            <h3><i class="icon-eye"></i>查看当前代码</h3>
+            <div class="m_demo_box mod_code">
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>CSS</h4>
+                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.form.css</pre>
+                </div>
+                <!--/m_code-->
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>HTML</h4>
+                    <pre class="prettyprint">
+&lt;!--ks_page--&gt;
+&lt;div class="ks_page"&gt;
+    &lt;div class="ks_c"&gt;
+        &lt;a href="#" class="ks_first"&gt;首页&lt;/a&gt;
+        &lt;a href="#" class="ks_prev"&gt;上一页&lt;/a&gt;
+        &lt;div class="ks_num"&gt;
+            &lt;a href="#"&gt;1&lt;/a&gt;
+            &lt;a href="#" class="ks_cur"&gt;2&lt;/a&gt;
+            &lt;a href="#"&gt;3&lt;/a&gt;
+            &lt;a href="#"&gt;4&lt;/a&gt;
+            &lt;a href="#"&gt;5&lt;/a&gt;
+            &lt;span&gt;.....&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;a href="#" class="ks_next"&gt;下一页&lt;/a&gt;
+        &lt;a href="#" class="ks_last"&gt;最后一页&lt;/a&gt;
+        &lt;span class="ks_tnum"&gt;共100页&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!--/ks_page--&gt;</pre>
+                </div>
+                <!--/m_code-->
+            </div>
+        </div>
+        <!--/m_demo-->
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <!--/jks_aside-->
+    <script src="release/lib/seajs/sea.js"></script>
+    <script src="resource/js/config.js"></script>
+    <script>
+        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+            $("#j-demo-tab li").click(function(e){
+                var _iframeHref = $(e.target).attr('href');
+                $("#j-iframe").attr('src',_iframeHref);
+                $(this).addClass('cur').siblings().removeClass('cur');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            JKS.html('page');
+            (function(){
+                var _click = 0;
+                $(".m_view h3").bind('click',function(){
+                    var $target = $(".m_view").find('.mod_code');
+                    if(_click){
+                        _click = 0;
+                        $target.hide();
+                    }else{
+                        $target.show();
+                        _click = 1;
+                    }
+                })
+            })();
+
+        });
+        seajs.use('./resource/js/codeLight.js');
+    </script>
+</body>
+</html>

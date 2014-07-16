@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<link rel="stylesheet" href="ui-dialog.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.easydrag.js"></script>
+<script src="../../../release/js/ue.dialog.js"></script>
+<title>打开一个跟随对话框</title>
+</head>
+
+<body>
+	<div style="width:960px; margin:0 auto; padding:80px; height:2000px;">
+    	<a href="#" class="show_pop_btn">打开uiDialog对象的跟随对话框</a>
+        <p style="padding-top:200px;"><a href="#" class="show_pop_btn1">打开一个指定的跟随对话框</a></p>
+    </div>
+    <div class="follow_dialog" style="display: none;">
+        <div style="height:100px; width:300px; border:#999 1px solid; background-color:#aaa"><a href="#">asfdasfdsafda</a></div>
+        <div class="arrow_icon"></div>
+    </div>
+</body>
+</html>
+
+<script>
+$(function(){
+	var is_open = false;
+	
+	$(".show_pop_btn").bind("click", function(){
+		is_open = !is_open;
+		if (is_open){
+			ue.dialog.follow({
+				id : 'follow1', 
+				content : '<div style="height:100px; width:300px; border:#999 1px solid; background-color:#aaa">asfdasfdsafda</div><div class="arrow_icon"></div>'
+			}, $(".show_pop_btn"), "left_top");
+		} else {
+			ue.dialog.list["follow1"].obj.hide();
+		}
+		return false;
+	})
+	
+	$(".show_pop_btn1,.follow_dialog").bind("mouseover", function(){
+		ue.dialog.follow($(".follow_dialog"), $(".show_pop_btn1"), "left_bottom");
+	}).bind("mouseout", function(){
+		$(".follow_dialog").hide();
+	})
+})
+</script>

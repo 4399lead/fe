@@ -1,0 +1,63 @@
+/*
+ * ks.page.css 分页
+ * 2013-11-11
+*/
+/*ks_page*/
+.ks_page{
+    overflow:hidden;
+    font-size:12px;
+    line-height: 26px;
+}
+.ks_page .ks_c{
+    float:left;
+    left:50%;
+    position:relative;
+}
+.ks_page legend{
+    display:none;
+}
+.ks_page .ks_first,.ks_page .ks_prev,.ks_page .ks_num,.ks_page .ks_next,.ks_page .ks_last,.ks_page .ks_tnum,.ks_page .ks_goto{
+    float:left;
+    display:inline;
+    right:50%;
+    position:relative;
+}
+.ks_page .ks_first,.ks_page .ks_prev,.ks_page .ks_num a,.ks_page .ks_num span,.ks_page .ks_next,.ks_page .ks_last{
+    padding:0 10px;
+    color:#2ab2df;
+    background:#fff;
+    line-height:26px;
+    height:26px;
+    border:1px solid #ddd;
+    margin-right:5px;
+}
+.ks_page .ks_tnum{
+    margin:0 10px;
+}
+.ks_page .ks_num a,.ks_page .ks_num span{
+    float:left;
+    display:inline;
+}
+.ks_page .ks_num .ks_cur{
+    background:#2AB2DF;
+    color:#fff;
+}
+.ks_page .ks_num span{
+    border:none;
+}
+.ks_page .ks_disable{
+    background:#ddd;
+    color:#aaa;
+}
+.ks_page .ks_ipt{
+    border:1px solid #ddd;
+    padding:2px 3px;
+    width:30px;
+    line-height:15px;
+    overflow:hidden;
+    height:15px;
+    margin:0 5px;
+    vertical-align: 0;
+}
+/*.ks_page .ks_btn{background:url(../images/demo/btn.png) no-repeat;width:42px;height:24px;line-height: 24px;
+    cursor: pointer;border:none;color:#fff;margin-left:5px;}*/

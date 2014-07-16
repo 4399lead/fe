@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ks.marquee.js"></script>
+<!--[if IE 6]> 
+<script type="text/javascript" src="http://s1.img4399.com/base/pngfilter.js?007" ></script> 
+<script type="text/javascript">DD_belatedPNG.fix('.s_hot');</script> 
+<![endif]--> 
+
+<title>滚动组件</title>
+<style>
+.slide_demo2{ background-color:#F7F6E1; width:482px;}
+.slide_demo2 .slide_holder{height:510px; width:400px; overflow:hidden; float:left; position:relative;}
+.slide_demo2 .slide_holder ul{ width:10000px;}
+.slide_demo2 .slide_holder ul li{ float:left;position: relative;}
+.slide_demo2 .slide_holder img{height:510px; width:400px; }
+.slide_demo2 .slide_nav{ width:82px; overflow:hidden; float:left; display:inline; height: 510px; position: relative;}
+.slide_demo2 .slide_nav ul{ }
+.slide_demo2 .slide_nav ul li{ padding:1px;}
+.slide_demo2 .slide_nav ul li.cur{ border:1px solid #333; padding:0;}
+.slide_demo2 .slide_nav ul li img{ height:100px; width:80px;}
+.slide_demo2 .slide_title,.slide_demo2 .silde_title_bg{ position:absolute; bottom:0; left:0; z-index:1; height:30px; line-height:30px; width:100%; text-indent:1em;}
+.slide_demo2 .slide_title a{color:#fff;}
+.slide_demo2 .silde_title_bg{ z-index:0; background-color:#000; opacity:0.5; filter:alpha(opacity=50);}
+
+.slide_demo2 .slide_holder .prev_btn,
+.slide_demo2 .slide_holder .next_btn{position: absolute; top: 50%; z-index: 10;}
+.slide_demo2 .slide_holder .prev_btn{left: 0;}
+.slide_demo2 .slide_holder .next_btn{right: 0;}
+
+.slide_demo2 .slide_nav .prev_btn,
+.slide_demo2 .slide_nav .next_btn{position: absolute; z-index: 10; width: 100%; text-align: center;}
+.slide_demo2 .slide_nav .prev_btn{top: 0;}
+.slide_demo2 .slide_nav .next_btn{bottom: 0;}
+.s_hot {
+position: absolute;
+right: 0px;
+top: 0;
+display: block;
+width: 60px;
+height: 60px;
+cursor: pointer;
+z-index: 10;}
+.s_hot {
+background: url("http://m.img4399.com/ios/wap/images/icons.png?20140109") no-repeat -240px -600px;;
+}
+</style>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:0 auto; padding:50px;">
+		<div class="slide_demo2 clearfix">
+			    	
+            <div class="slide_holder">
+            	<a class="prev_btn">上一页</a>
+                <ul class="slide_list">
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题1"><img src="images/role1_1.jpg" alt="文本标题文本标题文本标题1"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题2"><img src="images/role1_2.jpg" alt="文本标题文本标题文本标题2"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                    <li><span class="s_hot"></span><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+                </ul>
+                <div class="slide_title"><a href="#">文本标题文本标题文本标题1</a></div>
+                <div class="silde_title_bg"></div>
+                <a class="next_btn">下一页</a>
+            </div>
+            
+            <div class="slide_nav">
+            	<a class="prev_btn">上一页</a>
+            	<div class="slide_nav_holder">
+	                <ul class="slide_nav_list">
+	                    <li class="cur"><a href="#"><img src="images/role1_1.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role1_2.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role2.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role3.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role4_1.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role2.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role3.jpg"/></a></li>
+	                    <li><a href="#"><img src="images/role4_1.jpg"/></a></li>
+	                </ul>
+                </div>
+                <a class="next_btn">下一页</a>
+            </div>
+        </div>
+    </div>
+<script>
+	var marquee_main = ue.marquee({
+		scrolltarget : ".slide_demo2",//绑定滚轮切换的对象
+		hovertarget : ".slide_demo2",//鼠标hover停止切换的对象
+		target : '.slide_demo2 .slide_list',//滚动对象 一般为 ul
+		items : '.slide_demo2 .slide_list li', //滚动的详细列表
+		prevbtn : ".slide_demo2 .slide_holder .prev_btn",//前一个
+		nextbtn : ".slide_demo2 .slide_holder .next_btn",//后一个
+		gotobtn : ".slide_demo2 .slide_nav li",
+
+		delay : 3000,//切换间隔时间
+		speed : 600,//切换速度
+		visiblenum : 1,
+		scrollnull : 1,
+		currentclass : "cur",
+		autoplay : false,//是否自动播放
+		
+		afterSlide : function(){
+			var href = this.current.find("a").attr("href"),
+				title = this.current.find("a").attr("title");
+				
+			$(".slide_demo2 .slide_title").html('<a href="' + href + '">' + title + '</a>');
+			$(".slide_demo2 .slide_title,.slide_demo2 .silde_title_bg").fadeIn(300);
+
+		},//每滚动一个完的回调函数
+		beforeSlide : function(){
+			$(".slide_demo2 .slide_title,.slide_demo2 .silde_title_bg").fadeOut(300);
+
+			var index = parseInt(this.current.attr("data-index"));
+			var nav_index = parseInt(marquee_nav.current.attr("data-index"));
+			var cur;
+
+			if (index >= nav_index + marquee_nav.options.visiblenum){
+				cur = nav_index + 1;
+			} else if(index < nav_index){
+				cur = nav_index - 1;
+			}
+
+			/*处理ie6下 pngfix的bug*/
+			if(window.DD_belatedPNG){
+				this.current.find("shape").remove();
+				this.current.find(".s_hot").replaceWith('<span class="s_hot"></span>');
+			}
+
+			marquee_nav.goto(cur, nav_index);
+		},//每滚动一个之前的回调函数
+		loop: 0,
+		mode : 1,//1表示竖直方向滚动 0表示水平方向滚动
+		direction : 0
+	});
+
+	var marquee_nav = ue.marquee({
+		target : '.slide_demo2 .slide_nav_list',//滚动对象 一般为 ul
+		items : '.slide_demo2 .slide_nav_list li', //滚动的详细列表
+		prevbtn : ".slide_demo2 .slide_nav .prev_btn",//向前或者 向上按钮
+		nextbtn : ".slide_demo2 .slide_nav .next_btn",//向后或者 向下按钮
+
+		delay : 3000,//切换间隔时间
+		speed : 600,//切换速度
+		visiblenum : 5,//可见个数
+		scrollnum : 1,//每次滚动个数
+		autoplay : false,//是否自动播放
+		
+		fade : 1,
+		loop : 0,//循环模式 1 无限循环 0 不循环
+		afterSlide : function(){},//每滚动一个完的回调函数
+		beforeSlide : function(){
+
+		},//每滚动一个之前的回调函数
+		mode : 0,//0表示竖直方向滚动 1 表示水平方向滚动
+		direction : 1//表示默认的滚动方向0向上或者向左 1表示向下或者向右
+	});
+</script>
+    </div>
+</body>
+</html> 

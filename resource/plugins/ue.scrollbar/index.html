@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../api.css"  rel="stylesheet"/>
+<title>滚动条组件</title>
+</head>
+
+<body>
+    <div class="wrap">
+    	<h2 class="api_h2">滚动条组件 ue.scrollbar</h2>
+        <h3 class="api_h3">参数列表</h3>
+        <table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>width / height</th>
+                    <td>设置width 表示横向滚动和内容区域的可见大小；设置height 表示垂直滚动和内容区域的可见大小</td>
+                </tr>
+                <tr>
+                    <th>scrollbar_width / scrollbar_height</th>
+                    <td>滚动条的高度或者宽度 默认值是内容的宽高</td>
+                </tr>
+                <tr>
+                    <th>available_scroll_size</th>
+                    <td>滚动条的可以滚动的范围，默认为滚动条的高度</td>
+                </tr>
+                <tr>
+                    <th>scroll_per</th>
+                    <td>每次滚动滑轮，滚动条移动的距离；默认是 20</td>
+                </tr>
+                <tr>
+                    <th>target</th>
+                    <td>含有滚动条的容器</td>
+                </tr>
+                <tr>
+                    <th>box</th>
+                    <td>包含内容的容器</td>
+                </tr>
+                <tr>
+                    <th>scrollbarbg</th>
+                    <td>滚动条背景</td>
+                </tr>
+                <tr>
+                    <th>scrollbar</th>
+                    <td>滚动条容器</td>
+                </tr>
+                <tr>
+                    <th>btn</th>
+                    <td>滚动条按钮</td>
+                </tr>
+                <tr>
+                    <th>onscroll</th>
+                    <td>滚动条滚动式触发回调函数</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>垂直滚动条demo1</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="demo1.rar">下载</a></dd>
+            <dt>横向滚动条组件demo2</dt>
+        	<dd><a href="demo2.html" target="_blank">查看</a> | <a href="demo2.rar">下载</a></dd>
+        </dl>
+        
+        <h3 class="api_h3">方法列表</h3>
+        <table class="api_table">
+            <caption>方法列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">方法名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>reset</th>
+                    <td>
+						<dl>
+                    		<dt>重新设置滚动条的大小</dt>
+                            <dd><em>animate</em> 是否支持动画效果 默认是 false</dd>
+                            <dd><em>speed</em> 滚动的速度 默认是 100</dd>
+                        </dl></td>
+                </tr>
+                <tr>
+                    <th>scrollTo</th>
+                    <td><dl>
+                    		<dt>滚动滚动条到指定的位置</dt>
+                            <dd><em>pos</em> 滚动条要滚动到的位置 支持 数字 和百分百 </dd>
+                            <dd><em>animate</em> 是否支持动画效果 默认是 true</dd>
+                            <dd><em>speed</em> 滚动的速度 默认是 200</dd>
+							<dd><em>silent</em> 滚动是否触发onscroll事件 默认是false</dd>
+							<dd><em>isstop</em> 是否先停止当前的运动再开始滚动 默认是false</dd>
+							<dd><em>callback</em> 滚动完的回调函数 默认是 noop</dd>
+                        </dl>
+                    </td>
+                </tr> 
+                <tr>
+                    <th>boxScrollTo</th>
+                    <td><dl>
+                    		<dt>滚动内容区域到指定的位置</dt>
+                            <dd><em>pos</em> 滚动条要滚动到的位置 支持 数字 和百分百 </dd>
+                            <dd><em>animate</em> 是否支持动画效果 默认是 true</dd>
+                            <dd><em>speed</em> 滚动的速度 默认是 200</dd>
+							<dd><em>silent</em> 滚动是否触发onscroll事件 默认是false</dd>
+							<dd><em>isstop</em> 是否先停止当前的运动再开始滚动 默认是false</dd>
+							<dd><em>callback</em> 滚动完的回调函数 默认是 noop</dd>
+                        </dl>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>重新设置滚动条的高度demo3</dt>
+        	<dd><a href="demo3.html" target="_blank">查看</a> | <a href="demo3.rar">下载</a></dd>
+            <dt>滚动滚动条到指定的位置demo4</dt>
+        	<dd><a href="demo4.html" target="_blank">查看</a> | <a href="demo4.rar">下载</a></dd>
+        </dl>
+        
+    </div>
+</body>
+</html>

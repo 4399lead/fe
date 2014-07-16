@@ -1,0 +1,46 @@
+/*
+ * ks.slide.css
+ * 2013-11-04
+ * 情封
+*/
+.ks_slide{
+    zoom: 1;
+    padding: 30px 60px 20px;
+    position: relative;
+    width:440px;
+}
+.ks_slide_box{
+    width:440px;
+    overflow: hidden;
+}
+.ks_slide_list{
+    overflow: hidden;
+    zoom:1;
+}
+.ks_slide_list li{
+    float:left;
+    width:180px;
+    height:346px;
+    margin:0 10px;
+    padding: 0 10px;
+}
+.ks_slide_list img{
+    width:180px;
+    height:300px;
+    overflow: hidden;
+}
+.ks_slide .ks_slide_left,.ks_slide .ks_slide_right{
+    position: absolute;
+    top:150px;
+    width:50px;
+    height:80px;
+    display: block;
+    background: #ffcaca;
+    cursor: pointer;
+}
+.ks_slide .ks_slide_left{
+    left:0;
+}
+.ks_slide .ks_slide_right{
+    right:0;
+}

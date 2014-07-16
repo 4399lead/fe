@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>前端通用模块 - 细三久久</title>
+    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+</head>
+<body class="clearfix">
+    <!--jks_section-->
+    <div class="jks_section">
+        <h2>表单</h2>
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-pencil"></i>使用示例</h3>
+            <!--mod_demo_box-->
+            <div class="m_demo_box clearfix">
+                <div class="mod_demo_box">
+                    <iframe src="template/tpl.form.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                </div>
+                <ul class="mod_demo_tab" id="j-demo-tab">
+                    <li class="cur"><a href="template/tpl.verhor.html">通用型</a></li>
+                </ul>
+            </div>
+            <!--/mod_demo_box-->
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-stack"></i>说明</h3>
+            <div class="m_demo_box">
+                <p>表单模块定义通用型的各种</p>
+            </div>
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo m_view">
+            <h3><i class="icon-eye"></i>查看当前代码</h3>
+            <div class="m_demo_box mod_code">
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>CSS</h4>
+                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.form.css</pre>
+                </div>
+                <!--/m_code-->
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>HTML</h4>
+                    <pre class="prettyprint">
+&lt;!--ks_form--&gt;
+&lt;form action="#" class="ks_form"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;表单&lt;/legend&gt;
+        &lt;div class="ks_item"&gt;
+            &lt;label class="ks_field"&gt;用户名：&lt;/label&gt;
+            &lt;div class="ks_w"&gt;
+                &lt;input type="text" class="ks_ipt"/&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="ks_item"&gt;
+            &lt;label class="ks_field"&gt;毕业院校：&lt;/label&gt;
+            &lt;select class="ks_select"&gt;
+                &lt;optgroup label="福建"&gt;
+                    &lt;option&gt;漳州师范&lt;/option&gt;
+                    &lt;option&gt;福州大学&lt;/option&gt;
+                &lt;/optgroup&gt;
+                &lt;optgroup label="浙江"&gt;
+                    &lt;option&gt;浙江大学&lt;/option&gt;
+                    &lt;option&gt;闽南学院&lt;/option&gt;
+                &lt;/optgroup&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div class="ks_item ks_label"&gt;
+            &lt;label class="ks_field"&gt;性别：&lt;/label&gt;
+            &lt;label class="ks_ds" for="j-rd1"&gt;&lt;input type="radio" id="j-rd1"/&gt;男&lt;/label&gt;
+            &lt;label class="ks_ds" for="j-rd2"&gt;&lt;input type="radio" id="j-rd2"/&gt;女&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="ks_item ks_label"&gt;
+            &lt;label class="ks_field"&gt;兴趣爱好：&lt;/label&gt;
+            &lt;label class="ks_ds" for="j-ck1"&gt;&lt;input type="checkbox" id="j-ck1"/&gt;把妹&lt;/label&gt;
+            &lt;label class="ks_ds" for="j-ck2"&gt;&lt;input type="checkbox" id="j-ck2"/&gt;泡妞&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class="ks_item"&gt;
+            &lt;label class="ks_field"&gt;自我介绍：&lt;/label&gt;
+            &lt;textarea class="ks_area"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;div class="ks_act"&gt;
+            &lt;input type="submit" class="ks_btn" value="提交"/&gt;&lt;a href="#" class="ks_txt"&gt;忘记密码&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;!--/ks_form--&gt;</pre>
+                </div>
+                <!--/m_code-->
+            </div>
+        </div>
+        <!--/m_demo-->
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <!--/jks_aside-->
+    <script src="release/lib/seajs/sea.js"></script>
+    <script src="resource/js/config.js"></script>
+    <script>
+        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+            $("#j-demo-tab li").click(function(e){
+                var _iframeHref = $(e.target).attr('href');
+                $("#j-iframe").attr('src',_iframeHref);
+                $(this).addClass('cur').siblings().removeClass('cur');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            JKS.html('form');
+            (function(){
+                var _click = 0;
+                $(".m_view h3").bind('click',function(){
+                    var $target = $(".m_view").find('.mod_code');
+                    if(_click){
+                        _click = 0;
+                        $target.hide();
+                    }else{
+                        $target.show();
+                        _click = 1;
+                    }
+                })
+            })();
+
+        });
+        seajs.use('./resource/js/codeLight.js');
+    </script>
+</body>
+</html>

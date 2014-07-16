@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.autocomplete.js"></script>
+<title>自动完成框组件-分类搜索</title>
+<style>
+	.ue-autocomplete{ height:32px; width:200px; position:relative;}
+	.ue-autocomplete-input{ border:1px solid #ccc; padding:8px;border-radius:5px;}
+	.ue-autocomplete-input input { border:0; height:14px; line-height:14px; width:182px;}
+	.ue-autocomplete-list{position:absolute; width:100%; top:31px; display:none; background-color:#fff;}
+	.ue-autocomplete-list h3{ padding:5px 5px 0;}
+	.ue-autocomplete-list-inner{ border:1px solid #CCC; border-radius:5px;}
+	.ue-autocomplete-list ul{ padding:5px 0;}
+	.ue-autocomplete-list ul li b{ color:#F90}
+	.ue-autocomplete-list ul li a{ display:block; text-decoration:none; color:#333; padding:0 15px; font-size:13px; height:24px; line-height:24px;}
+	.ue-autocomplete-list ul li a:hover,.ue-autocomplete-list ul li.cur a{ background-color:#08C; color:#fff; text-decoration:none !important;}
+</style>
+</head>
+<body>
+	<div style="width:960px; margin:50px auto; height:1000px;">
+    	<h1>自动完成框组件-分类搜索</h1>
+    	<form action="#" target="_blank" method="get" id="search_form">
+            <div class="ue-autocomplete">
+                <div class="ue-autocomplete-input"><input type="text" name="keyword" autocomplete="off"/><input type="hidden" id="search_type" name="type" /></div>
+                <div class="ue-autocomplete-list">
+                    <div class="ue-autocomplete-list-inner">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		/*中文字数*/
+		function cnlen(str){
+			return str.replace(/[^\x00-\xff]/g,"aa").length;
+		}
+		
+		/*中文截断*/
+		function cnslice(str,start,maxlen){
+			var count = 0, maxlen = maxlen || 280, str1 = str.split("");
+			for(var i = 0, l = str1.length; i < l; i++){
+				count += cnlen(str1[i]);
+				if(count == maxlen){
+					break;
+				}else if(count >maxlen){
+					i--;
+					break;
+				}
+			}
+			return str.substr(0,i+1);
+		}
+		
+		ue.autocomplete({
+			input : ".ue-autocomplete-input input",
+			target : ".ue-autocomplete-list",
+			list : ".ue-autocomplete-list ul",
+			items : ".ue-autocomplete-list li",
+			auto : false,
+			currentClass : "cur",
+			handle : function(key){
+				var result = '';
+				
+				if (key === "") {
+					this.hide();
+					return;
+				}
+				
+				result += '<li><a href="#">搜索关于“<b>' + cnslice(key, 0, 8) + '</b>”的视频</a></li>';
+				result += '<li><a href="#">搜索关于“<b>' + cnslice(key, 0, 8) + '</b>”的图片</a></li>';
+				result += '<li><a href="#">搜索关于“<b>' + cnslice(key, 0, 8) + '</b>”的网页</a></li>';
+				
+				this.show(result);
+			},
+			
+			onSubmit : function(target){
+				$("#search_type").val($(target).index());
+				$("#search_form").submit();
+				return false;
+			}
+		});
+	})
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<style>
+
+</style>
+<title>图片预加载管理组件</title>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:20px auto">
+        <ul class="img_list">
+        	<li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+            <li><img src="loading.gif" /></li>
+        </ul>
+        <a href="#" class="start_btn">开始加载图片</a>
+    </div>
+</body>
+</html>
+<script src="../../../release/js/ue.imgloader.js"></script> 
+<script>
+$(function(){
+	var list = [
+			{src : "tmp/01.jpg"},
+			{src : "tmp/02.jpg"},
+			{src : "tmp/03.jpg"},
+			{src : "tmp/04.jpg"},
+			{src : "tmp/05.jpg"},
+			{src : "tmp/06.jpg"},
+			{src : "tmp/07.jpg"},
+			{src : "tmp/08.jpg"},
+			{src : "tmp/09.jpg"},
+			{src : "tmp/10.jpg"}
+		],
+		start  = 0,
+		end = 9;
+	
+	$(".start_btn").bind("click", function(){
+		ue.imgloader({
+			list : list,
+			start : start,
+			end : end,
+			timeout : 20000,
+			ontimeout : function(){
+				alert("加载超时");
+			},
+			onperloaded : function(i){
+				$(".img_list li").eq(i).html('<img src="' + list[i].src + '" height="50" />');
+			},
+			onloaded : function(){
+				alert("全部加载完成");
+			}
+		});
+		
+		return false;
+	})
+})
+</script>

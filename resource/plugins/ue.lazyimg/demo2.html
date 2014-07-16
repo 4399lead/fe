@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.lazyimg.js"></script>
+<title>延时加载图片 ue.lazyimg</title>
+<body>
+	<div style="width:800px; margin:50px auto;">
+        <ul id="j-lazyimg">
+            <li><img data-src="http://ww3.sinaimg.cn/mw690/4d43aa9ctw1e0198gkf7xj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww1.sinaimg.cn/mw690/4d43aa9ctw1e0198dd03nj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww2.sinaimg.cn/mw690/4d43aa9ctw1e0198biy3uj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww4.sinaimg.cn/mw690/4d43aa9ctw1e0198a4ylrj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww1.sinaimg.cn/mw690/4d43aa9ctw1e01988seltj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww1.sinaimg.cn/mw690/4d43aa9ctw1e01987fxevj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww4.sinaimg.cn/mw690/4d43aa9ctw1e019866xltj.jpg" width="660" height="495" /></li>
+            <li><img data-src="http://ww3.sinaimg.cn/mw690/4d43aa9ctw1e01984ofiwj.jpg" width="660" height="495" /></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		
+		ue.lazyimg({
+			target : $("#j-lazyimg"),
+			type : "scroll"
+		})
+	})
+</script>

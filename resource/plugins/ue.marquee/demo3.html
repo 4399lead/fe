@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ks.marquee.js"></script>
+<title>滚动组件</title>
+<style>
+	.marquee_demo3 .scroll_holder {
+		margin: 20px 0;
+		overflow: hidden;
+		width:770px;
+		height:180px;
+	}
+	.marquee_demo3 .scroll_list{
+		width:10000px;
+	}
+	.marquee_demo3 .scroll_list li {
+		overflow: hidden;
+		padding: 0 14px;
+		float:left;
+	}
+	.marquee_demo3 .scroll_list li .img_hold{
+		height:100px;
+		width:100px;
+		border:1px solid #CCC;
+		display:block;
+		margin-top:30px;
+	}
+	
+	.marquee_demo3 .scroll_list li .img_hold img{ height:100%; width:100%}
+	.marquee_demo3 .scroll_list li.cur .img_hold{ height:160px; width:160px; margin:0}
+	.marquee_demo3 .scroll_list li.cur_side .img_hold{ height:130px; width:130px; margin-top:15px;}
+	.marquee_demo3 .next_btn,.marquee_demo3 .prev_btn{
+		padding:3px 7px;
+		background-color:#CCC;
+		color:#FFF;
+		font-size:12px;
+		line-height:12px;
+		display:inline;
+		text-decoration:none !important;
+		cursor:pointer;
+	}
+	.marquee_demo3 .next_btn:hover,.marquee_demo3 .prev_btn:hover{
+		background-color:#F55C0A;
+	}
+</style>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:0 auto; padding:50px;">
+        <div class="marquee_demo3">
+            <a class="prev_btn">上一页</a> 
+            <div class="scroll_holder">
+                <ul class="scroll_list">
+                    <li><span class="img_hold"><img src="images/1.jpg"/></span><p>文本问</p></li>
+                    <li class="cur_side"><span class="img_hold"><img src="images/2.jpg"/></span><p>文本问</p></li>
+                    <li class="cur"><span class="img_hold"><img src="images/3.jpg"/></span><p>文本问</p></li>
+                    <li class="cur_side"><span class="img_hold"><img src="images/4.jpg"/></span><p>文本问</p></li>
+                    <li><span class="img_hold"><img src="images/5.jpg"/></span><p>文本问</p></li>
+                    <li><span class="img_hold"><img src="images/6.jpg"/></span><p>文本问</p></li>
+                    <li><span class="img_hold"><img src="images/7.jpg"/></span><p>文本问</p></li>
+                </ul>
+            </div>
+            <a class="next_btn">下一页</a>
+        </div>
+    </div>
+<script>
+	ue.marquee({
+		scrolltarget : ".marquee_demo3 .scroll_holder",//绑定滚轮切换的对象
+		hovertarget : ".marquee_demo3 .scroll_holder",//鼠标hover停止切换的对象
+		target : '.marquee_demo3 .scroll_list',//滚动对象 一般为 ul
+		items : '.marquee_demo3 .scroll_list li', //滚动的详细列表
+		prevbtn : ".marquee_demo3 .prev_btn",//向前或者 向上按钮
+		nextbtn : ".marquee_demo3 .next_btn",//向后或者 向下按钮
+		
+		delay : 3000,//切换间隔时间
+		speed : 400,//切换速度
+		visiblenum : 5,//可见个数
+		scrollnum : 1,//每次滚动的个数
+		autoplay : false,//是否自动播放
+		
+		loop : 1,//循环模式 1 无限循环 0 不循环
+		beforePrev : function(){
+			
+			$(this.items[this.items.length - 1]).find(".img_hold").css({
+				width : "100px",
+				height : "100px",
+				"margin-top" : 30
+			}, this.options.speed);
+			
+			$(this.items[2]).find(".img_hold").animate({
+				width : "160px",
+				height : "160px",
+				"margin-top" : 0
+			}, this.options.speed);
+			
+			$([this.items[1], this.items[3]]).find(".img_hold").animate({
+				width : "130px",
+				height : "130px",
+				"margin-top" : 15
+			}, this.options.speed);
+			
+			$(this.items[4]).find(".img_hold").animate({
+				width : "100px",
+				height : "100px",
+				"margin-top" : 30
+			}, this.options.speed);
+			
+		},
+		beforeNext : function(){
+			
+			$(this.items[5]).find(".img_hold").css({
+				width : "100px",
+				height : "100px",
+				"margin-top" : 30
+			}, this.options.speed);
+			
+			$(this.items[1]).find(".img_hold").animate({
+				width : "100px",
+				height : "100px",
+				"margin-top" : 30
+			}, this.options.speed);
+			
+			$([this.items[2],this.items[4]]).find(".img_hold").animate({
+				width : "130px",
+				height : "130px",
+				"margin-top" : 15
+			}, this.options.speed);
+			
+			$(this.items[3]).find(".img_hold").animate({
+				width : "160px",
+				height : "160px",
+				"margin-top" : 0
+			}, this.options.speed);
+			
+		},
+		fade : 1,
+		mode : 1,//0表示竖直方向滚动 1 表示水平方向滚动
+		direction : 1//表示默认的滚动方向0向上或者向左 1表示向下或者向右
+	})
+</script>
+    </div>
+</body>
+</html> 

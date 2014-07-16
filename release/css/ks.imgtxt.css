@@ -1,0 +1,26 @@
+/*
+ * ks.imgtxt.css 图文模块
+ * 2013-12-27
+ * 情封
+*/
+.ks_imgtxt{
+    padding:0 0 0 260px;
+}
+.ks_imgtxt .ks_img{
+    float:left;
+    margin-left:-260px;
+    display:inline;
+}
+.ks_imgtxt .ks_img img{
+    width:250px;
+    height:140px;
+}
+.ks_imgtxt .ks_title{
+    color:#06C;
+    font:24px "microsoft yahei"
+}
+.ks_imgtxt .ks_content{
+    font-size:14px;
+    line-height: 24px;
+    margin:10px 0 0 0;
+}

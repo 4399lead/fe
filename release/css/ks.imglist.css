@@ -1,0 +1,31 @@
+/*
+ * ks.imglist.css 图片列表
+ * 2014-04-08
+ * 情封
+*/
+
+.ks_imglist{
+    overflow: hidden;
+    zoom:1;
+    font-size:12px;
+}
+.ks_imglist li{
+    float:left;
+    width:100px;
+}
+.ks_imglist img{
+    display: block;
+    margin:0 auto;
+    width:78px;
+    height:78px;
+}
+.ks_imglist .ks_il_title{
+    display: block;
+    width:100px;
+    text-align: center;
+    color:#333;
+}
+.ks_imglist .ks_il_title:hover{
+    color:#f60;
+}
+

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>图片精灵 - 前端组 - 4399UED</title>
+    <style type="text/css">
+        @charset "utf-8";
+        html{
+            background:#fff;
+            color:#000;
+            -webkit-text-size-adjust:none;
+            -ms-text-size-adjust:none
+        }
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+            padding:0;
+            margin:0
+        }
+        table{
+            border-collapse:collapse;
+            border-spacing:0
+        }
+        fieldset,img{
+            border:0
+        }
+        body,button,input,select,textarea{
+            font:400 12px/1.8 SimSun
+        }
+        input,select,img{
+            vertical-align:middle
+        }
+        input,select{
+            outline:0
+        }
+        input,select,textarea{
+            font-size:100%
+        }
+        ul,ol{
+            list-style:none
+        }
+        h1,h2,h3,h4,h5,h6{
+            font-size:100%
+        }
+        address,cite,dfn,em,var{
+            font-style:normal
+        }
+        abbr,acronym{
+            border:0;
+            font-variant:normal
+        }
+        fieldset,img{
+            border:0
+        }
+        del{
+            text-decoration:line-through
+        }
+        address,caption,cite,code,dfn,em,th,var{
+            font-style:normal;
+            font-weight:500
+        }
+        iframe{
+            display:block
+        }
+        sub,sup{
+            font-size:75%;
+            line-height:0;
+            position:relative;
+            vertical-align:baseline
+        }
+        sup{
+            top:-.5em
+        }
+        sub{
+            bottom:-.25em
+        }
+        caption,th{
+            text-align:left
+        }
+        th{
+            text-align:inherit
+        }
+        .clearfix:after{
+            content:"";
+            height:0;
+            visibility:hidden;
+            display:block;
+            clear:both
+        }
+        .clearfix{
+            zoom:1
+        }
+        .fl,.fr{
+            display:inline
+        }
+        .fl{
+            float:left
+        }
+        .fr{
+            float:right
+        }
+        ins,a{
+            text-decoration:none
+        }
+        a:hover{
+            text-decoration:underline
+        }
+        article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{
+            display:block
+        }
+        audio,canvas,video{
+            display:inline-block;
+            *display:inline;
+            *zoom:1
+        }
+        a{
+            color:#333;
+            text-decoration:none
+        }
+        a:hover{
+            text-decoration:underline;
+            color:#f60
+        }
+        html{
+            background:#ededed
+        }
+        body{
+            background:#fff;
+            min-width:1000px;
+            width:100%
+        }
+        #image_list{ overflow: hidden; list-style: none;}
+        #image_list li{background: #333; float: left; width: 200px; margin: 10px; color: #fff; overflow: hidden;}
+        #image_list li img{ max-width: 100%;}
+        #image_list li dt,#image_list li dd{ float: left; line-height: 24px; font-size: 12px;}
+        #image_list li dt{clear: left;}
+
+    </style>
+</head>
+
+<body>
+	<div name="image" id="dropbox" style="min-width:300px;min-height:100px;border:3px dashed silver;">
+		<ul id="image_list"></ul>
+	</div>
+	<input type="file" id="file_picker" multiple accept="image/gif,image/png,image/jpeg" />
+
+	<script type="text/javascript">
+		var image_list = document.getElementById("image_list"),
+			dropbox = document.getElementById("dropbox"),
+			file_picker = document.getElementById("file_picker"),
+			image_url = document.getElementById("image_url"),
+			body = document.body;
+
+		document.addEventListener("DOMContentLoaded", function(){
+			
+			document.addEventListener("dragenter", function(e){  
+			    dropbox.classList.add("dragFile"); 
+			}, false);  
+
+			document.addEventListener("dragleave", function(e){  
+			    dropbox.classList.remove("dragFile"); 
+			}, false);
+
+			dropbox.addEventListener("dragenter", function(e){  
+			     dropbox.classList.add("dragenter"); 
+			}, false);
+
+			dropbox.addEventListener("dragleave", function(e){  
+			     dropbox.classList.remove("dragenter"); 
+			}, false);  
+			dropbox.addEventListener("dragenter", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			}, false);  
+			dropbox.addEventListener("dragover", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			}, false);  
+			dropbox.addEventListener("drop", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			      
+			    handleFiles(e.dataTransfer.files);  
+			}, false);
+
+			file_picker.addEventListener("change", function(e){
+				handleFiles(this.files);
+			}, false);
+
+			image_url.addEventListener("change", function(e){
+				if(this.value.trim() == ""){
+					return;
+				}
+
+				readAsImageURL(this.value);
+				this.value = "";
+
+			}, false);
+		});
+
+		function handleFiles(files) {
+			
+		    for (var i = 0; i < files.length; i++) {  
+		        var file = files[i];  
+		  		if (!file.type.match(/image*/)) {  
+				    continue;  
+				}
+				  
+				var reader = new FileReader();  
+				reader.onload = (function(file) { 
+					return function(e) {
+						FileReaderOnload(e, file);
+					}; 
+				})(file);
+
+				reader.readAsDataURL(file);
+		    }  
+		}
+
+		function FileReaderOnload(e, file){
+			var img_container = document.createElement("div"),
+				img = document.createElement("img"),
+				li = document.createElement("li"),
+				meta = document.createElement("dl"),
+				metas = [],
+				dt,dd;
+
+			img.src = e.target.result;  
+			img.file = file;
+
+			console.log(e,file);
+			metas.push({
+				"text" : "文件名称：",
+				"value" : file.name
+			});
+
+			metas.push({
+				"text" : "文件大小：",
+				"value" : formateFileSize(e.total)
+			});
+
+			metas.push({
+				"text" : "文件类型：",
+				"value" : getFileType(file.type)
+			});
+
+			metas.push({
+				"text" : "上次修改时间：",
+				"value" : formatDate(file.lastModifiedDate, "yyyy-MM-dd hh:mm:ss")
+			});
+
+			metas.forEach(function(v){
+				dt = document.createElement("dt");
+				dd = document.createElement("dd");
+
+				dt.innerHTML = v.text;
+				dd.innerHTML = v.value;
+				meta.appendChild(dt);
+				meta.appendChild(dd);
+			});
+
+			img_container.classList.add("img_container");
+			img_container.appendChild(img);
+			li.appendChild(img_container);
+			li.appendChild(meta);
+			image_list.appendChild(li);  
+		}
+
+		function formateFileSize(size){
+			var unit = 1024,
+				K, M, G;
+
+			console.log(size);
+			G = Math.floor(size / unit / unit / unit);
+			size -= G * unit;
+			M = Math.floor(size / unit / unit);
+			size -= M * unit;
+			K = Math.ceil(size / unit); 
+			
+			var sizes= [];
+			G > 0 && sizes.push(G + "G");
+			M > 0 && sizes.push(M + "M");
+			K > 0 && sizes.push(K + "K");
+
+			console.log(sizes,G,M,K);
+			return sizes.join("");
+		}
+
+
+		var getFileType = (function(){
+			var types = {
+				"image/gif" : "GIF",
+				"image/png" : "PNG",
+				"image/jpeg" : "JPG"
+			};
+
+			return function(type){
+				return types[type];
+			}
+		})();
+
+		function formatDate(date, fmt){
+		    var o = {   
+		        "M+" : date.getMonth()+1,
+		        "d+" : date.getDate(),
+		        "h+" : date.getHours(),
+		        "m+" : date.getMinutes(),
+		        "s+" : date.getSeconds() 
+		    };
+
+		    if(/(y+)/.test(fmt)){
+		        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+		    }   
+		    for(var k in o){   
+		        if(new RegExp("("+ k +")").test(fmt)){   
+		            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		        }   
+		    }
+
+		    return fmt;   
+		}
+
+		function readAsImageURL(url){
+
+		}
+
+		function readerAsImageObject(img){
+			handleFiles(img.file);
+		} 
+	</script>
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F88a8d9df0306fb1bbbf7ed6520b940cd' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+
+
+</body>
+</html>

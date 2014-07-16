@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>左右滚动 - 前端通用模块 - 细三久久</title>
+    <link href="../release/css/ks.css" rel="stylesheet"/>
+    <link href="../release/css/ks.slide.css" rel="stylesheet"/>
+</head>
+<body>
+<!--ks_slide-->
+<div class="ks_slide">
+    <div class="ks_slide_box">
+        <ul class="ks_slide_list" id="j-slide-list">
+            <li><img src="http://b.hiphotos.baidu.com/pic/w%3D230/sign=1a8366ae4e4a20a4311e3bc4a0539847/5243fbf2b2119313e9ebc10c64380cd790238de5.jpg"/></li>
+            <li><img src="http://h.hiphotos.baidu.com/pic/w%3D230/sign=21bd08e89152982205333ec0e7cb7b3b/b17eca8065380cd7f6bd96c2a044ad3459828179.jpg"/></li>
+            <li><img src="http://a.hiphotos.baidu.com/pic/w%3D230/sign=03d5fda86a600c33f079d9cb2a4d5134/0df431adcbef76092380a7232fdda3cc7dd99e86.jpg"/></li>
+            <li><img src="http://g.hiphotos.baidu.com/pic/w%3D230/sign=2c69b295eac4b7453494b015fffd1e78/63d9f2d3572c11df8fd08b9f622762d0f703c20c.jpg"/></li>
+            <li><img src="http://c.hiphotos.baidu.com/pic/w%3D230/sign=64108d9afcfaaf5184e386bcbc5594ed/94cad1c8a786c917d5357785c83d70cf3bc75753.jpg"/></li>
+            <li><img src="http://b.hiphotos.baidu.com/pic/w%3D230/sign=1a8366ae4e4a20a4311e3bc4a0539847/5243fbf2b2119313e9ebc10c64380cd790238de5.jpg"/></li>
+            <li><img src="http://h.hiphotos.baidu.com/pic/w%3D230/sign=21bd08e89152982205333ec0e7cb7b3b/b17eca8065380cd7f6bd96c2a044ad3459828179.jpg"/></li>
+            <li><img src="http://a.hiphotos.baidu.com/pic/w%3D230/sign=03d5fda86a600c33f079d9cb2a4d5134/0df431adcbef76092380a7232fdda3cc7dd99e86.jpg"/></li>
+            <li><img src="http://g.hiphotos.baidu.com/pic/w%3D230/sign=2c69b295eac4b7453494b015fffd1e78/63d9f2d3572c11df8fd08b9f622762d0f703c20c.jpg"/></li>
+            <li><img src="http://c.hiphotos.baidu.com/pic/w%3D230/sign=64108d9afcfaaf5184e386bcbc5594ed/94cad1c8a786c917d5357785c83d70cf3bc75753.jpg"/></li>
+        </ul>
+    </div>
+    <span class="ks_slide_left" id="j-btn-left">&lt;</span>
+    <span class="ks_slide_right" id="j-btn-right">&gt;</span>
+</div>
+<!--/ks_slide-->
+<script src="../release/lib/jquery/jquery-1.10.2.min.js"></script>
+<script src="../release/js/ks.marquee.js"></script>
+<script>
+    ue.marquee({
+        target: '#j-slide-list',
+        hovertarget: "#j-slide-list",//鼠标hover停止切换的对象
+        items: '#j-slide-list li', //滚动的详细列表
+        prevbtn: "#j-btn-left",//前一个
+        nextbtn: "#j-btn-right",//后一个
+        gotobtn: "",
+        loop: true,
+        delay: 3000,//切换间隔时间
+        speed: 600,//切换速度
+        visiblenum: 1,
+        scrollnull: 1,
+        currentclass: "cur",
+        autoplay: false,//是否自动播放
+
+        afterSlide: function () {},//每滚动一个完的回调函数
+        beforeSlide: function () {},//每滚动一个之前的回调函数
+        mode: 1,//1表示水平方向滚动 0表示垂直方向滚动
+        direction: 1
+    });
+</script>
+</body>
+</html>

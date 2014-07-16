@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.textarea.js"></script>
+<title>多行文本框组件 ue.textarea</title>
+</head>
+<style>
+.ue-textarea{ width:262px;}
+.ue-textarea textarea{ font-size:12px; height:20px;line-height:20px; font-family:"simson";color:#666; width:232px;border:10px solid #CCC; padding:10px;overflow:hidden; resize:none;}
+.ue-textarea textarea:focus{outline:none;}
+.textarea_focus{ background-color:#fefefe; color:#333333;}
+.ue-textarea .maxlength{ text-align:right;line-height:1.6; font-size:12px; color:#333333}
+</style>
+<body>
+	<div style="width:960px; margin:50px auto">
+    	<h1></h1>
+        <div class="ue-textarea" id="j-textarea">
+            <textarea></textarea>
+            <p class="maxlength">0/40</p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		
+		ue.textarea({
+			target : "#j-textarea",
+			maxLengthTarget : "#j-textarea .maxlength",
+			maxLengthText : '@{count}/@{maxLength}',
+			maxLength : 40,
+			maxHeight : 60,
+			focusClass : "textarea_focus",
+			defaultValue : "我也说一句..."
+		})
+	});
+</script>

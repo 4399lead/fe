@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../api.css"  rel="stylesheet"/>
+<title>简易动画组件 ue.tween</title>
+</head>
+
+<body>
+    <div class="wrap">
+		<h2 class="api_h2">简易动画组件 ue.tween（该组件已不更新，改用ue.addTween）</h2>
+        <h3 class="api_h3">参数列表</h3>
+        <table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>delay</th>
+                    <td>动画执行时间</td>
+                </tr>
+                <tr>
+                    <th>type</th>
+                    <td>动画执行类型 linear easeout easein</td>
+                </tr>
+                <tr>
+                    <th>tx</th>
+                    <td>
+                    	<dl>
+                        	<dt>动画执行函数</dt>
+                        	<dd>第一个参数为当前动画执行的百分比，用于控制要执行动画的对象的变化</dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <th>callback</th>
+                    <td>动画执行完成的回调函数</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>简易动画组件demo1</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="demo1.rar">下载</a></dd>
+        </dl>
+		
+		<h2 class="api_h2">强大的动画组件 ue.addTween<strong>（推荐使用）</strong></h2>
+        <h3 class="api_h3">参数列表</h3>
+		
+		<table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>time</th>
+                    <td>动画执行时间</td>
+                </tr>
+                <tr>
+                    <th>transition</th>
+                    <td>动画执行类型 linear easeInQuad 等等/td>
+                </tr>
+                <tr>
+                    <th>prefix</th>
+                    <td>
+                    	css样式值的前缀 暂不知有何用处
+                    </td>
+                </tr>
+                <tr>
+                    <th>suffix</th> 
+                    <td>css样式值的后缀 比如 {"width" : "pt"}  默认 px </td>
+                </tr>
+				
+				<tr>
+                    <th>onStart</th>
+                    <td>动画开始执行回调函数</td>
+                </tr>
+				<tr>
+                    <th>onStartParams</th>
+                    <td>动画开始执行回调函数的参数值</td>
+                </tr>
+				<tr>
+                    <th>onUpdate</th>
+                    <td>动画执行时定时更新函数</td>
+                </tr>
+				<tr>
+                    <th>onUpdateParams</th>
+                    <td>动画执行时定时更新函数的参数值</td>
+                </tr>
+				<tr>
+                    <th>onComplete</th>
+                    <td>动画执行完毕后的回调函数</td>
+                </tr>
+				<tr>
+                    <th>onCompleteParams</th>
+                    <td>动画执行完毕后的回调函数的参数值</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+
+		<h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>用ue.addTween demo</dt>
+        	<dd><a href="demo2.html" target="_blank">查看</a> | <a href="demo2.rar">下载</a></dd>
+        </dl>
+    </div>
+</body>
+</html>

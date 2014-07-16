@@ -1,0 +1,75 @@
+/*
+ * 
+ * @m    ks.carousel.css
+ * @desc 轮播
+ * 
+*/
+.ks_carousel{
+    position: relative;
+    width:300px;
+}
+.ks_carousel_bd{
+    width:300px;
+    height:200px;
+    overflow: hidden;
+}
+.ks_carousel_fd{
+    background: #000;
+    opacity:0.5;
+    filter:alpha(opacity=50);
+    height:30px;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+}
+.ks_carousel_list{
+    overflow: hidden;
+    zoom:1;
+}
+.ks_carousel_list li{
+    float:left;
+    width:300px;
+    height:200px;
+}
+
+.ks_carousel_title{
+    position: absolute;
+    left:0;
+    bottom:0;
+    height:30px;
+    line-height: 30px;
+    z-index: 99;
+}
+.ks_carousel_title a{
+    color:#fff;
+}
+
+/*
+ * @m ks_carousel_focus
+*/
+.ks_carousel_focus{
+    position: absolute;
+    right:10px;
+    bottom:0;
+    height:30px;
+    overflow: hidden;
+}
+.ks_carousel_focus li{
+    float: left;
+    margin:0 0 0 5px;
+    cursor:pointer;
+    height:30px;
+}
+.ks_carousel_focus li i{
+    width:8px;
+    height:8px;
+    border-radius:10px;
+    overflow: hidden;
+    background: #fff;
+    display: block;
+    margin:10px 0 0 0;
+}
+.ks_carousel_focus li.cur i{
+    background:#F60;
+}

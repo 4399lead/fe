@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<link rel="stylesheet" href="ui-dialog.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.easydrag.js"></script>
+<script src="../../../release/js/ue.dialog.js"></script>
+<style>
+.ui-dialog-b{ background-color:#F00; padding:20px; border:5px solid #000}
+.ui-dialog-b h1{ font-size:18px; line-height:30px;}
+</style>
+<title>固定层</title>
+</head>
+
+<body>
+	<div style="width:960px; margin:0 auto; padding:80px; height:2000px;">
+    	<p><a href="#" class="show_pop_btn1">固定在底部的层</a></p>
+       	<p> <a href="#" class="show_pop_btn2">固定在顶部的层</a></p>
+        <p><a href="#" class="show_pop_btn3">固定在左边的层</a></p>
+        <p><a href="#" class="show_pop_btn4">固定在右边的层</a></p>
+    </div>
+</body>
+</html>
+
+<script>
+$(function(){
+	$(".show_pop_btn1").bind("click", function(){
+		ue.dialog({
+			id : "base_dialog_fix_bottom",
+			bottom : 0,
+			position : "fixed",
+			left : 0,
+			width : "100%",
+			content : '<div class="ui-dialog-b">固定在底部的层</div>'
+		});
+		return false;
+	});
+	
+	$(".show_pop_btn2").bind("click", function(){
+		ue.dialog({
+			id : "base_dialog_fix_top",
+			top : 0,
+			position : "fixed",
+			left : 0,
+			width : "100%",
+			content : '<div class="ui-dialog-b">固定在顶部的层</div>'
+		});
+		return false;
+	});
+	
+	$(".show_pop_btn3").bind("click", function(){
+		ue.dialog({
+			id : "base_dialog_fix_left",
+			top : "auto",
+			position : "fixed",
+			left : 30,
+			width : 100,
+			content : '<div class="ui-dialog-b">固定在左边的层</div>'
+		});
+	});
+	
+	$(".show_pop_btn4").bind("click", function(){
+		ue.dialog({
+			id : "base_dialog_fix_right",
+			top : "auto",
+			position : "fixed",
+			right : 30,
+			width : 100,
+			content : '<div class="ui-dialog-b">固定在右边的层</div>'
+		});
+		return false;
+	});
+})
+</script>

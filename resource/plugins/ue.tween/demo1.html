@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.tween.js"></script>
+<title>简易动画组件 ue.tween</title>
+</head>
+<style>
+
+</style>
+<body>
+	<div style="margin-left:200px; margin-top:100px;">
+        <div style="width:200px; height:50px; background-color:#ccc; margin-bottom:10px;" id="test1"></div>
+        <div style="width:200px; height:50px; background-color:#ccc; margin-bottom:10px;" id="test2"></div>
+        <div style="width:200px; height:50px; background-color:#ccc; margin-bottom:10px;" id="test3"></div>
+        <a href="#" id="startBtn">开始</a>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		var test1 = $('#test1'),
+			test2 = $('#test2'),
+			test3 = $('#test3'),
+			test4 = $('#test4'),
+			test5 = $('#test5');
+		
+		$("#startBtn").bind("click",function(){
+			
+			ue.tween(2000 , 'linear', function(per){
+				$("#test1").css({
+					'width' : 200  + 500 * per,
+					'margin-left' : 800 * per,
+					'background-color' : 'rgb(' + parseInt((255 - 204) * per + 204 ) + ',' + parseInt((103 - 204) * per + 204 ) + ',' + parseInt((255 - 204) * per + 204 ) + ')'
+				})
+			})
+			
+			ue.tween(2000 , 'easeout', function(per){
+				$("#test2").css({
+					'width' : 200  + 500 * per,
+					'margin-left' : 800 * per 
+				})
+			})
+			
+			ue.tween(2000 , 'easein', function(per){
+				$("#test3").css({
+					'width' : 200  + 500 * per,
+					'margin-left' : 800 * per 
+				})
+			})
+			
+			return false;
+		});
+	})
+</script>

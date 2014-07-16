@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.pager.js"></script>
+<title>静态分页组件</title>
+</head>
+<body>
+<style>
+.list_pager{
+	padding:20px;
+	text-align:center;
+}
+.list_pager li{ float:left;}
+.list_pager span.pager_item,.list_pager a.pager_item{
+	padding:4px 8px;
+	text-decoration:none;
+	background-color:#C2F1F5;
+	border: 1px solid #3399CC;
+	color:#006699;
+	margin:0 5px;
+}
+.list_pager a.pager_item:hover{
+	background-color:#6BDDE7;
+	color:#FFFFFF;
+}
+.list_pager span.pager_disable{
+	background-color:#E8E8E8;
+	border-color:#999999;
+	color:#006699;
+}
+.list_pager span.pager_current{
+	color:#006699;
+	background-color:#fff;
+}
+.list_pager span.pager_tip{
+	background-color:#fff;
+
+}
+
+.list_pager{
+	width:700px;
+	margin:0 auto;
+}
+
+.list_pager .pager_num{ text-align:left; float:left;}
+.list_pager .form{float:right;}
+.list_pager form .pager_input{ width:20px;}
+.list_pager form .pager_goto{ padding:2px 5px;}
+</style>
+<div class="list">
+	<div class="list_content">
+		<ul>
+			<li>111111111111111111111</li>
+			<li>111111111111111111111</li>
+			<li>111111111111111111111</li>
+			<li>111111111111111111111</li>
+			<li>111111111111111111111</li>
+			<li>111111111111111111111</li>
+		</ul>
+	</div>
+	<div class="list_pager">
+    	<div class="pager_num"></div>
+        <div class="form"></div>
+	</div>
+</div>
+<script>
+function getListData(p){
+	//$.getJSON("?&p="+p,function(json){
+		var json = {
+				count : 59,
+				result : []
+			};
+		
+		ue.pager({
+			//target : $(".list_pager"),//放置分页的元素
+			pagerTarget : $(".list_pager .pager_num"),
+			formTarget : $(".list_pager .form"),
+			firstNum : '<a href="#" class="pager_firstnum pager_item">1</a>',
+			firstNumDisabled : '',
+			lastNum : '<a href="#" class="pager_lastnum pager_item">@{pageCount}</a>',
+			lastNumDisabled : '',
+			prevMore : '<a href="#" class="pager_prevmore pager_item">...</a>',
+			prevMoreDisabled : '',
+			nextMore : '<a href="#" class="pager_nextmore pager_item">...</a>',
+			nextMoreDisabled : '',
+			now : p,//当前页
+			maxPage : 5,//显示的最多页数
+			per : 5,
+			count : json.count,
+			prevbeforefirst : true,
+			nextafterlast : true,
+			goto : '<form action="#"><input class="pager_input"/><input type="submit" value="go" class="pager_goto"/></form>',
+			showMore : true,
+			showFirstAndLastNum : true,
+			onchange : function(page){//切换页数回调函数
+				getListData(page);
+			}
+		})
+	//})
+	
+}
+getListData(1);
+</script>
+</body>
+</html>

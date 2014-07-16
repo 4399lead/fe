@@ -1,0 +1,9 @@
+/*
+ * ks.share.css 百度分享
+ * 2013-11-04
+ * 情封
+*/
+/*ks_bdshare*/
+.ks_bdshare { overflow:hidden; zoom:1; font-size:12px;}
+.ks_bdshare .ks_share_field{ float:left;line-height:26px;}
+#bdshare{ float:left; }

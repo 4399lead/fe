@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="js_doc">
+<head>
+    <meta charset="UTF-8" />
+    <title>常用Javascript组件地址 - 细三久久 前端组</title>
+    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+    <style>
+        .prettyprint .pln,.prettyprint .com,.prettyprint .pun{
+            font-size: 14px;
+            color: #F8F8F8;
+        }
+        pre.prettyprint{ background: #181818;border:1px dashed #999;}
+        .tag{ color:#333;}
+        .cdn_notice{ color:#f00;margin-top:20px;}
+    </style>
+</head>
+<body>
+    <!--jks_section-->
+    <div class="jks_section jks_jslist">
+        <!--jks_jsbox-->
+        <div class="jks_jsbox">
+            <h2>JS组件说明</h2>
+            <!--mod_jslist-->
+            <div class="mod_jslist">
+                <p>本组件采用Bower包管理工具调用，调用方式如下：<em>bower install 组件绝对地址</em></p>
+                <pre class="prettyprint code_prew">bower install http://jks.4399ued.com/release/lib/jquery/jquery-1.10.2.min.js </pre>
+            </div>
+            <!--/mod_jslist-->
+            <div id="j-jslist"></div>
+        </div>
+        <!--/jks_jsbox-->
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <script id="j-jslist-template" type="text/x-handlebars-template">
+        {{#each list}}
+        <div class="cdn_list" id="#js{{@index}}">
+            <h3><a href="http://ks.4399ued.com/html/ks.validform.html" title="使用手册">{{title}}</a></h3>
+            <pre class="prettyprint">http://jks.4399ued.com/release/{{href}}</pre>
+        </div>
+        {{/each}}
+    </script>
+<!--/ks_grid-->
+<script src="release/lib/seajs/sea.js"></script>
+<script src="resource/js/config.js"></script>
+<script>
+    seajs.use(['jquery','./resource/js/m.sidebar.js?t=20131111'],function(jquery,JKS){
+        JKS.js();
+    });
+    seajs.use('./resource/js/codeLight.js');
+    seajs.use('./resource/js/m.jsList.js');
+</script>
+</body>
+</html>

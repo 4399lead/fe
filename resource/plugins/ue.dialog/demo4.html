@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<link rel="stylesheet" href="ui-dialog.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.easydrag.js"></script>
+<script src="../../../release/js/ue.dialog.js"></script>
+<title>uiDialog.Alert</title>
+</head>
+
+<body>
+	<div class="wrap">
+    	<a href="#" class="show_pop_btn">uiDialog.Alert</a>
+    </div>
+</body>
+</html>
+
+<script>
+$(function(){
+	$(".show_pop_btn").bind("click", function(){
+		
+		if(ue.dialog.list["ui-dialog_1"]){
+			ue.dialog.list["ui-dialog_1"].show();
+			return false;	
+		}
+		ue.dialog.alert({
+			icon : 'ui-dialog-failure_icon',
+			title : 'Alert',
+			afterClose : function(){
+				
+			},
+			
+			confirm : function(){
+				alert('点击了确认按钮');
+				
+				this.close();
+				
+				ue.dialog.alert({
+					icon : 'ui-dialog-failure_icon',
+					title : 'Alert',
+					confirm : function(){
+						alert('点击了确认按钮');
+						return false;
+					},
+					position : "fixed",
+					content : '<p style=" line-height:80px; color:#096; font-size:18px; font-weight:bold">这是一ssssssss提示文字</p>'
+				});
+				return false;
+			},
+			position : "fixed",
+			content : '<p style=" line-height:80px; color:#096; font-size:18px; font-weight:bold">这是一段不长的提示文字</p>'
+		});
+		return false;
+	})
+})
+</script>

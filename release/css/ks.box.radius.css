@@ -1,0 +1,83 @@
+/*
+ * ks.box.radius.css
+ * 2013-11-04
+ * 情封
+*/
+.ks_box{}
+.ks_box .ks_hd, .ks_box .ks_lt, .ks_box .ks_rt, .ks_box .ks_fd, .ks_box .ks_rb, .ks_box .ks_lb {
+    background-image: url(http://s1.img4399.com/home/images/index/index_sprite.png?7644);
+    background-repeat: no-repeat;
+    height: 27px;
+}
+.ks_box .ks_hd{
+    padding: 0 11px;
+    zoom: 1;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    position: relative;
+}
+.ks_box .ks_title{
+    margin-bottom: -27px;
+    height: 27px;
+    line-height: 27px;
+    position: relative;
+}
+.ks_box .ks_h{
+    color: #333;
+    text-align: left;
+    height: 27px;
+    line-height: 27px;
+    font-size: 12px;
+}
+.ks_box .ks_more{
+    float: right;
+    line-height: 27px;
+    display: inline;
+    margin: -27px 0 0 0;
+    color:#1C8ED3;
+}
+.ks_box .ks_more:hover{
+    color:#f60;
+}
+
+.ks_box .ks_lt{
+    background-position: 0 -27px;
+    background-repeat: repeat-x;
+    display: block;
+}
+.ks_box .ks_rt{
+    background-position: right -54px;
+    margin: -27px -11px 0 0;
+    display: block;
+}
+
+
+.ks_box .ks_bd{
+    zoom: 1;
+    background: #F4FBFF;
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #B2D9F6;
+    height:300px;
+}
+
+.ks_box .ks_fd{
+    background-position: 0 -81px;
+    padding: 0 11px;
+    height: 5px;
+    overflow: hidden;
+}
+.ks_box .ks_lb{
+    background-position: 0 -86px;
+    height: 5px;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    display: block;
+}
+.ks_box .ks_rb{
+    background-position: right -91px;
+    margin: -5px -11px 0 0;
+    height: 5px;
+    overflow: hidden;
+    display: block;
+}

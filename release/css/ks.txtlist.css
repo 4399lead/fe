@@ -1,0 +1,46 @@
+/*
+ * ks.txtlist.css 文字列表
+ * 2013-12-27
+ * 情封
+*/
+
+.ks_txtlist li{
+    height:26px;
+    line-height: 26px;
+    white-space: nowrap;
+    *white-space:normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/*
+ * 存在右侧数据字段
+*/
+.ks_txtlist_r li{
+    position: relative;
+    padding-right:80px;
+}
+.ks_txtlist_r .ks_r{
+    position: absolute;
+    right:0;
+    top:0;
+}
+
+.ks_txtlist li a{
+    color:#333;
+}
+.ks_txtlist li a:hover{
+    color:#f60;
+}
+.ks_txtlist .ks_l{
+    float: left;
+}
+.ks_txtlist .ks_ico{
+    background: url(../../resource/tmp/v.png) no-repeat;
+    width:14px;
+    height:14px;
+    float:left;
+    margin:7px 5px 0 0;
+    display: inline;
+}
+
+

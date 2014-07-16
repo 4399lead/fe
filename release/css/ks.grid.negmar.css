@@ -1,0 +1,21 @@
+/*
+ * ks.grid.negmar.css 双飞翼布局
+ * 2013-11-11
+ * 情封
+*/
+.ks_grid_negmar{
+    overflow: hidden;
+    zoom:1;
+}
+.ks_grid_negmar .ks_section{
+    float: left;
+    width:100%;
+}
+.ks_grid_negmar .ks_content{
+    margin:0 0 0 160px;
+}
+.ks_grid_negmar .ks_aside{
+    float: left;
+    margin-left: -100%;
+    width:150px;
+}

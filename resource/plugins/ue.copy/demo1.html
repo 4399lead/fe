@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<style>
+
+.pop_sharebox .ipt_txt{ width:109px; height:18px; line-height:18px; border:#cbcbcb 1px solid; padding:0 5px; font-family:"simsun"; float:left; margin-right:5px;}
+.pop_sharebox .copy_btn{ background:url(sprite.jpg) no-repeat -390px -148px; width:45px; height:21px; line-height:20px; float:left; text-align:center; }
+.pop_sharebox .copy_btn:hover{ background-position:-390px -170px; text-decoration:none; }
+</style>
+<title>分享组件</title>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:20px auto">
+        <div class="clearfix" style="position:relative;">
+            <input type="text" class="ipt_txt" readonly="readonly" value="http://www.4399.com" id="url_input">
+            <a id="copy_btn" href="#" class="copy_btn">复制</a>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../../release/js/ZeroClipboard.js"></script>
+<script src="../../../release/js/ue.copy.js"></script> 
+<script>
+$(function(){
+	ue.copy({
+		btnId : "copy_btn",//复制按钮
+		txtId : 'url_input',//网址文本框
+		success : function(){
+			alert("已复制到剪切板，可通过ctrl+v粘贴");
+		}
+	})
+})
+</script>

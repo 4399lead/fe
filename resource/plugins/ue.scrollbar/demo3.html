@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.scrollbar.js"></script>
+<title>重新设置滚动条的高度</title>
+</head>
+<style>
+	.box{ height:360px; position:relative; width:300px; border:5px solid #C60;padding:5px;border-radius:3px;}
+	.box_inner{ height:100%; overflow:hidden;}
+	.v_scrollbar{position:absolute;width:7px;right:2px;top:10px;height:350px; display:none;cursor:pointer; }
+	.v_scrollbar_bg{position:absolute;top:0;width:7px;height:100%;}
+	.v_scrollbar_btn{position:absolute;width:5px; border:1px solid #000;-moz-border-radius:3px; -o-border-radius:3px;-webkit-border-radius:3px; z-index:100px;filter:alpha(opacity=40);opacity:0.4; top:0;border-radius:3px; background-color:#555; }
+</style>
+<body>
+	<div style="width:960px; margin:30px auto;">
+    	<h1>3秒后 内容增加 重新设置滚动条的高度</h1>
+        <div class="box">
+            <div class="box_inner">
+            	<div class="box_main">
+                    <h1>标题标题</h1>
+                    <ul>
+                        <li>1111111111111</li>
+                        <li>2222222222222</li>
+                        <li>3333333333333</li>
+                        <li>4444444444444</li>
+                        <li>5555555555555555555555</li>
+                        <li>666666666666666666666</li>
+                        <li>7777777777777777777777777</li>
+                        <li>1111111111111</li>
+                        <li>2222222222222</li>
+                        <li>3333333333333</li>
+                        <li>4444444444444</li>
+                        <li>5555555555555555555555</li>
+                        <li>666666666666666666666</li>
+                        <li>7777777777777777777777777</li>
+                        <li>1111111111111</li>
+                        <li>2222222222222</li>
+                        <li>3333333333333</li>
+                        <li>4444444444444</li>
+                        <li>5555555555555555555555</li>
+                        <li>666666666666666666666</li>
+                        <li>7777777777777777777777777</li>
+                        <li>1111111111111</li>
+                        <li>2222222222222</li>
+                        <li>3333333333333</li>
+                        <li>4444444444444</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="v_scrollbar">
+                <div class="v_scrollbar_bg"></div>
+                <div class="v_scrollbar_btn"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		var scrllbar1 = ue.scrollbar({
+			height : 350,
+			scroll_per : 20,//每次滚动滑轮，滚动条移动10像素
+			scrollbarbg : $(".v_scrollbar_bg"),//滚动条
+			target : $(".box"),
+			box : $(".box_main"),
+			scrollbar : $(".v_scrollbar"),
+			btn : $(".v_scrollbar_btn")
+		});
+		
+		setTimeout(function(){
+			$(".box_main").append($(".box_main").html());
+			scrllbar1.reset();
+			//scrllbar1.scrollTo(0, false);
+		}, 3000);
+	})
+</script>

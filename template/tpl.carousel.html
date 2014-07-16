@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>轮播 - 前端通用模块 - 细三久久</title>
+    <link href="../release/css/ks.css" rel="stylesheet"/>
+    <link href="../release/css/ks.carousel.css" rel="stylesheet"/>
+</head>
+<body>
+<!--ks_carousel-->
+<div class="ks_carousel">
+    <div class="ks_carousel_bd">
+        <ul class="ks_carousel_list"  id="j-carousel">
+            <li><img src="http://ww1.sinaimg.cn/mw690/685046e3jw1edb16mpn03j20da0hstb1.jpg" alt="春节"/></li>
+            <li><img src="http://ww4.sinaimg.cn/mw690/685046e3jw1ecwm5fj0g2j20da0hs0uo.jpg" alt="中秋"/></li>
+            <li><img src="http://ww4.sinaimg.cn/mw690/685046e3jw1ecuzd5ltblj20da0hst9p.jpg" alt="国庆"/></li>
+        </ul>
+    </div>
+    <div  class="ks_carousel_title"  id="j-title"></div>
+    <div class="ks_carousel_fd" id="j-title-bg"></div>
+    <ul class="ks_carousel_focus" id="j-focus">
+        <li><i></i></li>
+        <li><i></i></li>
+        <li class="cur"><i></i></li>
+    </ul>
+</div>
+<!--/ks_carousel-->
+<script src="../release/lib/jquery/jquery-1.10.2.min.js"></script>
+<script src="../release/lib/seajs/sea.js"></script>
+<script>
+    seajs.use(['../release/js/ks.marquee.js'],function(marquee){
+        var slide = new marquee({
+                    hovertarget : "#j-carousel",
+                    target : '#j-carousel',
+                    items : '#j-carousel li',
+                    gotobtn : "#j-focus li",
+
+                    delay : 2000,
+                    speed : 500,
+                    visiblenum : 1,
+                    scrollnull : 1,
+                    currentclass : "cur",
+                    autoplay : true,
+                    trigger : "mouseover",
+                    afterSlide : function(){
+                        setSlideTitle.call(this);
+                    },
+                    beforeSlide : function(){
+                        $("#j-title,#j-title-bg").fadeOut(300);
+                    },
+                    mode : 1,
+                    direction : 0
+                });
+
+                function setSlideTitle(){
+                    var href = this.current.find("a").attr("href"),
+                        title = this.current.find("img").attr("alt");
+
+                    $("#j-title").html('<a href="' + href + '">' + title + '</a>');
+                    $("#j-title,#j-title-bg").fadeIn(200);
+                }
+
+                setSlideTitle.call(slide);
+                //ooxx.xo();
+    })
+</script>
+<!--<script src="../release/js/ks.marquee.js"></script>
+<script>
+    var slide = new ue.marquee({
+            hovertarget : "#j-carousel",
+            target : '#j-carousel',
+            items : '#j-carousel li',
+            gotobtn : "#j-focus li",
+
+            delay : 2000,
+            speed : 500,
+            visiblenum : 1,
+            scrollnull : 1,
+            currentclass : "cur",
+            autoplay : true,
+            trigger : "mouseover",
+            afterSlide : function(){
+                setSlideTitle.call(this);
+            },
+            beforeSlide : function(){
+                $("#j-title,#j-title-bg").fadeOut(300);
+            },
+            mode : 1,
+            direction : 0
+        });
+
+        function setSlideTitle(){
+            var href = this.current.find("a").attr("href"),
+                title = this.current.find("img").attr("alt");
+
+            $("#j-title").html('<a href="' + href + '">' + title + '</a>');
+            $("#j-title,#j-title-bg").fadeIn(200);
+        }
+
+        setSlideTitle.call(slide);
+        //ue.alert();
+</script>-->
+</body>
+</html>

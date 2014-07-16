@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../api.css" />
+<title>基础对话框  ue.dialog</title>
+</head>
+
+<body>
+	<div class="wrap">
+        <h2 class="api_h2">基础对话框 ue.dialog</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>id</th>
+                    <td>对话框的id。参数值为ID名称</td>
+                </tr>
+                <tr>
+                    <th>force</th>
+                    <td>如果已经存在相同id的对话框 是否强制关闭 ，参数值格式 false | true</td>
+                </tr>
+                <tr>
+                    <th>content</th>
+                    <td>对话框的内容</td>
+                </tr>
+                 <tr>
+                    <th>zIndex</th>
+                    <td>对话框的zIndex</td>
+                </tr>
+                
+                <tr>
+                    <th>lock</th>
+                    <td>是否显示遮罩层 参数值 ： false | true</td>
+                </tr>
+                <tr>
+                    <th>width</th>
+                    <td>设置对话框的宽度，默认值为auto，即自适应模版的宽度。参数值格式为 ： 数字 | auto | 百分数("100%")</td>
+                </tr>
+                <tr>
+                    <th>height</th>
+                    <td>设置对话框的高度，默认值为auto，即自适应模版的高度。参数值格式为 ： 数字 | auto | 百分数("100%")</td>
+                </tr>
+                <tr>
+                    <th>minWidth</th>
+                    <td>设置对话框的最小宽度，默认值为auto，即不限制最小宽度。参数值格式为 ： 数字 | auto</td>
+                </tr>
+                <tr>
+                    <th>maxWidth</th>
+                    <td>设置对话框的最大宽度，默认值为auto，即不限制最大宽度。参数值格式为 ： 数字 | auto</td>
+                </tr>
+                <tr>
+                    <th>position</th>
+                    <td>设置对话框的定位的模式，默认值为absolute。参数值为 absolute | fixed </td>
+                </tr>
+                <tr>
+                    <th>left</th>
+                    <td>设置对话框的位置。默认值为auto,即居中。参数值为 数字 |  "auto"</td>
+                </tr>
+                <tr>
+                    <th>right</th>
+                    <td>设置对话框的位置。默认值为auto,即居中。参数值为 数字 |  "auto"</td>
+                </tr>
+                <tr>
+                    <th>top</th>
+                    <td>设置对话框的位置。默认值为auto,即居中。参数值为 数字 |  "auto"</td>
+                </tr>
+                <tr>
+                    <th>bottom</th>
+                    <td>设置对话框的位置。默认值为auto,即居中。参数值为 数字 |  "auto"</td>
+                </tr>
+                <tr>
+                    <th>drag</th>
+                    <td>是否可以拖动 参数值: true | false</td>
+                </tr>
+                <tr>
+                    <th>dragHock</th>
+                    <td>设置可以拖动的元素 参数值：[string]jquery 选择符</td>
+                </tr>
+                <tr>
+                    <th>closeBtn</th>
+                    <td>关闭对话框按钮的class，默认值 ".ui-dialog-close_btn"</td>
+                </tr>
+                <tr>
+                    <th>init</th>
+                    <td>设置对话框初始化的方法</td>
+                </tr>
+                <tr>
+                    <th>beforeClose</th>
+                    <td>关闭弹窗之前的回调函数</td>
+                </tr>
+                <tr>
+                    <th>afterClose</th>
+                    <td>关闭弹窗之后的回调函数</td>
+                </tr>
+				<tr>
+                    <th>triggerTarget</th>
+                    <td>触发弹窗的对象，用于关闭弹窗后继续把焦点转移给它</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="api_table">
+            <caption>基础对话框的静态成员列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>list</th>
+                    <td>当前所有存在的对话框的列表，可通过id去获取，如 uiDialog.list["id"]</td>
+                </tr>
+            </tbody>
+
+        </table>
+        
+        <table class="api_table">
+            <caption>基础对话框的公共成员列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>obj</th>
+                    <td>当前对话框的jquery对象，如 this.obj或者 uiDialog.list["id"].obj</td>
+                </tr>
+            </tbody>
+
+        </table>
+        
+         <table class="api_table">
+            <caption>基础对话框的公共方法列表</caption>
+            <thead>
+                <tr>
+
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>reset</th>
+                    <td><p>调整对话框内容后调用此方法重置高度和位置</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>close([beforeClose, afterClose])</th>
+                    <td>关闭对话框并删除，同时可以传新的beforeClose 和 afterClose 回调</td>
+                </tr>
+                <tr>
+                    <th>show</th>
+                    <td>显示对话框</td>
+                </tr>
+                <tr>
+                    <th>hide</th>
+                    <td>隐藏对话框</td>
+                </tr>
+                <tr>
+                    <th>timer</th>
+                    <td><p>设置定时器</p>
+                        <dl>
+                            <dt>参数列表</dt>
+                            <dd>delay,设置定时器的事件 1000 表示1秒</dd>
+                            <dd>callback 设置定时器触发的函数</dd>
+                        </dl></td>
+                </tr>
+            </tbody>
+
+        </table>
+ 		<h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>完全自定义的基础对话框示例</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo1.rar">下载</a></dd>
+            <dt>固定位置层</dt>
+        	<dd><a href="demo7.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo7.rar">下载</a></dd>
+        </dl>
+        <h2 class="api_h2">具有默认主题的对话框  ue.dialog.custom</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>show_footer</th>
+                    <td>是否显示按钮区 默认 false 参数值 true | false</td>
+                </tr>
+                <tr>
+                    <th>show_cancel_btn</th>
+                    <td>是否显示取消按钮 默认值 false 参数值格式 false | true</td>
+                </tr>
+                <tr>
+                    <th>show_confirm_btn</th>
+                    <td>是否显示确认按钮 默认值 false 参数值格式 false | true</td>
+                </tr>
+                 <tr>
+                    <th>title</th>
+                    <td>对话框的标题</td>
+                </tr>
+                
+                <tr>
+                    <th>content</th>
+                    <td>对话框主体内容</td>
+                </tr>
+                <tr>
+                    <th>footer</th>
+                    <td>自定义按钮区内容</td>
+                </tr>
+                <tr>
+                    <th>theme</th>
+                    <td>对话框的主题 默认值 'ui-dialog-a'</td>
+                </tr>
+                <tr>
+                    <th>show_header</th>
+                    <td>是否显示头部 默认 true 参数值 true | false</td>
+                </tr>
+                <tr>
+                    <th>confirm</th>
+                    <td>点击确定按钮的回调函数</td>
+                </tr>
+                <tr>
+                    <th>cancel</th>
+                    <td>点击取消按钮回调函数</td>
+                </tr>
+                <tr>
+                    <th>delay</th>
+                    <td>设置对话框定时关闭的时间 默认 是0 即 没有启动定时关闭功能 </td>
+                </tr>
+                <tr>
+                    <th>icon</th>
+                    <td>设置uiDialog.Alert、uiDialog.Confirm、uiDialog.Tip 的  左侧图标对应的className，目前内置有三种icon ui-dialog-failure_icon、ui-dialog-add_icon、ui-dialog-info_icon,可以通过自己定义icon，并将iconclassName 当做参数传递</td>
+                </tr>
+                 <tr>
+                    <th>其他的参数</th>
+                    <td>其他的参数参照 uiDialog</td>
+                </tr>
+            </tbody>
+
+        </table>
+         <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+            <dt>具有默认样式打开自定义对话框</dt>
+            <dd><a href="demo2.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo2.rar">下载</a></dd>
+            <dt>打开一个异步获取数据的自定义对话框</dt>
+            <dd><a href="demo3.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo3.rar">下载</a></dd>
+        </dl>
+        
+        <h2 class="api_h2">具有默认主题的Alert ue.dialog.alert</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                 <tr>
+                    <th>title</th>
+                    <td>对话框的标题</td>
+                </tr>
+                
+                <tr>
+                    <th>content</th>
+                    <td>对话框主体内容</td>
+                </tr>
+                <tr>
+                    <th>theme</th>
+                    <td>对话框的主题 默认值 'ui-dialog-a'</td>
+                </tr>
+                
+                <tr>
+                    <th>confirm</th>
+                    <td>点击确定按钮的回调函数</td>
+                </tr>
+                <tr>
+                    <th>icon</th>
+                    <td>设置uiDialog.Alert的 左侧图标对应的className，目前内置有三种icon ui-dialog-failure_icon、ui-dialog-add_icon、ui-dialog-info_icon,可以通过自己定义icon，并将iconclassName 当做参数传递</td>
+                </tr>
+                 <tr>
+                    <th>其他的参数</th>
+                    <td>其他的参数参照 uiDialog</td>
+                </tr>
+            </tbody>
+
+        </table>
+		 <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>打开Alert</dt>
+        	<dd><a href="demo4.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo4.rar">下载</a></dd>
+        </dl>
+         <h2 class="api_h2">具有默认主题的Confirm  ue.dialog.confirm</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>content</th>
+                    <td>对话框主体内容</td>
+                </tr>
+                <tr>
+                    <th>theme</th>
+                    <td>对话框的主题 默认值 'ui-dialog-a'</td>
+                </tr>
+                
+                <tr>
+                    <th>icon</th>
+                    <td>设置uiDialog.Confirm的 左侧图标对应的className，目前内置有三种icon ui-dialog-failure_icon、ui-dialog-add_icon、ui-dialog-info_icon,可以通过自己定义icon，并将iconclassName 当做参数传递</td>
+                </tr>
+                <tr>
+                    <th>delay</th>
+                    <td>设置对话框定时关闭的时间 默认 是0 即 没有启动定时关闭功能 </td>
+                </tr>
+                 <tr>
+                    <th>其他的参数</th>
+                    <td>其他的参数参照 uiDialog</td>
+                </tr>
+            </tbody>
+
+        </table>
+         <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>打开Confirm</dt>
+        	<dd><a href="demo5.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo5.rar">下载</a></dd>
+        </dl>
+        <h2 class="api_h2">具有默认主题的Tip  ue.dialog.tip</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                 <tr>
+                    <th>title</th>
+                    <td>对话框的标题</td>
+                </tr>
+                
+                <tr>
+                    <th>content</th>
+                    <td>对话框主体内容</td>
+                </tr>
+                <tr>
+                    <th>theme</th>
+                    <td>对话框的主题 默认值 'ui-dialog-a'</td>
+                </tr>
+                 <tr>
+                    <th>cancel</th>
+                    <td>点击取消按钮回调函数</td>
+                </tr>
+                <tr>
+                    <th>confirm</th>
+                    <td>点击确定按钮的回调函数</td>
+                </tr>
+                <tr>
+                    <th>icon</th>
+                    <td>设置uiDialog.Tip的 左侧图标对应的className，目前内置有三种icon ui-dialog-failure_icon、ui-dialog-add_icon、ui-dialog-info_icon,可以通过自己定义icon，并将iconclassName 当做参数传递</td>
+                </tr>
+                 <tr>
+                    <th>其他的参数</th>
+                    <td>其他的参数参照 uiDialog</td>
+                </tr>
+            </tbody>
+
+        </table>
+		 <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>打开定时关闭的提示框</dt>
+        	<dd><a href="demo6.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo6.rar">下载</a></dd>
+        </dl>
+        <h2 class="api_h2">跟随对话框 ue.dialog.follow</h2>
+        <table class="api_table">
+            <caption>基础对话框的参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                 <tr>
+                    <th>options</th>
+                    <td>传递一个 uiDialog的参数对象，用于创建一个弹层</td>
+                </tr>
+                
+                <tr>
+                    <th>isfollowed</th>
+                    <td>被跟随的jquery对象</td>
+                </tr>
+                <tr>
+                    <th>pos</th>
+                    <td>跟随的位置,水平方向 有 left center right 竖直方向有  top middle bottom 参数为 两个方向的组合 比如"left_right" ，该组件也会对对话框添加一个 对应的classname 如（left_right）以便于可以通过css 去控制 自定义箭头的指向</td>
+                </tr>
+                 <tr>
+                    <th>trun</th>
+                    <td>跟随位置的微调 比如 {x : 3, y :-5}  表示 在pos 控制位置的基础上 再往右移动三个像素，往上移动5个像素</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+      <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>打开一个跟随对话框</dt>
+        	<dd><a href="demo8.html" target="_blank">查看</a> | <a href="../ue.ui-dialog/demo8.rar">下载</a></dd>
+        </dl>
+    </div>
+</body>
+</html>

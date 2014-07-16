@@ -1,0 +1,26 @@
+/*
+ * ks.crumbs.css 面包屑
+ * 2013-11-11
+ * 情封
+*/
+/*ks_crumbs*/
+.ks_crumbs{
+    color:#333;font-size:0;
+}
+.ks_crumbs span,.ks_crumbs a{
+    font-size: 12px;
+}
+.ks_crumbs .ks_split{
+    font-family: "simsun";
+    color:#999;
+    padding:0 5px;
+}
+.ks_crumbs a{
+    color:#1C8ED3;
+}
+.ks_crumbs a:hover{
+    color:#f00;
+}
+.ks_crumbs .ks_title{
+    color:#f00;
+}

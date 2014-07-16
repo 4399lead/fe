@@ -1,0 +1,25 @@
+/*
+ * @m 底部置底 ks.footer.css
+ * 情封
+*/
+html,body{
+    height:100%;
+}
+.ks_bottom{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+/*
+ * @m ks_bottom_box 内容盒子
+*/
+.ks_bottom_box{
+    padding-bottom:100px;
+}
+.ks_bottom_footer{
+    position: relative;
+    margin-top: -100px;/*等于footer的高度*/
+    height: 100px;
+    clear:both;
+    background: #c6f;
+}

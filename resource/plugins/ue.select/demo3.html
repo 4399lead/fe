@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.scrollbar.js"></script>
+<script src="../../../release/js/ue.select.js"></script>
+<title>无标题文档</title>
+<style>
+	.ue-select{ height:32px; width:200px; position:relative;}
+	.ue-select-title{font-size:14px; line-height:32px; height:32px; padding:0 15px;float:right;}
+	.ue-select-title span{ float:left;}
+	.ue-select-title b{float:left;width: 0;height: 0;line-height:0; font-size:0;vertical-align: top;border-top: 4px solid #000;border-right: 4px solid transparent;border-left: 4px solid transparent; margin-top:14px; display:inline; margin-left:5px;_border-color:#000 #fff #fff #fff; overflow:hidden; display:inline;}
+	.ue-select-active .ue-select-title b{border-bottom: 4px solid #000; border-top:0;_border-color:#fff #fff #000 #fff;_border-width:5px; _border-style:solid; _margin-top:8px;}
+	
+	.ue-select-list{position:absolute; width:100%; top:32px; display:none;border:1px solid #CCC; border-radius:5px;overflow:hidden; padding:5px 0; background-color:#fff;}
+	.ue-select-list-inner{height:100%; overflow:hidden;}
+	.ue-select-list ul li a{ display:block; text-decoration:none; color:#333; padding:0 15px; font-size:13px; height:24px; line-height:24px;}
+	.ue-select-list ul li a:hover,.ue-select-list ul li.cur a{ background-color:#08C; color:#fff;text-decoration:none !important;}
+	
+	.ue-select .v_scrollbar{position:absolute;width:7px;right:2px;top:5px;display:none;cursor:pointer; }
+	.ue-select .v_scrollbar_bg{position:absolute;top:0;width:7px;height:100%;}
+	.ue-select .v_scrollbar_btn{position:absolute;width:5px; border:1px solid #000;-moz-border-radius:3px; -o-border-radius:3px;-webkit-border-radius:3px; z-index:100px;filter:alpha(opacity=40);opacity:0.4; top:0;border-radius:3px; background-color:#555; }
+	
+</style>
+</head>
+<body>
+	<div style="width:960px; margin:50px auto; height:1000px;">
+        <div class="ue-select" id="j-select_1" style="z-index:10;">
+            <div class="ue-select-title"><span>请选择</span><b></b></div>
+            <div class="ue-select-list">
+                <div class="ue-select-list-inner">
+                    <ul>
+                        <li><a href="#" data-value="1111111111111">1111111111111</a></li>
+                        <li><a href="#" data-value="2222222222222">2222222222222</a></li>
+                        <li><a href="#" data-value="3333333333333">3333333333333</a></li>
+                        <li><a href="#" data-value="4444444444444444444">4444444444444444444</a></li>
+                        <li><a href="#" data-value="4444444444444444444">55555555</a></li>
+                        <li><a href="#" data-value="4444444444444444444">666666666666</a></li>
+                        <li><a href="#" data-value="77777777777">77777777777</a></li>
+                        <li><a href="#" data-value="888888">888888</a></li>
+                        <li><a href="#" data-value="9999999999">9999999999</a></li>
+                        <li><a href="#" data-value="1111111111111">1111111111111</a></li>
+                        <li><a href="#" data-value="2222222222222">2222222222222</a></li>
+                        <li><a href="#" data-value="3333333333333">3333333333333</a></li>
+                        <li><a href="#" data-value="4444444444444444444">4444444444444444444</a></li>
+                        <li><a href="#" data-value="4444444444444444444">55555555</a></li>
+                        <li><a href="#" data-value="4444444444444444444">666666666666</a></li>
+                        <li><a href="#" data-value="77777777777">77777777777</a></li>
+                        <li><a href="#" data-value="888888">888888</a></li>
+                        <li><a href="#" data-value="9999999999">9999999999</a></li>
+                    </ul>
+                </div>
+                <div class="v_scrollbar">
+                    <div class="v_scrollbar_bg"></div>
+                    <div class="v_scrollbar_btn"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ue-select" id="j-select_2">
+            <div class="ue-select-title"><span>请选择</span><b></b></div>
+            <div class="ue-select-list">
+                <div class="ue-select-list-inner">
+                    <ul>
+                        <li><a href="#" data-value="1111111111111">1111111111111</a></li>
+                        <li><a href="#" data-value="2222222222222">2222222222222</a></li>
+                        <li><a href="#" data-value="3333333333333">3333333333333</a></li>
+                        <li><a href="#" data-value="4444444444444444444">4444444444444444444</a></li>
+                        <li><a href="#" data-value="4444444444444444444">55555555</a></li>
+                        <li><a href="#" data-value="4444444444444444444">666666666666</a></li>
+                        <li><a href="#" data-value="77777777777">77777777777</a></li>
+                        <li><a href="#" data-value="888888">888888</a></li>
+                        <li><a href="#" data-value="9999999999">9999999999</a></li>
+                        <li><a href="#" data-value="1111111111111">1111111111111</a></li>
+                        <li><a href="#" data-value="2222222222222">2222222222222</a></li>
+                        <li><a href="#" data-value="3333333333333">3333333333333</a></li>
+                        <li><a href="#" data-value="4444444444444444444">4444444444444444444</a></li>
+                        <li><a href="#" data-value="4444444444444444444">55555555</a></li>
+                        <li><a href="#" data-value="4444444444444444444">666666666666</a></li>
+                        <li><a href="#" data-value="77777777777">77777777777</a></li>
+                        <li><a href="#" data-value="888888">888888</a></li>
+                        <li><a href="#" data-value="9999999999">9999999999</a></li>
+                    </ul>
+                </div>
+                <div class="v_scrollbar">
+                    <div class="v_scrollbar_bg"></div>
+                    <div class="v_scrollbar_btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		ue.select({
+			target : $("#j-select_1"),
+			trigger : "click",
+			currentClass : "cur",
+			activeClass : "ue-select-active",
+			selected : $("#j-select_1 .ue-select-title span"),
+			title : $("#j-select_1 .ue-select-title"),
+			list : $("#j-select_1 .ue-select-list"),
+			content : $("#j-select_1 .ue-select-list ul"),//包含内容的容器
+			items : $("#j-select_1 .ue-select-list li"),
+			maxHeight : 240,
+
+			scrollbar : {
+				scroll_per : 24,//每次滚动滑轮，滚动条移动24像素
+				scrollbarbg : $("#j-select_1 .v_scrollbar_bg"),//滚动条背景
+				scrollbar : $("#j-select_1 .v_scrollbar"),//滚动条容器
+				btn : $("#j-select_1 .v_scrollbar_btn")//滚动条按钮
+			},
+
+			onSelected : function(target, index){
+				this.hide();
+				return false;
+			}
+		});
+
+		ue.select({
+			target : $("#j-select_2"),
+			trigger : "click",
+			currentClass : "cur",
+			activeClass : "ue-select-active",
+			selected : $("#j-select_2 .ue-select-title span"),
+			title : $("#j-select_2 .ue-select-title"),
+			list : $("#j-select_2 .ue-select-list"),
+			content : $("#j-select_2 .ue-select-list ul"),//包含内容的容器
+			items : $("#j-select_2 .ue-select-list li"),
+			maxHeight : 240,
+
+			scrollbar : {
+				scroll_per : 24,//每次滚动滑轮，滚动条移动24像素
+				scrollbarbg : $("#j-select_2 .v_scrollbar_bg"),//滚动条背景
+				scrollbar : $("#j-select_2 .v_scrollbar"),//滚动条容器
+				btn : $("#j-select_2 .v_scrollbar_btn")//滚动条按钮
+			},
+
+			onSelected : function(target, index){
+				this.hide();
+				return false;
+			}
+		});
+	})
+</script>

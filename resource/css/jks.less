@@ -1,0 +1,473 @@
+a{
+  color:#08C;
+}
+a:hover{
+  color:#f60;
+}
+/*==================================================
+ * 首页
+===================================================*/
+.jks,.jks body{
+  background: url(../images/bg.jpg) repeat;
+}
+
+.jks_index{
+  background: url(../images/index.png) no-repeat;
+  width:1000px;
+  height:300px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin:-138px 0 0 -494px;
+  h1{
+    text-indent:-1024em;
+    overflow: hidden;
+    a{
+      display: block;
+      width:1000px;
+      height:300px;
+    }
+  }
+}
+
+/*===============================================
+ * 介绍页
+=================================================*/
+
+.jks_nav{
+  /*background: url(../images/bg.jpg) repeat;*/
+  background:#323436;
+  height:100%;
+  position: fixed;
+  left:0;
+  top:0;
+  width:200px;
+  .logo{
+    /*float:left;*/
+    padding:40px 0 0 20px;
+    font-size:72px;
+    font-family: "Charlemagne Std";
+    line-height: 60px;
+    a{
+      color:#fff;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+  .jks_step{
+    /*float:right;*/
+    margin:75px 0 0 0;
+    /*display: inline;*/
+    li{
+      /*float: left;*/
+      height:40px;
+      line-height: 40px;
+      &.cur{
+        background: #fff;
+        color:#333;
+        a{
+          color:#333;
+        }
+      }
+    }
+    a{
+      color:#fff;
+      padding:0 10px 0 30px;
+      display: block;
+      font-size:18px;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.jks_intro{
+  /*margin:130px auto 0;*/
+  margin:40px 0 0 250px;
+  width:75%;
+}
+
+/*
+ * m_box
+*/
+.jks_box{
+  margin:0 0 30px 0;
+  h2{
+    font-family: Georgia,"Times New Roman",Times,Kai,"Kaiti SC",KaiTi,BiauKai,"楷体","楷体_GB2312",serif;
+    font-size: 28px;
+  }
+  .jks_bd{
+    padding-left: 20px;
+    font-family: Georgia,"Times New Roman",Times,"Songti SC",SimSun,serif;
+  }
+}
+
+/*
+ * m_box
+*/
+.m_box{
+  padding:0 20px;
+  font-family: Georgia,"Times New Roman",Times,"Songti SC","SimSun",serif;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 30px;
+  margin-bottom:20px;
+  color: #2F2F2F;
+  h3{
+    font-family: Georgia,"Times New Roman",Times,Kai,"Kaiti SC",KaiTi,BiauKai,"楷体","楷体_GB2312",serif;
+    font-size: 22px;
+  }
+  p{
+    padding-left: 20px;
+    font-family: Georgia,"Times New Roman",Times,"Songti SC",SimSun,serif;
+	em{
+		color:#f60;
+		font-weight:700;
+	}
+  }
+  .code{
+    font-size: 14px;
+    padding: 0 10px;
+    color: #F8F8F8;
+    background: #181818;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 5px;
+  }
+}
+
+/*
+ * m_fe_list
+*/
+.m_fe_list{
+  padding:10px 0;
+  margin:0 -30px 10px 0;
+  li{
+    float:left;
+    width:298px;
+    height:148px;
+    border:1px solid #c4c3c3;
+    margin:0 20px  20px 0;
+    display: inline;
+
+    &:hover{
+      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    a{
+      display: block;
+      width:260px;
+      height:110px;
+      padding:20px;
+      &:hover{
+        text-decoration: none;
+
+      }
+    }
+    .m_fe_title{
+      color:#0088cc;
+      font-family: "microsoft yahei";
+      font-size:18px;
+
+    }
+    .m_fe_desc{
+      color:#666;
+      font-size: 14px;
+      display: block;
+      margin-top:10px;
+      height:32px;
+      overflow: hidden;
+    }
+    .m_author{
+      margin:10px 0 0 0;
+      img{
+        width:32px;
+        height:32px;
+        border-radius:16px;
+        opacity: .5;
+        &:hover{
+          opacity:1;
+        }
+      }
+    }
+  }
+}
+
+.jks_footer{
+  background: #73ddff;
+  color: #344451;
+  line-height: 1.8;
+  text-align: right;
+  padding: 10px 0;
+  .wrapper{
+    text-align: right;
+    color:#fff;
+  }
+}
+
+/*============================================================
+ * 模板页
+=============================================================*/
+.jks_aside{
+  position: fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width:200px;
+  background: #2c2d2f;
+  overflow-y:auto;
+  .jks_title{
+    background: url(../images/bg.jpg) repeat;
+    height:80px;
+    font-size:50px;
+    color:#fff;
+    padding:10px 0 0 20px;
+    font-family: "Charlemagne Std";
+    a{
+      display: block;
+      color:#fff;
+      &:hover{
+        color:#fff;
+        text-decoration: none;
+      }
+    }
+    span{
+      font-size:16px;
+      margin-left:10px;
+    }
+  }
+}
+.jks_list{
+  padding:20px 0 0 0;
+
+}
+.m_plugin_list{
+  li{
+    line-height: 30px;
+    border-left:2px solid #2C2D2F;
+    margin-bottom:5px;
+    height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    &.cur{
+      border-left:2px solid #73ddff;
+      a{
+        color:#73ddff;
+        display: block;
+
+      }
+    }
+    a{
+      color:#a2a2a3;
+      font-size:16px;
+      padding:0 0 0 20px;
+      &:hover{
+        color:#73ddff;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.jks_section{
+  margin:40px 0 0 250px;
+  margin:40px 0 0 250px;
+  h2{
+    font-size:30px;
+    color:#2d2e30;
+    padding:0 20px;
+    border-bottom:2px solid #73ddff;
+    display: inline-block;
+    font-family: "microsoft yahei";
+    font-weight: 500;
+  }
+}
+
+/*
+ * m_demo
+*/
+.m_demo{
+  padding:20px 0 0 50px;
+  h3{
+    font-family: "simsun";
+    font-size:14px;
+    font-weight: 300;
+    cursor: pointer;
+    i{
+      margin-right:10px;
+    }
+  }
+  .m_demo_box{
+    margin:10px 0 0 20px;
+  }
+
+}
+
+
+/*
+ * mod_demo_box
+*/
+.mod_demo_box{
+  float:left;
+  width:600px;
+}
+.mod_demo_tab{
+  float:left;
+  margin:0 0 0 20px;
+  display: inline;
+  background: #FFF;
+  /*border-left: 1px solid #EBEBEB;*/
+  height: 40px;
+  line-height: 35px;
+  padding: 0;
+  position: relative;
+  z-index: 102;
+  li{
+    /*border-left: 3px solid #DD4B39;*/
+    height: 20px;
+    margin: 0 0 5px 0;
+    padding: 5px 2px 5px 10px;
+    line-height: 20px;
+    a{
+      color:#2C2D2F;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    &.cur{
+      border-left: 3px solid #DD4B39;
+      font-weight: bold;
+      color:#73ddff;
+      a{
+        color:#DD4B39;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/*
+ * m_iframe
+*/
+.m_iframe{
+  width:600px;
+  height:400px;
+  padding: 1px;
+  border: 0 none;
+  border-radius: 3px;
+  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);*/
+  background: #FFF;
+}
+
+
+.m_code{
+  width:70%;
+  margin-bottom:10px;
+  h4{
+    display: inline-block;
+    zoom: 1;
+    background: #999;
+    font-family: "arial";
+    font-size: 12px;
+    color: #FFF;
+    padding: 2px 5px;
+    border-radius: 3px;
+    line-height: 1.2;
+    font-weight: 300;
+  }
+}
+
+.mod_code{
+  display: none;
+}
+
+/*
+ * js列表
+*/
+.js_doc,.js_doc body{
+  overflow: hidden;
+  height:100%;;
+}
+.jks_jslist{
+  overflow-y: auto;
+  height: 100%;
+  margin:0 0 0 250px;
+}
+.mod_jslist{ margin:20px 0 0 0;}
+.mod_jslist em{
+  color:#f00;
+}
+.code_prew{
+  display: block;
+  margin:10px 0 0 0;
+}
+
+.cdn_list{ margin:20px 0 40px;}
+.cdn_list h3{ font-size:16px;color:#000;margin-bottom:10px;border-left:2px solid #c3b226;padding-left:10px;line-height:20px;}
+.cdn_list h3 a{ color:#666;}
+.cdn_list h3 a:hover{ color:#c3b226;}
+
+.jks_jsbox{
+  margin-top:40px;
+  width:800px;
+}
+
+/*
+ * 滚动条
+*/
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(211, 211, 211, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background-image: url(http://yuedu.bst2.126.net/news-reader/app/images/common/scrollbar/1.png?bd16f4189fc82d2933bce0672d20aa93);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  -webkit-border-radius: 8px;
+}
+
+/*
+ * 工具
+*/
+.m_table{
+  width:500px;
+  margin:10px 0 0 0;
+}
+.m_version{
+  margin:0 0 0 10px;
+}
+.snipet_table{
+  width:100%;
+  border:1px #DDD solid;
+  caption{
+    text-align:center;
+    font-weight:700;
+    font-size:13px;
+  }
+  th{
+    background:#F7F7F7;
+    padding:5px 10px;
+    border:1px #DDD solid;
+  }
+  td{
+    padding:5px 10px;
+    border:1px #DDD solid;
+  }
+}
+
+
+
+
+

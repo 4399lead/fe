@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.validform.js"></script>
+<title>表单验证组件 ue.validform</title>
+</head>
+<style>
+.ks_form legend{ display:none;}
+.ks_form .ks_item{ margin-bottom:10px;padding-left:100px;}
+.ks_form .ks_field{ float:left; width:90px;margin-left:-100px;text-align:right;line-height:32px;}
+.ks_form .ks_field span{ color:#F30; font-weight:bold}
+.ks_form .ks_ipt{ width:220px;height:22px;padding:4px;border:1px solid #ddd;color:#333;font-size:14px;outline:0;}
+.ks_form .valid_tip{ display:none}
+.ks_form .failure_tip{color:#E67B7B;}
+.ks_form .failure_tip i{color:#E67B7B; font-size:16px; line-height:16px; font-weight:bold; padding-right:5px;}
+.ks_form .success_tip i{color:#56B881; font-size:12px; line-height:16px; font-weight:bold;font-style:normal}
+.ks_form .success_tip {color:#56B881;}
+.ks_form .ks_select{ padding:4px;width:230px;border:1px solid #ddd;}
+.ks_form .ks_ds{font-family:Tahoma;font-size:12px;}
+.ks_form .ks_ds input{ margin:2px 5px 0 0;vertical-align:-2px;margin-bottom:1px;}
+.ks_form .ks_label .ks_field{ line-height:26px;}
+.ks_form .ks_area{ width:400px;height:200px;border:1px solid #ddd;resize:none;padding:4px;font-size:12px;}
+.ks_form .ks_area:focus{ outline:none;}
+.ks_form .ks_act{ padding-left:100px;zoom:1;}
+.ks_form .ks_btn{ background:url(form_btn.png) no-repeat;width:181px;height:52px;line-height:52px;font-size:22px;color:#fff;border:none;cursor:pointer;}
+.ks_form .ks_btn_disabled{ background-position:0 -52px; cursor:default}
+.ks_form .ks_txt{ margin-left:10px;}
+</style>
+<body>
+	<div style="width:960px; margin:50px auto">
+    	<h1>表单验证组件 ue.validform；输入框（文本框、密码框、多行输入框）的验证</h1>
+    	 <!--模块代码：ks_form-->
+            <form action="#" class="ks_form" id="j-form1">
+                <fieldset>
+                    <legend>表单</legend>
+                    <div class="ks_item">
+                        <label class="ks_field">用户名<span>*</span>：</label>
+                        <div class="ks_w">
+                            <input type="text" class="ks_ipt" id="j-username"/>
+                            <span class="valid_tip" id="j-username_tip"></span>
+                        </div>
+                    </div>
+                    <div class="ks_item">
+                        <label class="ks_field">密码<span>*</span>：</label>
+                        <div class="ks_w">
+                            <input type="password" class="ks_ipt" id="j-password"/>
+                            <span class="valid_tip" id="j-password_tip"></span>
+                        </div>
+                    </div>
+                    <div class="ks_item">
+                        <label class="ks_field">确认密码<span>*</span>：</label>
+                        <div class="ks_w">
+                            <input type="password" class="ks_ipt" id="j-repassword"/>
+                            <span class="valid_tip" id="j-repassword_tip"></span>
+                        </div>
+                    </div>
+                     <div class="ks_item">
+                        <label class="ks_field">邮箱：</label>
+                        <div class="ks_w">
+                            <input type="text" class="ks_ipt" id="j-email"/>
+                            <span class="valid_tip" id="j-email_tip"></span>
+                        </div>
+                    </div>
+                    <div class="ks_item">
+                        <label class="ks_field">自我介绍<span>*</span>：</label>
+                        <textarea class="ks_area" id="j-introduction"></textarea>
+                        <span class="valid_tip" id="j-introduction_tip"></span>
+                    </div>
+                    <div class="ks_act">
+                        <input type="submit" class="ks_btn" id="j-submitbtn" value="提交"/><a href="#" class="ks_txt">忘记密码</a>
+                    </div>
+                </fieldset>
+            </form>
+        <!--/ks_form-->
+    </div>
+</body>
+</html>
+<script>
+	$(function(){
+		ue.validform({
+			form : "#j-form1",
+			
+			onsubmit : function(result){
+				//console.log("formvalid:", result);
+				alert("表单验证结果" + result.valid);
+				return false;
+			},
+
+			failureTipClass : "failure_tip",
+			successTipClass : "success_tip",
+			
+			elements : [
+				{
+					selector : "#j-username", 
+					tip : "#j-username_tip",
+					required : true,
+					requiredText : "<i>×</i>用户名不能为空",
+					minLength : 6,
+					maxLength : 18,
+					lengthText : "<i>×</i>用户名的长度应为6-18个字符",
+					successText : '<i>√</i>'
+				},{
+					selector : "#j-password",
+					tip : "#j-password_tip", 
+					required : true,
+					requiredText : '<i>×</i>请输入密码', 
+					regexp : /[0-9a-zA-Z@#.\-_\*]{6,10}/, 
+					regexpText : "<i>×</i>密码的格式应为6到18位【0-9a-zA-Z@#.-_*】",
+					successText : '<i>√</i>'
+				},{
+					selector : "#j-repassword",
+					tip : "#j-repassword_tip", 
+					required : true,
+					requiredText : "<i>×</i>请输入确认密码", 
+					regexp : /[0-9a-zA-Z@#.\-_\*]{6,10}/,
+					regexpText : '<i>×</i>密码的格式应为6到18位【0-9a-zA-Z@#.-_*】', 
+					relation : "#j-password", 
+					relationType : "==",
+					relationText : "<i>×</i>两次密码输入不一致",
+					successText : '<i>√</i>'
+				},{
+					selector : "#j-email",
+					tip : "#j-email_tip",
+					email : true,
+					emailText : '<i>×</i>邮箱格式不正确',
+					successText : '<i>√</i>',
+					onvalid : function(result){
+						//console.log(result);
+					}
+				},{
+					selector : "#j-introduction",
+					tip : "#j-introduction_tip", 
+					required : true, 
+					maxLength : 100, 
+					minLength : 10, 
+					lengthType : "ch",
+					failureText : '<i>×</i>自我介绍至少输入10个汉字，最多输入100个汉字',
+					successText : '<i>√</i>'
+				}
+			]
+		})
+	})
+</script>

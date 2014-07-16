@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ue.scrollbar.js"></script>
+<script src="../../../release/js/ue.select.js"></script>
+<title>无标题文档</title>
+<style>
+	.ue-select{ height:32px; width:200px; position:relative;}
+	.ue-select-title{font-size:14px; line-height:32px; height:32px; padding:0 15px;float:right;}
+	.ue-select-title span{ float:left;width: 155px;overflow: hidden;height: 32px; text-align: right;}
+	.ue-select-title b{float:left;width: 0;height: 0;line-height:0; font-size:0;vertical-align: top;border-top: 4px solid #000;border-right: 4px solid transparent;border-left: 4px solid transparent; margin-top:14px; display:inline; margin-left:5px;_border-color:#000 #fff #fff #fff; overflow:hidden; display:inline;}
+	.ue-select-active .ue-select-title b{border-bottom: 4px solid #000; border-top:0;_border-color:#fff #fff #000 #fff;_border-width:5px; _border-style:solid; _margin-top:8px;}
+	
+	.ue-select-list{position:absolute; width:100%; top:32px; display:none;border:1px solid #CCC; border-radius:5px;overflow:hidden; padding:5px 0; background-color:#fff;}
+	.ue-select-list-inner{height:100%; overflow:hidden;}
+	.ue-select-list ul li a{ display:block; text-decoration:none; color:#333; padding:0 15px; font-size:13px; height:24px; line-height:24px;}
+	.ue-select-list ul li a:hover,.ue-select-list ul li.cur a{ background-color:#08C; color:#fff;text-decoration:none !important;}
+	
+	.ue-select .v_scrollbar{position:absolute;width:7px;right:2px;top:5px;display:none;cursor:pointer; }
+	.ue-select .v_scrollbar_bg{position:absolute;top:0;width:7px;height:100%;}
+	.ue-select .v_scrollbar_btn{position:absolute;width:5px; border:1px solid #000;-moz-border-radius:3px; -o-border-radius:3px;-webkit-border-radius:3px; z-index:100px;filter:alpha(opacity=40);opacity:0.4; top:0;border-radius:3px; background-color:#555; }
+	
+</style>
+</head>
+<body>
+	<div style="width:960px; margin:50px auto; height:1000px;">
+        <div class="ue-select" id="j-leak_type" style="z-index:10;">
+            <div class="ue-select-title"><span>请选择</span><b></b></div>
+            <div class="ue-select-list">
+                <div class="ue-select-list-inner">
+                    <ul></ul>
+                </div>
+                <div class="v_scrollbar">
+                    <div class="v_scrollbar_bg"></div>
+                    <div class="v_scrollbar_btn"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ue-select" id="j-leak_sub_type" style="display:none;">
+            <div class="ue-select-title"><span>请选择</span><b></b></div>
+            <div class="ue-select-list">
+                <div class="ue-select-list-inner">
+                    <ul></ul>
+                </div>
+                <div class="v_scrollbar">
+                    <div class="v_scrollbar_bg"></div>
+                    <div class="v_scrollbar_btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+	//漏洞类型数据
+	var leak_type_data = [{
+		id : 1,
+		title : '操作系统/系统服务',
+		sub : [
+				{
+					id : 11,
+					title : '设计不当'
+				},{
+					id : 12,
+					title : '非授权访问'
+				},{	
+					id : 13,
+					title : '权限控制绕过'
+				},{
+					id : 14,
+					title : '默认配置不当'
+				}
+			]
+		}, {
+			id : 2,
+			title : '基础组件/开发框架',
+			sub : [
+				{
+					id : 15,
+					title : '设计错误/逻辑缺陷'
+				},{
+					id : 16,
+					title : '非授权访问/认证绕过'
+				},{	
+					id : 17,
+					title : '权限提升'
+				},{
+					id : 18,
+					title : '拒绝服务'
+				},{
+					id : 19,
+					title : '默认配置不当'
+				},{
+					id : 110,
+					title : '远程代码执行'
+				}
+			]
+		},{
+			id : 3,
+			title : '建站软件/web应用',
+			sub : [
+				{
+					id : 111,
+					title : '设计错误/逻辑缺陷'
+				},{
+					id : 112,
+					title : '非授权访问'
+				},{	
+					id : 113,
+					title : '拒绝服务'
+				},{
+					id : 114,
+					title : '远程代码执行'
+				},{
+					id : 115,
+					title : '默认配置不当'
+				}
+			]
+		},{
+			id : 4,
+			title : '常用软件/客户端应用',
+			sub : [
+				{
+					id : 116,
+					title : 'xss跨站脚本攻击'
+				},{
+					id : 117,
+					title : 'CSRF'
+				},{	
+					id : 118,
+					title : 'SQL注射漏洞'
+				},{
+					id : 119,
+					title : '任意文件遍历/下载'
+				},{
+					id : 120,
+					title : '文件上传导致任意代码执行'
+				},{
+					id : 121,
+					title : '文件包含'
+				},{
+					id : 122,
+					title : '命令执行'
+				},{
+					id : 123,
+					title : '拒绝服务'
+				},{
+					id : 124,
+					title : '敏感信息泄露'
+				},{
+					id : 125,
+					title : '默认配置不当'
+				},{
+					id : 126,
+					title : '设计缺陷/逻辑错误'
+				},{
+					id : 127,
+					title : '非授权访问/认证绕过'
+				}
+			]
+		},{
+			id : 5,
+			title : '入侵事件/安全情报',
+			sub : [
+				{
+					id : 128,
+					title : '非授权访问/认证绕过'
+				},{
+					id : 129,
+					title : '权限提升'
+				},{	
+					id : 130,
+					title : '拒绝服务'
+				},{
+					id : 131,
+					title : '远程代码执行'
+				},{
+					id : 132,
+					title : '用户敏感数据泄露'
+				},{
+					id : 133,
+					title : '默认配置不当'
+				},{
+					id : 134,
+					title : '设计错误/逻辑缺陷'
+				}
+			]
+		},{
+			id : 6,
+			title : '其他',
+			sub : [
+				{
+					id : 135,
+					title : '重要资料/文档外泄'
+				},{
+					id : 136,
+					title : '源代码泄露'
+				},{	
+					id : 137,
+					title : '成功的入侵事件'
+				},{
+					id : 138,
+					title : '密码泄漏/社会工程学风险'
+				}
+			]
+		}];
+
+	$(function(){
+		var leak_type_select = ue.select({
+			target : $("#j-leak_type"),
+			trigger : "click",
+			currentClass : "cur",
+			activeClass : "ue-select-active",
+			selected : $("#j-leak_type .ue-select-title span"),
+			title : $("#j-leak_type .ue-select-title"),
+			list : $("#j-leak_type .ue-select-list"),
+			content : $("#j-leak_type .ue-select-list ul"),//包含内容的容器
+			items : $("#j-leak_type .ue-select-list li"),
+			maxHeight : 120,
+
+			scrollbar : {
+				scroll_per : 24,//每次滚动滑轮，滚动条移动24像素
+				scrollbarbg : $("#j-leak_type .v_scrollbar_bg"),//滚动条背景
+				scrollbar : $("#j-leak_type .v_scrollbar"),//滚动条容器
+				btn : $("#j-leak_type .v_scrollbar_btn")//滚动条按钮
+			},
+
+			init : function(){
+				for (var i = 0; i < leak_type_data.length; i++){
+					$("#j-leak_type ul").append('<li data-value="' + leak_type_data[i].title +  '" data-id="' + leak_type_data[i].id +  '"><a href="#">' + leak_type_data[i].title + '</a></li>');
+				}
+			},
+
+			onSelected : function(target, index){
+				this.hide();
+				return false;
+			},
+
+			onChanged : function(target, index){
+				var sub_data = leak_type_data[target.getAttribute("data-id") - 1].sub;
+
+				if (Object.prototype.toString.call(sub_data) === "[object Array]"){
+					$("#j-leak_sub_type").show();
+					$("#j-leak_sub_type ul").html("");
+					for (var i = 0; i < sub_data.length; i++){
+						$("#j-leak_sub_type ul").append('<li data-value="' + sub_data[i].title +  '" data-id="' + sub_data[i].id +  '"><a href="#">' + sub_data[i].title + '</a></li>');
+					}
+				} else {
+					$("#j-leak_sub_type").hide();
+				}
+
+				leak_sub_type_select.reset();
+			}
+		});
+
+		var leak_sub_type_select = ue.select({
+			target : $("#j-leak_sub_type"),
+			trigger : "click",
+			currentClass : "cur",
+			activeClass : "ue-select-active",
+			selected : $("#j-leak_sub_type .ue-select-title span"),
+			title : $("#j-leak_sub_type .ue-select-title"),
+			list : $("#j-leak_sub_type .ue-select-list"),
+			content : $("#j-leak_sub_type .ue-select-list ul"),//包含内容的容器
+			items : $("#j-leak_sub_type .ue-select-list li"),
+			maxHeight : 120,
+
+			scrollbar : {
+				scroll_per : 24,//每次滚动滑轮，滚动条移动24像素
+				scrollbarbg : $("#j-leak_sub_type .v_scrollbar_bg"),//滚动条背景
+				scrollbar : $("#j-leak_sub_type .v_scrollbar"),//滚动条容器
+				btn : $("#j-leak_sub_type .v_scrollbar_btn")//滚动条按钮
+			},
+
+			onSelected : function(target, index){
+				this.hide();
+				return false;
+			}
+		});
+	});
+</script>

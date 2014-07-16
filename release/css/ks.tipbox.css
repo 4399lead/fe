@@ -1,0 +1,135 @@
+/*
+ * ks.tipbox.css 提示浮窗
+ * 2013-11-11
+ * 情封
+*/
+/*ks_tipbox*/
+.ks_tipbox{
+    width:200px;
+    height:70px;
+    position: absolute;
+}
+
+.ks_tipbox_shadow{
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+    height: 70px;
+    width: 100%;
+}
+.ks_tipbox_shadow_bg{
+    background: #000;
+    height: 100%;
+}
+.ks_tipbox_body{
+    position: absolute;
+    left:0;
+    top:0;
+    padding:3px;
+}
+.ks_tipbox_content{
+    height: 62px;
+    background: #fff;
+    border: #b5b5b5 1px solid;
+}
+.ks_tipbox_arrow_o, .ks_tipbox_arrow_t, .ks_tipbox_arrow_f{
+    position: absolute;
+    font-size:16px;
+    line-height: 16px;
+    font-family: "simsun";
+}
+.ks_tipbox_arrow_o{
+    color:#000;
+    filter: alpha(opacity=20);
+}
+.ks_tipbox_arrow_t{
+    color:#b5b5b5;
+}
+.ks_tipbox_arrow_f{
+    color:#fff;
+}
+
+/*================向上========================*/
+.ks_tipbox_top{}
+.ks_tipbox_top b{
+    _line-height:18px;
+}
+.ks_tipbox_top .ks_tipbox_arrow_o{
+    top:-8px;
+    top:-6px\9;
+    left:80px;
+}
+.ks_tipbox_top .ks_tipbox_arrow_t{
+    top:-5px;
+    top:-4px\9;
+    left:80px;
+}
+.ks_tipbox_top .ks_tipbox_arrow_f{
+    top:-4px;
+    top:-2px\9;
+    left:80px;
+}
+@-moz-document url-prefix() {
+  .ks_tipbox_top .ks_tipbox_arrow_o {
+     top:-7px;
+  }
+  .ks_tipbox_top .ks_tipbox_arrow_t{
+	top:-4px;
+  }
+  .ks_tipbox_top .ks_tipbox_arrow_f{
+	top:-2px;
+  }
+}
+
+/*================向左========================*/
+.ks_tipbox_left{}
+.ks_tipbox_left b{
+    _line-height:18px;
+}
+.ks_tipbox_left .ks_tipbox_arrow_o{
+    top:25px;
+    left:-8px;
+}
+.ks_tipbox_left .ks_tipbox_arrow_t{
+    top:25px;
+    left:-4px;
+}
+.ks_tipbox_left .ks_tipbox_arrow_f{
+    top:25px;
+    left:-3px;
+}
+
+/*================向下========================*/
+.ks_tipbox_bottom{}
+.ks_tipbox_bottom b{
+    _line-height:15px;
+}
+.ks_tipbox_bottom .ks_tipbox_arrow_o{
+    bottom:-8px;
+    bottom:-10px\9;
+    left:80px;
+}
+.ks_tipbox_bottom .ks_tipbox_arrow_t{
+    bottom:-5px;
+    bottom:-8px\9;
+    left:80px;
+}
+.ks_tipbox_bottom .ks_tipbox_arrow_f{
+    bottom:-4px;
+    bottom:-5px\9;
+    left:80px;
+}
+
+/*================向右========================*/
+.ks_tipbox_right{}
+.ks_tipbox_right .ks_tipbox_arrow_o{
+    top:25px;
+    right:-8px;
+}
+.ks_tipbox_right .ks_tipbox_arrow_t{
+    top:25px;
+    right:-5px;
+}
+.ks_tipbox_right .ks_tipbox_arrow_f{
+    top:25px;
+    right:-4px;
+}

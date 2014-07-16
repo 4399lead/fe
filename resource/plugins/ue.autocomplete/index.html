@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../api.css"  rel="stylesheet"/>
+<title>自动完成框组件</title>
+</head>
+
+<body>
+    <div class="wrap">
+    	<h2 class="api_h2">自动完成框组件 ue.autocomplete</h2>
+        <h3 class="api_h3">参数列表</h3>
+        <table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>input</th>
+                    <td>输入框的jquery 选择符 如 ：".ue-autocomplete-input input"</td>
+                </tr>
+                <tr>
+                    <th>target</th>
+                    <td>下拉框的jquery 选择符 如 ：".ue-autocomplete-list"</td>
+                </tr>
+                <tr>
+                    <th>list</th>
+                    <td>下拉框中放置选项的对象的选择符 如 ：".ue-autocomplete-list ul"</td>
+                </tr>
+                <tr>
+                    <th>items</th>
+                    <td>下拉框中选项的选择符 如 ：".ue-autocomplete-list li"</td>
+                </tr>
+                <tr>
+                    <th>currentClass</th>
+                    <td>下拉框选项被选中的classname 默认为 "cur"</td>
+                </tr>
+                <tr>
+                    <th>auto</th>
+                    <td>当auto 为 true时，通过移动上下键选择下拉框选项的值时或者点击下拉框选项时，都会将下拉框选项对象的属性 data-value 的值赋给输入框；为 false 则不改变输入框的值；第一个参数值为输入框的值</td>
+                </tr>
+                <tr>
+                    <th>handle</th>
+                    <td>控制下拉框显示的回调函数，用于执行匹配和搜索。</td>
+                </tr>
+                <tr>
+                    <th>onSubmit</th>
+                    <td>点击下拉框选项或者按回车键时的回调函数；第一个参数值为当前点击或者触发回车键的选项</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        
+        <h3 class="api_h3">方法列表</h3>
+        <table class="api_table">
+            <caption>方法列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">方法名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>hide</th>
+                    <td>隐藏下拉框</td>
+                </tr>
+                <tr>
+                    <th>show</th>
+                    <td><dl>
+                    		<dt>显示下拉框</dt>
+                            <dd><em>html</em> 下拉框要显示的列表项的html</dd>
+                        </dl>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>自动完成框组件-分类搜索 demo1</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="demo1.rar">下载</a></dd>
+            <dt>自动完成框组件-异步搜索提示 demo2</dt>
+        	<dd><a href="demo2.html" target="_blank">查看</a> | <a href="demo2.rar">下载</a></dd>
+            <dt>自动完成框组件-邮箱匹配 demo3</dt>
+        	<dd><a href="demo3.html" target="_blank">查看</a> | <a href="demo3.rar">下载</a></dd>
+        </dl>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="email=no,telephone=no" name="format-detection" />
+<style type="text/css">
+html{ 
+    background:#fff;
+    color:#000;
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+}
+
+
+/*内外边距通常让各个浏览器样式的表现位置不同*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{ padding: 0; margin: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea{ font:500 14px/1.8 'Hiragino Sans GB', sans-serif;}
+input,select,img{ vertical-align:middle}
+input,select{ outline:none}
+input,select,textarea{ font-size:100%;}
+ul,ol{ list-style:none }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address,cite,dfn,em,var{font-style:normal;}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym{ border:0;font-variant:normal;}
+
+/* 去除默认边框 */
+fieldset,img{ border:0;}
+
+/* 一致的 del 样式 */
+del { text-decoration:line-through;}
+
+address,caption,cite,code,dfn,em,th,var { font-style:normal;font-weight:500;}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe{ display:block;}
+
+/* 统一上标和下标 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+/*重排左对齐*/
+caption,th { text-align:left;}
+
+/* IE bug fixed: th 不继承 text-align*/
+th{ text-align:inherit; }
+
+/*清除浮动*/
+.clearfix:after{ content:""; height:0; visibility:hidden; display:block; clear:both;}
+.clearfix{ zoom:1;}
+.fl,.fr{display:inline;}
+.fl{ float:left }
+.fr{ float:right }
+
+.m_introtext {
+    line-height: 25px;
+    padding: 20px;
+}
+
+.m_introtext .text {
+    line-height: 25px;
+    color: #666;
+    max-height: 200px;
+    overflow: hidden;
+    -webkit-transition:height .3s ease;
+}
+
+.m_introtext .togbtn {
+    color: #1c8ed3;
+    font-size: 12px;
+    display: none;
+}
+
+</style>
+</head>
+<body>
+<div class="m_introtext">
+ <div class="text">
+ <div class="text_in">
+ <p>《造梦西游OL HD》是4399游戏年度排名第一的2D横版过关游戏，拥有数千万注册用户，被评为年度最佳游戏，现强势进驻APP STORE。经典人物，别样剧情，全新玩法，将天庭玩转与股掌之间，值得体验。讲述师徒四人，为解救玉帝大闹天庭，挑战一个又一个的邪恶神魔，经历无数考验不断成长成功解救玉帝，随后转世落入凡间斩妖除奸拯救苍生大业，并冲下地府一路斩神灭魔最终拯救三界的故事。天庭危机！师徒四人杀上九重天，汇集南天门下，天、地、人三界的险恶岂能阻挡我师徒前进的脚步。看着一个接一个倒下的邪恶神魔，英雄披坚执锐屹立山头，俯瞰苍生和平，余愿足矣。这就是我们的造梦之旅，我们的造梦西游。<br>“我等在南天门下集结，三界等你来拯救！”<br>游戏特点：<br>1、紧张袭击的战斗系统，为iphone和ipad量身定制超易上手的全新摇杆玩法。<br>2、丰富的技能系统，多样的技能组合，让战斗充满趣味与挑战。<br>3、搭配不同的武器装备，挖掘无限的成长潜力，迎接如潮涌来的敌人。<br>4、全新的同步PVP和异步PVP玩法，体验独特的操作快感。<br>5、丰富的神兽宠物培养玩法，让战斗不再孤单。</p></div>
+ </div>
+ <a href="javascript:void(0);" class="togbtn j-togbtn">显示详细信息&gt;&gt;</a>
+ </div>
+<script type="text/javascript" src="http://m.img4399.com/ios/ipadH5/js/base.js?20140526153611" ></script>
+<script type="text/javascript" src="../../release/mobile/m.toggleText.js"></script>
+<script>
+    $(function(){
+        new Mo.toggleText({
+            target : '.m_introtext',
+            btn : '.togbtn',
+            text : ".text",
+            text_in : ".text_in",
+            showText : "显示详细信息&gt;&gt;",
+            hideText : "隐藏详细信息&gt;&gt;",
+            line : 4,
+        });
+    });
+</script>
+</body>
+</html>

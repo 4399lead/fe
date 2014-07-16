@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../api.css"  rel="stylesheet"/>
+<title>滚动组件</title>
+</head>
+
+<body>
+    <div class="wrap">
+		<h2 class="api_h2">滚动组件 ue.marquee</h2>
+        <h3 class="api_h3">参数列表</h3>
+        <table class="api_table">
+            <caption>参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>scrolltarget</th>
+                    <td>绑定滚轮切换的对象</td>
+                </tr>
+                <tr>
+                    <th>hovertarget</th>
+                    <td>鼠标hover停止切换的对象</td>
+                </tr>
+                <tr>
+                    <th>target</th>
+                    <td>滚动对象 一般为 ul</td>
+                </tr>
+                <tr>
+                    <th>items</th>
+                    <td>指定滚动位置的按钮</td>
+                </tr>
+                <tr>
+                    <th>gotobtn</th>
+                    <td>序号导航对象</td>
+                </tr>
+                <tr>
+                    <th>hovergotobtn</th>
+                    <td>移动到当前缩略图时停止自动播放 默认false</td>
+                </tr>
+                <tr>
+                    <th>prevbtn</th>
+                    <td>向前或者/向上按钮</td>
+                </tr>
+                <tr>
+                    <th>prevbtndisabled</th>
+                    <td>向前或者/向上按钮 不可用的class</td>
+                </tr>
+                <tr>
+                    <th>nextbtn</th>
+                    <td>向后或者/向下按钮</td>
+                </tr>
+                <tr>
+                    <th>nextbtndisabled</th>
+                    <td>向后或/向下按钮 不可用的class</td>
+                </tr>
+                <tr>
+                    <th>delay</th>
+                    <td>切换间隔时间</td>
+                </tr>
+                <tr>
+                    <th>speed</th>
+                    <td>切换速度</td>
+                </tr>
+                <tr>
+                    <th>visiblenum</th>
+                    <td>可见个数</td>
+                </tr>
+                <tr>
+                    <th>scrollnum</th>
+                    <td>一次滚动几个</td>
+                </tr>
+                <tr>
+                    <th>autoplay</th>
+                    <td>是否自动播放</td>
+                </tr>
+                <tr>
+                    <th>currentclass</th>
+                    <td>当前滚动的导航按钮的class</td>
+                </tr>
+                <tr>
+                    <th>loop</th>
+                    <td>循环模式 1 无限循环 0 不循环</td>
+                </tr>
+                <tr>
+                    <th>afterSlide</th>
+                    <td>每滚动一个完的回调函数</td>
+                </tr>
+                <tr>
+                    <th>beforeSlide</th>
+                    <td>每滚动一个之前的回调函数</td>
+                </tr>
+                <tr>
+                    <th>beforePrev</th>
+                    <td>滚动到上一个开始的回调函数</td>
+                </tr>
+                <tr>
+                    <th>afterPrev</th>
+                    <td>滚动到上一个结束的回调函数</td>
+                </tr>
+                <tr>
+                    <th>beforeNext</th>
+                    <td>滚动到下一个开始的回调函数</td>
+                </tr>
+                <tr>
+                    <th>afterNext</th>
+                    <td>滚动到下一个结束的回调函数</td>
+                </tr>
+                <tr>
+                    <th>mode</th>
+                    <td>0表示竖直方向滚动 1 表示水平方向滚动</td>
+                </tr>
+                <tr>
+                    <th>direction</th>
+                    <td>表示默认的滚动方向0向上或者向左 1表示向下或者向右</td>
+                </tr>
+                <tr>
+                    <th>onTop</th>
+                    <td>当滚动到第一个时，不能再往前滚动时触发的事件，只用于非循环滚动</td>
+                </tr>
+                <tr>
+                    <th>onBottom</th>
+                    <td>当滚动到最后一个时，不能再往后滚动时触发的事件，只用于非循环滚动</td>
+                </tr>
+                <tr>
+                    <th>trigger </th>
+                    <td>当滚动到最后一个时，不能再往后滚动时触发的事件，只用于非循环滚动</td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <h3 class="api_h3">DEMO</h3>
+        <dl class="api_link">
+        	<dt>纯文字垂直滚动</dt>
+        	<dd><a href="demo1.html" target="_blank">查看</a> | <a href="demo1.rar">下载</a></dd>
+            <dt>纯文字水平滚动</dt>
+        	<dd><a href="demo2.html" target="_blank">查看</a> | <a href="demo2.rar">下载</a></dd>
+            <dt>鱼眼效果滚动</dt>
+        	<dd><a href="demo3.html" target="_blank">查看</a> | <a href="demo3.rar">下载</a></dd>
+            <dt>有缩略图的垂直滚动幻灯片</dt>
+        	<dd><a href="demo4.html" target="_blank">查看</a> | <a href="demo4.rar">下载</a></dd>
+            <dt>有缩略图的水平滚动幻灯片</dt>
+        	<dd><a href="demo5.html" target="_blank">查看</a> | <a href="demo5.rar">下载</a></dd>
+            <dt>非循环滚动边界事件</dt>
+            <dd><a href="demo6.html" target="_blank">查看</a> | <a href="demo5.rar">下载</a></dd>
+            <dt>两个 marquee 合并构造一个 缩略图也能滚动的幻灯片</dt>
+            <dd><a href="demo7.html" target="_blank">查看</a> | <a href="demo5.rar">下载</a></dd>
+        </dl>
+    </div>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>980 Grid System</title>
+<meta charset="utf-8"/>
+<link href="../css/codelight/prettify.css" rel="stylesheet" />
+<script src="../css/codelight/prettify.js" type="text/javascript"></script>
+<script src="../css/codelight/lang-css.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../../release/css/980gs.css">
+<style>
+body{ background:#f5f5f5; padding:20px 0 100px;}
+.grid_row{ margin-top:10px;}
+.grid_row div{ background:#fff; font-family:"arial"; height:50px; font-size:14px; line-height:50px; text-align:center; font-weight:700; color:#555;  }
+.grid_row div span{ color:#999; font-size:12px; font-weight:500;}
+.topic{ position:relative;}
+.topic .dlbtn{ background:#FD8F00; padding:0 10px; height:26px; line-height:26px; text-decoration:none; font-size:12px; color:#fff; position:absolute; bottom:20px; right:20px; border-radius:3px;}
+.topic .dlbtn i{ background:url(images/icon.jpg) no-repeat; width:12px; height:12px; float:left; margin:7px 4px 0 0; }
+.topic .title{ color:#555; font-family:"microsoft yahei"; }
+.topic .title span{ position:relative; top:3px;}
+.topic{ background:#fcfcfc; border:#ddd 1px solid; padding:0 30px 10px;}
+.tophead{ margin-top:30px; overflow:hidden; }
+.tophead .title{ background:#11a5ea;  padding:6px 10px; font-size:14px; color:#fff; margin:0; margin-bottom:10px; float:left; border-radius:2px;}
+.tophead .text{ color:#555; font-size:14px; clear:both;}
+.desclist{ list-style:none; padding-left:0;}
+.desclist li{ line-height:26px; font-size:14px; color:#555;}
+.desclist li span{ color:#333; font-weight:700;}
+.prettyprint{ clear:both;}
+</style>
+</head>
+<body onload="prettyPrint()">
+<div class="grid_container grid_c18_m10">
+	<div class="topic">
+		<h1 class="title"><span>980</span>栅格系统</h1>
+		<ul class="desclist">
+			<li>980默认栅格系统为18列，列间距为10px，组合形成一个980px宽度的容器，</li>
+			<li><span>grid_container</span>：外层容器</li>
+			<li><span>grid_c18_m10</span>：这是一个18列，间距为10px的栅格系统</li>
+			<li><span>grid_row</span>：栅格行</li>
+			<li><span>grid_num</span>：栅格格子</li>
+		</ul>
+		<a href="../../release/css/980gs.css" class="dlbtn"><i></i>下载980gs.css</a>
+	</div>
+	<div class="grid_row">
+		<div class="grid_18">
+			18<span>(980px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_9">
+			9<span>(485px)</span>
+		</div>
+		<div class="grid_9">
+			9<span>(485px)</span>
+		</div>
+	</div>
+	<div class="grid_row ">
+		<div class="grid_6">
+			6<span>(320px)</span>
+		</div>
+		<div class="grid_6">
+			6<span>(320px)</span>
+		</div>
+		<div class="grid_6">
+			6<span>(320px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_1">
+			1<span>(45px)</span>
+		</div>
+		<div class="grid_17">
+			17<span>(925px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_2">
+			2<span>(100px)</span>
+		</div>
+		<div class="grid_16">
+			16<span>(870px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_3">
+			3<span>(155px)</span>
+		</div>
+		<div class="grid_15">
+			15<span>(815px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_4">
+			4<span>(210px)</span>
+		</div>
+		<div class="grid_14">
+			14<span>(750px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_5">
+			5<span>(265px)</span>
+		</div>
+		<div class="grid_13">
+			13<span>(705px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_6">
+			6<span>(320px)</span>
+		</div>
+		<div class="grid_12">
+			12<span>(695px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7">
+			7<span>(375px)</span>
+		</div>
+		<div class="grid_11">
+			11<span>(595px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_8">
+			8<span>(430px)</span>
+		</div>
+		<div class="grid_10">
+			10<span>(540px)</span>
+		</div>
+	</div>
+	<div class="grid_row">
+		<div class="grid_9">
+			9<span>(485px)</span>
+		</div>
+		<div class="grid_9">
+			9<span>(485px)</span>
+		</div>
+	</div>
+	<div class="tophead">
+		<p class="title">带有基本栅格的HTML代码</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_5"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_13"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+		<p class="text">这样便创建了一个侧边栏为5格宽度（265px），主体内容为13格宽度（705px）的两栏栅格布局</p>
+	</div>
+	<div class="grid_row">
+		<div class="grid_5">
+			grid_5 <span>265px</span></span>
+		</div>
+		<div class="grid_13">
+			grid_13 <span>705px</span>
+		</div>
+	</div>
+	<div class="tophead">
+		<p class="title">微调基本栅格</p>
+		<p class="text">栅格系统的最小调整单位为45px，如果预设的宽度满足不了需求，可使用pull与push的class进行微调</p>
+		<p class="text">比如：默认为gird_7与grid_11</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_7"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_11"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7">
+			grid_7 <span>375px</span></span>
+		</div>
+		<div class="grid_11">
+			grid_11 <span>595px</span>
+		</div>
+	</div>
+	<div class="tophead">
+		<p class="text">整体向左偏移5px</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_7_pull5"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_11_push5"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7_pull5">
+			grid_7_pull5<span> 370px(375px-5px)</span>
+		</div>
+		<div class="grid_11_push5">
+			grid_11_push5<span> 600px(595px+5px)</span>
+		</div>
+	</div>
+	<div class="tophead">
+		<p class="text">整体向右偏移5px</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_7_push5"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_11_pull5"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7_push5">
+			grid_7_push5<span> 380px(375px+5px)</span>
+		</div>
+		<div class="grid_11_pull5">
+			grid_11_pull5<span> 590px(595px-5px)</span>
+		</div>
+	</div>
+
+	<div class="tophead">
+		<p class="text">整体向左偏移10px</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_7_pull10"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_11_push10"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7_pull5">
+			grid_7_pull10<span> 365px(375px-10px)</span>
+		</div>
+		<div class="grid_11_push5">
+			grid_11_push10<span> 605px(595px+10px)</span>
+		</div>
+	</div>
+	<div class="tophead">
+		<p class="text">整体向右偏移10px</p>
+		<pre class="prettyprint" id="html">
+&lt;div class="grid_container grid_c18_m10"&gt;
+	&lt;div class="grid_row"&gt;
+		&lt;div class="grid_7_push10"&gt;
+		&lt;/div&gt;
+		&lt;div class="grid_11_pull10"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</pre>
+	</div>
+	<div class="grid_row">
+		<div class="grid_7_push5">
+			grid_7_push10<span> 385px(375px+10px)</span>
+		</div>
+		<div class="grid_11_pull5">
+			grid_11_pull10<span> 585px(595px-10px)</span>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
