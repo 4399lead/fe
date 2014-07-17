@@ -30,5 +30,11 @@ define(function(require,exports,module){
     var docTpl =  docTemplate(_mData);
     $("#j-doc").html(docTpl);
 
+    /*项目构建*/
+    var projectSource = $("#j-project-template").html();
+    var projectTemplate = Handlebars.compile(projectSource);
+    var projectTpl =  projectTemplate(_mData);
+    $("#j-project").html(projectTpl);
+
 
 });

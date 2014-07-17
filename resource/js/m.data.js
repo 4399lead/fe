@@ -430,6 +430,29 @@ define(function(require,exports,module){
                 ]
             }
         ]
+        ,
+        project:[
+            {
+                "title" : "pc项目构建",
+                "href"  : "http://grunt.4399ued.com/",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
+            },
+            {
+                "title" : "mobile项目构建",
+                "href"  : "doc/ftp.html",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
+            }
+        ]
     };
     module.exports = M_Data;
 });
