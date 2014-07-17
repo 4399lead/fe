@@ -8,7 +8,7 @@ define(function(require,exports,module){
     var JKS = JKS || {};
     JKS.html = function(tag){
         var _html = '<div class="jks_title">';
-        _html += '<a href="intro.html" class="logo">JKS<span>通用模块</span></a>';
+        _html += '<a href="/" class="logo">JKS<span>通用模块</span></a>';
         _html += '</div>';
         _html += '<div class="jks_list">';
         _html += '<ul class="m_plugin_list">';
@@ -23,7 +23,7 @@ define(function(require,exports,module){
     };
     JKS.js = function(){
         var _html = '<div class="jks_title">';
-        _html += '<a href="intro.html" class="logo">JKS<span>js组件</span></a>';
+        _html += '<a href="/" class="logo">JKS<span>js组件</span></a>';
         _html += '</div>';
         _html += '<div class="jks_list">';
         _html += '<ul class="m_plugin_list">';
