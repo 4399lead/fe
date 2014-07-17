@@ -407,7 +407,29 @@ define(function(require,exports,module){
                     }
                 ]
             }
-		]
+		],
+        doc:[
+            {
+                "title" : "手机调试配置文档",
+                "href"  : "doc/mobile-debug.html",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
+            },
+            {
+                "title" : "FE项目配置管理",
+                "href"  : "doc/ftp.html",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
+            }
+        ]
     };
     module.exports = M_Data;
 });

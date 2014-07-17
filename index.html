@@ -13,9 +13,10 @@
             <ol class="jks_step" id="j-step">
                 <li><a href="#project">项目构建</a></li>
                 <li><a href="#module">通用模块</a></li>
-                <li><a href="#javascript">Javascript插件</a></li>
+                <li><a href="#javascript">js组件</a></li>
                 <li><a href="#plugin">编辑器插件</a></li>
 				<li><a href="#tool">便捷工具</a></li>
+                <li><a href="#doc">文档</a></li>
             </ol>
         <!--</div>-->
     </div>
@@ -170,6 +171,16 @@
             </div>
         </div>
         <!--/jks_box-->
+        <!--jks_box-->
+        <div class="jks_box" id="doc">
+            <h2>文档</h2>
+            <div class="jks_bd">
+                <!--m_fe_list-->
+                <ul class="m_fe_list clearfix" id="j-doc"></ul>
+                <!--/m_fe_list-->
+            </div>
+        </div>
+        <!--/jks_box-->
     </div>
     <!--/wrapper-->
     <script id="j-html-template" type="text/x-handlebars-template">
@@ -204,6 +215,21 @@
     </script>
 	<script id="j-tool-template" type="text/x-handlebars-template">
         {{#each tool}}
+        <li>
+            <a href="{{href}}" target="_blank">
+                <span class="m_fe_title">{{title}}</span>
+                <span class="m_fe_desc"></span>
+                <div class="m_author">
+                    {{#each author}}
+                    <img src="resource/avatar/{{createor}}"/>
+                    {{/each}}
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+    <script id="j-doc-template" type="text/x-handlebars-template">
+        {{#each doc}}
         <li>
             <a href="{{href}}" target="_blank">
                 <span class="m_fe_title">{{title}}</span>

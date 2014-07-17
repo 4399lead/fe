@@ -24,38 +24,11 @@ define(function(require,exports,module){
     var toolTpl =  toolTemplate(_mData);
     $("#j-tool").html(toolTpl);
 
-    /*
-    function pageScroll(hash,target){
-        if(!hash){
-            hash = "#project";
-        }
-        var _hashScrollTop = $(hash).offset().top;
-        $('html,body').animate({
-            scrollTop : _hashScrollTop+"px"
-        },500,function(){
-            var _target = target.parent('li');
-            _target.addClass('cur');
-            _target.siblings().removeClass('cur')
-        });
-    }
-    $("#j-step").bind('click',function(e){
-        var _hash = $(e.target).attr('href');
-        pageScroll(_hash, $(e.target));
-    });
+    /*文档*/
+    var docSource = $("#j-doc-template").html();
+    var docTemplate = Handlebars.compile(docSource);
+    var docTpl =  docTemplate(_mData);
+    $("#j-doc").html(docTpl);
 
-    $(function(){
-        var _hash = window.location.hash;
-        var _selector = $("#j-step").find('a');
-        function getIndex(){
-            for(var i= 0,len=_selector.length;i<len;i++){
-                var _current = _selector.eq(i).attr('href');
-                if(_current == _hash){
-                    return i;
-                }
-            }
-        }
-        var _index = getIndex();
-        pageScroll(_hash,_selector.eq(_index));
-    })*/
 
 });
