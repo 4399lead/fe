@@ -433,7 +433,7 @@ define(function(require,exports,module){
         ,
         project:[
             {
-                "title" : "pc项目构建",
+                "title" : "web项目构建",
                 "href"  : "http://grunt.4399ued.com/",
                 "author"  : [
                     {
