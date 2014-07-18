@@ -3,8 +3,46 @@
 <head>
     <meta charset="utf-8"/>
     <title>webApp调试</title>
+    <style>
+        *{ margin:0;padding:0;font-size:14px; font-family: "microsoft yahei"; line-height: 28px;}
+        .fe_box{ width:1000px; margin:0 auto;}
+        .fe_box h1{ font-size:20px;}
+        .m_box{ margin-top:15px;}
+        .m_box h2{ font-size:16px;}
+        .m_box img{ border:1px solid #ddd;}
+    </style>
 </head>
 <body>
-  备注
+  <div class="fe_box">
+      <h1>webApp调试介绍</h1>
+      <div class="m_box">
+          <h2>环境搭建</h2>
+          <p>要在手机中调试mobile类型的页面，需要在本地机器上有服务端环境。比如php，nodeJS。这两种环境搭建相对比较简单。现在介绍nodeJS的环境：browsersync</p>
+          <p>1：机器上没有安装node.js，需自行安装</p>
+          <p>2：利用browsersync组件构建服务端环境。具体文档参考：<a href="http://www.browsersync.io/" target="_blank">browsersync</a> </p>
+          <dl>
+              <dt>两种方式下载browsersync</dt>
+              <dd>1：通过cnpm 安装</dd>
+              <dd>2：通过 npm 安装，有时会被墙</dd>
+          </dl>
+          <p>安装完browsersync，切换到项目目录，执行相应的命令即可。</p>
+          <img src="webapp/1.png"/>
+          <p>在电脑上输入相应的网址，如图的External，通过二维码生成器生成当前网址二维码。<a href="https://chrome.google.com/webstore/detail/%E4%BA%8C%E7%BB%B4%E7%A0%81qr%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/pflgjjogbmmcmfhfcnlohagkablhbpmg?hl=zh-CN">chrome插件二维码生成器</a></p>
+      </div>
+      <div class="m_box">
+          <h2>fiddler设置</h2>
+          <p>在fiddler工具栏 Tools->Fiddler Options </p>
+          <img src="webapp/2.png"/>
+          <img src="webapp/3.png"/>
+          <img src="webapp/4.png"/>
+      </div>
+      <div class="m_box">
+          <h2>手机端设置</h2>
+          <p>手机连接360wifi、百度wifi的账号，在网络详情页做代理设置为手动。</p>
+          <p>主机名为360wifi、百度wifi的IP，通过ipconfig可以获取（无线局域网适配器的IPV4 地址）</p>
+          <p>端口号：fiddler 设置</p>
+          <img src="webapp/5.jpg"/>
+      </div>
+  </div>
 </body>
 </html>
