@@ -424,7 +424,7 @@ define(function(require,exports,module){
                 "href"  : "http://project.4399ued.com/doc/project-ftp.html",
                 "author"  : [
                     {
-                        createor:"0876.jpg"
+                        createor:"0216.jpg"
 
                     }
                 ]
