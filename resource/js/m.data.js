@@ -414,14 +414,14 @@ define(function(require,exports,module){
                 "href"  : "doc/mobile-debug.html",
                 "author"  : [
                     {
-                        createor:"0876.jpg"
+                        createor:"0216.jpg"
 
                     }
                 ]
             },
             {
                 "title" : "FE项目配置管理",
-                "href"  : "doc/ftp.html",
+                "href"  : "http://project.4399ued.com/doc/project-ftp.html",
                 "author"  : [
                     {
                         createor:"0876.jpg"
