@@ -422,6 +422,7 @@ define(function(require,exports,module){
             {
                 "title" : "FE项目配置管理",
                 "href"  : "http://project.4399ued.com/doc/project-ftp.html",
+                "desc" : "内网",
                 "author"  : [
                     {
                         createor:"0216.jpg"
@@ -432,6 +433,7 @@ define(function(require,exports,module){
             {
                 "title" : "手机助手一键安装",
                 "href"  : "http://project.4399ued.com/doc/4399zs/index.html",
+                "doc" : "通过简单的配置即可生成安装代码，简单、方便",
                 "author"  : [
                     {
                         createor:"0876.jpg"
