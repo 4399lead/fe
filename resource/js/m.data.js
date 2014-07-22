@@ -428,6 +428,16 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "手机助手一键安装",
+                "href"  : "http://project.4399ued.com/doc/4399zs/index.html",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
             }
         ]
         ,
