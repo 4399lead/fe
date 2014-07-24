@@ -446,7 +446,7 @@ define(function(require,exports,module){
         project:[
             {
                 "title" : "web项目构建",
-                "href"  : "http://grunt.4399ued.com/web.html",
+                "href"  : "http://ks.4399ued.com/",
                 "author"  : [
                     {
                         createor:"0216.jpg"
@@ -456,7 +456,7 @@ define(function(require,exports,module){
             },
             {
                 "title" : "mobile项目构建",
-                "href"  : "http://grunt.4399ued.com/mobile.html",
+                "href"  : "http://ksmobile.4399ued.com/",
                 "author"  : [
                     {
                         createor:"0216.jpg"
