@@ -447,7 +447,7 @@ define(function(require,exports,module){
                 "desc" : "【内网】全站所有文件类型",
                 "author"  : [
                     {
-                        createor:"0876.jpg"
+                        createor:"0216.jpg"
 
                     }
                 ]
