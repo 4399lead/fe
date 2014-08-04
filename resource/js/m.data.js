@@ -440,6 +440,17 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "手游项目文件列表",
+                "href"  : "http://project.4399ued.com/plan/index.html",
+                "desc" : "【内网】全站所有文件类型",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
             }
         ]
         ,
