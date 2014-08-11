@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>flash - div - 前端通用模块 - 细三久久</title>
+    <link href="../release/css/ks.css" rel="stylesheet"/>
+    <style type="text/css">
+        .m_flash{
+            position: absolute;
+            left:50%;
+            top:50%;
+            width:400px;
+            height:300px;
+            margin:-200px 0 0 -150px;
+        }
+        .m_lay{
+            position: absolute;
+            left:50%;
+            top:50%;
+            width:400px;
+            height:300px;
+            margin:-200px 0 0 -150px;           
+        }
+        .m_content{
+            position: absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            z-index: 100;
+            background: #f60;
+            opacity:0.5;
+            filter:alhpa(opacity=50);
+        }
+        .piframe{
+            position: absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            background: #000;
+            opacity:0;
+            filter:alpha(opacity=0);
+        }
+    </style>
+</head>
+<body>
+    <p>视频模式为direct、window下的</p>
+    <!--flash-->
+    <div class="m_flash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="100%" height="100%" id="flashgame">
+                <param name="movie" value="http://player.youku.com/player.php/sid/XNTE4MzU1MzE2/v.swf">
+                <param name="quality" value="high">
+                <param name="allowScriptAccess" value="always">
+                <param name="allowFullScreen" value="true"> 
+                <param name="wmode" value="direct">
+                <embed src="http://player.youku.com/player.php/sid/XNTE4MzU1MzE2/v.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="direct">
+            </object>
+    </div>
+    <!--/flash-->
+    <!--覆盖层-->
+    <div class="m_lay">
+        <div class="m_content">div盖住flash</div>
+        <iframe class="piframe" frameborder="0" scrolling="no" ></iframe>
+    </div>
+    <!--/覆盖层-->
+</body>
+</html>

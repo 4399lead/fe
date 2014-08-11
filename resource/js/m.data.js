@@ -151,6 +151,18 @@ define(function(require,exports,module){
 
                         }
                     ]
+                },
+                {
+                    "title":"flash与div层级",
+                    "href" : "m.divflash.html",
+                    "desc"  : "flash与div层级",
+                    "curTag" : "flash",
+                    "author"  : [
+                        {
+                            createor:"0216.jpg"
+
+                        }
+                    ]
                 }
             ],
         js:[

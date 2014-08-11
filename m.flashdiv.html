@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>前端通用模块 - 细三久久</title>
+    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+</head>
+<body class="clearfix">
+    <!--jks_section-->
+    <div class="jks_section">
+        <h2>flash与div层关系</h2>
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-pencil"></i>使用示例</h3>
+            <!--mod_demo_box-->
+            <div class="m_demo_box clearfix">
+                <div class="mod_demo_box">
+                    <a href="template/tpl.divflash.html" target="_blank">模式为direct、window</a>
+                </div>
+                
+            </div>
+            <!--/mod_demo_box-->
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-stack"></i>说明</h3>
+            <div class="m_demo_box">
+                <dl>
+                    <dt>1：模式为direct、window</dt>
+                    <dd>通过给模块内置iframe来覆盖flash</dd>
+                </dl>
+            </div>
+        </div>
+        <!--/m_demo-->
+        
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <!--/jks_aside-->
+    <script src="release/lib/seajs/sea.js"></script>
+    <script src="resource/js/config.js"></script>
+    <script>
+        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+            $("#j-demo-tab li").click(function(e){
+                var _iframeHref = $(e.target).attr('href');
+                $("#j-iframe").attr('src',_iframeHref);
+                $(this).addClass('cur').siblings().removeClass('cur');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            JKS.html('flash');
+
+        });
+        seajs.use('./resource/js/codeLight.js');
+    </script>
+</body>
+</html>
