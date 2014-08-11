@@ -154,7 +154,7 @@ define(function(require,exports,module){
                 },
                 {
                     "title":"flash与div层级",
-                    "href" : "m.divflash.html",
+                    "href" : "m.flashdiv.html",
                     "desc"  : "flash与div层级",
                     "curTag" : "flash",
                     "author"  : [
