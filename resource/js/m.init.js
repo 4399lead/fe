@@ -35,6 +35,12 @@ define(function(require,exports,module){
     var projectTemplate = Handlebars.compile(projectSource);
     var projectTpl =  projectTemplate(_mData);
     $("#j-project").html(projectTpl);
+	
+	/*mobile插件*/
+    var jsMobileSource = $("#j-mobile-template").html();
+    var jsMobileTemplate = Handlebars.compile(jsMobileSource);
+    var jsMobileTpl =  jsMobileTemplate(_mData);
+    $("#j-mobile").html(jsMobileTpl);
 
 
 });
