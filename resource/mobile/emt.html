@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    //安卓ios设备判断
+    var Emt = (function(){
+        var env = {},
+            navigator = window.navigator,
+            userAgent = navigator.userAgent,
+            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            android = userAgent.match(/(Android)\s([\d\.]+)/);
+
+        env.isAndroid = (/android/gi).test(navigator.appVersion);
+        env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
+        env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
+        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+
+        if (ios) {
+            env.device = ios[1];
+            env.version = ios[2].replace(/_/g, '.');
+        } else if(android){
+            env.version = android[2];
+        }
+
+        env.standalone = navigator.standalone;
+        env.wechat = navigator.userAgent.indexOf("MicroMessenger") >=0;
+        env.gameStoreHD = navigator.userAgent.indexOf('GameStoreHD') >= 0;
+
+        return env;
+    })();
+
+    if(Emt.standalone && Emt.version < "7.0"){
+        document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
+    }
+</script>
+</head>
+<body>
+<script>
+    var v_width, 
+        v_height; 
+
+    document.addEventListener("DOMContentLoaded", function(){ 
+        v_height = window.innerHeight || document.documentElement.clientHeight; 
+        v_width = window.innerWidth || document.documentElement.clientWidth;
+
+        if(Emt.isIDevice){ 
+            if (!Emt.standalone){ 
+                document.getElementById("container").style.minHeight = v_height + 61 + 'px'; 
+            } 
+        } else {
+            document.getElementById("container").style.minHeight = v_height + 100 + 'px';
+        }
+    }); 
+
+    $(function(){
+       MPage.init("cartoon");
+    });
+</script>
+</body>
+</html>

@@ -1,8 +1,23 @@
 var Mo = Mo || {};
 (function(){
     Mo.slide = function (options){
-        this.cur = 0;
-        this.options = $.extend({delay : 5000}, options);
+        var defaults = {
+            delay : 5000,
+            speed : 200,
+            autoplay : true,
+
+            target : "",
+            nav_target : "",
+            items : "",
+
+            hasTap : true,
+            margin : 0,
+            width : 0,
+            ratio : 0,            
+            scrollNum : 1
+        };
+
+        this.options = $.extend(defaults, options);
         this.init();
         Mo.slide.list.push(this);
     }
@@ -10,75 +25,82 @@ var Mo = Mo || {};
     Mo.slide.prototype = {
         init : function(){
             var _this = this,
-                items = $(this.options.items),
-                target = $(this.options.target),
-                hasTap = this.options.hasTap === false ? false : true,
-                nav_target = $(this.options.nav_target),
-                margin = this.options.margin || 0,
-                width = this.options.width,
-                ratio = this.options.ratio || 0,
-                height;
+                options = this.options;
 
-            if(this.options.resize === true){
-                width = this.options.width = window.innerWidth || document.documentElement.clientWidth;
+            _this.target = $(options.target);
+            _this.nav_target = $(options.nav_target);
+            _this.items = $(options.items);
+            _this.width = options.width;
+            _this.full_width = options.width + options.margin;
+            _this.ratio = options.ratio;
+            _this.scrollNum = options.scrollNum;
+            _this.v_width = window.innerWidth || document.documentElement.clientWidth;
+            _this.speed = options.speed;
+            _this.delay = options.delay;
+            _this.autoplay = options.autoplay;
+
+            if(options.width <= 0){
+                _this.width = _this.v_width;
+                _this.full_width = _this.width + options.margin;
+                _this.resize = true;
             }
 
-            _this.prehtml = target.html();
+            if(options.scrollNum == "auto"){
+                _this.scrollNum = Math.floor( _this.v_width / (_this.full_width));
+                _this.resize = true;
+            }
 
-            this.item_lenth =items.length;
-            _this.cur = this.item_lenth;
+            _this.prehtml = _this.target.html();
+            _this.item_length = _this.items.length;
+            _this.cur = _this.item_length;
             _this.real_cur = 0;
 
-            var html = target.html();
-            target.append(html + html);
-            items = $(this.options.items);
+            var html = _this.target.html();
+            _this.target.append(html + html);
+            _this.items = $(options.items);
 
-            items.removeClass("cur").eq(_this.cur).addClass("cur");
+            _this.items.removeClass("cur").slice(_this.cur, _this.cur + _this.scrollNum).addClass("cur");
             
-            if (ratio > 0){
-                height = Math.round(width / ratio);
-                items.width(width).height(height).show();
-                target.width(items.length * (width + margin)).height(height);
+            if (_this.ratio > 0){
+                var height = Math.round(_this.width / _this.ratio);
+                _this.items.width(_this.width).height(height).show();
+                _this.target.width(_this.items.length * _this.full_width ).height(height);
             } else {
-                items.width(width).show();
-                target.width(items.length * (width + margin));
+                _this.items.width(_this.width).show();
+                _this.target.width(_this.items.length * _this.full_width);
             }
 
-            target.css("margin-left", - this.item_lenth * (width + margin));
-            this.max_margin_left = (items.length - 1) * (width + margin);
+            _this.target.css("margin-left", - _this.item_length * _this.full_width);
+            _this.maxMarginLeft = (_this.items.length - 1) * _this.full_width;
 
-            nav_target.html("");
+            if(_this.scrollNum == 1){
+                _this.nav_target.html("");
 
-            for(var i = 0; i < this.item_lenth; i++){
-                nav_target.append("<li></li>");
+                for(var i = 0; i < _this.item_length; i++){
+                    _this.nav_target.append("<li></li>");
+                }
+
+                _this.nav_target.find("li").slice(_this.real_cur, _this.real_cur + _this.scrollNum).addClass("cur");
+            } else {
+                _this.nav_target.hide();
             }
-
-            nav_target.find("li").eq(0).addClass("cur");
 
             _this.bind();
-
             _this.autoPlay();
         },
 
         bind : function(){
-            var _this = this,
-                items = $(this.options.items),
-                target = $(this.options.target),
-                hasTap = this.options.hasTap === false ? false : true,
-                nav_target = $(this.options.nav_target),
-                margin = this.options.margin || 0,
-                width = this.options.width,
-                ratio = this.options.ratio || 0;
+            var _this = this;
 
             var is_touch_start = false;
             var start_x, end_x, start_y, end_y, margin_left;
 
-            target.unbind("touchstart").bind("touchstart", function(e){
+            _this.target.unbind("touchstart").bind("touchstart", function(e){
                 var $this = $(this);
                 if (is_touch_start) return false;
 
                 is_touch_start = true;
-                margin_left = parseInt(target.css("margin-left"));
+                margin_left = parseInt(_this.target.css("margin-left"));
                 start_x = e.changedTouches[0].clientX;
                 start_y = e.changedTouches[0].clientY;
                 _this.stop();
@@ -92,9 +114,9 @@ var Mo = Mo || {};
 
                 var _margin_left = end_x - start_x + margin_left;
                 (_margin_left > 0) && (_margin_left = 0);
-                (_margin_left < -_this.max_margin_left) && (_margin_left = -_this.max_margin_left);
+                (_margin_left < -_this.maxMarginLeft) && (_margin_left = -_this.maxMarginLeft);
 
-                target.css({
+                _this.target.css({
                     "margin-left" : _margin_left
                 });
 
@@ -104,40 +126,48 @@ var Mo = Mo || {};
 
             }).unbind("touchend").bind("touchend", function(e){
                 is_touch_start = false;
-                width = _this.options.width;
-                var next = end_x - start_x > 0 ? _this.cur - 1 : _this.cur + 1;
+                var next = end_x - start_x > 0 ? _this.cur - _this.scrollNum : _this.cur + _this.scrollNum;
 
                 setTimeout(function(){
-                    if (next >= 0 && next < items.length && Math.abs(end_x - start_x) > width / 3){
-                        target.animate({
-                            "margin-left" : - next * (width + margin)
+                    if (next >= 0 && next <  _this.items.length && Math.abs(end_x - start_x) > _this.width / 3){
+                         _this.target.animate({
+                            "margin-left" : - next *  _this.full_width
                         }, 200, 'linear', function(){
-                            items = $(_this.options.items);
                             if (next > _this.cur){
-                                target.append(items[0]);
-                                _this.real_cur++;
-                                if (_this.real_cur == _this.item_lenth){
-                                    _this.real_cur = 0;
+                                _this.target.append(_this.items.slice(0, _this.scrollNum));
+                                
+                                if(_this.scrollNum == 1){
+                                    _this.real_cur++;
+                                    if (_this.real_cur == _this.item_length){
+                                        _this.real_cur = 0;
+                                    }
                                 }
                             } else {
-                                target.prepend(items[items.length - 1]);
-                                 _this.real_cur--;
-                                if (_this.real_cur == -1){
-                                    _this.real_cur = _this.item_lenth - 1;
+                                var items = $(_this.items.toArray().reverse());
+                                _this.target.prepend(items.slice(0, _this.scrollNum));
+                                
+                                if(_this.scrollNum == 1){
+                                    _this.real_cur--;
+                                    if (_this.real_cur == -1){
+                                        _this.real_cur = _this.item_length - 1;
+                                    }
                                 }
                             }
 
-                            items.removeClass("cur").eq(next).addClass("cur");
-                            nav_target.find("li").removeClass("cur").eq(_this.real_cur).addClass("cur");
-                            target.css("margin-left", - _this.item_lenth * (width + margin));
-                            items = $(_this.options.items);
+                            _this.items = $(_this.options.items);
 
-                            _this.autoPlay();
-
+                            setTimeout(function(){
+                                _this.items.removeClass("cur").slice(_this.cur, _this.cur+ _this.scrollNum).addClass("cur");
+                                if(_this.scrollNum == 1){
+                                    _this.nav_target.find("li").removeClass("cur").eq(_this.real_cur).addClass("cur");
+                                }
+                                _this.target.css("margin-left", - _this.item_length * _this.full_width);
+                                _this.autoPlay();
+                            }, 0);
                         });
                     } else {
-                        target.animate({
-                            "margin-left" : - _this.cur * (width + margin)
+                        _this.target.animate({
+                            "margin-left" : - _this.cur * _this.full_width
                         }, 200, 'linear', function(){
                              _this.autoPlay();
                         });
@@ -149,68 +179,72 @@ var Mo = Mo || {};
         },
 
         stop : function(){
-            if (!this.options.autoplay) return;
+            if (!this.autoplay) return;
             clearInterval(this.autoplaytimer);
         },
 
         autoPlay : function(){
-            if (!this.options.autoplay) return;
-            var _this = this,
-                items = $(this.options.items),
-                target = $(this.options.target),
-                hasTap = this.options.hasTap === false ? false : true,
-                nav_target = $(this.options.nav_target),
-                margin = this.options.margin || 0,
-                width = this.options.width,
-                delay = this.options.delay;
+            var _this = this;
 
+            if (!_this.autoplay) return;
             _this.stop();
 
             _this.autoplaytimer = setInterval(function(){
-                var next = _this.cur + 1;
-                width = _this.options.width;
-                target.animate({
-                    "margin-left" : - next * (width + margin)
-                }, 200, function(){
-                    items = $(_this.options.items);
-                    target.append(items[0]);
-                    _this.real_cur++;
-                    if (_this.real_cur == _this.item_lenth){
-                        _this.real_cur = 0;
-                    }
+                var next = _this.cur + _this.scrollNum;
 
-                    nav_target.find("li").removeClass("cur").eq(_this.real_cur).addClass("cur");
-                    target.css("margin-left", - _this.item_lenth * (width + margin));
+                _this.target.animate({
+                    "margin-left" : -next * _this.full_width
+                }, _this.speed, function(){
+                    _this.target.append(_this.items.slice(0, _this.scrollNum));
+                    
+                    setTimeout(function(){              
+                        _this.items = $(_this.options.items);
+
+                        _this.real_cur += _this.scrollNum;
+                        if (_this.real_cur == _this.item_length){
+                            _this.real_cur = 0;
+                        }
+
+                        _this.items.removeClass("cur").slice(_this.cur, _this.cur + _this.scrollNum).addClass("cur");
+
+                        if(_this.scrollNum == 1){
+                            _this.nav_target.find("li").removeClass("cur").eq(_this.real_cur).addClass("cur");
+                        }
+                        
+                        _this.target.css("margin-left", - _this.item_length * _this.full_width);
+                    }, 0);
                 });
 
-            }, delay);
+            }, _this.delay + _this.delay);
         },
 
-        reset : function(width){
+        reset : function(){
             var _this = this,
-                items = $(this.options.items),
-                target = $(this.options.target),
-                margin = this.options.margin  || 0,
-                nav_target = $(this.options.nav_target),
-                ratio = this.options.ratio || 0,
-                height;
+                options = _this.options;
 
-            this.options.width = width;
+            _this.v_width = window.innerWidth || document.documentElement.clientWidth;
 
-            if (ratio > 0){
-                height = Math.round(width / ratio);
-                items.width(width).height(height).show();
-                target.width(items.length * (width + margin)).height(height);
-            } else {
-                items.width(width).show();
-                target.width(items.length * (width + margin));
+            if(options.width <= 0){
+                _this.width = _this.v_width;
             }
 
-            this.max_margin_left = (items.length - 1) * (width + margin);
+            if(options.scrollNum == "auto"){
+                _this.scrollNum = Math.floor( _this.v_width / (_this.full_width));
+            }
 
-            target.css({
-                "margin-left" : - _this.cur * (width + margin)
-            }, 200);
+            if (_this.ratio > 0){
+                var height = Math.round(_this.width / _this.ratio);
+                _this.items.width(_this.width).height(height).show();
+                _this.target.width(_this.items.length * _this.full_width).height(height);
+            } else {
+                _this.items.width(_this.width).show();
+                _this.target.width(_this.items.length * _this.full_width);
+            }
+
+            this.maxMarginLeft = (_this.items.length - 1) * _this.full_width;
+            _this.target.css({
+                "margin-left" : - _this.cur * _this.full_width
+            });
         }
     }
 
@@ -219,17 +253,14 @@ var Mo = Mo || {};
     var RESIZE_EV = 'onorientationchange' in window ? 'orientationchange' : 'resize',
         resize_time;
 
-    var v_width; 
     window.addEventListener(RESIZE_EV, function(){
         clearTimeout(resize_time);
-
-        v_width = window.innerWidth || document.documentElement.clientWidth;
         resize_time = setTimeout(function(){
             for(var i = Mo.slide.list.length - 1; i >= 0; i--){
                 if(typeof Mo.slide.list[i].options.resize === "function"){
                     Mo.slide.list[i].resize();
-                } else if(Mo.slide.list[i].options.resize === true){
-                    Mo.slide.list[i].reset(v_width);
+                } else if(Mo.slide.list[i].resize === true){
+                    Mo.slide.list[i].reset();
                 }
             }
         }, 500);

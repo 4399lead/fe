@@ -1,6 +1,5 @@
 var Mo = Mo || {};
 
-var $togbtn = $(".j-togbtn");
 Mo.toggleText = function(options){
 	var defaults = {
 		target : '.m_introtext',

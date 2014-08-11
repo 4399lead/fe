@@ -408,6 +408,90 @@ define(function(require,exports,module){
                 ]
             }
 		],
+		mobile : [
+            {
+                "title" : "浏览器设备检测",
+                "href"   : "resource/mobile/emt.html",
+                "desc"   : "浏览器设备检测",
+                "curTag"  : "emt",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "移动端弹窗",
+                "href"   : "resource/mobile/dialog.html",
+                "desc"   : "移动端弹窗",
+                "curTag"  : "dialog",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "移动滚动轮播图",
+                "href"   : "resource/mobile/slide.html",
+                "desc"   : "移动滚动轮播图",
+                "curTag"  : "slide",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "分页滚动组件",
+                "href"   : "resource/mobile/slidePager.html",
+                "desc"   : "分页滚动组件",
+                "curTag"  : "slidePager",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "展开收缩功能",
+                "href"   : "resource/mobile/toggleText.html",
+                "desc"   : "展开收缩功能",
+                "curTag"  : "toggleText",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "滚动固定标题",
+                "href"   : "resource/mobile/fixedSummary.html",
+                "desc"   : "滚动固定标题",
+                "curTag"  : "fixedSummary",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "加载更多组件",
+                "href"   : "resource/mobile/loadMore.html",
+                "desc"   : "加载更多组件",
+                "curTag"  : "loadMore",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },{
+                "title" : "分享组件",
+                "href"   : "resource/mobile/share.html",
+                "desc"   : "分享组件",
+                "curTag"  : "share",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            }
+
+        ],
         doc:[
             {
                 "title" : "手机调试配置文档",

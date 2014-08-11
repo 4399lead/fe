@@ -76,7 +76,7 @@ th{ text-align:inherit; }
 </style>
 </head>
 <body>
-<h2 class="demo_title">示例一</h2>
+<h2 class="demo_title">示例一：单个滚动，可见个数自适应且居中显示</h2>
 <!--slide-->
 <div class="m_slide mt20" id="j-gallery">
     <div class="slidebody">
@@ -92,7 +92,7 @@ th{ text-align:inherit; }
 </div>
 <!--/slide--> 
 
-<h2 class="demo_title">示例二</h2>
+<h2 class="demo_title">示例二：单个滚动，一个一屏</h2>
 <!--slide-->
 <div class="m_slide m_slide1 mt20" id="j-gallery1">
     <div class="slidebody">
@@ -107,7 +107,23 @@ th{ text-align:inherit; }
     <ul class="slidenum"></ul>
 </div>
 <!--/slide-->
-<script type="text/javascript" src="http://m.img4399.com/ios/ipadH5/js/base.js?20140526153611" ></script>
+
+<h2 class="demo_title">示例三：根据屏幕自动控制滚动个数</h2>
+<!--slide-->
+<div class="m_slide mt20" id="j-gallery2">
+    <div class="slidebody">
+        <ul class="clearfix">
+            <li><a href="#1"><img src="http://f1.img4399.com/mi~6bc6d817a21fe0dc1b8432bdecd1de3d.jpg?1395994248" alt="" /></a></li>
+            <li><a href="#2"><img src="http://f1.img4399.com/mi~0dca04c695d9a3e242cff8de0c177513.jpg?1395994248" alt="" /></a></li>
+            <li><a href="#3"><img src="http://f1.img4399.com/mi~141b7805ac7673f5bd17f905d64f5a1b.jpg?1395994248" alt="" /></a></li>
+            <li><a href="#4"><img src="http://f1.img4399.com/mi~228c1661ca06a7ad9457a5d41ab84b7e.jpg?1395994248" alt="" /></a></li>
+            <li><a href="#5"><img src="http://f1.img4399.com/mi~af3260046acbfc74c9cff5418214a862.jpg?1395994248" alt="" /></a></li>
+        </ul>
+    </div>
+    <ul class="slidenum"></ul>
+</div>
+<!--/slide--> 
+<script type="text/javascript" src="../../release/lib/zepto/zepto.min.js" ></script>
 <script type="text/javascript" src="../../release/mobile/imgReady.js"></script>
 <script type="text/javascript" src="../../release/mobile/m.slide.js"></script>
 <script>
@@ -128,6 +144,7 @@ th{ text-align:inherit; }
                     nav_target: "#j-gallery .slidenum",
                     margin: 20,
                     hasTap: false,
+                    autoplay : true,
                     width: width,
                     ratio : ratio
                 });
@@ -143,7 +160,19 @@ th{ text-align:inherit; }
             autoplay : true,
             ratio : 4 / 3// 图片的宽高比例
         });
+        
 
+        new Mo.slide({
+            items: "#j-gallery2 .slidebody li",
+            target: "#j-gallery2 .slidebody ul",
+            margin: 20,
+            speed : 600,
+            delay : 2000,
+            hasTap: false,
+            autoplay : true,
+            scrollNum : "auto",
+            width: 480
+        });
     });
 </script>
 </body>

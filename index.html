@@ -53,6 +53,16 @@
             </div>
         </div>
         <!--/jks_box-->
+		<!--jks_box-->
+        <div class="jks_box" id="javascript">
+            <h2><a href="mobile.html" target="_blank">mobile插件</a></h2>
+            <div class="jks_bd">
+                <!--m_fe_list-->
+                <ul class="m_fe_list clearfix" id="j-mobile"></ul>
+                <!--/m_fe_list-->
+            </div>
+        </div>
+        <!--/jks_box-->
         <!--jks_box-->
         <div class="jks_box" id="plugin">
             <h2>编辑器插件</h2>
@@ -194,6 +204,21 @@
     </script>
     <script id="j-doc-template" type="text/x-handlebars-template">
         {{#each doc}}
+        <li>
+            <a href="{{href}}" target="_blank">
+                <span class="m_fe_title">{{title}}</span>
+                <span class="m_fe_desc">{{desc}}</span>
+                <div class="m_author">
+                    {{#each author}}
+                    <img src="resource/avatar/{{createor}}"/>
+                    {{/each}}
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </script>
+	<script id="j-mobile-template" type="text/x-handlebars-template">
+        {{#each mobile}}
         <li>
             <a href="{{href}}" target="_blank">
                 <span class="m_fe_title">{{title}}</span>
