@@ -1,0 +1,41 @@
+.la-slidepager{
+	width: 100%; 
+	overflow: hidden;
+}
+
+.la-slidepager .slide-pager ul{
+	width: 10000px; 
+	overflow: hidden;
+	background: #fff;
+}
+
+.la-slidepager .slide-pager ul li{
+	float: left; 
+	padding: 0 20px;
+	height: 30px;
+	line-height: 30px; 
+	background: #e1e1e1;
+	margin: 10px 0 10px 10px;
+	color: #333;
+	border-radius:15px;
+	overflow: hidden;
+}
+
+.la-slidepager .slide-pager ul .ctl-active,
+.la-slidepager .slide-pager ul .ctl-touch{
+	background: #3AA7F0;
+	color: #fff;
+}
+
+.la-slidepager .slide-view{
+	height: 500px;
+}
+
+.la-slidepager .slide-page{
+	background: #f4f4f4;
+}
+
+.la-slidepager .slide-page li{
+	float: left;
+	margin: 10px 0 0 10px;
+}

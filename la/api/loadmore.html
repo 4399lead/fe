@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript">
+    //设备判断
+    var Emt = (function(){
+        var env = {},
+            navigator = window.navigator,
+            userAgent = navigator.userAgent,
+            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            android = userAgent.match(/(Android)\s([\d\.]+)/);
+
+        env.isAndroid = (/android/gi).test(navigator.appVersion);
+        env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
+        env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
+        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+
+        if (ios) {
+            env.device = ios[1];
+            env.version = ios[2].replace(/_/g, '.');
+        } else if(android){
+            env.version = android[2];
+        }
+
+        env.standalone = navigator.standalone;//ios 桌面方式打开
+        env.wechat = navigator.userAgent.indexOf("MicroMessenger") >= 0;//微信打开判断
+        env.gameStoreHD = navigator.userAgent.indexOf('GameStoreHD') >= 0;//4399游戏中心 ipad版打开判断 
+
+        return env;
+    })();
+
+    /*ios7 桌面方式打开 无法下载应用，如果没有下载可以取消这一句*/
+    if(Emt.standalone && Emt.version < "7.0"){
+        document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
+    }
+</script>
+<link href="../css/la.page.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.icon.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.view.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.table.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.loadmore.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="j-container">
+    <div class="la-page">
+        <header class="la-header">
+            <a href="javascript:history.back();" class="btn btn-back"><i class="i-back"></i></a>
+            <h1 class="title">加载更多组件</h1>
+        </header>
+
+        <section class="la-section">
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">可控制状态值</h2>
+                </div>
+
+                <div class="view-bd">
+                    <h3>默认状态</h3>
+                    <a class="la-loadmore">点击加载更多</a>
+                    <h3>ctl-touch 按下状态</h3>
+                    <a class="la-loadmore ctl-touch">点击加载更多</a>
+                    <h3>ctl-loading 正在加载</h3>
+                    <a class="la-loadmore ctl-loading">正在加载更多数据...</a>
+                    <h3>ctl-nodata 没有数据</h3>
+                    <a class="la-loadmore ctl-nodata">没有更多啦，去刷其他页面吧~</a>
+                    <h3>ctl-error 请求失败</h3>
+                    <a class="la-loadmore ctl-error">亲,你网络不给力哦~ 重新载入</a>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">接口返回数据格式</h2>
+                </div>
+                <div class="view-bd">
+                    <p>json = {</p>
+                    <p style="text-indent:2em;">"code" : 100,</p>
+                    <p style="text-indent:2em;">"msg" : "",</p>
+                    <p style="text-indent:2em;">"result" : {</p>
+                    <p style="text-indent:4em;">"perpage" : 10</p>
+                    <p style="text-indent:4em;">"page" : 1</p>
+                    <p style="text-indent:4em;">"pagecount" : 3</p>
+                    <p style="text-indent:4em;">"count" : 26</p>
+                    <p style="text-indent:4em;">"list" : []</p>
+                    <p style="text-indent:2em;">}</p>
+                    <p>}</p>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">参数列表</h2>
+                </div>
+
+                <div class="view-bd">
+                    <table class="la-table">
+                        <thead>
+                            <tr>
+                                <th>参数名称</th>
+                                <th>参数说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[object]options</td>
+                                <td>参数配置</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">options 参数</h2>
+                </div>
+
+                <div class="view-bd">
+                    <table class="la-table">
+                        <thead>
+                            <tr>
+                                <th>参数名称</th>
+                                <th>参数说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[selector] loadmoreBtn</td>
+                                <td>加载更多按钮</td>
+                            </tr>
+                            <tr>
+                                <td>[selector] updateTarget</td>
+                                <td>列表选择器</td>
+                            </tr>
+                            <tr>
+                                <td>[string] updateKey</td>
+                                <td>返回数据存放数据集的key</td>
+                            </tr>
+                            <tr>
+                                <td>[object] loadmoreParam</td>
+                                <td>传给接口的额外参数</td>
+                            </tr>
+                            <tr>
+                                <td>[string] updateTmpl</td>
+                                <td>列表项的模板</td>
+                            </tr>
+                            <tr>
+                                <td>[string] loadmoreUrl</td>
+                                <td>接口地址</td>
+                            </tr>
+                            <tr>
+                                <td>[bool] autoload</td>
+                                <td>设置true滚动自动加载</td>
+                            </tr>
+                            <tr>
+                                <td>[int] autoloadOffset</td>
+                                <td>滚动自动加载开始的剩余高度</td>
+                            </tr>
+                            <tr>
+                                <td>[string] loadmoreText</td>
+                                <td>按钮默认文案</td>
+                            </tr>
+                            <tr>
+                                <td>[string] loadingText</td>
+                                <td>加载中文案</td>
+                            </tr>
+                            <tr>
+                                <td>[string] nodataText</td>
+                                <td>没有数据文案</td>
+                            </tr>
+                            <tr>
+                                <td>[string] errorText</td>
+                                <td>加载失败文案</td>
+                            </tr>
+                            <tr>
+                                <td>[function] afterLoadmore(json, btn)</td>
+                                <td>加载成功后回调函数</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">DOM 节点参数配置</h2>
+                </div>
+                <div class="view-bd">
+                    <table class="la-table">
+                        <thead>
+                            <tr>
+                                <th>参数名称</th>
+                                <th>参数说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="30%">data-async</td>
+                                <td>配合LightPage的跳转策略;设置为1，将跳转策略改成不跳转，异步获取数据</td>
+                            </tr>
+                            <tr>
+                                <td width="30%">data-page</td>
+                                <td>设置下一页的页码</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">DEMO</h2>
+                </div>
+
+                <div class="view-bd">
+                    <p><a href="../demo/loadmore.html">demo1</a></p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="la-nav">
+            <ul>
+                <li><a href="../index.html"><i class="i-home"></i><span>Home</span></a></li>
+                <li class="ctl-active"><a href="index.html"><i class="i-list"></i><span>API</span></a></li>
+                <li><a href="../demo/index.html"><i class="i-lab"></i><span>Demo</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="../js/zepto.min.js"></script> 
+<script src="../js/baiduTemplate.js"></script> 
+<script src="../js/tools.js"></script>
+<script src="../js/la.js"></script>
+<script src="../js/api_app.js"></script>
+<script>
+    $(function(){
+       La.init('api');
+    });
+</script>
+</body>
+</html>

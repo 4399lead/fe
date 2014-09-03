@@ -1,0 +1,101 @@
+/*
+	la-dialog
+	弹窗基础样式
+*/
+.la-dialog{
+	z-index: -1;
+}
+
+.la-dialog .dialog{
+	position: fixed;
+	z-index: 100;
+}
+
+.la-dialog.ctl-show{
+	z-index:99;
+}
+
+.la-mask{
+	background:rgba(0,0,0,.3);
+	position: fixed;
+	left:0; 
+	top:0; 
+	bottom: 0; 
+	right: 0;
+	-webkit-transition: opacity, .2s ease-out;
+	opacity: 0;
+}
+
+.la-mask.ctl-show{
+	opacity: 1;
+}
+
+.ctl-popup{
+	-webkit-transform:scale(0.8);
+	-webkit-transition:-webkit-transform, .2s ease-out;
+}
+
+.ctl-show .ctl-popup{
+	-webkit-transform:scale(1);
+}
+
+.ctl-slidedown{
+	-webkit-transform:translateY(-40px);
+	-webkit-transition:-webkit-transform, .2s ease-out;
+}
+
+.ctl-show .ctl-slidedown{
+	-webkit-transform:translateY(0);
+}
+
+.ctl-slidein{
+	-webkit-transform:translateX(-40px);
+	-webkit-transition:-webkit-transform, .2s ease-out;
+}
+
+.ctl-show .ctl-slidein{
+	-webkit-transform:translateX(0);
+}
+
+/*
+	la-dialog-def
+	默认弹窗样式	
+*/
+.la-dialog-def{
+    left: 15px;
+    right: 15px;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+}
+
+.la-dialog-def .dialog-hd{
+    background: #1187E4;
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+}
+
+.la-dialog-def .dialog-hd .title{
+    color: #fff;
+    float: left;
+    text-indent: 10px;
+}
+
+.la-dialog-def .dialog-hd .btn-close{
+    width: 34px;
+    height: 34px;
+    line-height: 32px;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    float: right;
+}
+
+.la-dialog-def .dialog-hd .btn-close.ctl-touch{
+    background: #3AA7F0;
+}
+
+.la-dialog-def .dialog-bd{
+    padding: 10px;
+}

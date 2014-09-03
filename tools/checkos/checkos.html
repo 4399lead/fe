@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>检测系统版本</title>
+    <style>
+        *{ margin:0;padding:0;}
+        .m-checkos{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <span class="m-checkos" id="j-checkos">点我检测系统是否是windowXP版本</span>
+    <div id="j-os"></div>
+    <script type="text/javascript">
+
+        function checkWinVersion(){
+            var windows = (navigator.userAgent.indexOf("Windows",0) != -1)?1:0,
+                mac = (navigator.userAgent.indexOf("Mac",0) != -1)?1:0,
+                linux = (navigator.userAgent.indexOf("Linux",0) != -1)?1:0,
+                unix = (navigator.userAgent.indexOf("X11",0) != -1)?1:0;
+
+                if( windows ){
+                    var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows"); // 确保为windows系统
+                    var isWinXP = false;
+                    var sUserAgent = navigator.userAgent;
+                    var osResult = "";
+                    if(isWin) {
+                        isWinXP=sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows Xp") > -1; //winxp
+                        //osResult = isWinXP ? "window Xp" : "其他系统";
+                        osResult = isWinXP;
+                    }
+                }else if( mac ){
+                    osResult = "Apple mac";
+                }else if(linux){
+                    osResult = "Lunix";
+                }else if(unix){
+                    osResult = "unix";
+                }
+                
+                return osResult;
+        }
+
+        document.getElementById('j-checkos').onclick = function(){
+            document.getElementById('j-os').innerHTML = checkWinVersion();
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.la-list{
+
+}
+
+.la-list li{
+	border-bottom: 1px solid #ddd;
+	position: relative;
+}
+
+.la-list li i{
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+
+.la-list li a{
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #333;
+	font-size: 14px;
+	padding:0 10px;
+}
+
+.la-list li a.ctl-touch{
+	background: #ddd;
+}

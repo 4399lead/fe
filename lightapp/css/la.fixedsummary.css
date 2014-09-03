@@ -1,0 +1,36 @@
+.la-fixed_summary{
+	width: 100%;
+	position: fixed;
+	top: 48px;
+	left: 0;
+	z-index: 1;
+	display: none;
+}
+
+.la-summary{
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px #d1d1d1 solid;
+	color: #333;
+	font-size: 12px;
+	background-color: #e1e1e1;
+	-webkit-box-sizing:border-box;
+}
+
+.la-summary .title{
+	font-weight: normal;
+	float: left;
+	padding-left: 10px;
+}
+
+.la-summary .btn{
+	float: right;
+	text-align: center;
+	height: 16px;
+	padding: 7px 7px;
+	line-height: 0;
+}
+
+.la-summary .btn.ctl-touch{
+	background: #3AA7F0;
+}

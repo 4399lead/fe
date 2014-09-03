@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript">
+    //设备判断
+    var Emt = (function(){
+        var env = {},
+            navigator = window.navigator,
+            userAgent = navigator.userAgent,
+            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            android = userAgent.match(/(Android)\s([\d\.]+)/);
+
+        env.isAndroid = (/android/gi).test(navigator.appVersion);
+        env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
+        env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
+        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+
+        if (ios) {
+            env.device = ios[1];
+            env.version = ios[2].replace(/_/g, '.');
+        } else if(android){
+            env.version = android[2];
+        }
+
+        env.standalone = navigator.standalone;//ios 桌面方式打开
+        env.wechat = navigator.userAgent.indexOf("MicroMessenger") >=0;//微信打开判断
+        env.gameStoreHD = navigator.userAgent.indexOf('GameStoreHD') >= 0;//4399游戏中心 ipad版打开判断 
+
+        return env;
+    })();
+
+    /*ios7 桌面方式打开 无法下载应用，如果没有下载可以取消这一句*/
+    if(Emt.standalone && Emt.version < "7.0"){
+        document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
+    }
+</script>
+<link href="../css/la.page.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.icon.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="j-container">
+    <div class="la-page">
+        <header class="la-header">
+            <a href="javascript:history.back();" class="btn btn-back"><i class="i-back"></i></a>
+            <h1 class="title">展示收缩 Demo</h1>
+        </header>
+
+        <section class="la-section">
+            
+            <div style="line-height:22px; font-size:13px; padding:10px;">
+                <div class="la-text j-toggle">
+                    <p>《造梦西游OL HD》是4399游戏年度排名第一的2D横版过关游戏，拥有数千万注册用户，被评为年度最佳游戏，现强势进驻APP STORE。经典人物，别样剧情，全新玩法，将天庭玩转与股掌之间，值得体验。讲述师徒四人，为解救玉帝大闹天庭，挑战一个又一个的邪恶神魔，经历无数考验不断成长成功解救玉帝，随后转世落入凡间斩妖除奸拯救苍生大业，并冲下地府一路斩神灭魔最终拯救三界的故事。天庭危机！师徒四人杀上九重天，汇集南天门下，天、地、人三界的险恶岂能阻挡我师徒前进的脚步。看着一个接一个倒下的邪恶神魔，英雄披坚执锐屹立山头，俯瞰苍生和平，余愿足矣。这就是我们的造梦之旅，我们的造梦西游。<br>“我等在南天门下集结，三界等你来拯救！”<br>游戏特点：<br>1、紧张袭击的战斗系统，为iphone和ipad量身定制超易上手的全新摇杆玩法。<br>2、丰富的技能系统，多样的技能组合，让战斗充满趣味与挑战。<br>3、搭配不同的武器装备，挖掘无限的成长潜力，迎接如潮涌来的敌人。<br>4、全新的同步PVP和异步PVP玩法，体验独特的操作快感。<br>5、丰富的神兽宠物培养玩法，让战斗不再孤单。</p>
+                </div>
+                <a href="javascript:void(0);" class="la-link j-btn-toggle">显示详细信息&gt;&gt;</a>
+            </div>
+
+            <div style="line-height:22px; font-size:13px; padding:10px;">
+                <div class="la-text j-toggle1">
+                    <p>《造梦西游OL HD》是4399游戏年度排名第一的2D横版过关游戏，拥有数千万注册用户，被评为年度最佳游戏，现强势进驻APP STORE。经典人物，别样剧情，全新玩法，将天庭玩转与股掌之间，值得体验。讲述师徒四人，为解救玉帝大闹天庭，挑战一个又一个的邪恶神魔，经历无数考验不断成长成功解救玉帝，随后转世落入凡间斩妖除奸拯救苍生大业，并冲下地府一路斩神灭魔最终拯救三界的故事。天庭危机！师徒四人杀上九重天，汇集南天门下，天、地、人三界的险恶岂能阻挡我师徒前进的脚步。看着一个接一个倒下的邪恶神魔，英雄披坚执锐屹立山头，俯瞰苍生和平，余愿足矣。这就是我们的造梦之旅，我们的造梦西游。<br>“我等在南天门下集结，三界等你来拯救！”<br>游戏特点：<br>1、紧张袭击的战斗系统，为iphone和ipad量身定制超易上手的全新摇杆玩法。<br>2、丰富的技能系统，多样的技能组合，让战斗充满趣味与挑战。<br>3、搭配不同的武器装备，挖掘无限的成长潜力，迎接如潮涌来的敌人。<br>4、全新的同步PVP和异步PVP玩法，体验独特的操作快感。<br>5、丰富的神兽宠物培养玩法，让战斗不再孤单。</p>
+                </div>
+                <a href="javascript:void(0);" class="la-link j-btn-toggle1">显示详细信息&gt;&gt;</a>
+            </div>
+        </section>
+
+        <nav class="la-nav">
+            <ul>
+                <li><a href="../index.html"><i class="i-home"></i><span>Home</span></a></li>
+                <li><a href="../api/index.html"><i class="i-list"></i><span>API</span></a></li>
+                <li class="ctl-active"><a href="index.html"><i class="i-lab"></i><span>Demo</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="../js/zepto.min.js"></script> 
+<script src="../js/baiduTemplate.js"></script> 
+<script src="../js/tools.js"></script>
+<script src="../js/la.js"></script>
+<script src="../js/plugins/la.toggle.js"></script>
+<script src="../js/demo_app.js"></script>
+<script>
+    $(function(){
+        La.init('toggle');
+    });
+</script>
+</body>
+</html>

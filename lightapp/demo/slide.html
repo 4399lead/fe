@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript">
+    //设备判断
+    var Emt = (function(){
+        var env = {},
+            navigator = window.navigator,
+            userAgent = navigator.userAgent,
+            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            android = userAgent.match(/(Android)\s([\d\.]+)/);
+
+        env.isAndroid = (/android/gi).test(navigator.appVersion);
+        env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
+        env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
+        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+
+        if (ios) {
+            env.device = ios[1];
+            env.version = ios[2].replace(/_/g, '.');
+        } else if(android){
+            env.version = android[2];
+        }
+
+        env.standalone = navigator.standalone;//ios 桌面方式打开
+        env.wechat = navigator.userAgent.indexOf("MicroMessenger") >=0;//微信打开判断
+        env.gameStoreHD = navigator.userAgent.indexOf('GameStoreHD') >= 0;//4399游戏中心 ipad版打开判断 
+
+        return env;
+    })();
+
+    /*ios7 桌面方式打开 无法下载应用，如果没有下载可以取消这一句*/
+    if(Emt.standalone && Emt.version < "7.0"){
+        document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
+    }
+</script>
+<link href="../css/la.page.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.icon.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.slide.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="j-container">
+    <div class="la-page">
+        <header class="la-header">
+            <a href="javascript:history.back();" class="btn btn-back"><i class="i-back"></i></a>
+            <h1 class="title">图片滚动 Demo</h1>
+        </header>
+
+        <section class="la-section">
+            <h2>单个滚动，可见个数自适应且居中显示</h2>
+            <div class="la-slide la-slide-center" id="j-slide-center">
+                <div class="slide-view">
+                    <ul class="clearfix">
+                        <li><a href=""><img src="http://f1.img4399.com/mi~6bc6d817a21fe0dc1b8432bdecd1de3d.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~0dca04c695d9a3e242cff8de0c177513.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~141b7805ac7673f5bd17f905d64f5a1b.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~228c1661ca06a7ad9457a5d41ab84b7e.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~af3260046acbfc74c9cff5418214a862.jpg?1395994248" alt="" /></a></li>
+                    </ul>
+                </div>
+                <ul class="slide-nav"></ul>
+            </div>
+
+            <h2>单个滚动，一个一屏</h2>
+            <div class="la-slide" id="j-slide">
+                <div class="slide-view">
+                    <ul class="clearfix">
+                        <li><a href=""><img src="http://f1.img4399.com/mi~6bc6d817a21fe0dc1b8432bdecd1de3d.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~0dca04c695d9a3e242cff8de0c177513.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~141b7805ac7673f5bd17f905d64f5a1b.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~228c1661ca06a7ad9457a5d41ab84b7e.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~af3260046acbfc74c9cff5418214a862.jpg?1395994248" alt="" /></a></li>
+                    </ul>
+                </div>
+                <ul class="slide-nav"></ul>
+            </div>
+
+            <h3>根据屏幕自动控制滚动个数</h3>
+            <div class="la-slide" id="j-slide-fluid">
+                <div class="slide-view">
+                    <ul class="clearfix">
+                        <li><a href=""><img src="http://f1.img4399.com/mi~6bc6d817a21fe0dc1b8432bdecd1de3d.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~0dca04c695d9a3e242cff8de0c177513.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~141b7805ac7673f5bd17f905d64f5a1b.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~228c1661ca06a7ad9457a5d41ab84b7e.jpg?1395994248" alt="" /></a></li>
+                        <li><a href=""><img src="http://f1.img4399.com/mi~af3260046acbfc74c9cff5418214a862.jpg?1395994248" alt="" /></a></li>
+                    </ul>
+                </div>
+                <ul class="slide-nav"></ul>
+            </div>
+        </section>
+
+        <nav class="la-nav">
+            <ul>
+                <li><a href="../index.html"><i class="i-home"></i><span>Home</span></a></li>
+                <li><a href="../api/index.html"><i class="i-list"></i><span>API</span></a></li>
+                <li class="ctl-active"><a href="index.html"><i class="i-lab"></i><span>Demo</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="../js/zepto.min.js"></script> 
+<script src="../js/baiduTemplate.js"></script> 
+<script src="../js/tools.js"></script>
+<script src="../js/lightApp.js"></script>
+<script src="../js/plugins/la.slide.js"></script>
+<script src="../js/plugins/imgReady.js"></script>
+<script src="../js/demo_app.js"></script>
+<script>
+    $(function(){
+        LightApp.init('slide');
+    });
+</script>
+</body>
+</html>

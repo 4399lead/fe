@@ -1,0 +1,35 @@
+.la-tab{
+	border-radius: 5px;
+	height: 28px;
+	background-color: #fff;
+	border: 1px solid #0ea0f0;
+	overflow: hidden;
+	display: -webkit-box;
+}
+
+.la-tab li{
+	-webkit-box-flex:1;
+}
+
+.la-tab li a{
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	color: #333;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.la-tab li a.ctl-touch{
+	background: #e1e1e1;
+}
+
+.la-tab li.ctl-active a{
+	background: #3AA7F0;
+	color: #fff;
+}
+
+.la-tab-view{
+	padding: 10px;
+}

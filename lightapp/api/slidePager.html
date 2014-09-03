@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript">
+    //设备判断
+    var Emt = (function(){
+        var env = {},
+            navigator = window.navigator,
+            userAgent = navigator.userAgent,
+            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            android = userAgent.match(/(Android)\s([\d\.]+)/);
+
+        env.isAndroid = (/android/gi).test(navigator.appVersion);
+        env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
+        env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
+        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+
+        if (ios) {
+            env.device = ios[1];
+            env.version = ios[2].replace(/_/g, '.');
+        } else if(android){
+            env.version = android[2];
+        }
+
+        env.standalone = navigator.standalone;//ios 桌面方式打开
+        env.wechat = navigator.userAgent.indexOf("MicroMessenger") >= 0;//微信打开判断
+        env.gameStoreHD = navigator.userAgent.indexOf('GameStoreHD') >= 0;//4399游戏中心 ipad版打开判断 
+
+        return env;
+    })();
+
+    /*ios7 桌面方式打开 无法下载应用，如果没有下载可以取消这一句*/
+    if(Emt.standalone && Emt.version < "7.0"){
+        document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
+    }
+</script>
+<link href="../css/la.page.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.icon.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.view.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.table.css" rel="stylesheet" type="text/css" />
+<link href="../css/la.slidePager.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="j-container">
+    <div class="la-page">
+        <header class="la-header">
+            <a href="javascript:history.back();" class="btn btn-back"><i class="i-back"></i></a>
+            <h1 class="title">滑屏分页 API</h1>
+        </header>
+
+        <section class="la-section">
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">可控制状态值</h2>
+                </div>
+
+                <div class="view-bd">
+                    <h3>li ctl-active 当前状态</h3>
+                    <div class="la-slidepager">
+                        <div class="slide-pager">
+                            <ul class="clearfix">
+                                <li class="ctl-active">1-9</li>
+                                <li>10-18</li>
+                                <li>19-27</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>a ctl-touch 按下状态</h3>
+                    <div class="la-slidepager">
+                        <div class="slide-pager">
+                            <ul class="clearfix">
+                                <li class="ctl-touch">1-9</li>
+                                <li>10-18</li>
+                                <li>19-27</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">参数列表</h2>
+                </div>
+
+                <div class="view-bd">
+                    <table class="la-table">
+                        <thead>
+                            <tr>
+                                <th>参数名称</th>
+                                <th>参数说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[object]options</td>
+                                <td>参数配置</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">options 参数</h2>
+                </div>
+
+                <div class="view-bd">
+                    <table class="la-table">
+                        <thead>
+                            <tr>
+                                <th>参数名称</th>
+                                <th>参数说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[selector] page_target</td>
+                                <td>页面容器</td>
+                            </tr>
+                            <tr>
+                                <td>[selector] page_item</td>
+                                <td>页面items</td>
+                            </tr>
+                            <tr>
+                                <td>[selector] pager_target</td>
+                                <td>分页容器</td>
+                            </tr>
+                            <tr>
+                                <td>[selector] pager_item</td>
+                                <td>分页items</td>
+                            </tr>
+                            <tr>
+                                <td>[int] speed</td>
+                                <td>滚动速度，单位毫秒</td>
+                            </tr>
+                            <tr>
+                                <td>[int] active</td>
+                                <td>当前页码</td>
+                            </tr>
+                            <tr>
+                                <td>[function] setPageContent(page, $page)</td>
+                                <td>设置分页屏内容，page 是要设置的页面;$page 是设置的页面的节点对象</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="la-view">
+                <div class="view-hd">
+                    <h2 class="title">DEMO</h2>
+                </div>
+
+                <div class="view-bd">
+                    <p><a href="../demo/slide.html">demo1</a></p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="la-nav">
+            <ul>
+                <li><a href="../index.html"><i class="i-home"></i><span>Home</span></a></li>
+                <li class="ctl-active"><a href="index.html"><i class="i-list"></i><span>API</span></a></li>
+                <li><a href="../demo/index.html"><i class="i-lab"></i><span>Demo</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="../js/zepto.min.js"></script> 
+<script src="../js/baiduTemplate.js"></script> 
+<script src="../js/tools.js"></script>
+<script src="../js/lightApp.js"></script>
+<script src="../js/api_app.js"></script>
+<script>
+    $(function(){
+       LightApp.init('api');
+    });
+</script>
+</body>
+</html>
