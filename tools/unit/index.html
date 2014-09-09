@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>尺寸转换工具</title>
+	<style>
+		* {padding: 0; margin: 0;}
+		body{background: #0769C3;}
+		form{position: fixed; height: 440px; width: 600px; left: 50%; top: 50%; margin-left: -300px; margin-top: -220px; color: #fff; font-size: 14px; font-family: "microsoft yahei"}
+		form fieldset{border: 0;}
+		form fieldset legend{ display: block; text-align: center; font-size: 30px;}
+		form p {padding: 10px 50px; position: relative;}
+		form label{display: block; line-height: 24px; margin-bottom: 5px;}
+		form input,
+		form select{width: 100%; height: 32px; line-height: 16px; border: 0; background: #fff; -webkit-box-sizing:border-box; padding: 8px 8px; font-size: 14px;}
+		form span{position: absolute; right: 0; bottom: 17px; width: 45px; text-align: left;}
+		form input[readonly]{background: #aaa;}
+	</style>
+</head>
+<body>
+
+	<form>
+		<fieldset>
+			<legend>尺寸转换</legend>
+
+			<p>
+				<label>屏幕密度（dpi）:</label>
+				<select id="j-dpi">
+					<option value="120">ldpi 120</option>
+					<option value="160">mdpi 160</option>
+					<option value="240">hdpi 240</option>
+					<option value="320">xhdpi 320</option>
+					<option value="480">xxhdpi 480</option>
+				</select>
+			</p>
+
+			<p>
+				<label>设计尺寸:</label>
+				<input type="text" id="j-design_width" value="1" />
+				<span>px</span>
+			</p>
+
+			<p>
+				<label>物理尺寸:</label>
+				<input type="text" readonly="readonly" id="j-size_mm" />
+				<span>mm</span>
+			</p>
+
+			<p>
+				<label>设备独立像素（Android）:</label>
+				<input type="text" readonly="readonly" id="j-size_dp" />
+				<span>dp/sp</span>
+			</p>
+
+			<p>
+				<label>磅值（IOS）:</label>
+				<input type="text" value=""  readonly="readonly" id="j-size_pt" />
+				<span>pt</span>
+			</p>
+		</fieldset>
+	</form>
+
+	<script type="text/javascript">
+
+		function px2pt (px, ppi) {
+			return px / ppi * 72;
+		}
+
+		function px2dp(px, ppi){
+			return px * 160 / ppi;
+		}
+
+		function px2mm(px, ppi){
+			return 25.4  * px / ppi;
+		}
+
+		function calculate(){
+			var ppi = parseInt( document.getElementById("j-dpi").value ),
+				width = parseInt( document.getElementById("j-design_width").value ) || 0;
+
+			document.getElementById("j-size_mm").value = px2mm(width, ppi);
+			document.getElementById("j-size_dp").value = px2dp(width, ppi);
+			document.getElementById("j-size_pt").value = px2pt(width, ppi);
+		}
+
+		document.getElementById("j-design_width").onblur = calculate;
+
+		document.getElementById("j-dpi").onchange = calculate;
+	</script>
+</body>
+</html>

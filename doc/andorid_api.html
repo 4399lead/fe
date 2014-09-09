@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta content="email=no,telephone=no" name="format-detection"/>
+    <title>4399手机游戏</title>
+</head>
+<style type="text/css">
+    li{font-size: 20px; line-height: 32px;}
+</style>
+<body>
+    <h1>浏览器和安卓客户端 1.4.1 通信demo</h1>
+    <ul>
+        <li>1.<a href="javascript:;" id="j-checkInstalled">下载并打开游戏盒</a>（调用launch方法，启动失败有回调）</li>
+        <li>2.<a href="javascript:;" id="j-downloadGame">高速下载游戏</a></li>
+        <li>3.<a href="m4399://launch?type=newsDetail&id=373811" id="j-launch-news">启动客户端资讯界面</a>（直接写在链接上的，启动失败没有回调）</li>
+        <li>4.<a href="m4399://launch?type=main" id="j-launch-main">启动客户端主界面</a>（直接写在链接上的，启动失败没有回调）</li>
+        <li>5.<a href="m4399://launch?type=gameDetail&id=26444" id="j-launch-game">启动客户端游戏详情页</a>（直接写在链接上的，启动失败没有回调）</li>
+    </ul>
+</body>
+</html>
+<script type="text/javascript">
+    var AndroidConnect = {
+        initLaunch : function(){
+            var _this = this;
+
+            if( !this.frame ){
+                this.frame = document.createElement("frame");
+                this.frame.style.display = "none";
+                document.body.appendChild(this.frame);
+                this.timeout = 1000;
+
+                window.onblur = function(){
+                    clearTimeout(_this.timer);
+                    _this.timer = null;
+                };
+            }
+        },
+
+        launchFallback : function(start_time){
+            var now_time = Date.now();
+
+            if (!start_time || now_time - start_time < this.timeout + 200){
+                this.fallback();
+            }
+        },
+        
+        launch : function(launch_url, fallback){
+            var _this = this,
+                start_time = Date.now();
+
+            this.launch_url = launch_url || 'm4399://launch';
+            this.fallback = typeof fallback === "function" ? fallback : function(){};
+
+            this.initLaunch();
+
+            if( this.fallback ){
+                this.timer = setTimeout(function(){
+                    _this.launchFallback(start_time);
+                }, _this.timeout);
+            }
+
+            this.redirect();
+        },
+
+        redirect : function(){
+            var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
+
+            if(isChrome){
+                document.location.href = this.launch_url;
+            } else {
+                this.frame.setAttribute("src", this.launch_url);
+            }
+        },
+
+        downloadGame : function(param, success, failure){
+            param = param || {};
+            var packagename = param.packagename || '', 
+                gid = param.gid || '',
+                uid = param.uid || 0, 
+                vid = param.vid || 0;
+
+            this.jsonp('http://127.0.0.1:4399/download?packagename=' + packagename + '&gid=' + gid + '&uid='+ uid + '&vid=' + vid, function(data){
+                if (data == 3){
+                    //该游戏已经已经安装过
+                    failure(2);
+                } else if(data != 1){
+                    failure(0);//启动下载失败
+                } else {
+                    //启动下载成功
+                    success(1);
+                }
+            }, function(){
+                failure(1);//客户端未安装或者客户端服务未启动
+            });
+        },
+
+        jsonp : function(url, success, failure){
+            var script = document.createElement("script"),
+                calbackname = 'app_dl_callback';
+
+            success = typeof success === 'function' ? success : function(){};   
+            failure = typeof failure === 'function' ? failure : function(){};
+
+            window[calbackname] = success;
+
+            script.onload = function(e){
+                document.body.removeChild(script);
+                delete window[calbackname];  
+            }
+
+            script.onerror = function(e){
+                failure();
+                document.body.removeChild(script);
+                delete window[calbackname]; 
+            }
+            
+            script.src = url + '&r=' + (new Date() - 0);
+            document.body.appendChild(script);
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", function(){
+        //判断是否安装客户端
+        var isUC = navigator.userAgent.match(/UCBrowser|UCWeb/i);
+
+        if(isUC){
+            document.getElementById('j-checkInstalled').innerHTML += "（UC浏览器该功能无法使用）";
+        } else {
+            document.getElementById('j-checkInstalled').addEventListener("click", function(){
+                AndroidConnect.launch('m4399://launch?type=main', function(){
+                    document.location.href = 'http://www.4399.cn/app-wap.html';
+                });
+            });
+        }
+
+        //安装游戏
+        document.getElementById('j-downloadGame').onclick = function(){
+            var link = this;
+            
+            AndroidConnect.downloadGame({
+                packagename : 'org.yjmobile.zmxy',//游戏包名
+                gid : "26444",//游戏id
+                uid : '',//uid 和  vid 是用户id和 访客id 用于做统计 非必传
+                vid : ''
+
+            }, function(data){
+                link.innerHTML = '启动下载成功';
+            }, function(data){
+                if(data == 0){
+                    link.innerHTML = '启动下载失败';
+                } else if(data == 2){
+                    link.innerHTML = '该游戏已经已经安装过';
+                } else {
+                    link.innerHTML = '客户端未安装或者客户端服务未启动';
+                }
+                
+            });
+        };
+
+        //启动客户端资讯界面
+        document.getElementById('j-launch-news').addEventListener("click", function(){
+            AndroidConnect.launch(this.href, function(){
+                alert('未安装客户端');
+                //document.location.href = 'http://www.4399.cn/app-wap.html';
+            });
+        });
+
+        //启动客户端主界面
+        document.getElementById('j-launch-news').addEventListener("click", function(){
+            AndroidConnect.launch(this.href, function(){
+                alert('未安装客户端');
+                //document.location.href = 'http://www.4399.cn/app-wap.html';
+            });
+        });
+
+        //启动客户端游戏详情页
+        document.getElementById('j-launch-news').addEventListener("click", function(){
+            AndroidConnect.launch(this.href, function(){
+                alert('未安装客户端');
+                //document.location.href = 'http://www.4399.cn/app-wap.html';
+            });
+        });
+    });
+</script>

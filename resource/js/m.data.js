@@ -418,6 +418,16 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "尺寸换算工具",
+                "href"  : "tools/unit/index.html",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
             }
 		],
 		mobile : [
@@ -474,6 +484,17 @@ define(function(require,exports,module){
                 "author"  : [
                     {
                         createor:"0216.jpg"
+
+                    }
+                ]
+            },
+            {
+                "title" : "安卓客户端跟浏览器通信API",
+                "href"  : "doc/andorid_api.html",
+                "desc" : "安卓客户端跟浏览器通信API",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
 
                     }
                 ]

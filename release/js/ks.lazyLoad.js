@@ -83,7 +83,7 @@ define(function(require,exports,module){
                 /*that.addEvent(window,'scroll',function(){
                     that.lazyContent(that.setting.callback);
                 })*/
-                $(window).unbind('scroll').bind('scroll',function(){
+                $(window).unbind('scroll.lazyLoad').bind('scroll.lazyLoad',function(){
                     that.lazyContent(that.setting.callback);
                 });
             }
