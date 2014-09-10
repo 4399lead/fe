@@ -457,7 +457,7 @@ define(function(require,exports,module){
             },
             {
                 "title" : "FE项目配置管理",
-                "href"  : "http://project.4399ued.com/doc/project-ftp.html",
+                "href"  : "http://project.4399ued.com/doc/doc.html",
                 "desc" : "【内网】前端团队的FTP项目管理",
                 "author"  : [
                     {
