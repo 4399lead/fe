@@ -1,5 +1,5 @@
 /**
- * ks.select.js
+ * ks.scrollTo.js
  */
 ;(function(factory) {
     // CMD/SeaJS

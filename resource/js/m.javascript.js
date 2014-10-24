@@ -16,108 +16,113 @@ define(function(require,exports,module){
                 "src"  : ""
             },
             {
-                "title" : "ue.dialog 弹窗",
-                "href"   : "js/ue.dialog.js",
+                "title" : "ks.dialog 弹窗",
+                "href"   : "js/ks.dialog.js",
                 "src"  : "share"
             },
             {
-                "title" : "ue.marquee 滚动",
-                "href"   : "js/ue.marquee.j",
+                "title" : "ks.marquee 滚动",
+                "href"   : "js/ks.marquee.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.addBookmark 收藏",
+                "title" : "ks.addBookmark 收藏",
                 "href"   : "js/ue.addBookmark.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.autocomplete 自动完成联想",
-                "href"   : "js/ue.autocomplete.js",
+                "title" : "ks.autocomplete 自动完成联想",
+                "href"   : "js/ks.autocomplete.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.copy 复制",
-                "href"   : "js/ue.copy.js",
+                "title" : "ks.copy 复制",
+                "href"   : "js/ks.copy.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.easydrag 拖曳",
-                "href"   : "js/ue.easydrag.js",
+                "title" : "ks.easydrag 拖曳",
+                "href"   : "js/ks.easydrag.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.gototop 回到顶部",
-                "href"   : "js/ue.gototop.js",
+                "title" : "ks.gototop 回到顶部",
+                "href"   : "js/ks.gototop.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.imgloader 图片预加载",
-                "href"   : "js/ue.imgloader.js",
+                "title" : "ks.imgloader 图片预加载",
+                "href"   : "js/ks.imgloader.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.lazyimg 图片延迟加载",
-                "href"   : "js/ue.lazyimg.js",
+                "title" : "ks.lazyimg 图片延迟加载",
+                "href"   : "js/ks.lazyimg.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.pager 静态分页",
-                "href"   : "js/ue.pager.js",
+                "title" : "ks.pager 静态分页",
+                "href"   : "js/ks.pager.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.scrollbar 滚动条",
-                "href"   : "js/ue.scrollbar.js",
+                "title" : "ks.scrollbar 滚动条",
+                "href"   : "js/ks.scrollbar.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.scrollFixed 下拉框",
-                "href"   : "js/ue.scrollFixed.js",
+                "title" : "ks.scrollFixed 下拉框",
+                "href"   : "js/ks.scrollFixed.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.selected 下拉框",
-                "href"   : "js/ue.selected.js",
+                "title" : "ks.selected 下拉框",
+                "href"   : "js/ks.selected.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.share 百度分享",
-                "href"   : "js/ue.share.js",
+                "title" : "ks.share 百度分享",
+                "href"   : "js/ks.share.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.slide 渐隐渐现幻灯片",
-                "href"   : "js/ue.slide.js",
+                "title" : "ks.slide 渐隐渐现幻灯片",
+                "href"   : "js/ks.slide.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.tab tab切换",
-                "href"   : "js/ue.tab.js",
+                "title" : "ks.tab tab切换",
+                "href"   : "js/ks.tab.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.textarea 自适应高度和统计字数输入框",
-                "href"   : "js/ue.textarea.js",
+                "title" : "ks.textarea 自适应高度和统计字数输入框",
+                "href"   : "js/ks.textarea.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.tween 简易动画",
-                "href"   : "js/ue.tween.js",
+                "title" : "ks.tween 简易动画",
+                "href"   : "js/ks.tween.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.validform 表单验证",
-                "href"   : "js/ue.validform.js",
+                "title" : "ks.validform 表单验证",
+                "href"   : "js/ks.validform.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.setHomePage 设置主页",
-                "href"   : "js/ue.setHomePage.js",
+                "title" : "ks.setHomePage 设置主页",
+                "href"   : "js/ks.setHomePage.js",
                 "src"  : ""
             },
             {
-                "title" : "ue.ie6png IE6 png24透明",
-                "href"   : "js/ue.ie6png.js",
+                "title" : "ks.ie6png IE6 png24透明",
+                "href"   : "js/ks.ie6png.js",
+                "src"  : ""
+            },
+            {
+                "title" : "ks.scrollTo 页内模块定位",
+                "href"   : "js/ks.scrollTo.js",
                 "src"  : ""
             }
         ]

@@ -166,6 +166,17 @@ define(function(require,exports,module){
                 }
             ],
         js:[
+        	{
+                "title" : "页内定位组件",
+                "href"   : "resource/plugins/ks.scrollTo/index.html",
+                "desc"   : "本页面模块定位",
+                "curTag"  : "scrollTo",
+                "author"  : [
+                        {
+                            createor:"af.png"
+                        }
+                    ]
+            },
             {
                 "title" : "对话框组件",
                 "href"   : "resource/plugins/ue.dialog/index.html",
@@ -266,9 +277,9 @@ define(function(require,exports,module){
                 ]
             },
             {
-                "title" : "自动完成狂组件",
+                "title" : "自动完成框组件",
                 "href"   : "resource/plugins/ue.autocomplete/index.html",
-                "desc"   : "自动完成狂组件",
+                "desc"   : "自动完成框组件",
                 "curTag"  : "autocomplete",
                 "author"  : [
                     {
