@@ -67,11 +67,7 @@
 	
 	/*Type*/
 	T.isType = function(val, type){
-		switch(type){
-			case "undefined" : return typeof val === type;
-		}
-		console.log(typeof val);
-		return toString.call(val).toLowerCase() === '[object ' + type.toLowerCase() + ']';
+		return {}.toString.call(val).toLowerCase() === '[object ' + type.toLowerCase() + ']';
 	}
 		
 	/*Object*/

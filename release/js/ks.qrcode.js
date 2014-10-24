@@ -8,7 +8,7 @@
     }
     // No module loader
     else {
-        factory('', window['ue']={}, '');
+        factory('', window, '');
     }
 
 }(function(require, exports, module) {
@@ -534,6 +534,11 @@
      */
    // QRCode = function (el, vOption) {
     QRCode = function (el, vOption) {
+
+        if(this.constructor !== QRCode){
+            return new QRCode(el, vOption);
+        }
+
         this._htOption = {
             width : 256,
             height : 256,

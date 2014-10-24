@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+
+<style>
+.dialog_pop{position:absolute; width:197px; height:70px;}
+.dialog_body{ position:absolute;}
+.dialog_shadow{ filter:alpha(opacity=20); opacity:.2; height:70px; width:100%;position:absolute; top:0; left:0;}
+.dialog_shaow_bg{ background-color:#000; height:100%; margin-top:-9px; *margin-top:-11px;}
+.dialog_main{ height:62px; background-color:#fff; border:#b5b5b5 1px solid; margin:10px 3px 3px;}
+
+.dialog_shadow .arrow1,
+.dialog_body .arrow2,
+.dialog_body .arrow3{ line-height:16px; font-size:16px; font-family:"simson"; margin-left:91px;}
+.dialog_shadow .arrow1{ color:#000; *position:relative; *top:-1px;}
+.dialog_body .arrow2{ color:#b5b5b5; position:absolute; overflow:hidden;left:0px; top:4px; height:7px; *height:6px; _line-height:19px;}
+.dialog_body .arrow3{ color:#fff;position:absolute;left:0px;top:5px;  _line-height:19px;}
+	
+.pop_sharebox{ padding:9px 9px 2px;}
+.pop_sharebox .ipt_txt{ width:109px; height:18px; line-height:18px; border:#cbcbcb 1px solid; padding:0 5px; font-family:"simsun"; float:left; margin-right:5px;}
+.pop_sharebox .copy_btn{ background:url(sprite.jpg) no-repeat -390px -148px; width:45px; height:21px; line-height:20px; float:left; text-align:center; }
+.pop_sharebox .copy_btn:hover{ background-position:-390px -170px; text-decoration:none; }
+.pop_sharebox .success_tip{ background:url(tips.png) no-repeat; line-height:20px;display:none;position:absolute; border:1px solid #2F6A00; color:#333; width:119px; text-indent:25px; top:0; left:0;}
+.pop_sharebox .share_title{float: left;line-height: 26px;}
+.pop_sharebox .share_link{padding-bottom: 2px;font-size: 12px;float: left;text-align: left!important;zoom: 1; padding-top:5px;}
+.pop_sharebox .share_link a{_display: inline;height: 17px;float: left;cursor: pointer; width:17px; background:url(share_icons.png) no-repeat; margin-left:5px;}
+.pop_sharebox .share_link .tqq{ background-position:-3px -79px;}
+.pop_sharebox .share_link .qzone{ background-position:-3px -3px}
+.pop_sharebox .share_link .tsina{ background-position:-3px -44px}
+.pop_sharebox .share_link a:hover{opacity:.8; filter:alpha(opacity=80)}
+</style>
+<title>分享组件</title>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:20px auto">
+        <p><a class="follow_btn" id="show_share_btn" >分享</a></p>
+        <div class="dialog_pop" style="display:none; left: -88px;top: 16px;">
+        	<div class="dialog_shadow">
+                <span class="arrow1">&#9670;</span>
+                <div class="dialog_shaow_bg"></div>
+            </div>
+            <div class="dialog_body">
+                <span class="arrow2">&#9670;</span>
+                <span class="arrow3">&#9670;</span>
+                <div class="dialog_main">
+                	<div class="pop_sharebox">
+                        <div class="clearfix" style="position:relative;">
+                        	<div class="success_tip">复制成功</div>
+                            <input type="text" class="ipt_txt" readonly="readonly">
+                            <a id="copy_btn" href="#" class="copy_btn">复制</a>
+                        </div>
+                        <div class="sharebox clearfix" >
+                            <span class="share_title">分享到：</span>
+                            <div class="share_link">
+                                <a class="qzone" title="分享到QQ空间" href="#"></a>
+                                <a class="tqq" title="分享到腾讯微博" href="#"></a>
+                                <a class="tsina" title="分享到新浪微博" href="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="../../../release/lib/seajs/sea.js"></script>
+<script>
+    seajs.use([
+        "../../../release/lib/jquery/jquery-1.4.4.min.js",
+        "../../../release/js/ks.ZeroClipboard.js",
+        "../../../release/js/ks.share.js"
+    ], function(jQuery, ZeroClipboard, share){
+        ZeroClipboard.moviePath = '../../../release/js/ZeroClipboard.swf';
+        share({
+            target : $("#show_share_btn"),//触发分享弹窗的按钮
+            pop : $(".dialog_pop"),//分享弹窗
+            qzone : $(".qzone"),//qzone按钮
+            tqq : $(".tqq"),//qq微博按钮
+            tsina : $(".tsina"),//新浪微博按钮
+            copy : $("#copy_btn"),//复制按钮
+            input : $(".dialog_pop .ipt_txt"),//网址文本框
+            success : $(".dialog_pop .success_tip"),//复制成功提示
+            title : document.title,//分享的默认文案
+            url : document.location.href,//分享附带的地址
+            pic : "http://bdimg.share.baidu.com/static/images/is.png?cdnversion=20121101"//分享的图片
+        })
+    });
+</script>

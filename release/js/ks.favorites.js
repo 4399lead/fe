@@ -13,7 +13,7 @@
     }
     // No module loader
     else {
-        factory('', window['ue']={}, '');
+        factory('', window['ue'] = window['ue'] || {}, '');
     }
 
 }(function(require, exports, module) {

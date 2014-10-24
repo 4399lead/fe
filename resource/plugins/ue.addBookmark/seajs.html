@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ks.favorites.js"></script>
+<title>添加收藏</title>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:40px auto; background-color:#eee">
+        <a href="#" class="addBookmark_btn">收藏</a>
+        <script>
+			
+        </script>
+    </div>
+</body>
+</html>
+<script src="../../../release/lib/seajs/sea.js"></script>
+<script>
+	seajs.use([
+		"../../../release/lib/jquery/jquery-1.4.4.min.js",
+		"../../../release/js/ks.favorites.js"
+	], function(jQuery, favorites){
+		$(".addBookmark_btn").bind("click", function(){
+			favorites(document.title);
+			return false;
+		})
+	});
+</script> 

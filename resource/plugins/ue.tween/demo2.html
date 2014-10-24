@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <title>JSTweener Example - Transitoins</title>
-    <script language="JavaScript" src="../../../release/js/ue.addTween.js"></script>
+    <script language="JavaScript" src="../../../release/js/ks.tween.js"></script>
     <script language="JavaScript">
       function getTime() {
         return document.getElementById('time').value;
@@ -19,20 +19,20 @@
 		  
       function move1() {
 		square.style.opacity = 0;
-        ue.addTween(square.style, {
+        ue.tween.addTween(square.style, {
             time: getTime(),
             transition: getTranstion(),
             onComplete: move2,
 			onUpdate : function(v){
-				ue.tweener.plugins.opacity(square, v);
-				ue.tweener.plugins.color(square.style, "backgroundColor", v, startColor, endColor);
+				ue.tween.plugins.opacity(square, v);
+				ue.tween.plugins.color(square.style, "backgroundColor", v, startColor, endColor);
 			},
             left: 400,
 			opacity : 1
         });
       }
       function move2() {
-        ue.addTween(square.style, {
+        ue.tween.addTween(square.style, {
             time: getTime(),
             transition: getTranstion(),
             onComplete: move3,
@@ -41,7 +41,7 @@
       }
 	  
       function move3() {
-        ue.addTween(square.style, {
+        ue.tween.addTween(square.style, {
             time: getTime(),
             transition: getTranstion(),
             onComplete: move4,
@@ -50,11 +50,11 @@
       }
 	  
       function move4() {
-        ue.addTween(square.style, {
+        ue.tween.addTween(square.style, {
             time: getTime(),
             transition: getTranstion(),
 			onUpdate : function(v){
-				ue.tweener.plugins.opacity(square, v);
+				ue.tween.plugins.opacity(square, v);
 			},
             onComplete: move1,
             top: 100,

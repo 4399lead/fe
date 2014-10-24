@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../global_ue.css" />
 <script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
-<script src="../../../release/js/ue.dialog.js"></script>
+<script src="../../../release/js/ks.dialog.js"></script>
 <style>
 
 .pop_sharebox .ipt_txt{ width:109px; height:18px; line-height:18px; border:#cbcbcb 1px solid; padding:0 5px; font-family:"simsun"; float:left; margin-right:5px;}
@@ -17,8 +17,8 @@
 <body>
 </body>
 </html>
-<script src="../../../release/js/ZeroClipboard.js"></script>
-<script src="../../../release/js/ue.copy.js"></script>
+<script src="../../../release/js/ks.ZeroClipboard.js"></script>
+<script src="../../../release/js/ks.copy.js"></script>
 <script type="text/tmpl" id="copyTmpl">
 <div class="pop" style="position:relative">
 	<input type="text" class="ipt_txt" readonly="readonly" value="http://www.4399.com" id="url_input">
@@ -27,8 +27,6 @@
 </script> 
 <script>
 $(function(){
-	ZeroClipboard.moviePath = '../../../release/js/ZeroClipboard.swf';
-
 	var copy;
 	
 	ue.dialog({
@@ -43,6 +41,7 @@ $(function(){
 				btnId : "copy_btn",//复制按钮
 				txtId : 'url_input',//网址文本框
 				container : $pop.find(".pop")[0],
+				moviePath : '../../../release/js/ZeroClipboard.swf',
 				success : function(){
 					alert("已复制到剪切板，可通过ctrl+v粘贴");
 				}

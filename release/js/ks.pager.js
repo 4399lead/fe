@@ -5,7 +5,17 @@
  * @parameter      : 
  * @details        :
  */
-define(function(require,exports,module){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window['ue'] = window['ue'] || {}, '');
+    }
+
+}(function(require, exports, module) {
     /*简易模版函数*/
     function template(tmpl,json){
         if (typeof tmpl !== "string" || typeof json !== "object") return "";
@@ -15,6 +25,10 @@ define(function(require,exports,module){
     }
 
     function ctor(options){
+        if(this.constructor !== ctor){
+            return new ctor(options);
+        }
+
         var defaults = {
             //target : $(),//放置分页的元素
             pagerTarget : $(),
@@ -23,6 +37,15 @@ define(function(require,exports,module){
             firstDisabled : '<span class="pager_first pager_item">首页</span>',
             last : '<a href="javascript:void(0)" class="pager_last pager_item">末页</a>',
             lastDisabled : '<span class="pager_last pager_item">末页</span>',
+			firstNum : '<a href="javascript:void(0)" class="pager_firstnum pager_item">1</a>',
+			firstNumDisabled : '<span class="pager_firstnum pager_item">1</span>',
+			lastNum : '<a href="javascript:void(0)" class="pager_lastnum pager_item">@{pageCount}</a>',
+			lastNumDisabled : '<span class="pager_lastnum pager_item">@{pageCount}</span>',
+			
+			prevMore : '<a href="javascript:void(0)" class="pager_prevmore pager_item">...</a>',
+			prevMoreDisabled : '<span class="pager_prevmore pager_item">...</span>',
+			nextMore : '<a href="javascript:void(0)" class="pager_nextmore pager_item">...</a>',
+			nextMoreDisabled : '<span class="pager_nextmore pager_item">...</span>',
             prev : '<a href="javascript:void(0)" class="pager_prev pager_item">上一页</a>',
             prevDisabled : '<span class="pager_prev pager_item">上一页</span>',
             next : '<a href="javascript:void(0)" class="pager_next pager_item">下一页</a>',
@@ -37,6 +60,9 @@ define(function(require,exports,module){
             maxPage : 5,//显示的最多页数
             per : 5,//每页显示的记录
             count : 0,//记录总计
+			more : 5,
+			showMore : false,
+			showFirstAndLastNum : false,
             onchange : function(){}//切换页数回调函数}
         }
 
@@ -47,6 +73,8 @@ define(function(require,exports,module){
     }
 
     ctor.prototype = {
+        constructor : ctor,
+
         init : function(){
             var _this = this,
                 options = this.options,
@@ -68,6 +96,14 @@ define(function(require,exports,module){
                 $page = $(options.page),
                 $current = $(options.current),
                 $goto = $(options.goto),
+				$prevMore = $(options.prevMore),
+				$prevMoreDisabled = $(options.prevMoreDisabled),
+				$nextMore = $(options.nextMore),
+				$nextMoreDisabled = $(options.nextMoreDisabled),
+				$firstNum = $(options.firstNum),
+				$firstNumDisabled = $(options.firstNumDisabled),
+				$lastNum = $(options.lastNum),
+				$lastNumDisabled = $(options.lastNumDisabled),
                 $temp;
 
             formTarget.html("");
@@ -76,13 +112,6 @@ define(function(require,exports,module){
                 return false;
             }
 
-            if(now == 1){
-                pagerTarget.append($firstDisabled.clone());
-                pagerTarget.append($prevDisabled.clone());
-            }else{
-                pagerTarget.append($first.clone().attr("data-page", 1));
-                pagerTarget.append($prev.clone().attr("data-page", now - 1));
-            }
 
             if (now >= (maxPage -1)){
                 end = now + 2;
@@ -97,6 +126,39 @@ define(function(require,exports,module){
             if (start < 1){
                 start = 1;
             }
+			if (options.showFirstAndLastNum){
+				
+				if(now == 1){
+					pagerTarget.append($prevDisabled.clone());
+				}else{
+					pagerTarget.append($prev.clone().attr("data-page", now - 1));
+				}
+				
+				if (start == 1){
+					pagerTarget.append($firstNumDisabled.clone());
+				} else {
+					pagerTarget.append($firstNum.clone().attr("data-page", 1));
+				}
+				
+			} else {
+				if(now == 1){
+					pagerTarget.append($firstDisabled.clone());
+					pagerTarget.append($prevDisabled.clone());
+				}else{
+					pagerTarget.append($first.clone().attr("data-page", 1));
+					pagerTarget.append($prev.clone().attr("data-page", now - 1));
+				}
+			}
+			
+			if (options.showMore){
+				if (start - 1 >= 1){ 
+					$temp = $prevMore.clone().attr("data-page", start - 1);
+					pagerTarget.append($temp);
+				} else {
+					pagerTarget.append($prevMoreDisabled.clone());
+				}
+			}
+			
             for(var i = start; i <= end; i++){
                 if(now == i){
                     $temp = $current.clone();
@@ -108,35 +170,71 @@ define(function(require,exports,module){
                     pagerTarget.append($temp);
                 }
             }
-
-            if(now == total){
-                pagerTarget.append($nextDisabled.clone());
-                pagerTarget.append($lastDisabled.clone());
-            }else{
-                pagerTarget.append($next.clone().attr("data-page", now + 1));
-                pagerTarget.append($last.clone().attr("data-page", total));
-            }
-
-            pagerTarget.append(template(options.tip, {nowPage : now, pageCount : total}));
-            formTarget.append($goto);
-
-            pagerTarget.find("a").bind("click", function(){
-                var p = parseInt($(this).attr("data-page"));
-                if (isNaN(p)){
-                    p = parseInt($(this).parents("[data-page]").attr("data-page"));
-                }
-                options.onchange.call(_this, p);
-                return false;
-            })
-
-            formTarget.find("form").submit = function(){return false};
-            formTarget.find(options.gotobtn).bind("click", function(){
-                var p = parseInt(formTarget.find(options.input).val());
-                if (p < 1 || p > total || isNaN(p)){return false};
-                options.onchange.call(_this, p);
-                return false;
-            })
-        }
+			if (options.showMore){
+				if (end + 1 <= total){
+					$temp = $nextMore.clone().attr("data-page", end + 1);
+					pagerTarget.append($temp);
+				} else {
+					pagerTarget.append($nextMoreDisabled.clone());
+				}
+			}
+			
+			if (options.showFirstAndLastNum){
+				
+				if (end < total){
+					$temp = $lastNum.clone();
+					$temp.html(template($temp.html(), {pageCount : total})).attr("data-page", total);
+					pagerTarget.append($temp);
+				} else {
+					$temp = $lastNumDisabled.clone();
+					$temp.html(template($temp.html(), {pageCount : total})).attr("data-page", total);
+					pagerTarget.append($temp);
+				}
+				
+				if(now < total){
+					pagerTarget.append($next.clone().attr("data-page", now + 1));
+				}else{
+					pagerTarget.append($nextDisabled.clone());
+				}
+				
+			} else {
+				$temp = $last.clone();
+				$temp.html(template($temp.html(), {pageCount : total})).attr("data-page", total);
+				if(now == total){
+					pagerTarget.append($nextDisabled.clone());
+					pagerTarget.append($temp);
+				}else{
+					pagerTarget.append($next.clone().attr("data-page", now + 1));
+					pagerTarget.append($temp);
+				}
+			}
+			
+			pagerTarget.append(template(options.tip, {nowPage : now, pageCount : total}));
+			formTarget.append($goto);
+			
+			pagerTarget.find("a").bind("click", function(){
+				var p = parseInt($(this).attr("data-page"));
+				if (isNaN(p)){
+					p = parseInt($(this).parents("[data-page]").attr("data-page"));
+				}
+				options.onchange.call(_this, p);
+				return false;
+			})
+			
+			formTarget.find("form").submit = function(){return false};
+			formTarget.find(options.gotobtn).bind("click", function(){
+				var p = parseInt(formTarget.find(options.input).val());
+				if (p < 1 || p > total || isNaN(p)){return false};
+				options.onchange.call(_this, p);
+				return false;
+			})
+		}
     }
-    module.exports = ctor;
-});
+
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = ctor;
+    }else{
+        exports.pager = ctor;
+    }
+    
+}));

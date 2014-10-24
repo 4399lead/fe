@@ -8,12 +8,16 @@
     }
     // No module loader
     else {
-        factory('', window['ue']={}, '');
+        factory('', window['ue'] = window['ue'] || {}, '');
     }
 
 }(function(require, exports, module) {
 	
     function LoopSlide(options){
+    	if(this.constructor !== LoopSlide){
+    		return new LoopSlide(options);
+    	}
+    	
 	    this.cur = 0;
 	    this.options = $.extend({delay : 2000}, options);
 	    this.init();

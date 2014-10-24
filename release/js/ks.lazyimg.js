@@ -5,7 +5,17 @@
  * @parameter      :
  */
 
-define(function(require,exports,module){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window['ue'] = window['ue'] || {}, '');
+    }
+
+}(function(require, exports, module) {
     function windowHeight(){
         return window.innerHeight || document.documentElement.clientHeight;
     }
@@ -15,6 +25,9 @@ define(function(require,exports,module){
     }
 
     var lazyimg = function(options){
+        if(this.constructor !== lazyimg){
+            return new lazyimg(options);
+        }
         options = $.extend({}, {
             target : '',
             type : ''
@@ -28,6 +41,8 @@ define(function(require,exports,module){
     var scrollImgs = [];
 
     lazyimg.prototype = {
+        constructor : lazyimg,
+
         init : function(options){
             var imgs = options.target.find('img[data-src]');
             var that = this;
@@ -72,5 +87,11 @@ define(function(require,exports,module){
             }
         }
     }
-    module.exports  = lazyimg;
-});
+
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = lazyimg;
+    }else{
+        exports.lazyimg = lazyimg;
+    }
+    
+}));

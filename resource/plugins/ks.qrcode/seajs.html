@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+
+<title>二维码生成器</title>
+</head>
+
+<body>
+<div id="qrcode"></div>
+<!--<script src="../../../release/js/ks.qrcode.js"></script>
+<script type="text/javascript">
+    var qrcode = new ue.QRCode("qrcode", {
+        text: "http://www.4399.cn/",
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : ue.QRCode.CorrectLevel.H
+    });
+</script>-->
+<script src="../../../release/lib/seajs/sea.js"></script>
+<script src="../../../resource/js/config.js"></script>
+<script>
+    seajs.use('../../../release/js/ks.qrcode.js',function(QRCode){
+        var qrcode = QRCode("qrcode", {
+            text: "http://www.4399.cn/",
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    });
+</script>
+</body>
+</html> 

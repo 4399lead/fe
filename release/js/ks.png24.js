@@ -1,7 +1,17 @@
 /*
 * png24透明
 * */
-;define( function(require, exports, module) {
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window , '');
+    }
+
+}(function(require, exports, module) {
     /**
      * DD_belatedPNG: Adds IE6 support: PNG images for CSS background-image and HTML <IMG/>.
      * Author: Drew Diller
@@ -331,6 +341,10 @@
     DD_belatedPNG.createVmlNameSpace();
     DD_belatedPNG.createVmlStyleSheet();
 
-    window.DD_belatedPNG = DD_belatedPNG;
-    module.exports = DD_belatedPNG;
-});
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = DD_belatedPNG;
+    }else{
+        exports.DD_belatedPNG = DD_belatedPNG;
+    }
+
+}));

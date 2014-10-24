@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+
+<title>tab切换组件 ue.tab</title>
+</head>
+<style>
+	.ue-tab{ margin:50px;}
+	.ue-tab-nav{ border-bottom:1px solid #CCC;}
+	.ue-tab-nav li{ float:left; height:26px; line-height:26px; position:relative; top:1px; background-color:#fff;border-bottom:1px solid #CCC; margin-right:10px;}
+	.ue-tab-nav li a{ display:block; padding:0 10px; color:#06F; font-size:14px;}
+	.ue-tab-nav li.cur{border:1px solid #ccc; border-bottom:0; border-radius:3px 3px 0 0;}
+	.ue-tab-nav li.cur a, .ue-tab-nav li a:hover{ }
+	.ue-tab-contents{border:1px solid #CCC; border-top:0;border-radius:0 0 3px 3px;}
+	.ue-tab-content{ padding:10px; display:none}
+</style>
+<body>
+	<div class="ue-tab" id="ue_tab1">
+    	<ul class="ue-tab-nav clearfix">
+        	<li><a href="#">tab0</a></li>
+            <li><a href="#">tab1</a></li>
+            <li><a href="#">tab2</a></li>
+            <li><a href="#">tab3</a></li>
+        </ul>
+        <div class="ue-tab-contents">
+        	<div class="ue-tab-content">111111111111111</div>
+            <div class="ue-tab-content">22222222222222</div>
+            <div class="ue-tab-content">333333333333333</div>
+            <div class="ue-tab-content">4444444444444</div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../../release/lib/seajs/sea.js"></script>
+<script>
+	seajs.use([
+		"../../../release/lib/jquery/jquery-1.4.4.min.js",
+		"../../../release/js/ks.tab.js"
+	], function(jQuery, tab){
+		tab({
+			tab : $("#ue_tab1 .ue-tab-nav li"),
+			defaultIndex : 0,
+			tabCurrentClass : "cur",
+			only : true,
+			delay : 500,
+			content : $("#ue_tab1 .ue-tab-content"),
+			trigger : "mouseover",
+			beforeSwitch : function(){
+				//alert("切换之前回调函数");
+			},
+			afterSwitch : function(){
+				//alert("切换之后回调函数");
+			},
+			beforeShow : function(){
+				//alert("显示之前回调函数");
+			},
+			afterShow : function(){
+				//alert("显示之后回调函数");
+			}
+		});
+	});
+</script>

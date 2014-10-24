@@ -1,30 +1,29 @@
 /*
-* 新增mp4
-* */
+ * 新增mp4
+ * */
 
- define(function(require,exports,moudles){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', {}, '');
+    }
+
+}(function(require, exports, module) {
     return function(jquery){
-        /*!
-         * fancyBox - jQuery Plugin
-         * version: 2.1.4 (Thu, 10 Jan 2013)
-         * @requires jQuery v1.6 or later
-         *
-         * Examples at http://fancyapps.com/fancybox/
-         * License: www.fancyapps.com/fancybox/#license
-         *
-         * Copyright 2012 Janis Skarnelis - janis@fancyapps.com
-         *
-         */
-
         (function (window, document, $, undefined) {
             "use strict";
 
-            var W = $(window),
+            var H = $("html"),
+                W = $(window),
                 D = $(document),
                 F = $.fancybox = function () {
                     F.open.apply( this, arguments );
                 },
-                IE =  navigator.userAgent.match(/msie/),
+                IE =  navigator.userAgent.match(/msie/i),
                 didUpdate = null,
                 isTouch	  = document.createTouch !== undefined,
 
@@ -56,7 +55,7 @@
 
             $.extend(F, {
                 // The current version of fancyBox
-                version: '2.1.4',
+                version: '2.1.5',
 
                 defaults: {
                     padding : 15,
@@ -68,7 +67,7 @@
                     minHeight : 100,
                     maxWidth  : 9999,
                     maxHeight : 9999,
-
+                    pixelRatio: 1, // Set to 2 for retina display support
                     autoSize   : true,
                     autoHeight : false,
                     autoWidth  : false,
@@ -95,7 +94,7 @@
                     loop       : true,
                     defaultSuffix : "image",
                     objectTrigger : true,
-
+                    swfEffect : false,
                     ajax  : {
                         dataType : 'html',
                         headers  : { 'X-fancyBox': true }
@@ -269,7 +268,7 @@
                             if (isQuery(element)) {
                                 obj = {
                                     href    : element.data('fancybox-href') || element.attr('href'),
-                                    title   : element.data('fancybox-title') || element.attr('title'),
+                                    title   : $('<div/>').text( element.data('fancybox-title') || element.attr('title') ).html(),
                                     isDom   : true,
                                     element : element
                                 };
@@ -356,6 +355,7 @@
                         group[ i ] = obj;
                     });
 
+
                     // Extend the defaults
                     F.opts = $.extend(true, {}, F.defaults, opts);
 
@@ -373,11 +373,15 @@
                 cancel: function () {
                     var coming = F.coming;
 
-                    if (!coming || false === F.trigger('onCancel')) {
+                    if (coming && false === F.trigger('onCancel')) {
                         return;
                     }
 
                     F.hideLoading();
+
+                    if (!coming) {
+                        return;
+                    }
 
                     if (F.ajaxLoad) {
                         F.ajaxLoad.abort();
@@ -439,43 +443,49 @@
                 play: function ( action ) {
                     var clear = function () {
                             clearTimeout(F.player.timer);
+                            //console.log('443');
                         },
                         set = function () {
                             clear();
-
                             if (F.current && F.player.isActive) {
                                 F.player.timer = setTimeout(F.next, F.current.playSpeed);
+                                //console.log('449,video play');
                             }
+                            //console.log('450',F.current,F.player.isActive);
                         },
                         stop = function () {
                             clear();
-
-                            $('body').unbind('.player');
-
+                            //$('body').unbind('.player');
+                            D.unbind('.player');
                             F.player.isActive = false;
-
                             F.trigger('onPlayEnd');
+                            //console.log('455');
                         },
                         start = function () {
                             if (F.current && (F.current.loop || F.current.index < F.group.length - 1)) {
                                 F.player.isActive = true;
-
-                                $('body').bind({
+                                /*$('body').bind({
                                     'afterShow.player onUpdate.player'   : set,
                                     'onCancel.player beforeClose.player' : stop,
                                     'beforeLoad.player' : clear
+                                });*/
+                                D.bind({
+                                    'onCancel.player beforeClose.player' : stop,
+                                    'onUpdate.player'   : set,
+                                    'beforeLoad.player' : clear
                                 });
-
                                 set();
-
                                 F.trigger('onPlayStart');
+                                //console.log('470');
                             }
                         };
-
+                    //console.log('476:'+action,F.player.isActive);
                     if (action === true || (!F.player.isActive && action !== false)) {
                         start();
+                        //console.log('476');
                     } else {
                         stop();
+                        //console.log('479');
                     }
                 },
 
@@ -556,7 +566,7 @@
                 },
 
                 update: function (e) {
-                    var type = (e && e.type),
+                    var type = (e && e.originalEvent && e.originalEvent.type),
                         anyway = !type || type === 'orientationchange';
 
                     if (anyway) {
@@ -640,6 +650,7 @@
                             left : (viewport.w * 0.5) + viewport.x
                         });
                     }
+                    F.trigger('onLoading');
                 },
 
                 getViewport: function () {
@@ -649,7 +660,7 @@
                             y: W.scrollTop()
                         };
 
-                    if (locked) {
+                    if (locked && locked.length) {
                         rez.w = locked[0].clientWidth;
                         rez.h = locked[0].clientHeight;
 
@@ -751,33 +762,29 @@
                 trigger: function (event, o) {
                     var ret, obj = o || F.coming || F.current;
 
-                    if (!obj) {
-                        return;
+                    if (obj) {
+                        if ($.isFunction( obj[event] )) {
+                            ret = obj[event].apply(obj, Array.prototype.slice.call(arguments, 1));
+                        }
+
+                        if (ret === false) {
+                            return false;
+                        }
+
+                        if (obj.helpers) {
+                            $.each(obj.helpers, function (helper, opts) {
+                                if (opts && F.helpers[helper] && $.isFunction(F.helpers[helper][event])) {
+                                    F.helpers[helper][event]($.extend(true, {}, F.helpers[helper].defaults, opts), obj);
+                                }
+                            });
+                        }
                     }
 
-                    if ($.isFunction( obj[event] )) {
-                        ret = obj[event].apply(obj, Array.prototype.slice.call(arguments, 1));
-                    }
-
-                    if (ret === false) {
-                        return false;
-                    }
-
-                    if (obj.helpers) {
-                        $.each(obj.helpers, function (helper, opts) {
-                            if (opts && F.helpers[helper] && $.isFunction(F.helpers[helper][event])) {
-                                opts = $.extend(true, {}, F.helpers[helper].defaults, opts);
-
-                                F.helpers[helper][event](opts, obj);
-                            }
-                        });
-                    }
-
-                    $.event.trigger(event + '.fb');
+                    D.trigger(event);
                 },
 
                 isImage: function (str) {
-                    return isString(str) && str.match(/(^data:image\/.*,)|(\.(jp(e|g|eg)|gif|png|bmp|webp)((\?|#).*)?$)/i);
+                    return isString(str) && str.match(/(^data:image\/.*,)|(\.(jp(e|g|eg)|gif|png|bmp|webp|svg)((\?|#).*)?$)/i);
                 },
 
                 isSWF: function (str) {
@@ -797,7 +804,7 @@
 
                     index = getScalar( index );
                     obj   = F.group[ index ] || null;
-
+                    //console.log(index,obj);
                     if (!obj) {
                         return false;
                     }
@@ -860,7 +867,6 @@
 
                     if (false === F.trigger('beforeLoad')) {
                         F.coming = null;
-
                         return;
                     }
 
@@ -956,8 +962,8 @@
                     img.onload = function () {
                         this.onload = this.onerror = null;
 
-                        F.coming.width  = this.width;
-                        F.coming.height = this.height;
+                        F.coming.width  = this.width / F.opts.pixelRatio;
+                        F.coming.height = this.height / F.opts.pixelRatio;
 
                         F._afterLoad();
                     };
@@ -1076,9 +1082,7 @@
 
                     if (false === F.trigger('afterLoad', coming, previous)) {
                         coming.wrap.stop(true).trigger('onReset').remove();
-
                         F.coming = null;
-
                         return;
                     }
 
@@ -1131,24 +1135,19 @@
                             break;
 
                         case 'image':
-                            content = current.tpl.image.replace('{href}', href);
+                            content = current.tpl.image.replace(/\{href\}/g, href);
                             break;
 
                         case 'swf':
-                            content = '<object id="fancybox-swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%"><param name="movie" value="' + href + '"></param>';
-                            embed   = '';
 
-                            $.each(current.swf, function(name, val) {
-                                content += '<param name="' + name + '" value="' + val + '"></param>';
-                                embed   += ' ' + name + '="' + val + '"';
-                            });
 
-                            content += '<embed src="' + href + '" type="application/x-shockwave-flash" width="100%" height="100%"' + embed + '></embed></object>';
+                            content = '<div  id="fancybox-swf" style="width:800px;height:510px;"><embed  height="100%" width="100%" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" allowscriptaccess="always" allowFullScreen="true" wmode="transparent" quality="high" src="' + href + '"  base="."> </embed></div>';
                             break;
                         case 'mp4':
                             content = '<video id="j-video_obj" poster="" width="610" height="403" controls="controls" autoplay="true" src="'+href+'">您的浏览器不支持视频播放</video>';
                             break;
                     }
+
 
                     if (!(isQuery(content) && content.parent().is(current.inner))) {
                         current.inner.append( content );
@@ -1169,16 +1168,23 @@
                     F.coming = null;
 
                     F.bindEvents();
-
+                    //console.log(F.isActive,F.isOpened,current.openMethod);
                     if (!F.isOpened) {
                         $('.fancybox-wrap').not( current.wrap ).stop(true).trigger('onReset').remove();
 
                     } else if (previous.prevMethod) {
                         F.transitions[ previous.prevMethod ]();
                     }
-
+                    //zoomIn,changeIn
+                    //console.log(current.type);
+                    /*if( current.type=="swf" && !F.swfEffect){
+                     F.transitions[ current.openMethod ]();
+                     F.isOpened = true;
+                     }else{*/
                     F.transitions[ F.isOpened ? current.nextMethod : current.openMethod ]();
+                    /*}*/
 
+                    //console.log(F.isActive, F.isOpened,current.nextMethod);
                     F._preloadImages();
                 },
 
@@ -1245,7 +1251,7 @@
                                         body.css('overflow-x', 'hidden');
                                     }
 
-                                    origHeight = body.height();
+                                    origHeight = body.outerHeight(true);
                                 }
 
                             } catch (e) {}
@@ -1436,14 +1442,13 @@
 
                 _afterZoomIn: function () {
                     var current = F.current;
-
                     if (!current) {
                         return;
                     }
 
                     F.isOpen = F.isOpened = true;
-
-                    F.wrap.css('overflow', 'visible').addClass('fancybox-opened');
+                    // F.isOpened = false;
+                    F.wrap.css('overflow', 'visible').addClass('fancybox-opened').hide().show(0);
                     F.update();
 
                     // Assign a click event
@@ -1451,7 +1456,6 @@
                         F.inner.css('cursor', 'pointer').bind('click.fb', function(e) {
                             if (!$(e.target).is('a') && !$(e.target).parent().is('a')) {
                                 e.preventDefault();
-
                                 F[ current.closeClick ? 'close' : 'next' ]();
                             }
                         });
@@ -1461,7 +1465,6 @@
                     if (current.closeBtn) {
                         $(current.tpl.closeBtn).appendTo(F.skin).bind('click.fb', function(e) {
                             e.preventDefault();
-
                             F.close();
                         });
                     }
@@ -1482,11 +1485,9 @@
                     // Stop the slideshow if this is the last item
                     if (!current.loop && current.index === current.group.length - 1) {
                         F.play( false );
-
                     } else if (F.opts.autoPlay && !F.player.isActive) {
                         F.opts.autoPlay = false;
-
-                        F.play();
+                        F.play(true);
                     }
                 },
 
@@ -1610,7 +1611,7 @@
                     } else if (effect === 'fade') {
                         startPos.opacity = 0.1;
                     }
-
+                    //console.log(openEasing);
                     F.wrap.css(startPos).animate(endPos, {
                         duration : effect === 'none' ? 0 : current.openSpeed,
                         easing   : current.openEasing,
@@ -1717,17 +1718,18 @@
 
                 overlay : null,   // current handle
                 fixed   : false,  // indicates if the overlay has position "fixed"
-
+                el      : $('html'), // element that contains "the lock"
                 // Public methods
                 create : function(opts) {
+                    var parent;
                     opts = $.extend({}, this.defaults, opts);
 
 
                     if (this.overlay) {
                         this.close();
                     }
-
-                    this.overlay = $('<div class="fancybox-overlay" mark="game_pic"></div>').appendTo( 'body' );
+                    parent = F.coming ? F.coming.parent : opts.parent;
+                    this.overlay = $('<div class="fancybox-overlay" mark="game_pic"></div>').appendTo( parent && parent.lenth ? parent : 'body' );
                     this.fixed   = false;
 
                     if (opts.fixed && F.defaults.fixed) {
@@ -1763,6 +1765,7 @@
                                 } else {
                                     that.close();
                                 }
+                                return false;
                             }
                         });
                     }
@@ -1776,9 +1779,11 @@
                 },
 
                 close : function() {
-                    $('.fancybox-overlay').remove();
+                    //$('.fancybox-overlay').remove();
+
                     //var opts = $.extend({},F.opts);
-                    W.unbind('resize.overlay');
+
+                    /*W.unbind('resize.overlay');
 
                     this.overlay = null;
 
@@ -1791,6 +1796,26 @@
                     if (this.el) {
                         this.el.removeClass('fancybox-lock');
                     }
+                    if(F.defaults.objectTrigger){
+                        //$('embed, object, select').css({ 'visibility': 'visible' });
+                        $('.j-eos').css({ 'visibility': 'visible' });
+                    }*/
+                    W.unbind('resize.overlay');
+
+                    if (this.el.hasClass('fancybox-lock')) {
+                        $('.fancybox-margin').removeClass('fancybox-margin');
+
+                        this.el.removeClass('fancybox-lock');
+
+                        W.scrollTop( this.scrollV ).scrollLeft( this.scrollH );
+                    }
+
+                    $('.fancybox-overlay').remove().hide();
+
+                    $.extend(this, {
+                        overlay : null,
+                        fixed   : false
+                    });
                     if(F.defaults.objectTrigger){
                         //$('embed, object, select').css({ 'visibility': 'visible' });
                         $('.j-eos').css({ 'visibility': 'visible' });
@@ -1822,7 +1847,7 @@
 
                 // This is where we can manipulate DOM, because later it would cause iframes to reload
                 onReady : function (opts, obj) {
-                    $('.fancybox-overlay').stop(true, true);
+                    /*$('.fancybox-overlay').stop(true, true);
 
                     if (!this.overlay) {
                         this.margin = D.height() > W.height() || $('body').css('overflow-y') === 'scroll' ? $('body').css('margin-right') : false;
@@ -1838,16 +1863,50 @@
 
                     if (opts.showEarly === true) {
                         this.beforeShow.apply(this, arguments);
+                    }*/
+                    var overlay = this.overlay;
+
+                    $('.fancybox-overlay').stop(true, true);
+
+                    if (!overlay) {
+                        this.create(opts);
+                    }
+
+                    if (opts.locked && this.fixed && obj.fixed) {
+                        obj.locked = this.overlay.append( obj.wrap );
+                        obj.fixed  = false;
+                    }
+
+                    if (opts.showEarly === true) {
+                        this.beforeShow.apply(this, arguments);
                     }
                 },
 
                 beforeShow : function(opts, obj) {
-                    if (obj.locked) {
+                    /*if (obj.locked) {
                         this.el.addClass('fancybox-lock');
 
                         if (this.margin !== false) {
                             $('body').css('margin-right', getScalar( this.margin ) + obj.scrollbarWidth);
                         }
+                    }
+
+                    this.open(opts);*/
+                    if (obj.locked && !this.el.hasClass('fancybox-lock')) {
+                        if (this.fixPosition !== false) {
+                            $('*').filter(function(){
+                                return ($(this).css('position') === 'fixed' && !$(this).hasClass("fancybox-overlay") && !$(this).hasClass("fancybox-wrap") );
+                            }).addClass('fancybox-margin');
+                        }
+
+                        this.el.addClass('fancybox-margin');
+
+                        this.scrollV = W.scrollTop();
+                        this.scrollH = W.scrollLeft();
+
+                        this.el.addClass('fancybox-lock');
+
+                        W.scrollTop( this.scrollV ).scrollLeft( this.scrollH );
                     }
 
                     this.open(opts);
@@ -1862,7 +1921,8 @@
                 afterClose: function (opts) {
                     // Remove overlay if exists and fancyBox is not opening
                     // (e.g., it is not being open using afterClose callback)
-                    if (this.overlay && !F.isActive) {
+                   // if (this.overlay && !F.isActive) {
+                    if (this.overlay && !F.coming) {
                         this.overlay.fadeOut(opts.speedOut, $.proxy( this.close, this ));
                     }
                 }
@@ -1935,7 +1995,10 @@
                     that     = $(this),
                     selector = this.selector || '',
                     run      = function(e) {
-                        var what = $(this).blur(), idx = index, relType, relVal;
+                        var what = $(this).blur(),
+                            idx = index,
+                            relType,
+                            relVal;
 
                         if (!(e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) && !what.is('.fancybox-wrap')) {
                             relType = options.groupAttr || 'data-fancybox-group';
@@ -1977,6 +2040,8 @@
 
             // Tests that need a body at doc ready
             D.ready(function() {
+                var w1, w2;
+
                 if ( $.scrollbarWidth === undefined ) {
                     // http://benalman.com/projects/jquery-misc-plugins/#scrollbarwidth
                     $.scrollbarWidth = function() {
@@ -2007,8 +2072,18 @@
                     parent : $('body')
                 });
 
+                //Get real width of page scroll-bar
+                w1 = $(window).width();
+
+                H.addClass('fancybox-lock-test');
+
+                w2 = $(window).width();
+
+                H.removeClass('fancybox-lock-test');
+
+                $("<style type='text/css'>.fancybox-margin{margin-right:" + (w2 - w1) + "px;}</style>").appendTo("head");
             });
 
         }(window, document, jQuery));
     }
-});
+}));

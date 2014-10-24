@@ -18,83 +18,82 @@
 
 }(function(require, exports, module) {
 	var noop = function(){};
-	window.ue = window.ue || {};
 	
-	ue.imgloader = (function(){
-		function ctor(options){
-			var defaults = {
-					list : [],
-					start : 0,
-					end : 0,
-					timeout : 20000,
-					onloaded : noop,
-					onperloaded : noop,
-					ontimeout : noop
-				}
-			
-			if (options.length <= options.end) options.end = options.length - 1;
-			this.options = options = $.extend(defaults, options);
-			this.init();
-		}
-		
-		ctor.prototype = {
-			init : function(){
-				var _this = this,
-					loaded_count = 0
-					options = this.options;
-				
-				for (var i = options.start; i <= options.end; i++){
-	
-					if (options.list[i].status == "loading"){
-						if (new Date() - options.list[i].starttime < options.timeout){
-							continue;
-						} else {
-							options.list[i].status = "ready";
-						}
-					}
-					
-					if (options.list[i].status == "loaded"){
-						options.onperloaded.call(_this, i );
-						continue;
-					}
-					
-					options.list[i].status = "loading";
-					options.list[i].starttime = new Date();
-					
-					imgReady(options.list[i].src, noop, (function(i){
-						return function(){
-							options.list[i].status = "loaded";
-							options.onperloaded.call(_this, i );
-						}
-					})(i));
-				}	
-				
-				this.timeout_timer = setTimeout(function(){
-					options.ontimeout.call(_this);
-				}, options.timeout);
-				
-				this.loaded_timer = setInterval(function(){
-					loaded_count = 0;
-					for (var i = options.start; i <= options.end; i++){
-						if (options.list[i].status == "loaded"){
-							loaded_count++;	
-						}
-					}
-					
-					//图片全部加在完成
-					if (loaded_count === options.end - options.start + 1){
-						clearTimeout(_this.loaded_timer);
-						clearTimeout(_this.timeout_timer);
-						options.onloaded.call(_this);
-					}
-				},200);
-			}
-		}
-		
-		return function(options){
+	function ctor(options){
+		if(this.constructor !== ctor){
 			return new ctor(options);
 		}
-	})();
+
+		var defaults = {
+				list : [],
+				start : 0,
+				end : 0,
+				timeout : 20000,
+				onloaded : noop,
+				onperloaded : noop,
+				ontimeout : noop
+			}
+		
+		if (options.length <= options.end) options.end = options.length - 1;
+		this.options = options = $.extend(defaults, options);
+		this.init();
+	}
+	
+	ctor.prototype = {
+		constructor : ctor,
+
+		init : function(){
+			var _this = this,
+				loaded_count = 0
+				options = this.options;
+			
+			for (var i = options.start; i <= options.end; i++){
+
+				if (options.list[i].status == "loading"){
+					if (new Date() - options.list[i].starttime < options.timeout){
+						continue;
+					} else {
+						options.list[i].status = "ready";
+					}
+				}
+				
+				if (options.list[i].status == "loaded"){
+					options.onperloaded.call(_this, i );
+					continue;
+				}
+				
+				options.list[i].status = "loading";
+				options.list[i].starttime = new Date();
+				
+				imgReady(options.list[i].src, noop, (function(i){
+					return function(){
+						options.list[i].status = "loaded";
+						options.onperloaded.call(_this, i );
+					}
+				})(i));
+			}	
+			
+			this.timeout_timer = setTimeout(function(){
+				options.ontimeout.call(_this);
+			}, options.timeout);
+			
+			this.loaded_timer = setInterval(function(){
+				loaded_count = 0;
+				for (var i = options.start; i <= options.end; i++){
+					if (options.list[i].status == "loaded"){
+						loaded_count++;	
+					}
+				}
+				
+				//图片全部加在完成
+				if (loaded_count === options.end - options.start + 1){
+					clearTimeout(_this.loaded_timer);
+					clearTimeout(_this.timeout_timer);
+					options.onloaded.call(_this);
+				}
+			},200);
+		}
+	}
 		
 	/**
 	 * 图片头数据加载就绪事件 - 更快获取图片尺寸
@@ -187,13 +186,9 @@
 	})();
 
 	if( {}.toString.call(module) == '[object Object]' ){
-    	module.exports = function(options){
-			return new ctor(options);
-		};
+    	module.exports = ctor;
 	}else{
-		exports.imgloader =  function(options){
-			return new ctor(options);
-		};
+		exports.imgloader =  ctor;
 	}
 		
 }));

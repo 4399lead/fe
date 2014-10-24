@@ -11,12 +11,16 @@
     }
     // No module loader
     else {
-        factory('', window['ue']={}, '');
+        factory('', window['ue'] = window['ue'] || {}, '');
     }
 
 }(function(require, exports, module) {
 
     function Copy(ops){
+        if(this.constructor !== Copy){
+            return new Copy(ops);
+        }
+
         var _default = {
             btnId :"",
             txtId : "",
@@ -71,12 +75,10 @@
         clip.glue( options.btnId, options.container);
     }
 
-
-
     if( {}.toString.call(module) == '[object Object]' ){
         module.exports = Copy;
     }else{
-        exports.Copy = Copy;
+        exports.copy = Copy;
     }
 
 }));

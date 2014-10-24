@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<style>
+.fixed_menu{
+	z-index: 999; 
+	width:64px;
+	height:176px; 
+	overflow:hidden;
+}
+
+.fixed_menu a{
+	background:url(gotop.png) no-repeat;
+	display:block; 
+	width:64px;
+	height:52px;
+	text-indent:-999em; 
+	overflow:hidden;
+	margin-bottom:10px;
+}
+
+.fixed_menu .back_to{
+	background-position: 0 -1px;
+}
+
+.fixed_menu .suggest{
+	background-position: 0 -63px;
+}
+
+.fixed_menu .gototop{
+	background-position: 0 -121px;
+	display:none;
+}
+</style>
+<title>无标题文档</title>
+</head>
+
+<body>
+    <div class="wrap" style="height:3000px; background-color:#eee; width:960px; margin:0 auto">
+    	滚动滚动条试试
+    </div>
+    <div class="fixed_menu" id="j-fixed_menu" style="position:absolute; left:50%; margin-left:490px;">
+		<a href="http://my.4399.com/index.php?ct=myapp" class="back_to" title="返回旧版"></a>
+		<a href="#" class="suggest" title="意见反馈" target="_blank"></a>
+		<a href="#" class="gototop" title="回到顶部"></a>
+	</div>
+</body>
+</html>
+<script src="../../../release/lib/seajs/sea.js"></script>
+<script src=></script>
+<script>
+	seajs.use([
+		"../../../release/lib/jquery/jquery-1.4.4.min.js",
+		"../../../release/js/ks.gototop.js"
+	], function(jQuery, gototop){
+		gototop({
+			relative : $(".wrap"),//相对定位的对象
+			target : $("#j-fixed_menu"),//gototop对象
+			top : 128,//距离底部的位置
+			left : 10,//距离相对定位对象的水平位置
+			fade : false,
+			btn : $("#j-fixed_menu .gototop")
+		});
+	});
+</script>

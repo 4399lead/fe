@@ -11,7 +11,11 @@
 }(function(require, exports, module) {
     var ie6 = $.browser.msie && $.browser.version=="6.0";
 
-    function ctor(options){
+    function GotoTop(options){
+        if(this.constructor !== GotoTop){
+            return new GotoTop(options);
+        }
+        
         var defaults = {
             target : $(""),
             left : 10,
@@ -209,12 +213,8 @@
     };
 
     if( {}.toString.call(module) == '[object Object]' ){
-        module.exports = function(options){
-            return new ctor(options);
-        };
+        module.exports = GotoTop;
     }else{
-        exports.gototop =  function(options){
-            return new ctor(options);
-        };
+        exports.gototop =  GotoTop;
     }  
 }));

@@ -2,7 +2,17 @@
 * swfobject
 * 视频插件
 * */
-;define( function(require, exports, module) {
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window, '');
+    }
+
+}(function(require, exports, module) {
     /*!        SWFObject v2.2 <http://code.google.com/p/swfobject/>
      is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
      */
@@ -807,6 +817,11 @@
             }
         };
     }();
-    window.swfobject = swfobject;
-    return swfobject;
-});
+    
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = swfobject;
+    }else{
+        exports.swfobject = swfobject;
+    }
+    
+}));

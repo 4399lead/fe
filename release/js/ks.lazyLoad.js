@@ -1,9 +1,23 @@
 /**
  * ks.LazyLoad.js
  */
-define(function(require,exports,module){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window['ue'] = window['ue'] || {}, '');
+    }
+
+}(function(require, exports, module) {
 
     function LazyLoad(ctg){
+        if(this.constructor !== LazyLoad){
+            return new LazyLoad(ctg);
+        }
+
         //填充
         this._filling=0;
         this.setting = $.extend({
@@ -15,6 +29,8 @@ define(function(require,exports,module){
     }
 
     LazyLoad.prototype={
+        constructor : LazyLoad,
+
         GetId:function(id){
             return typeof id =="string" ? document.getElementById(id) : id;
         },
@@ -78,7 +94,7 @@ define(function(require,exports,module){
         },
         init:function(){
             var that=this;
-            //that.lazyContent(that.setting.callback);
+            that.lazyContent(that.setting.callback);
             if( that._filling==0 ){
                 /*that.addEvent(window,'scroll',function(){
                     that.lazyContent(that.setting.callback);
@@ -89,5 +105,11 @@ define(function(require,exports,module){
             }
         }
     };
-    module.exports = LazyLoad;
-});
+
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = LazyLoad;
+    }else{
+        exports.lazyload = LazyLoad;
+    }
+    
+}));

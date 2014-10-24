@@ -1,7 +1,17 @@
 /**
  * @description    : 表单验证组件
  */
-define(function(require,exports,module){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window['ue'] = window['ue'] || {}, '');
+    }
+
+}(function(require, exports, module) {
 
 	var noop = function(){},
 		emailRegExp = /^[A-Z_a-z0-9-\.]+@([A-Z_a-z0-9-]+\.)+[a-z0-9A-Z]{2,4}$/;
@@ -16,6 +26,11 @@ define(function(require,exports,module){
     
 		
 	function ctor(options){
+
+		if(this.constructor !== ctor){
+			return new ctor(options);
+		}
+
 		var defaults = {
 				form : "",
 				onsubmit : noop,
@@ -80,6 +95,8 @@ define(function(require,exports,module){
 	}
 	
 	ctor.prototype = {
+		constructor : ctor,
+
 		valid : {valid : true},
 		_elements : [],
 		
@@ -342,5 +359,10 @@ define(function(require,exports,module){
 		}
 	}
 
-    module.exports = ctor;
-});
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = ctor;
+    }else{
+        exports.validform = ctor;
+    }
+    
+}));

@@ -5,21 +5,35 @@
  * @parameter      : 
  * @details        :
  */
- define(function(require,exports,module){
+;(function(factory) {
+    // CMD/SeaJS
+    if(typeof define === "function") {
+        define(factory);
+    }
+    // No module loader
+    else {
+        factory('', window['ue'] = window['ue'] || {}, '');
+    }
+
+}(function(require, exports, module) {
      var noop = function(){};
 
      function ctor(options){
+        if(this.constructor !== ctor){
+            return new ctor(options);
+        }
          var defaults = {
-             tab : $(),//tab选项对象
-             defaultIndex : 0,//默认显示的选项
-             tabCurrentClass : "",//当前选项的class
-             only : true,//是否只能有一个tab是可见的
-             content : $(),//tab内容对象
-             trigger : "click",//触发tab切换的事件类型
-             beforeSwitch : noop,//切换之前回调函数
-             afterSwitch : noop,//切换之后回调函数
-             beforeShow : noop,//显示之前回调函数
-             afterShow : noop//显示之后回调函数
+                tab : $(),//tab选项对象
+                defaultIndex : 0,//默认显示的选项
+				delay : 0,//延时显示
+                tabCurrentClass : "",//当前选项的class
+                only : true,//是否只能有一个tab是可见的
+                content : $(),//tab内容对象
+                trigger : "click",//触发tab切换的事件类型
+                beforeSwitch : noop,//切换之前回调函数
+                afterSwitch : noop,//切换之后回调函数
+                beforeShow : noop,//显示之前回调函数
+                afterShow : noop//显示之后回调函数
          };
 
          this.options = options = $.extend(defaults, options);
@@ -27,21 +41,27 @@
      }
 
      ctor.prototype = {
+        constructor : ctor,
+
          init : function(){
              var _this = this,
                  options = this.options;
 
              this.switchTab(options.defaultIndex);
              this.showContent(options.defaultIndex);
-
-             options.tab.bind(options.trigger, function(){
-                 var index = options.tab.index($(this)),
-                     is_open = $(this).hasClass("cur");
-
-                 _this.switchTab(index, is_open);
-                 _this.showContent(index, is_open);
-                 return false;
-             })
+			this.last_trigger_time = new Date();
+					
+			options.tab.bind(options.trigger, function(){
+				var index = options.tab.index($(this)),
+					is_open = $(this).hasClass("cur");
+				
+				clearTimeout(_this.delay_timer);	
+				_this.delay_timer = setTimeout(function(){
+					_this.switchTab(index, is_open);
+					_this.showContent(index, is_open);
+				}, options.delay);
+				return false;
+			})
          },
 
          switchTab : function(index, is_open){
@@ -83,5 +103,10 @@
              options.afterShow.call(this, index, is_open);
          }
      }
-     module.exports = ctor;
- });
+    if( {}.toString.call(module) == '[object Object]' ){
+        module.exports = ctor;
+    }else{
+        exports.tab = ctor;
+    }
+    
+}));

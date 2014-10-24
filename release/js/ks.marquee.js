@@ -33,6 +33,10 @@
 		}
 
 		function ctor(options){
+			if(this.constructor !== ctor){
+				return new ctor(options);
+			}
+
 			var defaults = {
 					scrolltarget : "",//绑定滚轮切换的对象
 					hovertarget : "",//鼠标hover停止切换的对象
@@ -42,9 +46,9 @@
 					gotobtn_activable : true,//是否可以点击
 					gotobtn_currentclass : "cur",//
 					prevbtn : "",//向前或者 向上按钮
-					prevbtndisabled : "prevbtndisabled",
+					prevbtndisabled : "",
 					nextbtn : "",//向后或者 向下按钮
-					nextbtndisabled : "nextbtndisabled",
+					nextbtndisabled : "",
 
 					delay : 3000,//切换间隔时间
 					speed : 600,//切换速度
@@ -156,6 +160,8 @@
 		}
 		
 		ctor.prototype = {
+			constructor : ctor,
+
 			bind : function(){
 				var options = this.options,
 					_this = this;
@@ -434,16 +440,10 @@
 			}
 		}
 		
-		
-
 		if( {}.toString.call(module) == '[object Object]' ){
-	    	module.exports = function(options){
-				return new ctor(options);
-			};
+	    	module.exports = ctor;
 		}else{
-			exports.marquee =  function(options){
-				return new ctor(options);
-			};
+			exports.marquee = ctor;
 		}
 		
 }));
