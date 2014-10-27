@@ -17,7 +17,7 @@
 
 }(function(require, exports, module) {
     var noop = function () {
-        return true
+        return true;
     },
         KEYCODE = {
             '37': 'LEFT',
@@ -69,7 +69,7 @@
             
             handle: noop,
             onSelecting: noop,
-            onSelected: noop,
+            onSelected: function(){},
             onSubmit: noop,
             onError : noop
         };
@@ -260,6 +260,9 @@
                 
                 if (options.onSelected.call(that, $(this)) === false){
                     return false;
+                } else if(options.onSelected.call(that, $(this)) === true){
+                    $(options.input).val( $(this).attr("data-value") );
+                    return true;
                 }
 
                 $(options.input).val( $(this).attr("data-value") );

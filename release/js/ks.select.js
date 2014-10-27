@@ -4,7 +4,7 @@
 ;(function(factory) {
     // CMD/SeaJS
     if(typeof define === "function") {
-        define(factory);
+        define(['ks.scrollbar'], factory);
     }
     // No module loader
     else {
@@ -12,6 +12,14 @@
     }
 
 }(function(require, exports, module) {
+
+	var scrollbar;
+
+    if(typeof require === 'function'){
+        scrollbar = require("ks.scrollbar");
+    } else {
+        scrollbar = ue.scrollbar;
+    }
 
     var noop = function(){return true};
 
@@ -25,7 +33,7 @@
             target : $(),
             trigger : "click",
             currentClass : "cur",
-			defaultClass : ".ue-select",
+			defaultClass : "ue-select",
             activeClass : "",
             selected : $(),
             title : $(),
@@ -63,8 +71,8 @@
                 });
 
 				$(document.body).unbind("click.select").bind("click.select", function(e){
-					if ($(e.target).parents(options.defaultClass).length == 0){
-						$(options.defaultClass).each(function(){
+					if ($(e.target).parents(options.defaultSelector).length == 0){
+						$(options.defaultSelector).each(function(){
 							var data = $(this).data("data-select");
 							if(data){
 								 data.hide();
@@ -88,6 +96,9 @@
                         },150);
                     });
             }
+
+            options.target.addClass(options.defaultClass);
+            options.defaultSelector = '.' + options.defaultClass;
 			_this.bindList();
 			options.init.call(this);
 		},
@@ -128,7 +139,7 @@
 			var _this = this,
 				options = this.options;
 			
-			$(options.defaultClass).each(function(){
+			$(options.defaultSelector).each(function(){
 				var data = $(this).data("data-select");
 				if(data){
 					 data.hide();
@@ -151,8 +162,8 @@
 				_this._isfirstshow = true;
 
 				if(options.scrollbar){
-					if(ue.scrollbar){
-						_this.scrollbar = new ue.scrollbar({
+					if(typeof scrollbar === "function"){
+						_this.scrollbar = new scrollbar({
 							height : options.maxHeight,
 							scroll_per : options.scrollbar.scroll_per,//每次滚动滑轮，滚动条移动10像素
 							scrollbarbg : options.scrollbar.scrollbarbg,

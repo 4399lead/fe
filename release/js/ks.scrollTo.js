@@ -23,6 +23,7 @@
                 }else{
                     $("html,body").scrollTop(targetPos);
                 }
+                return false;
             });
         })
 	};

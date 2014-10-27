@@ -20,6 +20,10 @@
             speed : 1
         }
 
+        if(this.constructor !== Sliding){
+            return new Sliding(options);
+        }
+
         this.options = $.extend({}, defaults, options);
         this.init();
     }

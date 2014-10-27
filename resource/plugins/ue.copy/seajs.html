@@ -22,11 +22,11 @@
 </body>
 </html>
 <script src="../../../release/lib/seajs/sea.js"></script>
+<script src="../../../release/lib/seajs/config.js"></script>
 <script>
 	seajs.use([
-		"../../../release/lib/jquery/jquery-1.4.4.min.js",
-		"../../../release/js/ks.ZeroClipboard.js",
-		"../../../release/js/ks.copy.js"
+		"jquery",
+		"ks.copy"
 	], function(jQuery, ZeroClipboard, copy){
 		copy({
 			btnId : "copy_btn",//复制按钮

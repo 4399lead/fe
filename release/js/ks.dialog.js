@@ -1,7 +1,7 @@
 ;(function(factory) {
     // CMD/SeaJS
     if(typeof define === "function") {
-        define(factory);
+        define(["ks.easydrag"], factory);
     }
     // No module loader
     else {
@@ -10,6 +10,14 @@
 
 }(function(require, exports, module) {
 
+    var easydrag;
+
+    if(typeof require === 'function'){
+        easydrag = require("ks.easydrag");
+    } else {
+        easydrag = ue.easydrag;
+    }
+    
     var instanceId = 0,
         prefix = "ui-dialog_",
         zIndex = 1989,
@@ -159,7 +167,10 @@
             return new uiDialog(options);
         }
 
+        //对旧seajs版弹窗没有传参数先实例化做兼容
         if(!options){
+            window.ue = window.ue || {};
+            ue.dialog = uiDialog;
             return uiDialog;
         }
 
@@ -419,8 +430,8 @@
             if (options.lock){
                 setLock(this);
             }
-            if(this.options.drag && this.options.dragHock && $(this.options.dragHock).length > 0 && ue.easydrag){
-                ue.easydrag({
+            if(this.options.drag && this.options.dragHock && $(this.options.dragHock).length > 0 && typeof easydrag === 'function'){
+                easydrag({
                     target : this.obj,
                     hock : this.obj.find(this.options.dragHock)
                 });

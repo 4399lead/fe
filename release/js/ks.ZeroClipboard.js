@@ -321,6 +321,7 @@
 		
 	};
 	
+	
     if( {}.toString.call(module) == '[object Object]' ){
         module.exports = window.ZeroClipboard = ZeroClipboard;
     }else{

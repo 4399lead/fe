@@ -7,7 +7,7 @@
 ;(function(factory) {
     // CMD/SeaJS
     if(typeof define === "function") {
-        define(factory);
+        define(['ks.ZeroClipboard'], factory);
     }
     // No module loader
     else {
@@ -15,6 +15,14 @@
     }
 
 }(function(require, exports, module) {
+
+    var ZeroClipboard;
+
+    if(typeof require === 'function'){
+        window.ZeroClipboard = ZeroClipboard = require("ks.ZeroClipboard");
+    } else {
+        ZeroClipboard = window.ZeroClipboard;
+    }
 
     function Copy(ops){
         if(this.constructor !== Copy){

@@ -18,25 +18,40 @@
 </body>
 </html>
 <script src="../../../release/lib/seajs/sea.js"></script>
+<script src="../../../release/lib/seajs/config.js"></script>
 <script>
 	seajs.use([
-		"../../../release/lib/jquery/jquery-1.4.4.min.js",
+		"jquery",
 		"../../../release/js/ks.dialog.js"
 	], function(jQuery, dialog){
 		$(".show_pop_btn").bind("click", function(){
-			dialog({
-				id : "base_dialog",
-				triggerTarget : this,
-				content : '<div class="ui-dialog-b"><p>一个基础对话框</p><a href="#" class="ui-dialog-close_btn" style="color:#fff">通过固定的class来关闭对话框</a></div>',
-				lock : true,
-				init : function(){
-					var _this = this;
-					
-					//this.obj.bind("click", function(){_this.close.call(_this)});//点击对话框即关闭
-					
-			   }
-			});
-			return false;
-		})
+
+		dialog.alert({
+			icon : 'ui-dialog-failure_icon',
+			title : 'Alert',
+			afterClose : function(){
+				
+			},
+			
+			confirm : function(){
+				alert('点击了确认按钮');
+				
+				ue.dialog.alert({
+					icon : 'ui-dialog-failure_icon',
+					title : 'Alert',
+					confirm : function(){
+						alert('点击了确认按钮');
+						return false;
+					},
+					position : "fixed",
+					content : '<p style=" line-height:80px; color:#096; font-size:18px; font-weight:bold">这是一ssssssss提示文字</p>'
+				});
+				return false;
+			},
+			position : "fixed",
+			content : '<p style=" line-height:80px; color:#096; font-size:18px; font-weight:bold">这是一段不长的提示文字</p>'
+		});
+		return false;
+	})
 	});
 </script>
