@@ -10,177 +10,288 @@
     li{font-size: 20px; line-height: 32px;}
 </style>
 <body>
-    <h1>浏览器和安卓客户端 1.4.1 通信demo</h1>
+    <h1>浏览器和安卓客户端 1.4.2 通信API</h1>
     <ul>
-        <li>1.<a href="javascript:;" id="j-checkInstalled">下载并打开游戏盒</a>（调用launch方法，启动失败有回调）</li>
-        <li>2.<a href="javascript:;" id="j-downloadGame">高速下载游戏</a></li>
-        <li>3.<a href="m4399://launch?type=newsDetail&id=373811" id="j-launch-news">启动客户端资讯界面</a>（直接写在链接上的，启动失败没有回调）</li>
-        <li>4.<a href="m4399://launch?type=main" id="j-launch-main">启动客户端主界面</a>（直接写在链接上的，启动失败没有回调）</li>
-        <li>5.<a href="m4399://launch?type=gameDetail&id=26444" id="j-launch-game">启动客户端游戏详情页</a>（直接写在链接上的，启动失败没有回调）</li>
+        <li><a href="m4399://downloadManager?url=http%3A%2F%2Fsj.img4399.com%2Fgame_list%2Fcom.haiyun.duiduipeng%2Fhaiyun.duiduipeng_40.apk&packageName=com.haiyun.duiduipeng&name=%E6%84%A4%E6%80%92%E7%9A%84%E5%B0%8F%E9%B8%9F%E5%AF%B9%E5%AF%B9%E7%A2%B0&icon=http%3A%2F%2Ff1.img4399.com%2Fsj~rXj7x40uIwbHW.jpg&md5=497e687ab3c7b4e409d71a055628260f&uid=123&vid=456" class="j-launch">高速下载</a></li>
+        <li><a href="m4399://launch?type=main" class="j-launch">启动客户端主界面</a></li>
+        <li><a href="m4399://newsDetail?id=442521" class="j-launch">启动客户端资讯界面</a></li>
+        <li><a href="m4399://gamedetail?id=26444" class="j-launch">启动客户端游戏详情页</a></li>
+        <li><a href="m4399://webView?url=http%3A%2F%2Fh.4399.com%2Fclient.htm" class="j-launch">跳到内部webView地址</a></li>
+        <li><a href="m4399://activityDetail?id=362&url=http%3A%2F%2Ft.huodong.5054399.com%2F2014%2Fxiaojingling%2F%3Fid%3D362" class="j-launch">跳到活动详情界面</a></li>
+        <li><a href="m4399://recommendGameList?id=107&title=%E7%A0%B4%E8%A7%A3%E6%B8%B8%E6%88%8F" class="j-launch">跳到首页破解游戏推荐</a></li>
+        <li><a href="m4399://giftDetail?id=3944" class="j-launch">跳到礼包详情</a></li>
+        <li><a href="m4399://newGameList?id=2&title=%E6%9C%80%E6%96%B0%E6%B8%B8%E6%88%8F" class="j-launch">跳到新游推荐</a></li>
+        <li><a href="m4399://forumsDetail?id=72320" class="j-launch">跳到论坛版游戏圈</a></li>
+        <li><a href="m4399://circleDetail?id=43975" class="j-launch">跳到聊天版游戏圈</a></li>
+        <li><a href="m4399://launch?type=indexPlaza" class="j-launch">跳到广场界面 </a></li>
+        <li><a href="m4399://launch?type=indexAlbum" class="j-launch">跳到首页专辑 </a></li>
+        <li><a href="m4399://launch?type=indexCategory" class="j-launch">跳到首页分类 </a></li>
     </ul>
+
+    <script type="text/javascript">
+        var AndroidConnect = {
+            initLaunch : function(){
+                var _this = this;
+
+                if( !this.frame ){
+                    this.frame = document.createElement("frame");
+                    this.frame.style.display = "none";
+                    document.body.appendChild(this.frame);
+                    this.timeout = 1000;
+
+                    window.onblur = function(){
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                    };
+                }
+            },
+
+            launchFallback : function(start_time){
+                var now_time = Date.now();
+
+                if (!start_time || now_time - start_time < this.timeout + 200){
+                    this.fallback();
+                }
+            },
+            
+            launch : function(launch_url, fallback){
+                var _this = this,
+                    start_time = Date.now();
+
+                this.launch_url = launch_url || 'm4399://launch';
+                this.fallback = typeof fallback === "function" ? fallback : function(){};
+
+                this.initLaunch();
+
+                if( this.fallback ){
+                    this.timer = setTimeout(function(){
+                        _this.launchFallback(start_time);
+                    }, _this.timeout);
+                }
+
+                this.redirect();
+            },
+
+            redirect : function(){
+                var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
+
+                if(isChrome){
+                    document.location.href = this.launch_url;
+                } else {
+                    this.frame.setAttribute("src", this.launch_url);
+                }
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", function(){
+            //启动客户端
+            var j_launch = document.querySelectorAll('.j-launch');
+
+            for(var i = 0; i < j_launch.length; i++){
+                j_launch[i].addEventListener("click", function(e){
+                    AndroidConnect.launch(this.href, function(){
+                        alert('启动客户端失败回调');
+                        //document.location.href = 'http://www.4399.cn/app-wap.html';
+                    });
+
+                    e.preventDefault();
+                });
+            }
+        });
+    </script>
+
+    <h1>webview和安卓客户端通信API</h1>
+    <ul>
+    <script type="text/javascript">
+        (function(){
+
+            var json_data = {"count":21,"perpage":10,"pagecount":3,"page":1,"start":0,"mark":1,"data":[{"id":"36064","appname":"小兔堆堆","packag":"com.disney.stackrabbit","icopath":"http:\/\/f1.img4399.com\/sj~r07gxGbuZe64G.jpg","star":"6","md5_file":"fc5b11ebee5b1f81e95c20537b567002","size":33.89,"sdk_version":"10","price":"2","need_gplay":"0","review":"帮兔子摘蔬菜，叠满三棵同类蔬菜即可消除。","downurl":"http:\/\/sj.img4399.com\/game_list\/com.disney.stackrabbit\/disney.stackrabbit.v35778.apk","num_download":289,"size_byte":"35536240","video_url":"","hasGift":0},{"id":"9124","appname":"愤怒的小鸟对对碰","packag":"com.haiyun.duiduipeng","icopath":"http:\/\/f1.img4399.com\/sj~rXj7x40uIwbHW.jpg","star":"6","md5_file":"497e687ab3c7b4e409d71a055628260f","size":2.19,"sdk_version":"4","price":"-1","need_gplay":"-1","review":"怒鸟主题的对对碰游戏，消得越快得分就越高。","downurl":"http:\/\/sj.img4399.com\/game_list\/com.haiyun.duiduipeng\/haiyun.duiduipeng_40.apk","num_download":807,"size_byte":"2296381","video_url":"","hasGift":0},{"id":"1938","appname":"宝石对对碰(中文版)","packag":"com.bibill.game.jewels","icopath":"http:\/\/f1.img4399.com\/sj~rnkPo0ruLVCGW.jpg","star":"6","md5_file":"eed16f6ed0e3fe640b207097318ee3de","size":2.72,"sdk_version":"3","price":"-1","need_gplay":"-1","review":"3个相连可清除宝石,4个相连制造一个高级宝石,5个相连制","downurl":"http:\/\/sj.img4399.com\/game_list\/com.bibill.game.jewels\/com.bibill.game.jewels.apk","num_download":1372,"size_byte":"2852126","video_url":"","hasGift":0},{"id":"2095","appname":"砖块对对碰","packag":"com.candydroid.breakblock","icopath":"http:\/\/f1.img4399.com\/sj~rtOOQ7YuPBLQG.jpg","star":"6","md5_file":"4c29f154a28022d300b7cc2c2f8bfd5d","size":3.69,"sdk_version":"14","price":"0","need_gplay":"0","review":"《砖块对对碰 Break the Bricks》是一款休闲打砖块游戏","downurl":"http:\/\/sj.img4399.com\/game_list\/com.candydroid.breakblock\/candydroid.breakblock.v29554.apk","num_download":218,"size_byte":"3869245","video_url":"","hasGift":0},{"id":"2541","appname":"怪鸭对对碰","packag":"gts.wackyduck.lite.en.phone.anzuo","icopath":"http:\/\/f1.img4399.com\/sj~rLu9tw_uL0dPW.jpg","star":"5","md5_file":"62c6c34fce8374c351e5576609ef6926","size":9.2,"sdk_version":"4","price":"-1","need_gplay":"-1","review":"一款类似于小鸟方块的游戏，只是里面的各种可爱的小鸟","downurl":"http:\/\/sj.img4399.com\/game_list\/gts.wackyduck.lite.en.phone.anzuo\/gts.wackyduck.lite.en.phone.anzuo.apk","num_download":1213,"size_byte":"9646899","video_url":"","hasGift":0},{"id":"3095","appname":"动物对对碰","packag":"com.animallink","icopath":"http:\/\/f1.img4399.com\/sj~g_ico_3095_1359598314","star":"5","md5_file":"e5887c93f5c21a8c784d17ae5397ff23","size":4.26,"sdk_version":"0","price":"-1","need_gplay":"-1","review":"休闲感十足的对对碰游戏，画面和音质都很出色，不容错","downurl":"http:\/\/sj.img4399.com\/game_list\/com.animallink\/com.animallink.apk","num_download":745,"size_byte":"4466933","video_url":"","hasGift":0},{"id":"9237","appname":"对对消","packag":"com.magmamobile.game.MatchUp","icopath":"http:\/\/f1.img4399.com\/sj~r3KbmbbuMy8LG.jpg","star":"5","md5_file":"25310ac78b34362939a6f1c9e3bf4443","size":7.01,"sdk_version":"3","price":"-1","need_gplay":"-1","review":"卡片以网格形式面朝下摆放，玩家轮流把成对的卡片翻出","downurl":"http:\/\/sj.img4399.com\/game_list\/com.magmamobile.game.MatchUp\/game.MatchUp_16.apk","num_download":95,"size_byte":"7350517","video_url":"","hasGift":0},{"id":"22722","appname":"欢乐对对碰:宝宝巴士","packag":"com.sinyee.babybus.match","icopath":"http:\/\/f1.img4399.com\/sj~rq4yKfKuZtvna.jpg","star":"6","md5_file":"acb566496348aaa7ca2354e1c00d23b9","size":22.76,"sdk_version":"4","price":"0","need_gplay":"0","review":"互换两只相邻动物的位置，进行匹配消除。","downurl":"http:\/\/sj.img4399.com\/game_list\/com.sinyee.babybus.match\/babybus.match.v35907.apk","num_download":2690,"size_byte":"23865589","video_url":"","hasGift":0},{"id":"25053","appname":"玻璃对对碰","packag":"com.feelingtouch.glassblast2","icopath":"http:\/\/f1.img4399.com\/sj~rhUNYPWuIwbNq.jpg","star":"9","md5_file":"84bdb71c4f04deeb231f74565344169a","size":3.2,"sdk_version":"5","price":"0","need_gplay":"0","review":"别样的消星星游戏，加入道具让你过关更轻松。","downurl":"http:\/\/sj.img4399.com\/game_list\/com.feelingtouch.glassblast2\/feelingtouch.glassblast2_10.apk","num_download":9789,"size_byte":"3355443","video_url":"","hasGift":0},{"id":"30014","appname":"美眉对对碰","packag":"com.mmsuperapp.girljewel","icopath":"http:\/\/f1.img4399.com\/sj~r4kk0fjuMohaq.jpg","star":"7","md5_file":"1f5099b00e155ccc09242f4a1e5f8db9","size":6.46,"sdk_version":"7","price":"-1","need_gplay":"-1","review":"卡哇伊美眉来啦，带着她最爱的对对碰来和大家一起分享","downurl":"http:\/\/sj.img4399.com\/game_list\/com.mmsuperapp.girljewel\/mmsuperapp.girljewel_14.apk","num_download":104,"size_byte":"6773800","video_url":"","hasGift":0}],"more":1,"startKey":2};
+
+            var item;
+
+            for(var i = 0 ; i< json_data.data.length; i++){
+                item = json_data.data[i];
+                document.write('<li>' + item.appname + '<a href="javascript:;" data-downloadUrl="' + encodeURIComponent(item.downurl) + '" data-packageName="' + item.packag + '" data-appName="' + encodeURIComponent(item.appname) + '" data-iconPath="' + encodeURIComponent(item.icopath) + '" data-fileMD5="' + item.md5_file + '" class="j-download">下载</a> <a href="javascript:;" data-packageName="' + item.packag + '" class="j-cancel" style="display:none">取消下载</a></li>');
+            }
+
+        })();
+    </script>
+
+    </ul>
+
+    <script type="text/javascript">
+        var AndroidDownload = {
+            NO_iNSTALLED : 0,
+
+            DOWNLOAD_ERROR : -100,
+            DOWNLOADING : 100,
+            DOWNLOAD_PAUSE : 101,
+            DOWNLOAD_WAIT : 102,
+            DOWNLOADED : 103,
+
+            INSTALL_ERROR : -200,
+            INSTALLING : 200,
+            INSTALLED : 201,
+
+            init : function(){
+                //启动客户端
+                var j_download = document.querySelectorAll('.j-download');
+
+                var package_names = [],
+                    item;
+
+                for(var i = 0; i < j_download.length; i++){
+                    package_names.push( j_download[i].getAttribute('data-packageName') );
+                }
+
+                alert(typeof android.getAppStatus);
+                try{
+                    android.getAppStatus(package_names.join(','), "AndroidDownload.bind");
+                } catch(e){
+                    alert(e.message);
+                }
+            },
+
+            bind : function(data){
+                var _this = this;
+
+                try{
+                    data = (typeof data === 'string') ? JSON.parse(data) : data;
+
+                    var j_download = document.querySelectorAll('.j-download');
+                    var item,
+                        packageName,
+                        status,
+                        cancel;
+
+                    console.log(data);
+                    for(var i = 0; i < j_download.length; i++){
+                        item = j_download[i];
+                        packageName = item.getAttribute('data-packageName');
+
+                        for(var k = 0; k < data.length; k++){
+                            if( data[k].packageName == packageName){
+                                _this.renderItem(data[k].status, item);
+                            }
+                        }
+
+                       
+                        item.addEventListener("click", function(){
+                            var downloadUrl = this.getAttribute('data-downloadUrl'),
+                                packageName = this.getAttribute('data-packageName'),
+                                appName = this.getAttribute('data-appName'),
+                                iconPath = this.getAttribute('data-iconPath'),
+                                fileMD5 = this.getAttribute('data-fileMD5'),
+                                status = this.getAttribute('data-status'),
+                                data;
+
+                            data = {
+                                downloadUrl : downloadUrl,
+                                packageName : packageName,
+                                appName : appName,
+                                iconPath : iconPath,
+                                fileMD5 : fileMD5
+                            };
+
+                            if( status == _this.NO_iNSTALLED){
+                                android.downloadApp(JSON.stringify(data));
+                            } else if(status == _this.DOWNLOAD_ERROR){
+                                android.downloadApp(JSON.stringify(data));
+                            } else if(status == _this.DOWNLOADING){
+                                android.pauseDownload(packageName);
+                            } else if(status == _this.DOWNLOAD_PAUSE){
+                                android.downloadApp(JSON.stringify(data));
+                            //} else if(status == _this.DOWNLOAD_WAIT){
+                            } else if(status == _this.DOWNLOADED){
+                                android.installApp(packageName);
+                            } else if(status == _this.INSTALL_ERROR){
+                                android.installApp(packageName);
+                            //} else if(status == _this.INSTALLING){
+                            } else if(status == _this.INSTALLED){
+                                android.launchApp(packageName);
+                            }
+                        });
+
+                        cancel.addEventListener("click", function(){
+                            var packageName = this.getAttribute('data-packageName');
+                            
+                            android.cancelDownload(packageName);
+                        });
+                    }
+
+
+                    android.bindEvent("download", "AndroidDownload.onDownloadProgressUpdate");
+                } catch(e){
+                    console.log(e);
+                    alert(e.message);
+                }
+            },
+
+            onDownloadProgressUpdate : function(data){
+                var _this = this;
+                try{
+                    data = typeof data === 'string' ? JSON.parse(data) : data;
+
+                    var j_download = document.querySelectorAll('.j-download');
+                    var item,
+                        packageName,
+                        status;
+
+                    for(var i = 0; i < j_download.length; i++){
+                        item = j_download[i];
+                        packageName = item.getAttribute('data-packageName');
+                        
+                        if( data.packageName == packageName){
+                            _this.renderItem(data.status, item);
+                        }
+                    }
+                } catch(e){
+                    alert(e.message);
+                }
+            },
+
+            renderItem : function(status, item){
+                var _this = this,
+                    cancel = item.parentNode.querySelector('.j-cancel');;
+
+                item.setAttribute('data-status', status);
+
+                if( status == _this.NO_iNSTALLED){
+                    item.innerHTML = '下载游戏';
+                    cancel.style.display = "none";
+                } else if(status == _this.DOWNLOAD_ERROR){
+                    item.innerHTML = '重新下载';
+                    cancel.style.display = "none";
+                } else if(status == _this.DOWNLOADING){
+                    item.innerHTML = '正在下载';
+                    cancel.style.display = "block";
+                } else if(status == _this.DOWNLOAD_PAUSE){
+                    item.innerHTML = '继续下载';
+                    cancel.style.display = "block";
+                } else if(status == _this.DOWNLOAD_WAIT){
+                    item.innerHTML = '等待下载';
+                    cancel.style.display = "block";
+                } else if(status == _this.DOWNLOADED){
+                    item.innerHTML = '下载完成';
+                    cancel.style.display = "none";
+                } else if(status == _this.INSTALL_ERROR){
+                    item.innerHTML = '重新安装';
+                    cancel.style.display = "none";
+                } else if(status == _this.INSTALLING){
+                    item.innerHTML = '正在安装';
+                    cancel.style.display = "none";
+                } else if(status == _this.INSTALLED){
+                    item.innerHTML = '安装成功';
+                    cancel.style.display = "none";
+                }  
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", function(){
+            if(window.android){
+                AndroidDownload.init();
+            }
+        });
+    </script>
 </body>
 </html>
-<script type="text/javascript">
-    var AndroidConnect = {
-        initLaunch : function(){
-            var _this = this;
-
-            if( !this.frame ){
-                this.frame = document.createElement("frame");
-                this.frame.style.display = "none";
-                document.body.appendChild(this.frame);
-                this.timeout = 1000;
-
-                window.onblur = function(){
-                    clearTimeout(_this.timer);
-                    _this.timer = null;
-                };
-            }
-        },
-
-        launchFallback : function(start_time){
-            var now_time = Date.now();
-
-            if (!start_time || now_time - start_time < this.timeout + 200){
-                this.fallback();
-            }
-        },
-        
-        launch : function(launch_url, fallback){
-            var _this = this,
-                start_time = Date.now();
-
-            this.launch_url = launch_url || 'm4399://launch';
-            this.fallback = typeof fallback === "function" ? fallback : function(){};
-
-            this.initLaunch();
-
-            if( this.fallback ){
-                this.timer = setTimeout(function(){
-                    _this.launchFallback(start_time);
-                }, _this.timeout);
-            }
-
-            this.redirect();
-        },
-
-        redirect : function(){
-            var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
-
-            if(isChrome){
-                document.location.href = this.launch_url;
-            } else {
-                this.frame.setAttribute("src", this.launch_url);
-            }
-        },
-
-        downloadGame : function(param, success, failure){
-            param = param || {};
-            var packagename = param.packagename || '', 
-                gid = param.gid || '',
-                uid = param.uid || 0, 
-                vid = param.vid || 0;
-
-            this.jsonp('http://127.0.0.1:4399/download?packagename=' + packagename + '&gid=' + gid + '&uid='+ uid + '&vid=' + vid, function(data){
-                if (data == 3){
-                    //该游戏已经已经安装过
-                    failure(2);
-                } else if(data != 1){
-                    failure(0);//启动下载失败
-                } else {
-                    //启动下载成功
-                    success(1);
-                }
-            }, function(){
-                failure(1);//客户端未安装或者客户端服务未启动
-            });
-        },
-
-        jsonp : function(url, success, failure){
-            var script = document.createElement("script"),
-                calbackname = 'app_dl_callback';
-
-            success = typeof success === 'function' ? success : function(){};   
-            failure = typeof failure === 'function' ? failure : function(){};
-
-            window[calbackname] = success;
-
-            script.onload = function(e){
-                document.body.removeChild(script);
-                delete window[calbackname];  
-            }
-
-            script.onerror = function(e){
-                failure();
-                document.body.removeChild(script);
-                delete window[calbackname]; 
-            }
-            
-            script.src = url + '&r=' + (new Date() - 0);
-            document.body.appendChild(script);
-        }
-    }
-
-    window.addEventListener("DOMContentLoaded", function(){
-        //判断是否安装客户端
-        var isUC = navigator.userAgent.match(/UCBrowser|UCWeb/i);
-
-        if(isUC){
-            document.getElementById('j-checkInstalled').innerHTML += "（UC浏览器该功能无法使用）";
-        } else {
-            document.getElementById('j-checkInstalled').addEventListener("click", function(){
-                AndroidConnect.launch('m4399://launch?type=main', function(){
-                    document.location.href = 'http://www.4399.cn/app-wap.html';
-                });
-            });
-        }
-
-        //安装游戏
-        document.getElementById('j-downloadGame').onclick = function(){
-            var link = this;
-            
-            AndroidConnect.downloadGame({
-                packagename : 'org.yjmobile.zmxy',//游戏包名
-                gid : "26444",//游戏id
-                uid : '',//uid 和  vid 是用户id和 访客id 用于做统计 非必传
-                vid : ''
-
-            }, function(data){
-                link.innerHTML = '启动下载成功';
-            }, function(data){
-                if(data == 0){
-                    link.innerHTML = '启动下载失败';
-                } else if(data == 2){
-                    link.innerHTML = '该游戏已经已经安装过';
-                } else {
-                    link.innerHTML = '客户端未安装或者客户端服务未启动';
-                }
-                
-            });
-        };
-
-        //启动客户端资讯界面
-        document.getElementById('j-launch-news').addEventListener("click", function(){
-            AndroidConnect.launch(this.href, function(){
-                alert('未安装客户端');
-                //document.location.href = 'http://www.4399.cn/app-wap.html';
-            });
-        });
-
-        //启动客户端主界面
-        document.getElementById('j-launch-news').addEventListener("click", function(){
-            AndroidConnect.launch(this.href, function(){
-                alert('未安装客户端');
-                //document.location.href = 'http://www.4399.cn/app-wap.html';
-            });
-        });
-
-        //启动客户端游戏详情页
-        document.getElementById('j-launch-news').addEventListener("click", function(){
-            AndroidConnect.launch(this.href, function(){
-                alert('未安装客户端');
-                //document.location.href = 'http://www.4399.cn/app-wap.html';
-            });
-        });
-    });
-</script>

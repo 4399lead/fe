@@ -4,7 +4,8 @@
             speed : 400,
             active : 1,
             pager_item_cur : "ctl-active",
-            setPageContent : function(direction){}
+            setPageContent : function(direction){},
+            onClickPagerItem : function(target){}
         };
 
         this.options = $.extend(defaults, options);
@@ -77,7 +78,7 @@
             });
 
             _this.pager_target.width(_this.pager_width);
-
+            _this.scrollToPager(_this.page_num);
             _this.bind();
         },
 
@@ -230,6 +231,8 @@
 
             _this.pager_item.unbind("click").bind("click", function(e){
                 var index = $(this).index();
+
+                options.onClickPagerItem.call(_this, this);
 
                 if( (index + 1) == _this.page_num){
                     return false;

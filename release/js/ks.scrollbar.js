@@ -176,7 +176,7 @@
             
             if(this.type == 1){
                 options.target.unbind("mousewheel.scrollbar DOMMouseScroll.scrollbar").bind("mousewheel.scrollbar DOMMouseScroll.scrollbar", function(e){
-                    var evt = fixMousewheel(e),
+                    var evt = fixMousewheel(e.originalEvent || e),
                         pos = _this.box_scroll_pos  - evt.delta * _this.scroll_per;
 
                     if((_this.box_scroll_pos == 0 && evt.delta == 1) || ((_this.box_scroll_pos == _this.real_box_size || _this.real_box_size <= 0)  && evt.delta == -1)){
