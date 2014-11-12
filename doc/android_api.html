@@ -11,6 +11,15 @@
 </style>
 <body>
     <h1>浏览器和安卓客户端 1.4.1及以上 通信API</h1>
+    <p>利用自定义协议m4399://跟客户端通信</p>
+    <pre>
+        node.addEventListener("click", function(e){
+            AndroidConnect.launch(url, function(){
+                alert('启动客户端失败回调');
+            });
+            e.preventDefault();
+        });
+    </pre>
     <ul>
        
         <li><a href="m4399://launch?type=main" class="j-launch">启动客户端主界面</a></li>
@@ -105,9 +114,8 @@
             }
         });
     </script>
-
-    <h1>webview和安卓客户端 1.4.2及以上 通信API</h1>
-    <h2>webview 下载游戏</h2>
+    
+    <h2>安卓客户端的webview下载游戏接口(1.4.2)</h2>
     <ul>
     <script type="text/javascript">
         (function(){
@@ -151,7 +159,12 @@
                     package_names.push( j_download[i].getAttribute('data-packageName') );
                 }
 
-                alert(typeof android.getAppStatus);
+                /*
+                 * @function getAppStatus
+                 * @description 根据包名获取游戏的下载状态
+                 * @param string 传一个包名的字符串 多个包名用逗号分割
+                 * @param string 传一个回调函数名 获取成功后会调用该函数并传一个包状态json的参数
+                */
                 try{
                     android.getAppStatus(package_names.join(','), "AndroidDownload.bind");
                 } catch(e){
@@ -193,39 +206,79 @@
                                 data;
 
                             data = {
-                                downloadUrl : downloadUrl,
-                                packageName : packageName,
-                                appName : appName,
-                                iconPath : iconPath,
-                                fileMD5 : fileMD5
+                                downloadUrl : downloadUrl, //apk下载地址
+                                packageName : packageName, //包名
+                                appName : appName,//游戏名称
+                                iconPath : iconPath,//游戏图标地址
+                                fileMD5 : fileMD5//apk文件md5校验码
                             };
 
                             if( status == _this.NO_iNSTALLED){
+                                /*
+                                 * @function downloadApp
+                                 * @description 下载游戏
+                                 * @param string 一个经过字符串序列化的json数据
+                                 */
                                 android.downloadApp(JSON.stringify(data));
+
                             } else if(status == _this.DOWNLOAD_ERROR){
+                                
                                 android.downloadApp(JSON.stringify(data));
+
                             } else if(status == _this.DOWNLOADING){
+                                /*
+                                 * @function pauseDownload
+                                 * @description 暂停下载游戏
+                                 * @param string 包名
+                                 */
                                 android.pauseDownload(packageName);
+
                             } else if(status == _this.DOWNLOAD_PAUSE){
+
                                 android.downloadApp(JSON.stringify(data));
+                            
                             //} else if(status == _this.DOWNLOAD_WAIT){
                             } else if(status == _this.DOWNLOADED){
+                                /*
+                                 * @function installApp
+                                 * @description 安装游戏
+                                 * @param string 包名
+                                 */
                                 android.installApp(packageName);
+                            
                             } else if(status == _this.INSTALL_ERROR){
+
                                 android.installApp(packageName);
+                            
                             //} else if(status == _this.INSTALLING){
                             } else if(status == _this.INSTALLED){
+                                /*
+                                 * @function launchApp
+                                 * @description 启动游戏
+                                 * @param string 包名
+                                 */
                                 android.launchApp(packageName);
                             }
                         });
 
                         cancel.addEventListener("click", function(){
                             var packageName = this.getAttribute('data-packageName');
-                            
+                            /*
+                             * @function cancelDownload
+                             * @description 取消下载
+                             * @param string 包名
+                             */
+
                             android.cancelDownload(packageName);
                         });
                     }
 
+                    /*
+                     * @function bindEvent
+                     * @description 绑定事件
+                     * @param string //download 绑定下载侦听事件
+                     * @param string //侦听回调函数 会调用该函数并传一个包状态json的参数
+                     */
 
                     android.bindEvent("download", "AndroidDownload.onDownloadProgressUpdate");
                 } catch(e){
@@ -300,5 +353,7 @@
             }
         });
     </script>
+
+    <h2>安卓客户端和webview 通信接口 <a href="http://note.youdao.com/share/?id=d8d784552be7467bc4d8891c35f96156&type=note">查看</a></h2>
 </body>
 </html>
