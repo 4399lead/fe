@@ -80,6 +80,7 @@ if(!window.RESOURCE_URL){
                 }
                 
                 preload_iframe.onload = function(){
+                    light_app.loadingPage.hide();
                     document.location.href = url;
                 };
                 

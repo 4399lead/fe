@@ -30,6 +30,9 @@ Mo.comment = function(options){
         </form>\
     ';
 
+    this.onCommentHide = options.onCommentHide;
+    this.onCommentShow = options.onCommentShow;
+    
     this.commentListItemTmpl = options.commentListItemTmpl || '\
         <% for( var i = 0, item; item = comments[i], i < comments.length; i++ ){ %>\
             <li class="item">\
@@ -150,6 +153,7 @@ Mo.comment.prototype = {
 
             $container.hide();
             $("#j-comment_form").show();
+            mcomment.onCommentShow();
             $comment_star.find("span")[0].className = "star_l_3";
             $comment_star.next(".star_text").html(star_texts[3]);
             $comment_star.attr("data-star", 3);
@@ -174,51 +178,56 @@ Mo.comment.prototype = {
             }
         });
 
-        $(document).undelegate(".btn_reply","click").delegate(".btn_reply","click",function(){
-            last_scroll_top = window.scrollY;
-            $reply_comment = $(this).parents(".item");
 
-            $container.hide();
-            $("#j-comment_form").show();
-            //$("#container").addClass('white_bg');
-            $comment_star.find("span")[0].className = "star_l_3";
-            $comment_star.next(".star_text").html(star_texts[3]);
-            $comment_star.attr("data-star", 3);
-            $("#j-comment_form .comment_star").hide();
-            $("#j-comment_form .title").html("回复");
-            $('#j-comment_form textarea').attr({
-                "data-cid" : $(this).attr("data-cid"),
-                "placeholder" : "回复评论..."
-            }).focus();
+        mcomment.afterUpdate = function(){
 
-            if(Emt.isIDevice){
-                window.scrollTo(0,1);
-            } else {
-                $container[0].style.minHeight = '0px';
+            $mpage.find(".btn_reply").unbind("click").bind("click",function(){
+                last_scroll_top = window.scrollY;
+                $reply_comment = $(this).parents(".item");
 
-                setTimeout(function() {
-                    window.scrollTo(0, 1);
+                $container.hide();
+                $("#j-comment_form").show();
+                mcomment.onCommentShow();
+                //$("#container").addClass('white_bg');
+                $comment_star.find("span")[0].className = "star_l_3";
+                $comment_star.next(".star_text").html(star_texts[3]);
+                $comment_star.attr("data-star", 3);
+                $("#j-comment_form .comment_star").hide();
+                $("#j-comment_form .title").html("回复");
+                $('#j-comment_form textarea').attr({
+                    "data-cid" : $(this).attr("data-cid"),
+                    "placeholder" : "回复评论..."
+                }).focus();
+
+                if(Emt.isIDevice){
+                    window.scrollTo(0,1);
+                } else {
+                    $container[0].style.minHeight = '0px';
+
                     setTimeout(function() {
                         window.scrollTo(0, 1);
+                        setTimeout(function() {
+                            window.scrollTo(0, 1);
+                        }, 100);
                     }, 100);
-                }, 100);
-            }
-        });
+                }
+            });
 
-        $(document).undelegate(".load_reply","click").delegate(".load_reply","click",function(){
-            var reply_list = $(this).parents(".reply_list");
-            var end = parseInt(reply_list.attr("data-end"));
-            var next = reply_list.find("li").slice(end, end + 10);
+            $mpage.find(".load_reply").unbind("click").bind("click",function(){
+                var reply_list = $(this).parents(".reply_list");
+                var end = parseInt(reply_list.attr("data-end"));
+                var next = reply_list.find("li").slice(end, end + 10);
 
-            next.show();
-            reply_list.attr("data-end", end + 10);
-            var top = next.eq(0).offset().top;
-            window.scrollTo(0, top - 50);
-            console.log(top);
-            if(next.length < 10){
-                $(this).hide();
-            }
-        });
+                next.show();
+                reply_list.attr("data-end", end + 10);
+                var top = next.eq(0).offset().top;
+                window.scrollTo(0, top - 50);
+                console.log(top);
+                if(next.length < 10){
+                    $(this).hide();
+                }
+            });
+        };
 
         var $comment_star = $(".comment_star .star_l");
 
@@ -307,6 +316,7 @@ Mo.comment.prototype = {
                 $textarea.val('');
 
                 $("#j-comment_form").hide();
+                mcomment.onCommentHide();
                 $container.show();
                 if(Emt.isAndroid){
                     $container[0].style.minHeight = v_height + 100 + 'px';
@@ -337,6 +347,7 @@ Mo.comment.prototype = {
 
         $(".btn_cancel").unbind("click").bind("click", function(){
             $("#j-comment_form").hide();
+            mcomment.onCommentHide();
             $container.show();
 
 
@@ -584,6 +595,7 @@ Mo.comment.prototype = {
 
             var comments = Array.prototype.slice.call(_this.comments, start_i, end_i);
             $(".comment_list").append( baidu.template( $("#commentListItemTmpl").html() , {comments : comments}));
+            _this.afterUpdate();
             _this.checkNoComments(code, page);
         });
     },

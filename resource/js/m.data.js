@@ -439,6 +439,16 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "手游环境监测工具",
+                "href"  : "http://project.4399ued.com/plan/",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
             }
 		],
 		mobile : [
