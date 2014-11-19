@@ -449,6 +449,16 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "Page Check发布前检查工具",
+                "href"  : "http://fe.4399ued.com/tools/pagecheck/index.html",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
             }
 		],
 		mobile : [
