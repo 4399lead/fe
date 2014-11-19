@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+.m_fecheck{ 
+	margin:0;line-height: 2;font-size: 12px;
+	padding:10px;
+	position: fixed;
+	width:958px;
+	height:200px;
+	background: #fff;
+	border:1px solid #f00;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	left:50%;
+	bottom:0;
+	margin-left:-490px;
+	z-index: 9999;
+}
+.m_fecheck .m-feclose{
+	position: absolute;
+	right:10px;
+	top:10px;
+	cursor: pointer;
+}
+.m_fecheck_title{
+	font-weight:14px;
+	font-weight: 700;
+}
+.m_fecheck_tip{
+	color:#999;
+	margin-left:10px;
+} 
+.j-outline{
+	outline:1px solid #f00;
+}
+.m_fecheck .m_fec_title{
+	font-weight: 700;
+	color:#f60;
+}
+.m_fecheck .m_fb{
+	position: absolute;
+	top:10px;
+	right:60px;
+	color:#f60;
+}
