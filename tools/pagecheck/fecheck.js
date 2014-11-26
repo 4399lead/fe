@@ -178,7 +178,6 @@
 					//检测是否有百度统计
 					if(_ScripTag[k].innerHTML){					
 						var _baiduHtml = _ScripTag[k].innerHTML;
-						console.log(new RegExp("hm.baidu.com").test(_baiduHtml));
 						if( new RegExp("hm.baidu.com").test(_baiduHtml)){
 							that.data['baidutj'] = "有";
 						}
