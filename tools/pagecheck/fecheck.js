@@ -40,32 +40,81 @@
     		for( var i in _list ){
     			console.log(_list[i]);
     		}
-    		//console.log(_list);
+    		
+    	},
+    	getPageRedirect : function(){
+    		var that = this;
+    		var _pageMethod = ['用户通过连接或在地址栏中输入URL的方式打开页面',
+    			'页面被刷新','用户通过点击浏览器的前进按钮或后退按钮或其他操作浏览器历史记录的方法打开页面'
+    		]
+    			
+    		that.data['pageMethodType'] = _pageMethod[performance.navigation.type];
+    		that.data['pageRedirectNum'] = performance.navigation.redirectCount;
     	},
     	getPerformanceTime : function(){
     		var that = this;
-    		var _perTime = performance.timing;
+    		var _speedHtml = [];
+    		var timing = performance.timing,
+    		readyStart = timing.fetchStart - timing.navigationStart;
+    		redirectTime = timing.redirectEnd  - timing.redirectStart;
+    		appcacheTime = timing.domainLookupStart  - timing.fetchStart;
+    		unloadEventTime = timing.unloadEventEnd - timing.unloadEventStart;
+    		lookupDomainTime = timing.domainLookupEnd - timing.domainLookupStart;
+    		connectTime = timing.connectEnd - timing.connectStart;
+    		requestTime = timing.responseEnd - timing.requestStart;
+    		initDomTreeTime = timing.domInteractive - timing.responseEnd;
+    		domReadyTime = timing.domComplete - timing.domInteractive; //过早获取时 domComplete有时会是0
+    		loadEventTime = timing.loadEventEnd - timing.loadEventStart;
+    		loadTime = timing.loadEventEnd - timing.navigationStart;//过早获取时 loadEventEnd有时会是0
+			
+			var _pageSpeed = [
+				['准备新页面时间耗时',readyStart],
+				['redirect 重定向耗时',redirectTime],
+				['Appcache 耗时',appcacheTime],
+				['unload 前文档耗时',unloadEventTime],
+				['DNS 查询耗时',lookupDomainTime],
+				['TCP连接耗时',connectTime],
+				['request请求耗时',requestTime],
+				['请求完毕至DOM加载',initDomTreeTime],
+				['解释dom树耗时',domReadyTime],
+				 ['load事件耗时',loadEventTime],
+				['从开始至load总耗时',loadTime]
+			];
 
-			var _connectTime = _perTime.connectEnd - _perTime.connectStart;
-			//文档与服务器完成链接的时间
-			console.log("开始链接时间：",_perTime.connectStart,"结束链接时间：",_perTime.connectEnd);
-			that.data['connectTime'] = _connectTime;
+			_speedHtml.push('<div class="m_fe_table"><table>');
+			for( var i in _pageSpeed){
+				if( i% 2){
+					var _n = parseInt(i)+1;
 
-			var _requestTime = _perTime.requestEnd - _perTime.requestStart;
-			//console.log(_requestTime);
-			//请求的所有时间
-			that.data['requestTime'] = _requestTime;
-
-			var _responseTime = _perTime.responseEnd - _perTime.responseStart;
-			//console.log(_responseTime);
-
-			// 浏览器响应所有字节的时间
-			that.data['responseTime'] = _responseTime;
-
+					_speedHtml.push("<tr><th>"+_pageSpeed[i][0]+"</th><td>"+_pageSpeed[i][1]+"</td><th>"+_pageSpeed[_n][0]+"</th><td>"+_pageSpeed[_n][1]+"</td></tr>");
+				}
+				
+			}
+			
+			_speedHtml.push('</table></div>');
+			that.data['speedRender'] = _speedHtml.join('');
+			
+			/*console.log('准备新页面时间耗时: ' + readyStart);
+			console.log('redirect 重定向耗时: ' + redirectTime);
+			console.log('Appcache 耗时: ' + appcacheTime);
+			console.log('unload 前文档耗时: ' + unloadEventTime);
+			console.log('DNS 查询耗时: ' + lookupDomainTime);
+			console.log('TCP连接耗时: ' + connectTime);
+			console.log('request请求耗时: ' + requestTime);
+			console.log('请求完毕至DOM加载: ' + initDomTreeTime);
+			console.log('解释dom树耗时: ' + domReadyTime);
+			console.log('load事件耗时: ' + loadEventTime);
+			console.log('从开始至load总耗时: ' + loadTime);*/
+		},
+		getJsMemory : function(){
+			var that = this;
 			var _memory = performance.memory;
-			console.log(_memory.jsHeapSizeLimit);
-			console.log(_memory.usedJSHeapSize);
-			console.log(_memory.totalJSHeapSize);
+			//js允许最大大小，包含执行时空间
+			that.data['jsHeapSizeLimit'] = _memory.jsHeapSizeLimit;
+			//当前页面的js内存使用
+			that.data['usedJSHeapSize'] = _memory.usedJSHeapSize;
+			//包含系统和当前页面js的内存使用
+			that.data['totalJSHeapSize'] = _memory.totalJSHeapSize;
 		},
 		getShortIcon : function(){
 			var that = this;
@@ -108,6 +157,18 @@
 				for( var i in data.totalScriptNum){
 					_jsHtml += '<p>'+i+'）'+data.totalScriptNum[i]+'</p>'
 				}
+
+				//本页面内存使用情况
+				var _memoryHtml = "";
+				var _nounExplan = {
+					"jsHeapSizeLimit":"js允许最大大小，包含执行时空间",
+					"usedJSHeapSize" : "当前页面的js内存使用",
+					"totalJSHeapSize" : "包含系统和当前页面js的内存使用"
+				};
+				['jsHeapSizeLimit','usedJSHeapSize','totalJSHeapSize'].forEach(getMemoryHtml);
+				function getMemoryHtml(i,v){
+					_memoryHtml+='<p>'+_nounExplan[i]+'：'+data[i]/1024+'M</p>'
+				}
 				
 
 			var _element = document.createElement('div');
@@ -121,15 +182,20 @@
 									<li><span class="m_fec_title">总共有图片：</span>'+ _imgTotalNum +'，其中有alt属性的有：'+ _imgTotalAlt +'<span class="m_fecheck_tip">其中无alt的会标示出来</span></li>\
 									<li><span class="m_fec_title">shortcut icon图标：</span>'+ _shortCutIcon +'</li>\
 									<li><span class="m_fec_title">百度统计：</span>'+_tongji+'</li>\
+									<li><span class="m_fec_title">网页速度相关(ms,异步的话等加载完)：</span>'+data.speedRender+'</li>\
 									<li><span class="m_fec_title">总节点数：</span>'+ _totaldomNum+'</li>\
 									<li><span class="m_fec_title">css外链总数：</span>'+ _totalcssLinkNum+'，清单如下：'+_cssHtml+'</li>\
 									<li><span class="m_fec_title">js外链总数：</span>'+_totalScriptNum+'，清单如下：'+_jsHtml+'</li>\
+									<li><span class="m_fec_title">本页面JS使用情况：</span>'+_memoryHtml+'</li>\
+									<li><span class="m_fec_title">页面被重定向的次数：</span>'+data.pageRedirectNum+'</li>\
+									<li><span class="m_fec_title">页面通过以下方式被打开：</span>'+data.pageMethodType+'</li>\
 								</ul>\
 								<span class="m-feclose" id="j-fecheck-close">关闭</span>\
 								<span class="m_fb" id="j-fabu"></span>';
 
 			var _body = document.body;
 			_body.insertBefore(_element,null);
+					
 
 			if( data.title && data.keywords && data.description && data.shortcutIcon ){
 				document.getElementById('j-fabu').innerHTML = "恭喜你，可以发布了";
@@ -193,10 +259,12 @@
 			that.doDynamicStyle('http://fe.4399ued.com/tools/pagecheck/fecheck.css');
 			that.getMeta();
 			that.getImgAlt();
-			//that.getPerformanceTime();
+			that.getPerformanceTime();
 			that.getShortIcon();	
 			//that.getResource();
+			that.getJsMemory();
 			that.getCssJsNum();
+			that.getPageRedirect();
 			that.getResult( that.data )
 		}
     }

@@ -5,7 +5,7 @@
 	padding:10px;
 	position: fixed;
 	width:958px;
-	height:450px;
+	height:700px;
 	background: #fff;
 	border:1px solid #f00;
 	border-top-left-radius: 5px;
@@ -14,6 +14,10 @@
 	bottom:0;
 	margin-left:-490px;
 	z-index: 9999;
+	overflow-y:scroll; 
+}
+.m_fecheck li{
+	margin-bottom:5px;
 }
 .m_fecheck .m-feclose{
 	position: absolute;
@@ -34,11 +38,28 @@
 }
 .m_fecheck .m_fec_title{
 	font-weight: 700;
-	color:#f60;
+	color:#F40;
 }
 .m_fecheck .m_fb{
 	position: absolute;
 	top:10px;
 	right:60px;
-	color:#f60;
+	color:#F40;
+}
+.m_fecheck .m_fe_table{
+	width:780;
+}
+.m_fecheck .m_fe_table table{
+	width:100%;
+}
+.m_fecheck .m_fe_table th{
+	width:280px;
+	padding-left:20px;
+}
+.m_fecheck .m_fe_table td,.m_fecheck .m_fe_table th
+{
+	border:1px solid #999;
+	height:28px;
+	line-height: 28px;
+	text-align:center;
 }
