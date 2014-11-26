@@ -34,14 +34,7 @@
 			that.data['totalImage'] = _imgAlt.length;
 			that.data['imageAlt'] = _altArray.length;
     	},
-    	getResource : function(){
-    		var that = this;
-    		var _list = performance.getEntries();
-    		for( var i in _list ){
-    			console.log(_list[i]);
-    		}
-    		
-    	},
+    	
     	getPageRedirect : function(){
     		var that = this;
     		var _pageMethod = ['用户通过连接或在地址栏中输入URL的方式打开页面',
@@ -66,6 +59,8 @@
     		domReadyTime = timing.domComplete - timing.domInteractive; //过早获取时 domComplete有时会是0
     		loadEventTime = timing.loadEventEnd - timing.loadEventStart;
     		loadTime = timing.loadEventEnd - timing.navigationStart;//过早获取时 loadEventEnd有时会是0
+
+    		var _resourcelist = performance.getEntries().length;
 			
 			var _pageSpeed = [
 				['准备新页面时间耗时',readyStart],
@@ -77,15 +72,15 @@
 				['request请求耗时',requestTime],
 				['请求完毕至DOM加载',initDomTreeTime],
 				['解释dom树耗时',domReadyTime],
-				 ['load事件耗时',loadEventTime],
-				['从开始至load总耗时',loadTime]
+				['load事件耗时',loadEventTime],
+				['从开始至load总耗时',loadTime],
+				['请求数(不含异步)',_resourcelist]
 			];
 
 			_speedHtml.push('<div class="m_fe_table"><table>');
 			for( var i in _pageSpeed){
-				if( i% 2){
+				if( i%2==0){
 					var _n = parseInt(i)+1;
-
 					_speedHtml.push("<tr><th>"+_pageSpeed[i][0]+"</th><td>"+_pageSpeed[i][1]+"</td><th>"+_pageSpeed[_n][0]+"</th><td>"+_pageSpeed[_n][1]+"</td></tr>");
 				}
 				
@@ -261,7 +256,6 @@
 			that.getImgAlt();
 			that.getPerformanceTime();
 			that.getShortIcon();	
-			//that.getResource();
 			that.getJsMemory();
 			that.getCssJsNum();
 			that.getPageRedirect();
