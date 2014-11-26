@@ -94,7 +94,8 @@
 				_requestTime = data.requestTime,
 				_totaldomNum = data.totalDomNum,
 				_totalcssLinkNum = data.totalCssLinkNum.length,
-				_totalScriptNum = data.totalScriptNum.length;
+				_totalScriptNum = data.totalScriptNum.length,
+				_tongji = data.baidutj ? data.baidutj : "未添加";
 
 				//css外链清单
 				var _cssHtml = "";
@@ -117,9 +118,9 @@
 								    <li><span class="m_fec_title">title：</span>'+ _title +'</li>\
 									<li><span class="m_fec_title">keyword：</span>'+ _keywords +'</li>\
 									<li><span class="m_fec_title">description：</span>'+ _description +'</li>\
-									<li>总共有图片：'+ _imgTotalNum +'，其中有alt属性的有：'+ _imgTotalAlt +'<span class="m_fecheck_tip">其中无alt的会标示出来</span></li>\
+									<li><span class="m_fec_title">总共有图片：</span>'+ _imgTotalNum +'，其中有alt属性的有：'+ _imgTotalAlt +'<span class="m_fecheck_tip">其中无alt的会标示出来</span></li>\
 									<li><span class="m_fec_title">shortcut icon图标：</span>'+ _shortCutIcon +'</li>\
-									<li><span class="m_fec_title">百度统计：</span>'+data.baidutj+'</li>\
+									<li><span class="m_fec_title">百度统计：</span>'+_tongji+'</li>\
 									<li><span class="m_fec_title">总节点数：</span>'+ _totaldomNum+'</li>\
 									<li><span class="m_fec_title">css外链总数：</span>'+ _totalcssLinkNum+'，清单如下：'+_cssHtml+'</li>\
 									<li><span class="m_fec_title">js外链总数：</span>'+_totalScriptNum+'，清单如下：'+_jsHtml+'</li>\
@@ -177,10 +178,9 @@
 					//检测是否有百度统计
 					if(_ScripTag[k].innerHTML){					
 						var _baiduHtml = _ScripTag[k].innerHTML;
+						console.log(new RegExp("hm.baidu.com").test(_baiduHtml));
 						if( new RegExp("hm.baidu.com").test(_baiduHtml)){
 							that.data['baidutj'] = "有";
-						}else{
-							that.data['baidutj'] = "没有";
 						}
 					}
 				}
