@@ -27,6 +27,7 @@
             mini_width : 1024,
             fade : true,
             hide : true,
+            speed : 400,
             onscroll : function(){}
         };
 
@@ -47,7 +48,7 @@
             options.btn = target;
         } else{
             options.btn.bind("click", function(){
-                window.scrollTo(0,0);
+                $("html,body").animate({"scrollTop" : 0, "scrollY" : 0}, options.speed);
                 return false;
             });
         }

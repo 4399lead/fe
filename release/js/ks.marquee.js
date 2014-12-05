@@ -348,8 +348,8 @@
 				//向前面翻页
 				} else {
 
-					if(options.loop == 0 && options.visiblenum + scrollnum > _this.items.length){
-						scrollnum = _this.items.length - options.visiblenum;
+					if(options.loop == 0 && parseInt(_this.items.eq(0).attr("data-index")) < options.scrollnum){
+						scrollnum = parseInt(_this.items.eq(0).attr("data-index"));
 					} 
 
 					current = _this.items.slice(-scrollnum);

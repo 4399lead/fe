@@ -107,6 +107,8 @@
                     start_x = e.changedTouches[0].clientX;
                     start_y = e.changedTouches[0].clientY;
                     delta_x = 0;
+
+
                 }).unbind("touchmove").bind("touchmove", function(e){
                     var $this = $(this);
                     if (!is_touch_start){
@@ -117,7 +119,7 @@
                     end_y = e.changedTouches[0].clientY;
                     delta_x = end_x - start_x;
 
-                    if (Math.abs(delta_x) > 20 ){
+                    if (Math.abs(delta_x) > 5 ){
                         e.preventDefault();
                     }
 
@@ -206,12 +208,11 @@
                         return false;
                     }
 
-                    
                     end_x = e.changedTouches[0].clientX;
                     end_y = e.changedTouches[0].clientY;
                     delta_x = end_x - start_x;
 
-                    if (Math.abs(delta_x) > 20 ){
+                    if (Math.abs(delta_x) > 5 ){
                         e.preventDefault();
                     }
 

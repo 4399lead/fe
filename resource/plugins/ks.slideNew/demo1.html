@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ks.slideNew.js"></script>
+<title>分屏滚动组件</title>
+<style>
+.slide_demo1{ background-color:#F7F6E1; width:410px; overflow: hidden; zoom:1; margin-bottom: 20px;height:200px;}
+.slide_demo1 li{float: left; display: inline; margin-right: 10px; }
+.slide_demo1 li,.slide_demo1 li img{height:200px; width:200px; }
+.slide_demo2{ background-color:#F7F6E1; width:200px; height: 410px; overflow: hidden; zoom:1; margin-bottom: 20px;}
+.slide_demo2 li{float: left; display: inline; margin-bottom: 10px; }
+.slide_demo2 li,.slide_demo2 li img{height:200px; width:200px;}
+.slide_demo3{ background-color:#F7F6E1; width:620px; overflow: hidden; zoom:1; margin-bottom: 20px;height:200px;}
+.slide_demo3 li{float: left; display: inline; margin-right: 10px; }
+.slide_demo3 li,.slide_demo3 li img{height:200px; width:200px; }
+
+.slide_demo4{ background-color:#F7F6E1; width:200px; height: 620px; overflow: hidden; zoom:1; margin-bottom: 20px;}
+.slide_demo4 li{float: left; display: inline; margin-bottom: 10px; }
+.slide_demo4 li,.slide_demo4 li img{height:200px; width:200px;}
+
+.disabled{color: #eee; cursor: default;}
+</style>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:0 auto; padding:200px;">
+
+        <h2>demo1:非连续水平滚动</h2>
+        <a id="j-prev1" href="javascript:;">prev</a>
+        <a id="j-next1" href="javascript:;">next</a>
+
+        <div class="slide_demo1 clearfix" id="j-demo1">     
+            <ul class="slide_list clearfix">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="http://placehold.it/200x200&text=1" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="http://placehold.it/200x200&text=2" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="http://placehold.it/200x200&text=3" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="http://placehold.it/200x200&text=4" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="http://placehold.it/200x200&text=5" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+        <h2>demo2:非连续垂直滚动</h2>
+        <a id="j-prev2" href="javascript:;">prev</a>
+        <a id="j-next2" href="javascript:;">next</a>
+
+        <div class="slide_demo2 clearfix" id="j-demo2">     
+            <ul class="slide_list clearfix">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="http://placehold.it/200x200&text=1" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="http://placehold.it/200x200&text=2" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="http://placehold.it/200x200&text=3" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="http://placehold.it/200x200&text=4" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="http://placehold.it/200x200&text=5" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+
+        <h2>demo3:连续水平滚动</h2>
+        <a id="j-prev3" href="javascript:;">prev</a>
+        <a id="j-next3" href="javascript:;">next</a>
+
+        <div class="slide_demo3 clearfix" id="j-demo3">     
+            <ul class="slide_list clearfix">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="http://placehold.it/200x200&text=1" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="http://placehold.it/200x200&text=2" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="http://placehold.it/200x200&text=3" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="http://placehold.it/200x200&text=4" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="http://placehold.it/200x200&text=5" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+
+        <h2>demo4:连续垂直滚动</h2>
+        <a id="j-prev4" href="javascript:;">prev</a>
+        <a id="j-next4" href="javascript:;">next</a>
+
+        <div class="slide_demo4 clearfix" id="j-demo4">     
+            <ul class="slide_list clearfix">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="http://placehold.it/200x200&text=1" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="http://placehold.it/200x200&text=2" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="http://placehold.it/200x200&text=3" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="http://placehold.it/200x200&text=4" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="http://placehold.it/200x200&text=5" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+    </div>
+<script>
+            
+    var marquee_1 = ue.slideNew({
+        target : '#j-demo1',
+        list : "#j-demo1 .slide_list",//滚动对象 一般为 ul
+        items : '#j-demo1 .slide_list li', //滚动的详细列表
+
+        prev : "#j-prev1",
+        next : "#j-next1",
+        prev_disabled : "disabled",
+        next_disabled : "disabled",
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+        step : 1,
+        autoplay : false,
+
+        direction : ue.slideNew.LEFT
+    });
+
+    var marquee_2 = ue.slideNew({
+        target : '#j-demo2',
+        list : "#j-demo2 .slide_list",//滚动对象 一般为 ul
+        items : '#j-demo2 .slide_list li', //滚动的详细列表
+
+        prev : "#j-prev2",
+        next : "#j-next2",
+        prev_disabled : "disabled",
+        next_disabled : "disabled",
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+        step : 2,
+        
+        autoplay : false,
+
+        direction : ue.slideNew.UP
+    });
+
+    var marquee_3 = ue.slideNew({
+        target : '#j-demo3',
+        list : "#j-demo3 .slide_list",//滚动对象 一般为 ul
+        items : '#j-demo3 .slide_list li', //滚动的详细列表
+
+        prev : "#j-prev3",
+        next : "#j-next3",
+        prev_disabled : "disabled",
+        next_disabled : "disabled",
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+        step : 3,
+        
+        autoplay : true,
+        loop : true,
+
+        beforeSlide : function(){
+            //console.log("beforeSlide");
+        },
+
+        afterSlide : function(){
+            //console.log("afterSlide");
+        },
+
+        direction : ue.slideNew.RIGHT
+    });
+
+    var marquee_4 = ue.slideNew({
+        target : '#j-demo4',
+        list : "#j-demo4 .slide_list",//滚动对象 一般为 ul
+        items : '#j-demo4 .slide_list li', //滚动的详细列表
+
+        prev : "#j-prev4",
+        next : "#j-next4",
+        prev_disabled : "disabled",
+        next_disabled : "disabled",
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+        step : 3,
+        
+        autoplay : true,
+        loop : true,
+
+        direction : ue.slideNew.DOWN
+    });
+</script>
+    </div>
+</body>
+</html> 

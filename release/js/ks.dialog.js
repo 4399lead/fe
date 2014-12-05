@@ -119,6 +119,7 @@
         }
 
         $(".ui-dialog-mask").css(defaults).show();
+
         mask.push(dialog);
     }
 
@@ -221,13 +222,20 @@
 
         this.options = options = $.extend(defaults, options);
 
+        //解决频繁创建相同id的弹窗导致弹窗节点重复创建的bug
+        if(document.getElementById(options.id) != null){
+            return;
+        }
+
         //已有相同id的弹窗
+
         if (options.id && uiDialog.list[options.id]){
             if (options.force){
                 uiDialog.list[options.id].close();
             } else {
                 _this = uiDialog.list[options.id];
                 _this.show();
+
                 return _this;
             }
         }
@@ -452,7 +460,7 @@
         },
 
         show : function(){
-            this.options.lock && setLock(this);
+            this.options.lock &&  setLock(this);
             this.obj.show();
         },
 

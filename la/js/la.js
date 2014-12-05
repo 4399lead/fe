@@ -80,8 +80,11 @@ if(!window.RESOURCE_URL){
                 }
                 
                 preload_iframe.onload = function(){
+                    $(light_app.container).show();
                     light_app.loadingPage.hide();
-                    document.location.href = url;
+                    setTimeout(function(){
+                        document.location.href = url;
+                    }, 100);
                 };
                 
                 if(window.SIMULATION_NETWORK === true){

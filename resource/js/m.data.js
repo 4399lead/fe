@@ -189,7 +189,41 @@ define(function(require,exports,module){
                     ]
             },
             {
-                "title" : "滚动组件",
+                "title" : "跑马灯组件",
+                "href"   : "resource/plugins/ks.marqueeNew/index.html",
+                "desc"   : "跑马灯组件",
+                "curTag"  : "marqueeNew",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+                    }
+                ]
+            },
+            {
+                "title" : "分屏滚动组件",
+                "href"   : "resource/plugins/ks.slideNew/index.html",
+                "desc"   : "分屏滚动组件",
+                "curTag"  : "slideNew",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+                    }
+                ]
+            },
+
+            {
+                "title" : "滚动幻灯片组件",
+                "href"   : "resource/plugins/ks.slideCarousel/index.html",
+                "desc"   : "滚动幻灯片组件",
+                "curTag"  : "slideCarousel",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+                    }
+                ]
+            },
+            {
+                "title" : "滚动组件【不再更新新功能，只做bug修复】",
                 "href"   : "resource/plugins/ue.marquee/index.html",
                 "desc"   : "滚动组件",
                 "curTag"  : "marquee",
