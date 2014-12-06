@@ -11,6 +11,23 @@
 </style>
 <body>
     <h1>浏览器和安卓客户端 1.4.1及以上 通信API</h1>
+
+    <h2>请把地址复制在文本框</h2>
+    <textarea id="j-url"></textarea>
+    <button id="j-run">运行</button>
+
+    <script type="text/javascript">
+        document.getElementById("j-run").onclick = function(){
+            var url = document.getElementById("j-url").value.trim();
+
+            AndroidConnect.launch(url, function(){
+                alert('启动客户端失败回调');
+            });
+
+            return false;
+        }
+    </script>
+
     <p>利用自定义协议m4399://跟客户端通信</p>
     <pre>
         node.addEventListener("click", function(e){
