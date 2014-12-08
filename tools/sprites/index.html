@@ -38,161 +38,395 @@
 		a:hover{text-decoration:underline;color:#f60}
 		html{background:#ededed}
 		html,body{background: #009872;min-width:1000px;width:100%; height: 100%;}
-		
-		.sprite_box{background: #fff; width: 800px; height: 800px; position: relative;}
-		.dropbox{height: 100%; width: 100%; background: url(plus.png) center center no-repeat rgba(0,0,0,.1); position: absolute; top: 0; left: 0; display: none;}
+		.image_list{ overflow: hidden; list-style: none;}
+		.image_list li{background: #333; float: left; margin: 10px; color: #fff; overflow: hidden;}
+		.image_list li img{ max-width: 100%;}
+		.image_list li dt,.image_list li dd{ float: left; line-height: 24px; font-size: 12px;}
+		.image_list li dt{clear: left;}
 
-		.dropbox.ctl-active{display: block;}
-		.workplace{}
+		.wrap{position: absolute; width: 814px; left: 50%; top: 50%; height: 214px; margin-top: -100px;  margin-left: -400px;border:5px dashed #007255; text-align: center; background: #fff;color: #bfe5dc;font-size: 24px; }
+		.dropbox{line-height: 0; font-size: 0;  height: 100%;}
+		.dropbox .ico_plus{height: 64px; width: 64px; background: url(plus.png); display: inline-block;margin-top: 75px; opacity: .5; margin-right: 10px;}
+		.dropbox .txt{font-size: 24px; line-height: 64px;display: inline-block;height: 64px;vertical-align: top;margin-top: 75px;}
+
+		.settings{ height: 40px; line-height: 4px; margin-top: 70px;}
+		.settings input[type='text']{height: 30px; line-height: 30px; font-size: 16px; color: #666; text-align: center;}
+		.settings select{color: #fff; font-size: 16px; height: 30px; line-height: 20px; border:0px; background: #00906c; border-radius: 5px;padding: 5px;box-shadow: 1px 1px 1px rgba(0,0,0,.3);}
+		.settings .submit_btn{color: #fff; background: #00906c; padding: 0 20px; border: 0; height: 40px; line-height: 40px; font-size: 16px;border-radius: 5px;box-shadow: 1px 1px 1px rgba(0,0,0,.3); margin-left: 15px;}
+
+		.result_pop{ position: absolute; top: 0; right: 0; left: 0; bottom: 0; overflow: auto; overflow-x:hidden; padding: 50px; background: #009872; padding-right: 200px;}
+		.result_pop textarea{ width: 80%; border: 0; font-size: 14px; color: #fff; z-index: 1000; height: 1000px; overflow: hidden; outline: none; background: transparent; padding: 0;}
+
+		.result_pop .img_hold{ width: 200px; position: absolute; background: #fff; top: 0; right: 0; min-height: 100%; text-align: center;}
+		.result_pop .img_hold img{max-width: 200px;}
+		.result_pop .img_hold h3{font-size: 24px;color: #009872;}
 	</style>
 </head>
 <body>
-	<div class="sprite_box" id="sprite_box">
-		<div class="workplace" id="workplace"></div>
-		<div class="dropbox" id="dropbox"></div>
+	<div class="wrap">
+		<div class="dropbox" id="dropbox">
+			<i class="ico_plus"></i>
+			<span class="txt">将要合并的图片拖拽到虚框内</span>
+			<ul id="image_list" class="image_list"></ul>
+		</div>
+
+		<div class="settings" id="settings" style="display:none;">
+			
+			<label>layout：<select id="type">
+				<option value="v_l">垂直左对齐</option>
+				<option value="v_r">垂直右对齐</option>
+				<option value="h_t">水平顶对齐</option>
+				<option value="h_b">水平底对齐</option>
+			</select></label>
+			<label>padding：<input type="text" id="padding" value="5" style="width:30px;" /></label>
+			<label>filename：<input type="text" id="filename" value="sprites.png" style="width:150px;" /></label>
+			<p style="margin-top:30px;"><label>mobile：<input type="checkbox" id="background_size" value="1" /></label> <input type="button" id="submit_btn" class="submit_btn" value="生成" /></p>
+		</div>
+	</div>
+	<canvas height="400" width="400" style="background:url(grid.jpg); display:none; " id="workplace"></canvas>
+	<div id="result_pop" style="display:none; " class="result_pop">
+		<textarea id="css_code"></textarea>
+		<div class="img_hold">
+			<h3>合并后的图片</h3>
+			<a href="" id="sprites_img"><img src="about:blank" /></a>
+		</div>
 	</div>
 </body>
 </html>
-<script src="jquery-1.4.4.min.js"></script>
-<script src="ue.easydrag.js"></script>
 <script type="text/javascript">
-
-	var FileHelp = (function(){
-		var MINETYPES = {
-			"image/gif" : "GIF",
-			"image/png" : "PNG",
-			"image/jpeg" : "JPG"
-		};
-
-		return {
-			getFileType : (function(){
-				
-				return function(type){
-					return MINETYPES[type];
-				}
-			})(),
-
-			getMimeType : (function(){
-				return function(type){
-					type = type.toUpperCase();
-
-					for(var t in MINETYPES){
-						if(MINETYPES[t] == type){
-							return t;
-						}
-					}
-				}
-			})(),
-
-			getFileName : function (allname){
-				allname = allname.split(".");
-				allname.pop();
-				allname.join(".");
-				return allname;
-			}
-		}
-	})();
-
-	var Sprites = (function(){
-
-		var sprite_box = document.getElementById("sprite_box"),
+		var image_list = document.getElementById("image_list"),
+			settings = document.getElementById("settings"),
+			submit_btn = document.getElementById("submit_btn"),
 			dropbox = document.getElementById("dropbox"),
+			body = document.body,
 			workplace = document.getElementById("workplace"),
+			workplace_width = 0,
+			workplace_height = 0,
+			background_size = document.getElementById("background_size"),
+			css_code = document.getElementById("css_code"),
+			sprites_img = document.getElementById("sprites_img"),
+			result_pop = document.getElementById("result_pop"),
+			workplace_ctx = workplace.getContext("2d"),
 			sprites = [];
 
-		return {
-			init : function(){
+		document.addEventListener("DOMContentLoaded", function(){
+			
+			document.addEventListener("dragenter", function(e){  
+			    dropbox.classList.add("dragFile"); 
+			}, false);  
 
-				document.addEventListener("dragenter", function(e){  
-				    dropbox.classList.add("ctl-active");
-				}, false);
+			document.addEventListener("dragleave", function(e){  
+			    dropbox.classList.remove("dragFile"); 
+			}, false);
 
-				dropbox.addEventListener("dragover", function(e){  
-				    e.stopPropagation();  
-				    e.preventDefault(); 
-				}, false);  
+			dropbox.addEventListener("dragenter", function(e){  
+			     dropbox.classList.add("dragenter"); 
+			}, false);
 
-				dropbox.addEventListener("drop", function(e){  
-				    e.stopPropagation();  
-				    e.preventDefault();
-				    dropbox.classList.remove("ctl-active");
-				    Sprites.handleFiles(e.dataTransfer.files);  
-				}, false);
-			},
+			dropbox.addEventListener("dragleave", function(e){  
+			     dropbox.classList.remove("dragenter"); 
+			}, false);  
 
-			handleFiles : function(files){
-				var i = 0,
-					file = null,
-					reader = null;
+			dropbox.addEventListener("dragenter", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			}, false);  
 
-				for (; i < files.length; i++) {
+			dropbox.addEventListener("dragover", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			}, false);  
 
-			        file = files[i];
+			dropbox.addEventListener("drop", function(e){  
+			    e.stopPropagation();  
+			    e.preventDefault();  
+			    console.log(e);  
+			    dropbox.style.display = "none";
+			    settings.style.display = "block";
+			    handleFiles(e.dataTransfer.files, function(li){
+					image_list.appendChild(li);
+				});  
+			}, false);
 
-			  		if (!file.type.match(/image*/)) {  
-					    continue;  
-					}
-					  
-					reader = new FileReader();
-
-					reader.onload = (function(file) {
-
-						return function(e) {
-							console.log(file);
-							Sprites.FileReaderOnload(e, file);
-						}; 
-
-					})(file);
-
-					reader.readAsDataURL(file);
-			    }  
-			},
-
-			FileReaderOnload : function(e, file){
-				var img_container = document.createElement("div"),
-					img = document.createElement("img"),
-					drag_node = null;
-
-				console.log(e.target);
-
-				img.src = e.target.result;  
-
-				img_container.style.width = img.width + "px";
-				img_container.style.height = img.height + "px";
-				img_container.style.backgroundImage = "url(" + e.target.result + ")";
-				img_container.classList.add("img_container");
-				img_container.style.position = "absolute";
+			submit_btn.addEventListener("click", function(){
+				var type = document.getElementById("type").value,
+					padding = parseInt(document.getElementById("padding").value),
+					filename = document.getElementById("filename").value;
 				
-				workplace.appendChild(img_container);
+				drawSprites(type, padding);
+				css_code.value = generateCss(type, filename);
 
-				img_container.addEventListener("mousedown", function(e){
-					drag_node = this.cloneNode(true);
-					drag_node.setAttribute("draggable", true);
-					workplace.appendChild(drag_node);
-					this.style.display = "none";
+				var data = workplace.toDataURL();
 
-					drag_node.addEventListener("drag", function(e){
-						console.log(e, "drag");
-					});
+				sprites_img.querySelector('img').src = data;
+				result_pop.style.display = 'block';
+				settings.style.display = "none";
 
-					drag_node.addEventListener("dragstart", function(e){
-						console.log(e, "dragstart");
-					});
-				});
+			    var evt = document.createEvent("HTMLEvents");
+			    evt.initEvent("click", false, false);
+				sprites_img.download = filename;
+				sprites_img.href = data;
+				sprites_img.dispatchEvent(evt);
+			}, false);
+		});
 
-				workplace.addEventListener("drop", function(e){
-					this.style.left = e.clientX + "px";
-					this.style.top = e.clientY + "px";
-					workplace.removeChild(drag_node);
-				}); 
+		function handleFiles(files, callback) {
+		    for (var i = 0; i < files.length; i++) {  
+		        var file = files[i];  
+		  		if (!file.type.match(/image*/)) {  
+				    continue;  
+				}
+				  
+				var reader = new FileReader();  
+				reader.onload = (function(file) { 
+					return function(e) {
+						console.log(file);
+						FileReaderOnload(e, file, callback);
+					}; 
+				})(file);
 
-				sprites.push({img : img, file : file});
-			}
+				reader.readAsDataURL(file);
+		    }  
 		}
 
-	})();
+		function FileReaderOnload(e, file, callback){
+			var img_container = document.createElement("div"),
+				img = document.createElement("img"),
+				li = document.createElement("li"),
+				meta = document.createElement("dl"),
+				metas = [],
+				dt,dd;
 
-	document.addEventListener("DOMContentLoaded", function(){
-		Sprites.init();
-	});
-</script>
+			img.src = e.target.result;  
+			//img.file = file;
+
+			//console.log(e,file);
+			metas.push({
+				"text" : "文件名称：",
+				"value" : file.name
+			});
+
+			metas.push({
+				"text" : "文件大小：",
+				"value" : img.width + "px X " + img.height + "px"
+			});
+
+			metas.push({
+				"text" : "文件尺寸：",
+				"value" : formateFileSize(e.total)
+			});
+
+			metas.push({
+				"text" : "文件类型：",
+				"value" : getFileType(file.type)
+			});
+
+			metas.push({
+				"text" : "上次修改时间：",
+				"value" : formatDate(file.lastModifiedDate, "yyyy-MM-dd hh:mm:ss")
+			});
+
+			metas.forEach(function(v){
+				dt = document.createElement("dt");
+				dd = document.createElement("dd");
+
+				dt.innerHTML = v.text;
+				dd.innerHTML = v.value;
+				meta.appendChild(dt);
+				meta.appendChild(dd);
+			});
+
+			img_container.classList.add("img_container");
+			img_container.appendChild(img);
+			li.appendChild(img_container);
+			//li.appendChild(meta);
+			callback(li,e,file);
+
+			sprites.push({img : img, file : file}); 
+		}
+
+		function getFileName(allname){
+			allname = allname.split(".");
+			allname.pop();
+			allname.join(".");
+			return allname;
+		}
+
+		function drawSprites(type, padding){
+			var pre_x = 0,pre_y = 0;
+			workplace_width = 0;
+			workplace_height = 0;
+			if(type == "v_l"){
+				sprites.sort(function(a, b){
+					if(a.img.width == b.img.width){
+						return a.file.name < b.file.name ? 1 : -1
+					} else {
+						return a.img.width < b.img.width ? 1 : -1
+					}
+				});
+
+				workplace_width = sprites[0].img.width;
+
+				for(var i = 0; i < sprites.length; i++){
+					sprites[i].x = 0;
+					sprites[i].y = workplace_height + padding;
+
+					workplace_height += sprites[i].img.height + padding;
+				}
+			} else if(type == "v_r"){
+				sprites.sort(function(a, b){
+					if(a.img.width == b.img.width){
+						return a.file.name < b.file.name ? 1 : -1
+					} else {
+						return a.img.width < b.img.width ? 1 : -1
+					}
+				});
+
+				workplace_width = sprites[0].img.width;
+
+				for(var i = 0; i < sprites.length; i++){
+					sprites[i].x = workplace_width - sprites[i].img.width;
+					sprites[i].y = workplace_height + padding;
+					workplace_height += sprites[i].img.height + padding;
+				}
+			} else if(type == "h_t"){
+				sprites.sort(function(a, b){
+					if(a.img.height == b.img.height){
+						return a.file.name < b.file.name ? 1 : -1
+					} else {
+						return a.img.height < b.img.height ? 1 : -1
+					}
+				});
+
+				workplace_height = sprites[0].img.height;
+
+				for(var i = 0; i < sprites.length; i++){
+					sprites[i].x = workplace_width + padding;
+					sprites[i].y = 0;
+					workplace_width += sprites[i].img.width + padding;
+				}
+			} else if(type == "h_b"){
+				sprites.sort(function(a, b){
+					if(a.img.height == b.img.height){
+						return a.file.name < b.file.name ? 1 : -1
+					} else {
+						return a.img.height < b.img.height ? 1 : -1
+					}
+				});
+
+				workplace_height = sprites[0].img.height;
+
+				for(var i = 0; i < sprites.length; i++){
+					sprites[i].x = workplace_width + padding;
+					sprites[i].y = workplace_height - sprites[i].img.height;
+					workplace_width += sprites[i].img.width + padding;
+				}
+			}
+
+			workplace.width = workplace_width;
+			workplace.height = workplace_height;
+
+			for(var i = 0; i < sprites.length; i++){
+				workplace_ctx.drawImage(sprites[i].img, sprites[i].x, sprites[i].y, sprites[i].img.width, sprites[i].img.height);
+			}
+			
+		}
+
+
+		function generateCss(type, filename){
+			var cssText = "",
+				commonCssText = "",
+				background_size_num = background_size.checked ? 2 : 1,
+				scale = 2;
+
+			console.log(background_size.checked, background_size_num);
+			var class_names = [];
+
+			if(type == "v_l"){
+				for(var i = 0; i < sprites.length; i++){
+					var class_name = '.' + getFileName(sprites[i].file.name);
+					class_names.push(class_name);
+					cssText += class_name + '{background-position:0 ' + (-sprites[i].y / background_size_num) + 'px;width:' + (sprites[i].img.width / background_size_num) + 'px;height:' + (sprites[i].img.height / background_size_num) + 'px;}\n';
+				}
+			} else if(type == "v_r"){
+				for(var i = 0; i < sprites.length; i++){
+					var class_name = '.' + getFileName(sprites[i].file.name);
+					class_names.push(class_name);
+					cssText += class_name + '{background-position:100% ' + (-sprites[i].y / background_size_num) + 'px;width:' + (sprites[i].img.width / background_size_num) + 'px;height:' + (sprites[i].img.height / background_size_num) + 'px;}\n';
+				}
+			} else if(type == "h_t"){
+				for(var i = 0; i < sprites.length; i++){
+					var class_name = '.' + getFileName(sprites[i].file.name);
+					class_names.push(class_name);
+					cssText += class_name + '{background-position:' + (-sprites[i].x / background_size_num) + 'px 0;width:' + (sprites[i].img.width / background_size_num) + 'px;height:' + (sprites[i].img.height / background_size_num) + 'px;}\n';
+				}
+			} else if(type == "h_b"){
+				for(var i = 0; i < sprites.length; i++){
+					var class_name = '.' + getFileName(sprites[i].file.name);
+					class_names.push(class_name);
+					cssText += class_name + '{background-position:' + (-sprites[i].x / background_size_num) + 'px 100%;width:' + (sprites[i].img.width / background_size_num) + 'px;height:' + (sprites[i].img.height / background_size_num) + 'px;}\n';
+				}
+			}
+
+
+			commonCssText = class_names.join(",");
+			commonCssText += '{background:url(' + filename + ') no-repeat; ' + ((background_size_num != 1) ? 'background-size:' + (workplace_width / background_size_num) + 'px ' + (workplace_height / background_size_num) + 'px; '  : '') + 'display:inline-block}';
+
+			cssText = commonCssText + '\n' +cssText;
+			return cssText;
+		}
+
+		function formateFileSize(size){
+			var unit = 1024,
+				K, M, G;
+
+			//console.log(size);
+			G = Math.floor(size / unit / unit / unit);
+			size -= G * unit;
+			M = Math.floor(size / unit / unit);
+			size -= M * unit;
+			K = Math.ceil(size / unit); 
+			
+			var sizes= [];
+			G > 0 && sizes.push(G + "G");
+			M > 0 && sizes.push(M + "M");
+			K > 0 && sizes.push(K + "K");
+
+			//console.log(sizes,G,M,K);
+			return sizes.join("");
+		}
+
+
+		var getFileType = (function(){
+			var types = {
+				"image/gif" : "GIF",
+				"image/png" : "PNG",
+				"image/jpeg" : "JPG"
+			};
+
+			return function(type){
+				return types[type];
+			}
+		})();
+
+		function formatDate(date, fmt){
+		    var o = {   
+		        "M+" : date.getMonth()+1,
+		        "d+" : date.getDate(),
+		        "h+" : date.getHours(),
+		        "m+" : date.getMinutes(),
+		        "s+" : date.getSeconds() 
+		    };
+
+		    if(/(y+)/.test(fmt)){
+		        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+		    }   
+		    for(var k in o){   
+		        if(new RegExp("("+ k +")").test(fmt)){   
+		            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		        }   
+		    }
+
+		    return fmt;   
+		}
+	</script>

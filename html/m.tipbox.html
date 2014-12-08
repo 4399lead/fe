@@ -3,22 +3,25 @@
 <head>
     <meta charset="utf-8"/>
     <title>前端通用模块 - 细三久久</title>
-    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+    <link href="../resource/css/jks.min.css" rel="stylesheet"/>
 </head>
 <body class="clearfix">
     <!--jks_section-->
     <div class="jks_section">
-        <h2>分页</h2>
+        <h2>提示框</h2>
         <!--m_demo-->
         <div class="m_demo">
             <h3><i class="icon-pencil"></i>使用示例</h3>
             <!--mod_demo_box-->
             <div class="m_demo_box clearfix">
                 <div class="mod_demo_box">
-                    <iframe src="template/tpl.page.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                    <iframe src="../template/tpl.tipbox.up.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
                 </div>
                 <ul class="mod_demo_tab" id="j-demo-tab">
-                    <li class="cur"><a href="template/tpl.page.html">居中,简易版</a></li>
+                    <li class="cur"><a href="../template/tpl.tipbox.up.html">向上型,固高</a></li>
+                    <li><a href="../template/tpl.tipbox.down.html">向下型,固高</a></li>
+                    <li><a href="../template/tpl.tipbox.left.html">向左型,固高</a></li>
+                    <li><a href="../template/tpl.tipbox.right.html">向右型,固高</a></li>
                 </ul>
             </div>
             <!--/mod_demo_box-->
@@ -28,8 +31,8 @@
         <div class="m_demo">
             <h3><i class="icon-stack"></i>说明</h3>
             <div class="m_demo_box">
-                <p>a）如居左，.ks_page新增float:left,如居右，.ks_page新增float:right;亲，记得clearfix</p>
-                <p>b）不能点击状态，html标签改成span并添加ks_disable.当前页添加.ks_cur</p>
+                <p>此模块，属于固定高度提示浮窗。</p>
+                <p>不同的方式只需要追加对应的类名即可。ks_tipbox_(left|right|top|down)</p>
             </div>
         </div>
         <!--/m_demo-->
@@ -40,32 +43,32 @@
                 <!--m_code-->
                 <div class="m_code">
                     <h4>CSS</h4>
-                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.form.css</pre>
+                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.tipbox.css</pre>
                 </div>
                 <!--/m_code-->
                 <!--m_code-->
                 <div class="m_code">
                     <h4>HTML</h4>
                     <pre class="prettyprint">
-&lt;!--ks_page--&gt;
-&lt;div class="ks_page"&gt;
-    &lt;div class="ks_c"&gt;
-        &lt;a href="#" class="ks_first"&gt;首页&lt;/a&gt;
-        &lt;a href="#" class="ks_prev"&gt;上一页&lt;/a&gt;
-        &lt;div class="ks_num"&gt;
-            &lt;a href="#"&gt;1&lt;/a&gt;
-            &lt;a href="#" class="ks_cur"&gt;2&lt;/a&gt;
-            &lt;a href="#"&gt;3&lt;/a&gt;
-            &lt;a href="#"&gt;4&lt;/a&gt;
-            &lt;a href="#"&gt;5&lt;/a&gt;
-            &lt;span&gt;.....&lt;/span&gt;
+&lt;!--ks_tipbox--&gt;
+&lt;div class="ks_tipbox ks_tipbox_left"&gt;
+    &lt;div class="ks_tipbox_shadow"&gt;
+        &lt;b class="ks_tipbox_arrow_o"&gt;◆&lt;/b&gt;
+        &lt;div class="ks_tipbox_shadow_bg"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="ks_tipbox_body"&gt;
+        &lt;b class="ks_tipbox_arrow_t"&gt;◆&lt;/b&gt;
+        &lt;b class="ks_tipbox_arrow_f"&gt;◆&lt;/b&gt;
+        &lt;div class="ks_tipbox_content"&gt;
+            &lt;!--demo_tipbox--&gt;
+            &lt;div class="demo_tipbox"&gt;
+                箭头向左
+            &lt;/div&gt;
+            &lt;!--/demo_tipbox--&gt;
         &lt;/div&gt;
-        &lt;a href="#" class="ks_next"&gt;下一页&lt;/a&gt;
-        &lt;a href="#" class="ks_last"&gt;最后一页&lt;/a&gt;
-        &lt;span class="ks_tnum"&gt;共100页&lt;/span&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-&lt;!--/ks_page--&gt;</pre>
+&lt;!--/ks_tipbox--&gt;</pre>
                 </div>
                 <!--/m_code-->
             </div>
@@ -74,10 +77,10 @@
     </div>
     <div class="jks_aside"  id="j-m-sidebar"></div>
     <!--/jks_aside-->
-    <script src="release/lib/seajs/sea.js"></script>
-    <script src="resource/js/config.js"></script>
+    <script src="../release/lib/seajs/sea.js"></script>
+    <script src="../resource/js/config.js"></script>
     <script>
-        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+        seajs.use(['jquery','../resource/js/m.sidebar.js'],function(jquery,JKS){
             $("#j-demo-tab li").click(function(e){
                 var _iframeHref = $(e.target).attr('href');
                 $("#j-iframe").attr('src',_iframeHref);
@@ -85,7 +88,7 @@
                 e.stopPropagation();
                 e.preventDefault();
             });
-            JKS.html('page');
+            JKS.html('tipbox');
             (function(){
                 var _click = 0;
                 $(".m_view h3").bind('click',function(){
@@ -101,7 +104,7 @@
             })();
 
         });
-        seajs.use('./resource/js/codeLight.js');
+        seajs.use('../resource/js/codeLight.js');
     </script>
 </body>
 </html>

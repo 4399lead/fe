@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>前端通用模块 - 细三久久</title>
-    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+    <link href="../resource/css/jks.min.css" rel="stylesheet"/>
 </head>
 <body class="clearfix">
     <!--jks_section-->
@@ -15,10 +15,10 @@
             <!--mod_demo_box-->
             <div class="m_demo_box clearfix">
                 <div class="mod_demo_box">
-                    <iframe src="template/tpl.crumbs.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                    <iframe src="../template/tpl.crumbs.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
                 </div>
                 <ul class="mod_demo_tab" id="j-demo-tab">
-                    <li class="cur"><a href="template/tpl.verhor.html">通用型</a></li>
+                    <li class="cur"><a href="../template/tpl.verhor.html">通用型</a></li>
                 </ul>
             </div>
             <!--/mod_demo_box-->
@@ -66,10 +66,10 @@
     </div>
     <div class="jks_aside"  id="j-m-sidebar"></div>
     <!--/jks_aside-->
-    <script src="release/lib/seajs/sea.js"></script>
-    <script src="resource/js/config.js"></script>
+    <script src="../release/lib/seajs/sea.js"></script>
+    <script src="../resource/js/config.js"></script>
     <script>
-        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+        seajs.use(['jquery','../resource/js/m.sidebar.js'],function(jquery,JKS){
             $("#j-demo-tab li").click(function(e){
                 var _iframeHref = $(e.target).attr('href');
                 $("#j-iframe").attr('src',_iframeHref);
@@ -93,7 +93,7 @@
             })();
 
         });
-        seajs.use('./resource/js/codeLight.js');
+        seajs.use('../resource/js/codeLight.js');
     </script>
 </body>
 </html>

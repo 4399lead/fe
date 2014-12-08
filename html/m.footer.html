@@ -3,24 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <title>前端通用模块 - 细三久久</title>
-    <link href="resource/css/jks.min.css" rel="stylesheet"/>
+    <link href="../resource/css/jks.min.css" rel="stylesheet"/>
 </head>
 <body class="clearfix">
     <!--jks_section-->
     <div class="jks_section">
-        <h2>基本盒子</h2>
+        <h2>底部置底</h2>
         <!--m_demo-->
         <div class="m_demo">
             <h3><i class="icon-pencil"></i>使用示例</h3>
             <!--mod_demo_box-->
             <div class="m_demo_box clearfix">
                 <div class="mod_demo_box">
-                    <iframe src="template/tpl.box.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                    <a href="../template/tpl.footer.html" target="_blank">新窗口查看底部置底</a>
                 </div>
-                <ul class="mod_demo_tab" id="j-demo-tab">
-                    <li class="cur"><a href="template/tpl.box.html">基本盒子</a></li>
-                    <li><a href="template/tpl.box.radius.html">头底部圆角盒子</a></li>
-                </ul>
             </div>
             <!--/mod_demo_box-->
         </div>
@@ -29,8 +25,8 @@
         <div class="m_demo">
             <h3><i class="icon-stack"></i>说明</h3>
             <div class="m_demo_box">
-                <p>基本盒子模块只定义html结构，与基于业务衍生出来的模块CSS。</p>
-                <p>调用此模块，CSS要基于业务做一定的增删改。</p>
+                <p>底部置底模块，只定义html结构，与基于业务衍生出来的模块CSS。</p>
+                <p>底部置底，CSS要基于业务做一定的增删改。</p>
             </div>
         </div>
         <!--/m_demo-->
@@ -40,27 +36,24 @@
             <div class="m_demo_box mod_code">
                 <!--m_code-->
                 <div class="m_code">
+                    <h4>CSS</h4>
+                    <pre class="prettyprint">bower install http://jks.4399ued.com/release/css/ks.footer.css</pre>
+                </div>
+                <!--/m_code-->
+                <!--m_code-->
+                <div class="m_code">
                     <h4>HTML</h4>
                     <pre class="prettyprint">
-&lt;!--ks_box--&gt;
-&lt;div class="ks_box"&gt;
-    &lt;div class="ks_hd"&gt;
-        &lt;div class="ks_title"&gt;
-            &lt;h2 class="ks_h"&gt;头部&lt;/h2&gt;
-            &lt;a href="#" class="ks_more"&gt;更多+&lt;/a&gt;
+&lt;!--ks_bottom--&gt;
+    &lt;div class="ks_bottom"&gt;
+        &lt;div class="ks_bottom_box"&gt;
+            内容
         &lt;/div&gt;
-        &lt;span class="ks_lt"&gt;&lt;/span&gt;
-        &lt;span class="ks_rt"&gt;&lt;/span&gt;
     &lt;/div&gt;
-    &lt;div class="ks_bd"&gt;
-            圆角不透明模块，此模块基于游戏吧首页通用模块
+    &lt;div class="ks_bottom_footer"&gt;
+        我来自底部
     &lt;/div&gt;
-    &lt;div class="ks_fd"&gt;
-        &lt;span class="ks_lb"&gt;&lt;/span&gt;
-        &lt;span class="ks_rb"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;!--/ks_box--&gt;</pre>
+    &lt;!--/ks_bottom--&gt;</pre>
                 </div>
                 <!--/m_code-->
             </div>
@@ -69,10 +62,10 @@
     </div>
     <div class="jks_aside"  id="j-m-sidebar"></div>
     <!--/jks_aside-->
-    <script src="release/lib/seajs/sea.js"></script>
-    <script src="resource/js/config.js"></script>
+    <script src="../release/lib/seajs/sea.js"></script>
+    <script src="../resource/js/config.js"></script>
     <script>
-        seajs.use(['jquery','./resource/js/m.sidebar.js'],function(jquery,JKS){
+        seajs.use(['jquery','../resource/js/m.sidebar.js'],function(jquery,JKS){
             $("#j-demo-tab li").click(function(e){
                 var _iframeHref = $(e.target).attr('href');
                 $("#j-iframe").attr('src',_iframeHref);
@@ -80,7 +73,7 @@
                 e.stopPropagation();
                 e.preventDefault();
             });
-            JKS.html('box');
+            JKS.html('footer');
             (function(){
                 var _click = 0;
                 $(".m_view h3").bind('click',function(){
@@ -96,7 +89,7 @@
             })();
 
         });
-        seajs.use('./resource/js/codeLight.js');
+        seajs.use('../resource/js/codeLight.js');
     </script>
 </body>
 </html>
