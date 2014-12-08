@@ -555,7 +555,7 @@ define(function(require,exports,module){
             },
             {
                 "title" : "安卓客户端跟浏览器通信API",
-                "href"  : "doc/andorid_api.html",
+                "href"  : "doc/android_api.html",
                 "desc" : "安卓客户端跟浏览器通信API",
                 "author"  : [
                     {
