@@ -120,6 +120,43 @@
 				}
 			}
 		},
+		getChromeLoadTime : function(){
+			var that = this,
+				_chromeTimeHtml = [];
+			//chrome专属
+    		var _chromeLoadTime = window.chrome.loadTimes();
+    		var _commitLT = _chromeLoadTime.commitLoadTime,
+    			_finishDocLT = _chromeLoadTime.finishDocumentLoadTime,
+    			_finishLT = _chromeLoadTime.finishLoadTime,
+    			_firstPaintAfterLT = _chromeLoadTime.firstPaintAfterLoadTime,
+    			_firstPaintT = _chromeLoadTime.firstPaintTime,
+    			_rqT = _chromeLoadTime.requestTime,
+    			_sLT = _chromeLoadTime.startLoadTime;
+			
+			var _chromeData = [
+				//['commitLoadTime',_commitLT],
+				['完成文档加载时间',_finishDocLT],
+				['完成加载时间',_finishLT],
+				['加载完后第一次渲染时间点',_firstPaintAfterLT],
+				['第一次渲染时间点',_firstPaintT],
+				['请求时间点',_rqT],
+				['开始加载时间点',_sLT]
+			];
+
+			_chromeTimeHtml.push('<div class="m_fe_table"><table>');
+			for( var i in _chromeData){
+				if( i%2==0){
+					var _n = parseInt(i)+1;
+					_chromeTimeHtml.push("<tr><th>"+_chromeData[i][0]+"</th><td>"+_chromeData[i][1]+"</td><th>"+_chromeData[_n][0]+"</th><td>"+_chromeData[_n][1]+"</td></tr>");
+				}
+				
+			}
+			
+			_chromeTimeHtml.push('</table></div>');
+			that.data['chromeData'] = _chromeTimeHtml.join('');
+			
+
+		},
 		getResult : function(data){
 			var that = this;
 			if( document.getElementById('j-checkResult')){
@@ -184,6 +221,7 @@
 									<li><span class="m_fec_title">本页面JS使用情况：</span>'+_memoryHtml+'</li>\
 									<li><span class="m_fec_title">页面被重定向的次数：</span>'+data.pageRedirectNum+'</li>\
 									<li><span class="m_fec_title">页面通过以下方式被打开：</span>'+data.pageMethodType+'</li>\
+									<li><span class="m_fec_title">页面性能相关(chrome专属)</span>'+ data.chromeData+'</li>\
 								</ul>\
 								<span class="m-feclose" id="j-fecheck-close">关闭</span>\
 								<span class="m_fb" id="j-fabu"></span>';
@@ -259,6 +297,7 @@
 			that.getJsMemory();
 			that.getCssJsNum();
 			that.getPageRedirect();
+			that.getChromeLoadTime();
 			that.getResult( that.data )
 		}
     }
