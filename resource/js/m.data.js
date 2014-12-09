@@ -486,7 +486,7 @@ define(function(require,exports,module){
             },
             {
                 "title" : "Page Check发布前检查工具",
-                "href"  : "http://fe.4399ued.com/tools/pagecheck/index.html",
+                "href"  : "http://pi.4399ued.com",
                 "author"  : [
                     {
                         createor:"0216.jpg"
