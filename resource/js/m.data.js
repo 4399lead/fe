@@ -493,6 +493,26 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "页面css属性检查",
+                "href"  : "http://debug.4399ued.com",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
+            },
+            {
+                "title" : "webFont字体库",
+                "href"  : "http://icon.4399ued.com",
+                "author"  : [
+                    {
+                        createor:"0588.jpg"
+
+                    }
+                ]
             }
 		],
 		mobile : [
