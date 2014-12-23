@@ -124,50 +124,10 @@ La.loadmorePage = {
 
 La.slidePage = {
     init : function(){
-        //demo 1
-        if($("#j-slide-center").find('img')[0]){
-            var pre_load_img = imgReady($("#j-slide-center").find('img')[0].src, function() {
-                var width,ratio;
-
-                width = 150;//this.width;
-                ratio = this.width / this.height;
-
-                $("#j-slide-center .slide-view").width(width);
-
-                new La.slide({
-                    items: "#j-slide-center .slide-view li",
-                    target: "#j-slide-center .slide-view ul",
-                    nav_target: "#j-slide-center .slide-nav",
-                    margin: 20,
-                    hasTap: false,
-                    autoplay : true,
-                    width: width,
-                    ratio : ratio
-                });
-            });
-        }
-
-        //demo 2
-        new La.slide({
-            items: "#j-slide .slide-view li",
-            target: "#j-slide .slide-view ul",
-            nav_target: "#j-slide .slide-nav",
-            resize : true,//设置resize 表示根据屏幕自适应
-            autoplay : true,
-            ratio : 4 / 3// 图片的宽高比例
-        });
-
-        //demo 3
-        new La.slide({
-            items: "#j-slide-fluid .slide-view li",
-            target: "#j-slide-fluid .slide-view ul",
-            margin: 20,
-            speed : 600,
-            delay : 2000,
-            hasTap: false,
-            autoplay : false,
-            scrollNum : "auto",
-            width: 100
+        new La.slide("#j-slide-fluid", {
+            width : 70,
+            margin : 4,
+            padding : 4
         });
     }
 }
@@ -221,5 +181,11 @@ La.slidePagerPage = {
                 }
             }
         });
+    }
+}
+
+La.carouselPage = {
+    init : function(){
+        new La.carousel("#j-carousel");
     }
 }

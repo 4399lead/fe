@@ -4,6 +4,7 @@
             speed : 400,
             active : 1,
             pager_item_cur : "ctl-active",
+            pageSlidable : true,
             setPageContent : function(direction){},
             onClickPagerItem : function(target){}
         };
@@ -86,6 +87,7 @@
             var _this = this,
                 options = this.options;
 
+            if(options.pageSlidable){
             (function(){
 
                 var is_touch_start = false;
@@ -104,8 +106,8 @@
 
                     is_touch_start = true;
                     margin_left = parseInt(_this.page_target.css("margin-left"));
-                    start_x = e.changedTouches[0].clientX;
-                    start_y = e.changedTouches[0].clientY;
+                        end_x = start_x = e.changedTouches[0].clientX;
+                        end_y = start_y = e.changedTouches[0].clientY;
                     delta_x = 0;
 
 
@@ -200,8 +202,8 @@
 
                     is_touch_start = true;
                     margin_left = parseInt(_this.pager_target.css("margin-left"));
-                    start_x = e.changedTouches[0].clientX;
-                    start_y = e.changedTouches[0].clientY;
+                    end_x = start_x = e.changedTouches[0].clientX;
+                    end_y = start_y = e.changedTouches[0].clientY;
                 }).unbind("touchmove").bind("touchmove", function(e){
                     var $this = $(this);
                     if (!is_touch_start){

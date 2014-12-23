@@ -1,0 +1,62 @@
+.la-carousel {
+	overflow: hidden;
+	width: 100%;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
+	-webkit-transform-style: preserve-3d;
+	position: relative;
+}
+
+.la-carousel ul {
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: translate3d(0%,0,0) scale3d(1,1,1);
+	transform: translate3d(0%,0,0) scale3d(1,1,1);
+	overflow: hidden;
+	float: left;
+}
+
+.la-carousel ul.ctl-animate {
+	-webkit-transition: all .2s;
+	transition: all .2s;
+}
+
+.la-carousel ul li {
+	float: left;
+	display: none;
+}
+
+.la-carousel ul li a {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.la-carousel ul li a img {
+	display: block;
+	width: 100%;
+}
+
+.la-carousel .indicator {
+	position: absolute;
+	bottom: 8px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 0;
+}
+
+.la-carousel .indicator a {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff;
+	margin: 0 3px;
+}
+
+.la-carousel .indicator a.ctl-active{
+	background-color:#ffa200;
+}
+

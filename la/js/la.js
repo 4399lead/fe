@@ -53,7 +53,13 @@ if(!window.RESOURCE_URL){
                     $(this).removeClass('ctl-touch');
                 });
 
-                light_app.loadingPage = $(light_app.loadingTmpl).appendTo("body")
+                light_app.loadingPage = $(light_app.loadingTmpl).appendTo("body");
+                light_app.loadingTimer = setInterval(function(){
+                    if(light_app.loaded){
+                        $(light_app.container).show();
+                        light_app.loadingPage.hide();
+                    }
+                }, 1000);
             }
         },
 
@@ -80,11 +86,8 @@ if(!window.RESOURCE_URL){
                 }
                 
                 preload_iframe.onload = function(){
-                    $(light_app.container).show();
-                    light_app.loadingPage.hide();
-                    setTimeout(function(){
-                        document.location.href = url;
-                    }, 100);
+                    light_app.loaded = true;
+                    document.location.href = url;
                 };
                 
                 if(window.SIMULATION_NETWORK === true){

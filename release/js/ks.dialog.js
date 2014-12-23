@@ -106,6 +106,8 @@
             "z-index" : dialog.options.zIndex - 1
         };
 
+        var maskConfig = $.extend(defaults, uiDialog.maskConfig);
+        
         if($(".ui-dialog-mask").length == 0){
             $("body").append($('<div class="ui-dialog-mask"></div>'));
             
@@ -118,7 +120,7 @@
             }
         }
 
-        $(".ui-dialog-mask").css(defaults).show();
+        $(".ui-dialog-mask").css(maskConfig).show();
 
         mask.push(dialog);
     }
