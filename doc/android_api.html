@@ -410,17 +410,13 @@
                     console.log(data);
                     for(var i = 0; i < j_download.length; i++){
                         item = j_download[i];
+                        cancel = item.parentNode.querySelector('.j-cancel');
                         packageName = item.getAttribute('data-packageName');
 
                         for(var k = 0; k < data.length; k++){
                             if( data[k].packageName == packageName){
                                 _this.renderItem(data[k].status, item);
                             }
-                        }
-
-                        //如果可以更新 将按钮文字改成更新
-                        if(status == _this.UPDATABLE){
-                            item.innerHTML = '更新';
                         }
 
                        
@@ -540,7 +536,7 @@
 
             renderItem : function(status, item){
                 var _this = this,
-                    cancel = item.parentNode.querySelector('.j-cancel');;
+                    cancel = item.parentNode.querySelector('.j-cancel');
 
                 item.setAttribute('data-status', status);
 
