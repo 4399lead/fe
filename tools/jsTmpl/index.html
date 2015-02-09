@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>html转换成js模板</title>
+</head>
+<body>
+	<div style="text-align:center;">
+		<textarea id="j-template" style="height:500px; width:500px;"></textarea>
+		<input type="button" value="转换" id="j-submit" />
+		<textarea id="j-result" style="height:500px; width:500px;"></textarea>
+	</div>
+</body>
+</html>
+<script>
+	var j_template = document.getElementById("j-template"),
+		j_submit = document.getElementById('j-submit'),
+		j_result = document.getElementById('j-result');
+
+	j_submit.addEventListener('click', function(){
+		var template = j_template.value;
+
+		template = template.replace(/'/gim, "\\'");
+		var lines = template.split(/\n/gim);
+		var new_lines = [];
+		for(var i = 0; i < lines.length; i++){
+			if (lines[i].trim() != ""){
+				new_lines.push(lines[i] + "\\");
+			}
+		}
+		template = new_lines.join("\n");
+		j_result.value = template;
+	});
+</script>

@@ -54,35 +54,28 @@
                     timeout : 20000,
                     url : Tools.template(options.loadmoreUrl, options.loadmoreParam),
                     success : function(json){
-                        //模拟异步请求的延迟
-                        if(window.SIMULATION_NETWORK === true){
-                            setTimeout(function(){
-                                var $updateTarget = $(options.updateTarget),
-                                    list = json.result[options.updateKey];
+                        var $updateTarget = $(options.updateTarget),
+                            list = json.result[options.updateKey];
 
-                                if (list.length > 0){
-                                    $updateTarget.append( baidu.template( options.updateTmpl , json.result) );
-                                }
+                        if (list.length > 0){
+                            $updateTarget.append( baidu.template( options.updateTmpl , json.result) );
+                        }
 
-                                if (json.result.page >= json.result.pagecount){
-                                    $this.removeClass("ctl-loading").addClass("ctl-nodata").html(options.nodataText);
-                                    if(options.autoload === true){
-                                        $(window).unbind("scroll.loadMore");
-                                    } 
-                                } else {
-                                    $this.attr("data-page", json.result.page + 1);
-                                    $this.removeClass("ctl-loading").html(options.loadmoreText);
-                                    if(options.autoload === true){
-                                        $this.hide();
-                                    }
-                                }
-
-                                if(typeof options.afterLoadmore === "function"){
-                                    options.afterLoadmore(json, $this);
-                                }
-                            }, window.SIMULATION_NETWORK_DELAY || 1000);
+                        if (json.result.page >= json.result.pagecount){
+                            $this.removeClass("ctl-loading").addClass("ctl-nodata").html(options.nodataText);
+                            if(options.autoload === true){
+                                $(window).unbind("scroll.loadMore");
+                            } 
                         } else {
-                            options.success(json);
+                            $this.attr("data-page", json.result.page + 1);
+                            $this.removeClass("ctl-loading").html(options.loadmoreText);
+                            if(options.autoload === true){
+                                $this.hide();
+                            }
+                        }
+
+                        if(typeof options.afterLoadmore === "function"){
+                            options.afterLoadmore(json, $this);
                         }
                     },
                     error : function(err){

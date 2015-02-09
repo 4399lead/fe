@@ -18,8 +18,6 @@
         
         var defaults = {
             target : $(""),
-            left : 10,
-            bottom : 20,
             relative : "",
             scrollTop : 10,
             btn : $(""),
@@ -44,6 +42,14 @@
             right = options.right,
             min_width = options.relative.width();
 
+        if(typeof left !== "number" && typeof right !== "number"){
+            options.left = 10;
+        }
+
+        if(typeof top !== "number" && typeof bottom !== "number"){
+            options.bottom = 20;
+        }
+
         if (options.btn.length == 0){
             options.btn = target;
         } else{
@@ -55,6 +61,9 @@
 
         var _this = this;
 
+        var style;
+        var min_width_cal;
+
         if (ie6){
             target.css("position", "absolute");
             var pre_scroll_left = $window.scrollLeft();
@@ -65,6 +74,14 @@
                 target.css({"top": (s + top)});
             } else {
                 target.css({"top": (h + s - bottom - height)});
+            }
+
+            if(typeof left === "number"){
+                left = parseInt(left);
+                min_width_cal = min_width + (width + left) * 2 + 21;
+            } else {
+                right = parseInt(right);
+                min_width_cal = min_width + (width + right) * 2 + 21;
             }
 
             $(window).bind("resize.gototop scroll.gototop", function(){
@@ -120,23 +137,42 @@
                         }
                     }
 
-                    if ($window.width() < min_width + (width + left)*2 + 21 ){
-                        target.css({
-                            left : "auto",
-                            right : left + $window.scrollLeft() - pre_scroll_left,
-                            "margin-left" : 0
-                        })
+                    if ($window.width() < min_width_cal ){
 
-                        target.css({right : left})
+                        if(typeof left === "number"){
+                            target.css({
+                                left : "auto",
+                                right : left + $window.scrollLeft() - pre_scroll_left,
+                                "margin-left" : 0
+                            })
 
-                        pre_scroll_left = $window.scrollLeft();
+                            target.css({right : left})
+
+                            pre_scroll_left = $window.scrollLeft();
+                        } else {
+                            target.css({
+                                left : right + $window.scrollLeft() ,
+                                right : "auto",
+                                "margin-left" : 0
+                            })
+                        }
 
                     } else {
-                        target.css({
-                            left : "50%",
-                            "margin-left" : min_width / 2 + left,
-                            right : "auto"
-                        })
+
+                        if(typeof left === "number"){
+                            target.css({
+                                left : "50%",
+                                "margin-left" : min_width / 2 + left,
+                                right : "auto"
+                            })
+
+                        } else {
+                            target.css({
+                                left : "50%",
+                                "margin-left" : -(min_width / 2 + width + right),
+                                right : "auto"
+                            })
+                        }
                     }
 
                     options.onscroll.call(this, $window.scrollTop(), $(document).height() - $window.height() - $window.scrollTop());
@@ -144,23 +180,30 @@
                 }, 200);
             });
         } else {
+            style = {
+                "position" : "fixed"
+            }
+
             if (typeof top === "number"){
-                target.css({
-                    "position" : "fixed",
-                    "top" : top,
-                    left : "50%",
-                    "margin-left" : min_width / 2 + left
-                });
+                style.top = top;
             } else {
                 bottom = parseInt(bottom);
-                left = parseInt(left);
-                target.css({
-                    "position" : "fixed",
-                    "bottom" : bottom,
-                    left : "50%",
-                    "margin-left" : min_width / 2 + left
-                });
+                style.bottom = bottom;
             }
+
+            style.left = "50%";
+
+            if(typeof left === "number"){
+                left = parseInt(left);
+                style["margin-left"] = min_width / 2 + left;
+                min_width_cal = min_width + (width + left) * 2 + 21;
+            } else {
+                right = parseInt(right);
+                style["margin-left"] = -(min_width / 2 + right + width);
+                min_width_cal = min_width + (width + right) * 2 + 21;
+            }
+
+            target.css(style);
 
             $(window).bind("resize.gototop scroll.gototop", function(e){
 
@@ -193,17 +236,34 @@
                     
                 }
 
-                if ($window.width() < min_width + (width + left)*2 + 21){
-                    target.css({
-                        left : "auto",
-                        right : left
-                    })
+                if ($window.width() < min_width_cal){
+                    if(typeof left === "number"){
+                        target.css({
+                            left : "auto",
+                            right : left
+                        });
+                    } else {
+                        target.css({
+                            left : right,
+                            "margin-left" : "0",
+                            right : "auto"
+                        });
+                    }
+                    
                 } else {
-                    target.css({
-                        left : "50%",
-                        "margin-left" : min_width / 2 + left,
-                        right : "auto"
-                    })
+                    if(typeof left === "number"){
+                        target.css({
+                            left : "50%",
+                            "margin-left" : min_width / 2 + left,
+                            right : "auto"
+                        })
+                    } else {
+                        target.css({
+                            left : "50%",
+                            "margin-left" : -(min_width / 2 + right + width),
+                            right : "auto"
+                        })
+                    }
                 }
 
                 options.onscroll.call(this, $window.scrollTop(), $(document).height() - $window.height() - $window.scrollTop());

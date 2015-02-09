@@ -513,6 +513,16 @@ define(function(require,exports,module){
 
                     }
                 ]
+            },
+            {
+                "title" : "js模板工具",
+                "href"  : "tools/jsTmpl/index.html",
+                "author"  : [
+                    {
+                        createor:"0876.jpg"
+
+                    }
+                ]
             }
 		],
 		mobile : [

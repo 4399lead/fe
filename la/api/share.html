@@ -13,7 +13,7 @@
         var env = {},
             navigator = window.navigator,
             userAgent = navigator.userAgent,
-            ios = userAgent.match(/(iPad|iPhone|iPod);.+OS\s([\d_\.]+)/),
+            ios = userAgent.match(/(iPad|iPhone|iPod)[^;]*;.+OS\s([\d_\.]+)/),
             android = userAgent.match(/(Android)\s([\d\.]+)/);
 
         env.isAndroid = (/android/gi).test(navigator.appVersion);
