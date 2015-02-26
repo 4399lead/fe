@@ -38,7 +38,6 @@
         });
     </pre>
     <ul>
-       
         <li><a href="m4399://launch?type=main" class="j-launch">启动客户端主界面</a></li>
         <li><a href="m4399://newsDetail?id=442521&newsId=442521" class="j-launch">启动客户端资讯界面</a></li>
         <li><a href="m4399://gamedetail?id=26444&gameId=26444" class="j-launch">启动客户端游戏详情页</a></li>
@@ -60,14 +59,27 @@
         <li><a href="m4399://circleDetail?id=43975" class="j-launch">跳到聊天版游戏圈</a></li>
     </ul>
 
+    <h1>浏览器和安卓客户端 2.2及以上 通信API</h1>
+    <ul>
+        <li><a href="m4399://launch?type=indexRecommend" class="j-launch">推荐</a></li>
+        <li><a href="m4399://launch?type=indexRank" class="j-launch">排行</a></li>
+        <li><a href="m4399://launch?type=indexNews" class="j-launch">资讯</a></li>
+        <li><a href="m4399://launch?type=indexZone" class="j-launch">动态</a></li>
+        <li><a href="m4399://launch?type=indexGameHub" class="j-launch">游戏圈</a></li>
+    </ul>
+
+
     <script type="text/javascript">
         var AndroidConnect = {
             initLaunch : function(){
                 var _this = this;
 
                 if( !this.frame ){
-                    this.frame = document.createElement("frame");
-                    this.frame.style.display = "none";
+                    this.frame = document.createElement("iframe");
+                    this.frame.height = "0";
+                    this.frame.width = "0";
+                    this.frame.frameBorder = 0;
+
                     document.body.appendChild(this.frame);
                     this.timeout = 1000;
 
@@ -75,12 +87,33 @@
                         clearTimeout(_this.timer);
                         _this.timer = null;
                     };
+
+                    this.frame.onload = function(){
+                        console.log("404 onload");
+                        if(_this.timer == null){
+                            return;
+                        }
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                        _this.launchFallback(new Date() - 0);
+                    }
+
+                    this.frame.onerror = function(){
+                        console.log("onerror");
+                        if(_this.timer == null){
+                            return;
+                        }
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                        _this.launchFallback(new Date() - 0);
+                    }
                 }
             },
 
             launchFallback : function(start_time){
                 var now_time = Date.now();
 
+                console.log(now_time - start_time , this.timeout + 200);
                 if (!start_time || now_time - start_time < this.timeout + 200){
                     this.fallback();
                 }
@@ -97,6 +130,7 @@
 
                 if( this.fallback ){
                     this.timer = setTimeout(function(){
+                        console.log("timeout");
                         _this.launchFallback(start_time);
                     }, _this.timeout);
                 }
@@ -105,13 +139,7 @@
             },
 
             redirect : function(){
-                var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
-
-                if(isChrome){
-                    document.location.href = this.launch_url;
-                } else {
-                    this.frame.setAttribute("src", this.launch_url);
-                }
+                this.frame.setAttribute("src", this.launch_url);
             }
         }
 
@@ -581,6 +609,6 @@
         });
     </script>
 
-    <h2>安卓客户端和webview 通信接口 <a href="http://note.youdao.com/share/?id=d8d784552be7467bc4d8891c35f96156&type=note">查看</a></h2>
+    <h2>安卓客户端和webview 通信接口 <a href="http://note.youdao.com/share/?id=603375ed7059fb4cec0b333078b82854&type=note">查看</a></h2>
 </body>
 </html>
