@@ -48,7 +48,12 @@
             var that = this;
 
             if(options.type === 'scroll'){
-                scrollImgs = imgs;
+                for( var i = 0, len = imgs.length; i < len; i++ ){
+                    if( $(imgs[i]).css("display") !== "none" ){
+                        scrollImgs.push(imgs[i]);
+                    }
+                }
+                
                 that.loadByScroll();
                 $(window).unbind("scroll.lazyImg resize.lazyImg").bind("scroll.lazyImg resize.lazyImg", function(){
                     that._timer = setTimeout(function(){that.loadByScroll()},200);
