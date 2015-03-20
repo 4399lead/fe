@@ -64,8 +64,7 @@ a:hover{text-decoration:underline;}
 
 body{font-family:"microsoft yahei";}
 
-.support .container{height: 100%; width: 100%; overflow: hidden; position: absolute; background: #dc2929; top: 0; z-index: 1;background:  #dc2929; -webkit-background-size:320px 576px;}
-
+.support .container{height: 100%; width: 100%; overflow: hidden; position: absolute; background: #dc2929; top: 0; z-index: 1;background:  #dc2929;}
 .pagenav{}
 .pagenav ul{ position: absolute; right: 10px; bottom : 5px; z-index: 99; opacity: .5;}
 .pagenav ul li{ height: 10px; width: 10px; background: #fff; margin: 5px 0; border-radius: 5px; overflow: hidden;}
@@ -88,11 +87,17 @@ body{font-family:"microsoft yahei";}
 }
 
 .support .pageview{height: 100%; width: 100%; position: absolute; z-index: 1;-webkit-transition-property:-webkit-transform;-webkit-transition-timing-function:cubic-bezier(0.86,0,0.07,1);-webkit-transition-duration:1s; }
-.unsupport .pageview{height: 700px; position: relative;}
 .support .pageview.prev{z-index: 2;-webkit-transform:translateY(-100%);-webkit-transition-delay:.3s;}
 .support .pageview.next{z-index: 2;-webkit-transform:translateY(100%);-webkit-transition-delay:.3s;}
 .support .pageview.active{z-index: 3;-webkit-transform:translateY(0%);-webkit-transition-delay:.3s;}
 .support .pageview.slient{-webkit-transition-delay:0s;;-webkit-transition-duration:0s; }
+
+.unsupport .container{height: 100%; width: 100%; overflow: hidden;position: absolute;background: #dc2929;background:  #dc2929;}
+.unsupport .pageview{height: 100%; width: 100%;position: absolute;z-index: 1;}
+.unsupport .pageview.prev{z-index: 2; top: -100%;}
+.unsupport .pageview.next{z-index: 2; top: 100%;}
+.unsupport .pageview.active{z-index: 3; top: 0;}
+.unsupport .pageview.slient{}
 
 .pageview_1{background: #dc2929;}
 .pageview_2{background: #D2D249;}
@@ -101,7 +106,7 @@ body{font-family:"microsoft yahei";}
 .pageview_5{background: #4848F7;}
 
 .pageview .content{ position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -60px; width: 120px; height: 300px;}
-.pageview .content li{width: 40px;height: 40px;perspective: 800px;float: left;margin: 10px;background: #fff; border-radius: 20px;}
+.pageview .content li{width: 40px;height: 40px;perspective: 800px;float: left;margin: 10px;background: #fff; border-radius: 20px; display: inline;}
 
 .support .pageview_1 .content li{-webkit-transition:-webkit-transform .6s cubic-bezier(0.86,0,0.07,1);}
 .support .pageview_1 .content li:nth-child(10n+1){-webkit-transform:translate(30px, 120px);}

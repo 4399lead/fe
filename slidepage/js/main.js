@@ -7,7 +7,9 @@ var Effect = (function(){
 	var pageActived;
 	var $pagenav;
 	var $pageview;
+	var $container;
 	var loop;
+	var minHeight = 500;
 
 	function support(){
 		isSupport = true; 
@@ -133,57 +135,32 @@ var Effect = (function(){
 		}, 2000);
 	}
 
+	var isResizing = false;
+	var winHeight;
+
+	function onresize(){
+		if(isResizing) return;
+		isResizing = true;
+
+		winHeight = $(window).height();
+
+		$container.height(winHeight);
+		$pageview.height(winHeight);
+
+		isResizing = false;
+	}
+
 	return {
 		isSupport : isSupport,
 
 		init : function(options){
 			$pagenav = $(options.pagenav);
 			$pageview = $(options.pageview);
+			$container = $(options.container);
+
 			loop = options.loop === true ? true : false;
 
 			if(isSupport){
-
-				$(document.body).bind("mousewheel DOMMouseScroll", function(e){
-
-					if(isSupport){
-						e.preventDefault(); 
-						e.stopPropagation(); 
-					}
-
-					if(isAnimating === true){ 
-						return; 
-					} 
-
-					isAnimating = true;
-
-					var evt = fixMousewheel(e);
-
-					pageActived = pageActive;
-
-					if(evt.delta >= 0){
-						pageActive--;
-					} else {
-						pageActive++;
-					}
-
-					if(pageActive > pageCount){
-						if(loop){
-							pageActive = 1;
-						} else {
-							pageActive = pageCount;
-						}
-					}
-
-					if(pageActive < 1){
-						if(loop){
-							pageActive = pageCount;
-						} else {
-							pageActive = 1;
-						}
-					}
-
-					pageChange();
-				});
 
 				$(document.body).bind("swipeUp swipeLeft", function(e){
 					if(isSupport){
@@ -233,59 +210,109 @@ var Effect = (function(){
 
 					pageChange();
 	            });
-            
-				$pagenav.find("li").bind("click", function(){
-
-					if(isAnimating === true){ 
-						return; 
-					} 
-
-					isAnimating = true;
-
-					pageActive = $(this).index() + 1;
-					pageActived = $pagenav.find(".active").index() + 1;
-
-					pageChange();
-				});
-
-				$pagenav.find(".prev").bind("click", function(){
-
-					if(isAnimating === true){ 
-						return; 
-					} 
-
-					isAnimating = true;
-
-					pageActived = pageActive
-					pageActive --;
-
-					pageChange();
-				});
-
-				$pagenav.find(".next").bind("click", function(){
-
-					if(isAnimating === true){ 
-						return; 
-					} 
-
-					isAnimating = true;
-
-					pageActived = pageActive
-					pageActive ++;
-
-					pageChange();
-				});
-
-				checkPager();
 
 				document.addEventListener("touchmove", function(e){
 					e.preventDefault();
 				});
 
-				$pageview.eq(0).addClass("active");
+				
 			} else {
 				$("body").removeClass("support").addClass("unsupport");
+
+				onresize();
+
+				$(window).bind("resize", function(){
+					onresize();
+				});
 			}
+
+			$(document.body).bind("mousewheel DOMMouseScroll", function(e){
+
+				if(isSupport){
+					e.preventDefault(); 
+					e.stopPropagation(); 
+				}
+
+				if(isAnimating === true){ 
+					return; 
+				} 
+
+				isAnimating = true;
+
+				var evt = fixMousewheel(e);
+
+				pageActived = pageActive;
+
+				if(evt.delta >= 0){
+					pageActive--;
+				} else {
+					pageActive++;
+				}
+
+				if(pageActive > pageCount){
+					if(loop){
+						pageActive = 1;
+					} else {
+						pageActive = pageCount;
+					}
+				}
+
+				if(pageActive < 1){
+					if(loop){
+						pageActive = pageCount;
+					} else {
+						pageActive = 1;
+					}
+				}
+
+				pageChange();
+			});
+
+			$pagenav.find("li").bind("click", function(){
+
+				if(isAnimating === true){ 
+					return; 
+				} 
+
+				isAnimating = true;
+
+				pageActive = $(this).index() + 1;
+				pageActived = $pagenav.find(".active").index() + 1;
+
+				pageChange();
+			});
+
+			$pagenav.find(".prev").bind("click", function(){
+
+				if(isAnimating === true){ 
+					return; 
+				} 
+
+				isAnimating = true;
+
+				pageActived = pageActive
+				pageActive --;
+
+				pageChange();
+			});
+
+			$pagenav.find(".next").bind("click", function(){
+
+				if(isAnimating === true){ 
+					return; 
+				} 
+
+				isAnimating = true;
+
+				pageActived = pageActive
+				pageActive ++;
+
+				pageChange();
+			});
+
+			checkPager();
+
+			$pageview.eq(0).addClass("active");
 		}
 	}
 })();
@@ -293,6 +320,7 @@ var Effect = (function(){
 $(function(){
 	Effect.init({
 		pageview : ".pageview",
-		pagenav : ".pagenav"
+		pagenav : ".pagenav",
+		container : ".container"
 	});
 })
