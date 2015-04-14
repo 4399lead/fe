@@ -61,6 +61,7 @@
             per : 5,//每页显示的记录
             count : 0,//记录总计
 			more : 5,
+			pageCount : -1,
 			showMore : false,
 			showFirstAndLastNum : false,
             onchange : function(){}//切换页数回调函数}
@@ -68,7 +69,11 @@
 
 
         this.options = options = $.extend(defaults, options);
-        options.total = Math.ceil(options.count / options.per);
+        if(options.pageCount == -1){
+			options.total = Math.ceil(options.count / options.per);
+		} else {
+			options.total = options.pageCount;
+		}
         this.init();
     }
 

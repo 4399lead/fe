@@ -168,7 +168,7 @@ define(function(require,exports,module){
         js:[
         	{
                 "title" : "页内定位组件",
-                "href"   : "resource/plugins/ks.scrollTo/index.html",
+                "href"   : "resource/plugins/ks.positionTo/index.html",
                 "desc"   : "本页面模块定位",
                 "curTag"  : "scrollTo",
                 "author"  : [

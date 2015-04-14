@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../api.css" />
+    <title>活动转盘  ACTIVITY.Turntable</title>
+</head>
+
+<body onload="demoLoaded()">
+	<div class="api_wrap">
+        <h1 class="api_title">活动转盘 ACTIVITY.Turntable</h1>
+        <table class="api_table">
+            <caption>构造函数参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>prizeLength</th>
+                    <td>转盘内奖品总数</td>
+                </tr>
+                <tr>
+                    <th>minRunTime</th>
+                    <td>转盘至少转的时间 单位毫秒</td>
+                </tr>
+                <tr>
+                    <th>speed</th>
+                    <td>转盘初始速度</td>
+                </tr>
+                 <tr>
+                    <th>minSpeed</th>
+                    <td>转盘最慢的速度</td>
+                </tr>
+                <tr>
+                    <th>maxSpeed</th>
+                    <td>转盘最快速度</td>
+                </tr>
+                <tr>
+                    <th>accelerat</th>
+                    <td>转盘的加速时的加速度</td>
+                </tr>
+                <tr>
+                    <th>decelerate</th>
+                    <td>转盘减速时的加速度</td>
+                </tr>
+                <tr>
+                    <th>direction</th>
+                    <td>1 顺时针 0 逆时针</td>
+                </tr>
+                <tr>
+                    <th>onUpdate</th>
+                    <td>转盘更新回调，用于控制转盘当前转到那一个的回调</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="api_table">
+            <caption>公共方法列表</caption>
+            <thead>
+                <tr>
+
+                    <th width="200">方法名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>start</th>
+                    <td>启动转盘开始转</td>
+                </tr>
+                <tr>
+                    <th>stop([index, onstop])</th>
+                    <td>
+                        <dl>
+                            <dt>转盘停止方法</dt>
+                            <dd>
+                                <ul>
+                                    <li>@param index[int] 停止到奖品列表的索引值</li>
+                                    <li>-1 表示不停止到具体的一个，一般用于没有中奖时，并且转盘里面没有对应的可以停止的位置</li>
+                                </ul>
+                            </dd>
+                            <dd>
+                                <ul>
+                                    <li>@param onstop[function] 停止后的回调函数，停止后是会慢慢滚动具体的一个</li>
+                                    <li>@param onstop[bool] 当传 true 时 强制马上停止转盘，一般用于没有抽奖成功的情况</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <th>reset</th>
+                    <td>重置转盘的参数 参数跟构造函数一致</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+        <h2 class="api_subtitle">单次抽奖转盘demo</h2>
+        <div class="api_form">
+            <label>选择抽奖返回的数据 <select id="ajaxLotteryData"></select></label>
+        </div>
+        <script type="text/javascript">
+            function initDemo(){
+                var LOTTERY_DATA = window["demoFrame"].LOTTERY_DATA;
+                var TurntableView = window["demoFrame"].TurntableView;
+
+                var ajaxLotteryData = [
+                    {
+                        title : "未登录",
+                        data : {
+                            "status": LOTTERY_DATA.UNLOGIN,
+                            "msg": "未登录"
+                        }
+                    },
+                    {
+                        title : "活动未开始",
+                        data : {
+                            "status": LOTTERY_DATA.NOTSTART,
+                            "msg": "活动未开始"
+                        }
+                    },
+                    {
+                        title : "活动已结束",
+                        data : {
+                            "status": LOTTERY_DATA.GAMEOVER,
+                            "msg": "活动已结束"
+                        }
+                    },
+                    {
+                        title : "没有抽奖机会",
+                        data : {
+                            "status": LOTTERY_DATA.NOCHANCE,
+                            "msg": "没有抽奖机会"
+                        }
+                    },
+                    {
+                        title : "抽奖成功-未中奖",
+                        data : { 
+                            "status": LOTTERY_DATA.UNAWARD, 
+                            "msg": "未中奖", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20
+                            } 
+                        }
+                    }
+                ];
+
+                for(var i = 0, prize; prize = LOTTERY_DATA.prizeList[i], i < LOTTERY_DATA.prizeList.length; i++){
+                    ajaxLotteryData.push({
+                        title : "抽奖成功-" +  prize.title,
+                        data : {
+                            "status": LOTTERY_DATA.AWARD, 
+                            "msg": "中奖了", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20, 
+                                "prize":  { 
+                                    "prizeid": prize.prizeid, 
+                                    "prizeName": prize.title, 
+                                    "prizeImg": prize.img
+                                } 
+                            } 
+                        } 
+                    });
+                }
+
+                new DataTest({
+                    data : {
+                        "ajaxLotteryData" : ajaxLotteryData
+                    },
+                    iframe : "demoFrame",
+                    maxDelay : 2000,
+                    minDelay : 100
+                });
+
+                TurntableView.init();
+            }
+        </script>
+        <iframe src="demo.html" height="600" width="100%" frameborder="0" scrolling="no" name="demoFrame"></iframe>
+
+        <h2 class="api_subtitle">多次抽奖转盘demo</h2>
+        <div class="api_form">
+            <label>选择抽奖返回的数据 <select id="ajaxMultityLotteryData"></select></label>
+        </div>
+        <script type="text/javascript">
+            function initDemo1(){
+                var LOTTERY_DATA = window["demoFrame1"].LOTTERY_DATA;
+                var TurntableView = window["demoFrame1"].TurntableView;
+
+                //多次抽奖的模拟数据
+                var ajaxMultityLotteryData = [
+                    {
+                        title : "未登录",
+                        data : {
+                            "status": LOTTERY_DATA.UNLOGIN,
+                            "msg": "未登录"
+                        }
+                    },
+                    {
+                        title : "活动未开始",
+                        data : {
+                            "status": LOTTERY_DATA.NOTSTART,
+                            "msg": "活动未开始"
+                        }
+                    },
+                    {
+                        title : "活动已结束",
+                        data : {
+                            "status": LOTTERY_DATA.GAMEOVER,
+                            "msg": "活动已结束"
+                        }
+                    },
+                    {
+                        title : "没有抽奖机会",
+                        data : {
+                            "status": LOTTERY_DATA.NOCHANCE,
+                            "msg": "没有抽奖机会"
+                        }
+                    },
+                    {
+                        title : "抽奖成功-未中奖",
+                        data : { 
+                            "status": LOTTERY_DATA.UNAWARD, 
+                            "msg": "未中奖", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20, 
+                                "prize":  []
+                            } 
+                        }
+                    },
+                    {
+                        title : "抽奖成功-中奖了",
+                        data : {
+                            "status": LOTTERY_DATA.AWARD, 
+                            "msg": "中奖了", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20, 
+                                "prize":  [ 
+                                    {
+                                        "prizeid": LOTTERY_DATA.prizeList[0].prizeid, 
+                                        "prizeName": LOTTERY_DATA.prizeList[0].title, 
+                                        "prizeImg": LOTTERY_DATA.prizeList[0].img
+                                    },
+                                    {
+                                        "prizeid": LOTTERY_DATA.prizeList[1].prizeid, 
+                                        "prizeName": LOTTERY_DATA.prizeList[1].title, 
+                                        "prizeImg": LOTTERY_DATA.prizeList[1].img
+                                    }
+                                ]
+                            } 
+                        } 
+                    }
+                ];
+
+                new DataTest({
+                    data : {
+                        "ajaxMultityLotteryData" : ajaxMultityLotteryData
+                    },
+                    iframe : "demoFrame1",
+                    maxDelay : 2000,
+                    minDelay : 100
+                });
+
+                TurntableView.init();
+            }
+        </script>
+        <iframe src="demo1.html" height="600" width="100%" frameborder="0" scrolling="no" name="demoFrame1"></iframe>
+    </div>
+    <script src="../lib/jquery.min.1.6.1.js" charset="utf-8"></script> 
+    <script src="../lib/baiduTemplate.js" charset="utf-8"></script>
+    <script src="../lib/datatest.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        function demoLoaded(){
+            initDemo();
+            initDemo1();
+        }
+    </script>
+</body>
+</html>

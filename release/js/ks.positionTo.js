@@ -2,7 +2,7 @@
  * ks.scrollTo.js
  */
 ;(function(factory) {
-    // CMD/SeaJS
+    // CMD/SeaJS 
     if(typeof define === "function") {
         define(factory);
     }
@@ -13,7 +13,7 @@
 
 }(function(require, exports, module) {
 
-	jQuery.fn.scrollTo=function(animate){
+	jQuery.fn.positionTo=function(animate){
         $.each($(this),function(index,item){
             var target = $(this).attr("data-target");
             $(item).bind("click",function(){
