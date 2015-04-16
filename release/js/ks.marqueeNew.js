@@ -21,12 +21,22 @@
 				target : "",//[string:selector] 滚动对象,一般为ul
 				items : "", //[string:selector] 滚动的项
 				speed : 1,//[int:px] 滚动速度
+				leftbtn : "",//[string:selector] 左移按钮
+				rightbtn : "",//[string:selector] 右移按钮
+				movetime : 1000,//[int:ms] 移动速度
+				movelength : 100,//[int:px] 每次移动的长度
 				direction : ctor.LEFT//[enum:marqueeNew.LEFT|marqueeNew.RIGHT|marqueeNew.UP|marqueeNew.DOWN] 滚动方向
 			}
 				
 			options = that.options = $.extend(defaults, options);
 			that.target = $(options.target);
 			that.items = $(options.items);
+			
+			if(options.direction == ctor.LEFT || options.direction == ctor.RIGHT){
+				options.mode = ctor.HORIZONTAL;
+			} else {
+				options.mode = ctor.VERTICAL;
+			}
 
 			if(options.mode == ctor.HORIZONTAL){
 				that.offset = that.items.length * that.items.outerWidth(true);
@@ -35,17 +45,12 @@
 			}
 
 			if(that.offset <= that.target.width()){
-				return that;
+				//return that;
 			}
 
 			that.items.clone(true).appendTo(that.target);
 			that.items = $(options.items);
 
-			if(options.direction == ctor.LEFT || options.direction == ctor.RIGHT){
-				options.mode = ctor.HORIZONTAL;
-			} else {
-				options.mode = ctor.VERTICAL;
-			}
 			//水平方向
 			if(options.mode == ctor.HORIZONTAL){
 				that.target.css({
@@ -68,6 +73,43 @@
 
 			that.bind();
 			that.start();
+
+			var $leftbtn = $(options.leftbtn),
+				$rightbtn = $(options.rightbtn),
+				moveStatus = 1;
+			function move(direction){
+				if(moveStatus){
+					var curMarginleft;
+					moveStatus = 0;
+					if(direction == 1){
+						curMarginleft = parseInt(that.target.css("margin-left"))-options.movelength;
+					}else if(direction == 2){
+						curMarginleft = parseInt(that.target.css("margin-left"))+options.movelength;
+						if(curMarginleft>0){
+							var newMarginleft = -that.offset+parseInt(that.target.css("margin-left"));
+							that.target.css("margin-left",newMarginleft);
+							curMarginleft = parseInt(that.target.css("margin-left"))+options.movelength;
+						}
+					}
+					that.stop();
+					that.target.animate({marginLeft : curMarginleft},options.movetime);
+					setTimeout(function(){
+						that.start();
+						moveStatus = 1;
+					},options.movetime+1)
+				}
+				
+			}
+
+			$leftbtn.bind("click",function(){;
+				move(1);
+				return false;
+			});
+
+			$rightbtn.bind("click",function(){;
+				move(2);
+				return false;
+			});
 		}
 		
 		ctor.prototype = {
@@ -173,6 +215,7 @@
 		//1表示竖直方向滚动 0表示水平方向滚动
 		ctor.H = ctor.HORIZONTAL = 0;
 		ctor.V = ctor.VERTICAL = 1;
+
 
 		if( {}.toString.call(module) == '[object Object]' ){
 	    	module.exports = ctor;
