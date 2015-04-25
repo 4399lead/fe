@@ -196,7 +196,7 @@ body{width: 100%; overflow-x: hidden;}
 
 /*la-list*/
 	.la-list{
-
+		overflow: hidden;
 	}
 
 	.la-list li{

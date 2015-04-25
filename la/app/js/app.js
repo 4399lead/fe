@@ -118,6 +118,12 @@
         	//绑定链接预加载页面
             $("body").delegate(app.link, "click", function(e){
                 e.preventDefault();
+                
+                console.log("1");
+                if( $(this).attr("data-async") ){
+                    return;
+                }
+
                 app.go(this.href, $(this).attr("data-behavior") || "replace");
             });
 
@@ -145,7 +151,63 @@
             app.myScroll = new IScroll("#" + pagename + 'Page .la-content', {
                 scrollX: false,
                 scrollY: true,
+                probeType: 3,
                 click: true
+            });
+
+            app.myScroll.on("scroll", function(){
+                if(this.y - this.maxScrollY < 100){
+                    app.loadmore({
+                        loadmoreBtn : "#j-loadmore",
+                        updateTarget : '#j-list',
+                    });
+                }
+            });
+        },
+
+        loadmore : function(options){
+            var app = this;
+
+            var defaults = {
+                loadmoreText : "点击加载更多",
+                loadingText : "正在加载更多数据...",
+                nodataText : "没有更多啦，去刷其他页面吧~",
+                errorText : '亲,你网络不给力哦~ 重新载入'
+            }
+
+            options = $.extend(defaults, options);
+
+            var $this = $(options.loadmoreBtn),
+                page_num = parseInt( $this.attr("data-page") ) || 2;
+
+            console.log("page_num:",page_num);
+            if ( $this.hasClass("ctl-nodata") || $this.hasClass("ctl-loading") ){
+                return false;
+            }
+
+            $this.removeClass("ctl-error").addClass("ctl-loading").html(options.loadingText);
+
+            $.ajax( {
+                type : "GET",
+                dataType : "html",
+                timeout : 20000,
+                url : 'ajax/index-more.html?p=' + page_num,
+                success : function(data){
+                    
+                    $(options.updateTarget).append(data);
+                    app.myScroll.refresh();
+
+                    if (data.split("<li>").length < 11){
+                        $this.removeClass("ctl-loading").addClass("ctl-nodata").html(options.nodataText);
+                    } else {
+                        $this.attr("data-page", page_num + 1);
+                        $this.removeClass("ctl-loading").html("点击加载更多");
+                    }
+                },
+                error : function(err){
+                    console.log(err);
+                    $this.removeClass("ctl-loading ctl-nodata").addClass('ctl-error').html(options.errorText);
+                },
             });
         },
 
@@ -174,17 +236,17 @@
                 app.history.push(nextState);
                 app.cache[state.pagename] = $("#" + state.pagename + 'Page');
                 app.forward(state, nextState);
-                app.setGuid(guid + 1)
+                app.setGuid(guid + 1);
                 nextState.guid = guid;
                 window.history.pushState(nextState, "", nextState.url);
                 return;
             }
 
             if(behavior == "replace"){
-                app.history.pop();
+                app.history.length = 0;
                 app.history.push(nextState);
                 app.replace(state, nextState);
-                app.setGuid(guid + 1)
+                app.setGuid(guid + 1);
                 nextState.guid = guid;
                 window.history.pushState(nextState, "", nextState.url);
                 return;
@@ -194,7 +256,6 @@
                 app.history.pop();
                 nextState = app.history[app.history.length - 1];
                 app.backward(state, nextState);
-                //app.setGuid(guid + 1)
                 nextState.guid = guid;
                 window.history.pushState(nextState, "", nextState.url);
             }
@@ -233,11 +294,7 @@
         	AppHelp.get(nextState.ajaxurl, function(result){
                 $pageToActive.html(result);
 
-                app.myScroll = new IScroll("#" + nextState.pagename + 'Page .la-content', {
-                    scrollX: false,
-                    scrollY: true,
-                    click: true
-                });
+                app.iScroll(nextState.pagename);
 
                 isLoading = false;            	
             });
@@ -288,11 +345,7 @@
             	AppHelp.get(nextState.ajaxurl, function(result){
                     $pageToActive.html(result);
                 	
-                    app.myScroll = new IScroll("#" + nextState.pagename + 'Page .la-content', {
-                        scrollX: false,
-                        scrollY: true,
-                        click: true
-                    });
+                    app.iScroll(nextState.pagename);
 
                     isLoading = false;
                 });
@@ -324,11 +377,7 @@
                 
         		$pageToActive.html(result);
 
-        		app.myScroll = new IScroll("#" + nextState.pagename + 'Page .la-content', {
-                    scrollX: false,
-                    scrollY: true,
-                    click: true
-                });
+        		app.iScroll(nextState.pagename);
 
                 isLoading = false;
             });

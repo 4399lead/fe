@@ -163,7 +163,19 @@ define(function(require,exports,module){
 
                         }
                     ]
-                }
+                },
+            {
+                "title":"多行垂直居中",
+                "href" : "m.mutiline-vertical.html",
+                "desc"  : "定高多行垂直居中",
+                "curTag" : "mutiline-vertical",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
+            }
             ],
         js:[
         	{

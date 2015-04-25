@@ -17,7 +17,7 @@ La.history = (function(){
             this.unique = false;
         } else {
             this.unique = true;
-            this.verify_field = unique || "";
+            this.verify_field = (typeof unique === 'string' && unique) ? unique : "";
         }
     }
 
