@@ -19,7 +19,7 @@
         env.isAndroid = (/android/gi).test(navigator.appVersion);
         env.isIDevice = (/iphone|ipad|ipod/gi).test(navigator.appVersion);
         env.isWebkit = /WebKit\/[\d.]+/i.test(userAgent);
-        env.isSafari = ios ? (navigator.standalone ? isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
+        env.isSafari = ios ? (navigator.standalone ? env.isWebkit : (/Safari/i.test(userAgent) && !/CriOS/i.test(userAgent) && !/MQQBrowser/i.test(userAgent))) : false;
 
         if (ios) {
             env.device = ios[1];
