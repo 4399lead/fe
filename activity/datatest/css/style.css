@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "utf-8";
 /* CSS Document 
 Date:		2014/12/22
@@ -113,4 +114,121 @@ a:active, a:focus, input{-moz-outline:none;outline:none;ie-dummy:expression(this
 .lottery_btn .gamestart2{background-position: 0 -290px; margin-top:4px; width: 204px;  height: 100px;}
 .lottery_btn .gamestart2:hover{background-position:-205px -290px;}
 .lottery_btn .recharge{background-position: 0 -390px; float: right; margin-top:4px; width: 204px;  height: 100px;}
+=======
+@charset "utf-8";
+/* CSS Document 
+Date:		2014/12/22
+Author:		小芳
+Update:     
+*/
+
+
+/* CSS reset */
+html{color:#000;background:#0e1118;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {margin:0;padding:0;}
+input,select,img{ vertical-align:middle}
+input,select{ outline:none}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
+audio,canvas,video {display: inline-block;*display: inline;*zoom: 1;}
+body,button,input,select,textarea{font:12px/1.5 tahoma,arial,宋体,sans-serif}
+input,select,textarea{font-size:100%;}
+table{border-collapse:collapse;border-spacing:0;}
+th{text-align:inherit;}
+fieldset,img{border:0;}
+iframe{display:block;}
+abbr,acronym{border:0;font-variant:normal;}
+del {text-decoration:line-through;}
+address,caption,cite,code,dfn,em,th,var {font-style:normal;font-weight:500;}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe{ display:block;}
+
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:500;}
+q:before,q:after {content:'';}
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+a:hover {text-decoration:underline;}
+ins,a {text-decoration:none;}
+
+/*Correct block display not defined in IE6/7/8/9 & ff3,IE需要在js中createElement(tag)*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary { display: block;}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,canvas,video { display: inline-block;*display: inline;*zoom: 1;}
+
+/* global */
+body{ background:#0e1118; }
+.wrapper{ margin:0 auto;text-align:left;width:960px; }
+td{ font-size:12px; line-height:160%;}
+.txthide{ text-indent:-999em;overflow:hidden; line-height:0; font-size:0}
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix {zoom:1; /* for IE6 IE7 */}
+.hidden {display:none;}
+.left,.right {display:inline; zoom:1;}
+.left {float:left;}
+.right {float:right;} 
+
+a:active, a:focus, input{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFocus=true);}
+
+
+/* entity_gamebox */
+.entity_gamebox{position:relative; zoom:1; float: left; width: 620px; height:416px; overflow: hidden; }
+
+/* entity_lottery */
+.entity_lottery{ width:620px; height:416px; position:relative; zoom:1;}
+.entity_lottery li{ width:100px; height:80px; position:absolute; z-index:10; overflow: hidden; text-align: center;}
+.entity_lottery li .img_box{ width: 100px; height: 80px; overflow: hidden; }
+.entity_lottery li img{display: block; width: 200px; height: 80px;}
+.entity_lottery li .txt{color:#ffb525; position: absolute; bottom:0; left:0; width: 100px;height: 20px; font: 500 12px/20px "simsun"; color: #c88268 }
+
+.entity_lottery .item1{ left:0; top:0;}
+.entity_lottery .item2{ left:104px; top:0;}
+.entity_lottery .item3{ left:208px; top:0;}
+.entity_lottery .item4{ left:312px; top:0;}
+.entity_lottery .item5{ left:416px; top:0;}
+.entity_lottery .item6{ left:520px; top:0px;}
+.entity_lottery .item7{ right:0; top:84px;}
+.entity_lottery .item8{ right:0; top:168px;}
+.entity_lottery .item9{ right:0; top:252px;}
+.entity_lottery .item10{ right:0; top:336px;}
+.entity_lottery .item11{ left:416px; top:336px;}
+.entity_lottery .item12{ left:312px; top:336px;}
+.entity_lottery .item13{ left:208px; top:336px;}
+.entity_lottery .item14{ left:104px; top:336px;}
+.entity_lottery .item15{ left:0; top:336px;}
+.entity_lottery .item16{ left:0; top:252px;}
+.entity_lottery .item17{ left:0; top:168px;}
+.entity_lottery .item18{ left:0; top:84px;}
+
+/* current status*/
+.entity_lottery_cur1 .item1 img,
+.entity_lottery_cur2 .item2 img,
+.entity_lottery_cur3 .item3 img,
+.entity_lottery_cur4 .item4 img,
+.entity_lottery_cur5 .item5 img,
+.entity_lottery_cur6 .item6 img,
+.entity_lottery_cur7 .item7 img,
+.entity_lottery_cur8 .item8 img,
+.entity_lottery_cur9 .item9 img,
+.entity_lottery_cur10 .item10 img,
+.entity_lottery_cur11 .item11 img,
+.entity_lottery_cur12 .item12 img,
+.entity_lottery_cur13 .item13 img,
+.entity_lottery_cur14 .item14 img,
+.entity_lottery_cur15 .item15 img,
+.entity_lottery_cur16 .item16 img,
+.entity_lottery_cur17 .item17 img,
+.entity_lottery_cur18 .item18 img{ margin-left:-100px; }
+
+.lottery_btn { position: absolute;left:50%;top:84px; width: 412px; margin-left:-206px; z-index: 10;}
+.lottery_btn a{ background: url(../images/specialbtn.png) no-repeat; float: left;*display: inline; *zoom:1; font-size: 0; line-height: 0; overflow: hidden;}
+.lottery_btn .gamestart1{background-position: 0 0;  width: 412px; height: 144px; display: block; position: relative; zoom:1;}
+.lottery_btn .gamestart1:hover{background-position:0 -145px; text-decoration: none; color: #fff}
+.lottery_btn .gamestart1 .ctip{ position: absolute; top:25px; left: 95px; width:234px; height: 20px; font: 500 12px/20px "simsun"; color: #fff; text-align: center; cursor: pointer; }
+.lottery_btn .gamestart2{background-position: 0 -290px; margin-top:4px; width: 204px;  height: 100px;}
+.lottery_btn .gamestart2:hover{background-position:-205px -290px;}
+.lottery_btn .recharge{background-position: 0 -390px; float: right; margin-top:4px; width: 204px;  height: 100px;}
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0
 .lottery_btn .recharge:hover{background-position:-205px -390px;}

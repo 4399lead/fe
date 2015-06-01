@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -189,4 +190,197 @@
     </script>
     <h2>安卓客户端和webview 通信接口 <a href="http://t2.a.4399.cn/mobile/activity-info.html?id=305">查看</a></h2>
 </body>
+=======
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta content="email=no,telephone=no" name="format-detection"/>
+    <title>4399手机游戏</title>
+</head>
+<style type="text/css">
+    li{font-size: 20px; line-height: 32px;}
+</style>
+<body>
+    <h1>浏览器和安卓客户端 1.4.1及以上 通信API</h1>
+
+    <h2>请把地址复制在文本框</h2>
+    <textarea id="j-url"></textarea>
+    <button id="j-run">运行</button>
+
+    <script type="text/javascript">
+        document.getElementById("j-run").onclick = function(){
+            var url = document.getElementById("j-url").value.trim();
+
+            AndroidConnect.launch(url, function(){
+                alert('启动客户端失败回调');
+            });
+
+            return false;
+        }
+    </script>
+
+    <p>利用自定义协议m4399://跟客户端通信</p>
+    <pre>
+        node.addEventListener("click", function(e){
+            AndroidConnect.launch(url, function(){
+                alert('启动客户端失败回调');
+            });
+            e.preventDefault();
+        });
+    </pre>
+    <ul>
+        <li><a href="m4399://launch?type=main" class="j-launch">启动客户端主界面</a></li>
+        <li><a href="m4399://newsDetail?id=442521&newsId=442521" class="j-launch">启动客户端资讯界面</a></li>
+        <li><a href="m4399://gamedetail?id=26444&gameId=26444" class="j-launch">启动客户端游戏详情页</a></li>
+        <li><a href="m4399://videoDetail?videoId=250941" class="j-launch">跳到视频详情</a></li>
+        <li><a href="m4399://launch?type=indexPlaza" class="j-launch">跳到广场界面 </a></li>
+        <li><a href="m4399://launch?type=indexAlbum" class="j-launch">跳到首页专辑 </a></li>
+        <li><a href="m4399://launch?type=indexCategory" class="j-launch">跳到首页分类 </a></li>
+    </ul>
+
+    <h1>浏览器和安卓客户端 1.4.2及以上 通信API</h1>
+    <ul>
+        <li><a href="m4399://downloadManager?url=http%3A%2F%2Fsj.img4399.com%2Fgame_list%2Fcom.haiyun.duiduipeng%2Fhaiyun.duiduipeng_40.apk&packageName=com.haiyun.duiduipeng&name=%E6%84%A4%E6%80%92%E7%9A%84%E5%B0%8F%E9%B8%9F%E5%AF%B9%E5%AF%B9%E7%A2%B0&icon=http%3A%2F%2Ff1.img4399.com%2Fsj~rXj7x40uIwbHW.jpg&md5=497e687ab3c7b4e409d71a055628260f&uid=123&vid=456" class="j-launch">高速下载</a></li>
+        <li><a href="m4399://webView?url=http%3A%2F%2Fh.4399.com%2Fclient.htm" class="j-launch">跳到内部webView地址</a></li>
+        <li><a href="m4399://activityDetail?id=362&url=http%3A%2F%2Ft.huodong.5054399.com%2F2014%2Fxiaojingling%2F%3Fid%3D362" class="j-launch">跳到活动详情界面</a></li>
+        <li><a href="m4399://recommendGameList?id=107&title=%E7%A0%B4%E8%A7%A3%E6%B8%B8%E6%88%8F" class="j-launch">跳到首页破解游戏推荐</a></li>
+        <li><a href="m4399://giftDetail?id=3944" class="j-launch">跳到礼包详情</a></li>
+        <li><a href="m4399://newGameList?id=2&title=%E6%9C%80%E6%96%B0%E6%B8%B8%E6%88%8F" class="j-launch">跳到新游推荐</a></li>
+        <li><a href="m4399://forumsDetail?id=81952" class="j-launch">跳到论坛版游戏圈</a></li>
+        <li><a href="m4399://circleDetail?id=43975" class="j-launch">跳到聊天版游戏圈</a></li>
+    </ul>
+
+    <h1>浏览器和安卓客户端 2.2及以上 通信API</h1>
+    <ul>
+        <li><a href="m4399://launch?type=indexRecommend" class="j-launch">推荐</a></li>
+        <li><a href="m4399://launch?type=indexRank" class="j-launch">排行</a></li>
+        <li><a href="m4399://launch?type=indexNews" class="j-launch">资讯</a></li>
+        <li><a href="m4399://launch?type=indexZone" class="j-launch">动态</a></li>
+        <li><a href="m4399://launch?type=indexGameHub" class="j-launch">游戏圈</a></li>
+    </ul>
+
+    
+    <script type="text/javascript">
+        var AndroidConnect = {
+            initLaunch : function(){
+                var _this = this;
+
+                if( !this.frame ){
+                    this.frame = document.createElement("iframe");
+                    this.frame.height = "0";
+                    this.frame.width = "0";
+                    this.frame.frameBorder = 0;
+
+                    document.body.appendChild(this.frame);
+                    this.timeout = 1000;
+
+                    window.onblur = function(){
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                    };
+
+                    this.frame.onload = function(){
+                        console.log("404 onload");
+                        if(_this.timer == null){
+                            return;
+                        }
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                        _this.launchFallback(new Date() - 0);
+                    }
+
+                    this.frame.onerror = function(){
+                        console.log("onerror");
+                        if(_this.timer == null){
+                            return;
+                        }
+                        clearTimeout(_this.timer);
+                        _this.timer = null;
+                        _this.launchFallback(new Date() - 0);
+                    }
+                }
+            },
+
+            launchFallback : function(start_time){
+                var now_time = Date.now();
+
+                console.log(now_time - start_time , this.timeout + 200);
+                if (!start_time || now_time - start_time < this.timeout + 200){
+                    this.fallback();
+                }
+            },
+            
+            launch : function(launch_url, fallback){
+                var _this = this,
+                    start_time = Date.now();
+
+                this.launch_url = launch_url || 'm4399://launch';
+                this.fallback = typeof fallback === "function" ? fallback : function(){};
+
+                this.initLaunch();
+
+                if( this.fallback ){
+                    this.timer = setTimeout(function(){
+                        console.log("timeout");
+                        _this.launchFallback(start_time);
+                    }, _this.timeout);
+                }
+
+                this.redirect();
+            },
+
+            redirect : function(){
+                this.frame.setAttribute("src", this.launch_url);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", function(){
+            //启动客户端
+            var j_launch = document.querySelectorAll('.j-launch');
+
+            for(var i = 0; i < j_launch.length; i++){
+                j_launch[i].addEventListener("click", function(e){
+                    AndroidConnect.launch(this.href, function(){
+                        alert('启动客户端失败回调');
+                        //document.location.href = 'http://www.4399.cn/app-wap.html';
+                    });
+
+                    e.preventDefault();
+                });
+            }
+        });
+    </script>
+    
+    <h1>客户端端口通信demo</h1>
+    <ul>
+        <li><a href="m4399://service?type=start" class="j-launch">启动客户端的后台服务</a></li>
+        <li><a href="javascript:void(0)" id="j-port_interface">调用 http://127.0.0.1:4399/download</a></li>
+    </ul>
+    <script type="text/javascript">
+        document.getElementById("j-port_interface").onclick = function(){
+             var script = document.createElement("script");
+
+            window["app_dl_callback"] = function(data){
+                alert("端口通信成功，接口返回值是：" + data);
+            };
+            
+            script.onload = function(e){
+                delete window["app_dl_callback"];
+                document.body.removeChild(script);
+            }
+
+            script.onerror = function(e){
+                 alert("端口通信失败");
+                document.body.removeChild(script);
+            }
+
+            script.src = 'http://127.0.0.1:4399/download';
+            document.body.appendChild(script);
+        }
+    </script>
+    <h2>安卓客户端和webview 通信接口 <a href="http://t2.a.4399.cn/mobile/activity-info.html?id=305">查看</a></h2>
+</body>
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0
 </html>

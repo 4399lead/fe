@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -97,4 +98,105 @@
 </script>
     </div>
 </body>
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../global_ue.css" />
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
+<script src="../../../release/js/ks.marqueeNew.js"></script>
+<title>跑马灯组件</title>
+<style>
+.slide_demo1{ background-color:#F7F6E1; width:800px; overflow: hidden; zoom:1; margin-bottom: 50px;}
+.slide_demo1 li{float: left; display: inline;}
+.slide_demo1 li,.slide_demo1 li img{height:510px; width:400px; }
+.slide_demo2{ background-color:#F7F6E1; width:400px; height: 1020px; overflow: hidden; zoom:1; margin-bottom: 50px;}
+.slide_demo2 li{float: left; display: inline;}
+.slide_demo2 li,.slide_demo2 li img{height:510px; width:400px; }
+.leftbtn,.rightbtn{position: absolute; top: 250px;}
+.leftbtn{ left: -20px; }
+.rightbtn{ right: 110px; }
+</style>
+</head>
+
+<body>
+    <div style="position:relative; width:960px; margin:0 auto; padding:50px;">
+        <div class="slide_demo1 clearfix" id="j-demo1">     
+            <ul class="slide_list">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="images/role1_1.jpg" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="images/role1_2.jpg" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+        <a class="leftbtn j-left" href="javascript:void(0)">左移</a>
+        <a class="rightbtn j-right" href="javascript:void(0)">右移</a>
+
+        <div class="slide_demo1 clearfix" id="j-demo2">     
+            <ul class="slide_list">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="images/role1_1.jpg" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="images/role1_2.jpg" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+
+        <div class="slide_demo2 clearfix" id="j-demo3">     
+            <ul class="slide_list">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="images/role1_1.jpg" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="images/role1_2.jpg" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+
+        <div class="slide_demo2 clearfix" id="j-demo4">     
+            <ul class="slide_list">
+                <li><a href="#" title="文本标题文本标题文本标题1"><img src="images/role1_1.jpg" alt="文本标题文本标题文本标题1"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题2"><img src="images/role1_2.jpg" alt="文本标题文本标题文本标题2"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题3"><img src="images/role2.jpg" alt="文本标题文本标题文本标题3"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题4"><img src="images/role3.jpg" alt="文本标题文本标题文本标题4"/></a></li>
+                <li><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
+            </ul>
+        </div>
+    </div>
+<script>
+    ue.marqueeNew({
+        target : '#j-demo1 .slide_list',//滚动对象 一般为 ul
+        items : '#j-demo1 .slide_list li', //滚动的详细列表
+        speed : 1,//滚动速度，像素
+        leftbtn : ".j-left",
+        rightbtn : ".j-right",
+        movelength: 300,
+        direction : ue.marqueeNew.LEFT//滚动方向
+    });
+
+    ue.marqueeNew({
+        target : '#j-demo2 .slide_list',//滚动对象 一般为 ul
+        items : '#j-demo2 .slide_list li', //滚动的详细列表
+        speed : 2,//滚动速度，像素
+        direction : ue.marqueeNew.RIGHT//滚动方向
+    });
+
+    ue.marqueeNew({
+        target : '#j-demo3 .slide_list',//滚动对象 一般为 ul
+        items : '#j-demo3 .slide_list li', //滚动的详细列表
+        speed : 3,//滚动速度，像素
+        direction : ue.marqueeNew.UP//滚动方向
+    });
+
+    ue.marqueeNew({
+        target : '#j-demo4 .slide_list',//滚动对象 一般为 ul
+        items : '#j-demo4 .slide_list li', //滚动的详细列表
+        speed : 4,//滚动速度，像素
+        direction : ue.marqueeNew.DOWN//滚动方向
+    })
+</script>
+    </div>
+</body>
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0
 </html> 

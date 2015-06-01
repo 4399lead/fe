@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -305,3 +306,312 @@
 	</script>
 </body>
 </html>
+=======
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<!-- entity_gamebox -->
+	<div class="entity_gamebox"> 
+	    <!--转盘列表-->
+	    <ul id="j-lottery-panel" class="entity_lottery">
+	    </ul>
+	    <!--/转盘列表--> 
+
+	    <!-- lottery_btn -->
+	    <div class="lottery_btn clearfix">
+			<a href="javascript:void(0)" data-times="1" class="gamestart1 j-btn_start">抽奖一次</a>
+			<a href="javascript:void(0)" data-times="10" class="gamestart2 j-btn_start">十连抽</a>
+		</div>
+		 <!-- lottery_btn -->
+	</div>
+	<!-- /entity_gamebox -->
+	<script src="../lib/jquery.min.1.6.1.js" charset="utf-8"></script> 
+	<script src="../lib/baiduTemplate.js" charset="utf-8"></script>
+	<script src="../lib/turntable.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		//转盘数据
+		var LOTTERY_DATA = {
+			availableLotteryNum : 10,//可用抽奖次数
+
+			//抽奖结果状态码
+			AWARD: 1,//中奖了
+			UNAWARD: 2,//没有中奖
+	        //抽奖未成功的状态值必须<=0
+	        UNLOGIN: -1,//未登录
+	        NOTSTART: -6,//未开启
+	        GAMEOVER: -5,//已结束
+	        NOCHANCE: -2,//没有抽奖机会
+
+			prizeList : [
+				{
+					prizeid : 1,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*5"
+				},
+				{
+					prizeid : 2,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*10"
+				},
+				{
+					prizeid : 3,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*15"
+				},
+				{
+					prizeid : 4,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*20"
+				},
+				{
+					prizeid : 5,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*30"
+				},
+				{
+					prizeid : 6,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*60"
+				},
+				{
+					prizeid : 7,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*80"
+				},
+				{
+					prizeid : 8,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*90 "
+				},
+				{
+					prizeid : 9,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity1.png",
+					title : "蓝水晶积分*100 "
+				},
+				{
+					prizeid : 17,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity3.png",
+					title : "商城永久武器 "
+				},
+				{
+					prizeid : 10,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*2 "
+				},
+				{
+					prizeid : 11,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*5 "
+				},
+				{
+					prizeid : 12,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*10 "
+				},
+				{
+					prizeid : 13,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*20"
+				},
+				{
+					prizeid : 14,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*30 "
+				},
+				{
+					prizeid : 15,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*50 "
+				},
+				{
+					prizeid : 16,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity2.png",
+					title : "黄水晶积分*100 "
+				},
+				{
+					prizeid : 17,
+					img : "http://s4.img4399.com/m/sp/ssjj/zpyd/images/pic/entity3.png",
+					title : "商城永久武器"
+				}
+			]
+		};
+
+		//转盘抽奖
+		var TurntableView = {
+			container : '.entity_gamebox',
+			start_btn : '.j-btn_start',
+			target : '#j-lottery-panel',
+
+			init : function(){
+				var _this = this;
+				
+				_this.$container = $(_this.container);
+				_this.$start_btn = $(_this.start_btn);
+				_this.$target = $(_this.target);
+
+				_this.renderPrizeList();
+
+	            _this.lottery = new ACTIVITY.Turntable({
+	                prizeLength: LOTTERY_DATA.prizeList.length,
+	                onUpdate: function (current) {
+	                    _this.$target[0].className = 'entity_lottery entity_lottery_cur' + (current + 1);
+	                }
+	            });
+
+	            _this.bind();
+			},
+
+			bind : function(){
+				var _this = this;
+
+				_this.$start_btn.bind("click", function () {
+					var times = parseInt( $(this).attr("data-times") );
+
+	            	if (_this.$container.hasClass("lottery_running")) {
+	                    return false;
+	                }
+
+	                //在这里做未登录判断和抽奖机会判断可以减少用户非必要的等待时间和网络请求
+
+	                //这边可以再加登录判断
+
+	                //抽奖机会不够
+	                if (LOTTERY_DATA.availableLotteryNum < times) {
+	                	_this.handleLottery(times, -1, {
+	                		status: LOTTERY_DATA.NOCHANCE
+	                	});
+	                    return;
+	                }
+	                
+	                _this.$container.addClass("lottery_running");
+
+	                _this.lottery.start();
+	                _this.getLottery(times);
+	            });
+			},
+
+			renderPrizeList : function(){
+				var _this = this;
+				var item_tmpl = '\
+					<% for(var i = 0, v; v = prizeList[i],i < prizeList.length; i++){ %>\
+	        			<li data-prizeid="<%= v.prizeid %>" class="item<%= i+1 %>">\
+							<div class="img_box"> <img alt="<%= v.title %>" src="<%= v.img %>" />\
+							</div>\
+							<div class="txt"><%= v.title %></div>\
+	        			</li>\
+					<% } %>';
+
+
+		        _this.$target.html(baidu.template(item_tmpl, LOTTERY_DATA));
+			},
+
+			getLottery : function(times){
+				var _this = this;
+
+				var url = "ajaxMultityLotteryData";//抽奖的接口地址
+				$.get(url, {}, function (json) {
+
+					//抽奖未成功
+					if(json.status <= 0){
+						//强制停止转盘到没有选中的状态
+						_this.lottery.stop(-1, true);
+						_this.handleLottery(times, -1, {
+	                		status: json.status
+	                	});
+						return;
+					}
+
+	                //更新剩余的抽奖次数
+	            	LOTTERY_DATA.availableLotteryNum = json.data.lastTimes;
+
+	            	var index = -1;//设置默认值为未中奖
+
+	                //单次抽奖中奖，因为需要停止到具体的一个，需要得到 那一个的index值
+	                if (times == 1 && json.status == LOTTERY_DATA.AWARD) {
+	                    index = _this.$target.find("li:[data-prizeid=" + json.data.prize[0].prizeid + "]").index();
+	                }
+
+	                _this.lottery.stop(index, function(){
+	                	_this.handleLottery(times, index, json);
+	                });
+
+	            }, "json");
+			},
+
+			handleLottery : function (times, index, result) {
+				var _this = this;
+
+	            _this.$container.removeClass("lottery_running");
+
+	            if (index == -1) {
+	                _this.$target[0].className = 'entity_lottery';
+	            }
+
+	            //这边可以再加未登录处理
+
+	            //未登录判断
+	            if (result.status == LOTTERY_DATA.UNLOGIN) {
+	            	alert("未登录");
+	                return;
+	            }
+
+	            //活动未开始
+	            if (result.status == LOTTERY_DATA.NOTSTART) {
+	            	alert("活动未开始");
+	                return;
+	            }
+
+	            //已结束
+	            if (result.status == LOTTERY_DATA.GAMEOVER) {
+	            	alert("已结束");
+	            	return;     
+	            }
+
+	            //没有抽奖机会
+	            if (result.status == LOTTERY_DATA.NOCHANCE) {
+	            	alert("没有抽奖机会");
+	                return;
+	            }
+
+	            //其他抽奖未成功
+				if(result.status <= 0){
+					alert("其他抽奖未成功");
+					return;
+				}
+
+				//未中奖
+	            if (result.status == LOTTERY_DATA.UNAWARD){
+	            	alert("未中奖");
+	            	return;
+	            }
+
+	            //单次抽奖中奖
+	            if(times == 1){
+	            	//中奖了 index>=0
+	            	alert("中了" + result.data.prize[0].prizeName);
+	            	return;
+	            }
+
+	            //多次抽奖中奖
+	            alert("恭喜了中了" + result.data.prize.length + "个奖品");
+	        }
+		}
+
+		$(function(){
+			if(typeof window.top.DataTest === "function"){
+				return;
+			}
+
+			TurntableView.init();
+		});
+	</script>
+</body>
+</html>
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0

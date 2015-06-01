@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * @m  ks_mul_vertical 定高多行垂直居中
  * @t  2015.04.25
@@ -23,4 +24,31 @@
 .ks_mul_vertical span {
     *position : relative;
     *top : -50%;
+=======
+/*
+ * @m  ks_mul_vertical 定高多行垂直居中
+ * @t  2015.04.25
+*/
+.ks_mul_vertical {
+    background : #EEE;
+    display : table;
+    height : 160px;
+    width : 120px;
+    *position : relative;
+}
+
+.ks_mul_vertical a {
+    display : table-cell;
+    text-align : center;
+    vertical-align : middle;
+    *display : block;
+    *position : absolute;
+    *top : 50%;
+    *width : 100%;
+}
+
+.ks_mul_vertical span {
+    *position : relative;
+    *top : -50%;
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0
 }

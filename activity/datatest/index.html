@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -180,3 +181,187 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../api.css" />
+    <title>前端数据模拟  DataTest</title>
+</head>
+
+<body onload="demoLoaded()">
+	<div class="api_wrap">
+        <h1 class="api_title">前端数据模拟  DataTest</h1>
+        <table class="api_table">
+            <caption>构造函数参数列表</caption>
+            <thead>
+                <tr>
+                    <th width="200">参数名称</th>
+                    <th width="740">备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>data{titel : "", data : [], onchange : function(){}}</th>
+                    <td>模拟数据对象
+                        <dl>
+                            <dt>title[string]</dt>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt>data[array]</dt>
+                            <dd></dd>
+                        </dl>
+                        <dl>
+                            <dt>onchange[function]</dt>
+                            <dd></dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <th>iframe</th>
+                    <td>要测试的页面的iframe name值</td>
+                </tr>
+                <tr>
+                    <th>maxDelay</th>
+                    <td>模拟异步请求的最长请求时间</td>
+                </tr>
+                 <tr>
+                    <th>minDelay</th>
+                    <td>模拟异步请求的最短请求时间</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+        <h2 class="api_subtitle">单次抽奖转盘demo</h2>
+        <div class="api_form">
+            <label>设置页面默认的js参数 <select id="availableLotteryNum"></select></label>
+            <label>设置抽奖接口返回的数据 <select id="ajaxLotteryData"></select></label>
+        </div>
+        <script type="text/javascript">
+            function initDemo(){
+                var LOTTERY_DATA = window["demoFrame"].LOTTERY_DATA;
+                var TurntableView = window["demoFrame"].TurntableView;
+
+                var ajaxLotteryData = [
+                    {
+                        title : "未登录",
+                        data : {
+                            "status": LOTTERY_DATA.UNLOGIN,
+                            "msg": "未登录"
+                        }
+                    },
+                    {
+                        title : "活动未开始",
+                        data : {
+                            "status": LOTTERY_DATA.NOTSTART,
+                            "msg": "活动未开始"
+                        }
+                    },
+                    {
+                        title : "活动已结束",
+                        data : {
+                            "status": LOTTERY_DATA.GAMEOVER,
+                            "msg": "活动已结束"
+                        }
+                    },
+                    {
+                        title : "没有抽奖机会",
+                        data : {
+                            "status": LOTTERY_DATA.NOCHANCE,
+                            "msg": "没有抽奖机会"
+                        }
+                    },
+                    {
+                        title : "抽奖成功-未中奖",
+                        data : { 
+                            "status": LOTTERY_DATA.UNAWARD, 
+                            "msg": "未中奖", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20
+                            } 
+                        }
+                    }
+                ];
+
+                for(var i = 0, prize; prize = LOTTERY_DATA.prizeList[i], i < LOTTERY_DATA.prizeList.length; i++){
+                    ajaxLotteryData.push({
+                        title : "抽奖成功-" +  prize.title,
+                        data : {
+                            "status": LOTTERY_DATA.AWARD, 
+                            "msg": "中奖了", 
+                            "data": { 
+                                "lotedTimes": 10, 
+                                "lastTimes": 20, 
+                                "prize":  { 
+                                    "prizeid": prize.prizeid, 
+                                    "prizeName": prize.title, 
+                                    "prizeImg": prize.img
+                                } 
+                            } 
+                        } 
+                    });
+                }
+
+
+                var availableLotteryNumData = [
+                    {
+                        title : "已登录-抽奖次数不足",
+                        onchange : function(){
+                            LOTTERY_DATA.availableLotteryNum = 0;
+                            LOTTERY_DATA.isLogin = true;
+                        }
+                    },
+                    {
+                        title : "已登录-有抽奖次数",
+                        onchange : function(){
+                            LOTTERY_DATA.availableLotteryNum = 10;
+                            LOTTERY_DATA.isLogin = true;
+                        }
+                    },
+                    {
+                        title : "未登录-抽奖次数不足",
+                        onchange : function(){
+                            LOTTERY_DATA.availableLotteryNum = 0;
+                            LOTTERY_DATA.isLogin = false;
+                        }
+                    },
+                    {
+                        title : "未登录-有抽奖次数",
+                        onchange : function(){
+                            LOTTERY_DATA.availableLotteryNum = 10;
+                            LOTTERY_DATA.isLogin = false;
+                        }
+                    }
+                ];
+
+                new DataTest({
+                    data : {
+                        "ajaxLotteryData" : ajaxLotteryData,
+                        "availableLotteryNum" : availableLotteryNumData
+                    },
+                    iframe : "demoFrame",
+                    maxDelay : 2000,
+                    minDelay : 100
+                });
+
+                TurntableView.init();
+            }
+        </script>
+        <iframe src="demo.html" height="600" width="100%" frameborder="0" scrolling="no" name="demoFrame"></iframe>
+    </div>
+    <script src="../lib/jquery.min.1.6.1.js" charset="utf-8"></script> 
+    <script src="../lib/baiduTemplate.js" charset="utf-8"></script>
+    <script src="../lib/datatest.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        function demoLoaded(){
+            initDemo();
+        }
+    </script>
+</body>
+</html>
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0

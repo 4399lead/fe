@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,4 +95,102 @@
         seajs.use('../resource/js/codeLight.js');
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>前端通用模块 - 细三久久</title>
+    <link href="../resource/css/jks.min.css" rel="stylesheet"/>
+</head>
+<body class="clearfix">
+    <!--jks_section-->
+    <div class="jks_section">
+        <h2>多行定高垂直居中</h2>
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-pencil"></i>使用示例</h3>
+            <!--mod_demo_box-->
+            <div class="m_demo_box clearfix">
+                <div class="mod_demo_box">
+                    <iframe src="../template/tpl.mutiline.vertical.html" class="m_iframe" frameborder="0" id="j-iframe"></iframe>
+                </div>
+                <ul class="mod_demo_tab" id="j-demo-tab">
+                    <li class="cur"><a href="../template/tpl.mutiline.vertical.html">图片</a></li>
+                </ul>
+            </div>
+            <!--/mod_demo_box-->
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo">
+            <h3><i class="icon-stack"></i>说明</h3>
+            <div class="m_demo_box">
+                <p>定高不定行数的垂直居中问题</p>
+                <p>调用此模块，CSS要基于业务做一定的增删改。</p>
+            </div>
+        </div>
+        <!--/m_demo-->
+        <!--m_demo-->
+        <div class="m_demo m_view">
+            <h3><i class="icon-eye"></i>查看当前代码</h3>
+            <div class="m_demo_box mod_code">
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>CSS</h4>
+                    <pre class="prettyprint">bower install http://fe.4399ued.com/release/css/ks.multi.vertical.css</pre>
+                </div>
+                <!--/m_code-->
+                <!--m_code-->
+                <div class="m_code">
+                    <h4>HTML</h4>
+                    <pre class="prettyprint">
+&lt;!--s ks_mul_vertical--&gt;
+    &lt;div class="ks_mul_vertical"&gt;
+        &lt;a href="#" &gt;
+            &lt;span&gt;
+		      日国内最受欢迎的萌物“炮炮兵”的唯一官方
+		    &lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;!--/e ks_mul_vertical--&gt;</pre>
+                </div>
+                <!--/m_code-->
+            </div>
+        </div>
+        <!--/m_demo-->
+    </div>
+    <div class="jks_aside"  id="j-m-sidebar"></div>
+    <!--/jks_aside-->
+    <script src="../release/lib/seajs/sea.js"></script>
+    <script src="../resource/js/config.js"></script>
+    <script>
+        seajs.use(['jquery','../resource/js/m.sidebar.js'],function(jquery,JKS){
+            $("#j-demo-tab li").click(function(e){
+                var _iframeHref = $(e.target).attr('href');
+                $("#j-iframe").attr('src',_iframeHref);
+                $(this).addClass('cur').siblings().removeClass('cur');
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            JKS.html('verhor');
+            (function(){
+                var _click = 0;
+                $(".m_view h3").bind('click',function(){
+                    var $target = $(".m_view").find('.mod_code');
+                    if(_click){
+                        _click = 0;
+                        $target.hide();
+                    }else{
+                        $target.show();
+                        _click = 1;
+                    }
+                })
+            })();
+
+        });
+        seajs.use('../resource/js/codeLight.js');
+    </script>
+</body>
+>>>>>>> 5c5b2a764df1c0554f639ed3a86d8bc802d8b1c0
 </html>
