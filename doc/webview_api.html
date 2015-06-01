@@ -1,5 +1,10 @@
-<style>
-	.content *{
+<script type="text/javascript">
+	window.onerror = function(message, file, line, at){
+		alert('message:' +  message + '; file : ' + file + ';line: ' +  line + ';at:' +  at);
+		return true;
+	}
+</script>
+<style type="text/css">.content *{
 		line-height: 2em !important;
 		font-size: 12px !important;
 	}
@@ -33,6 +38,7 @@
 
 <div class="box">
 	<h2>版本1.3.5及以上</h2>
+
 	<div class="bd">
 		<a href="javascript:void(0)" onclick="window.android.onCopyToClipboard('reload')">复制文本</a>
 	</div>
@@ -40,40 +46,42 @@
 
 <div class="box">
 	<h2>版本1.4.0.4及以上</h2>
+
 	<div class="bd">
-		<a href="javascript:void(0)" onclick="window.login.onJSIvoke('reload')">登陆</a><br/>
-		<a href="javascript:void(0)" onclick="window.login.onLoadCookieForJs()">当前登陆用户的cookie</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToForumsTopic(81899, 87602)">论坛版游戏圈话题</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToFeedDetails('6270715', 566)">指定聊天版游戏圈话题</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToForumsDetails(72320)">指定论坛版游戏圈</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToGameCircle(26444)">指定聊天版游戏圈</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToMyCircleList()">我加入的游戏圈</a><br/>
+		<a href="javascript:void(0)" onclick="window.login.onJSIvoke('reload')">登陆</a><br />
+		<a href="javascript:void(0)" onclick="window.login.onLoadCookieForJs()">当前登陆用户的cookie</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToForumsTopic(81899, 87602)">论坛版游戏圈话题</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToFeedDetails('6270715', 566)">指定聊天版游戏圈话题</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToForumsDetails(72320)">指定论坛版游戏圈</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToGameCircle(26444)">指定聊天版游戏圈</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToMyCircleList()">我加入的游戏圈</a><br />
 		<a href="javascript:void(0)" onclick="window.android.onJsToProfileDetails(46447)">个人主页</a><br />
-		&nbsp;<br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToGameDetails(26444)">游戏详情页</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsShare()">调用游戏盒分享</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToCustomGameList(1, '必备游戏')">必备游戏</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToCustomGameList(0, '推荐游戏')">推荐游戏</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToAlbumDetails(122, '花儿与少年');">跳到专辑</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToCategoryList(107, '破解游戏');">标签游戏</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToFeedBack()">意见反馈</a><br/>
+		&nbsp;<br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToGameDetails(26444)">游戏详情页</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsShare()">调用游戏盒分享</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToCustomGameList(1, '必备游戏')">必备游戏</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToCustomGameList(0, '推荐游戏')">推荐游戏</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToAlbumDetails(122, '花儿与少年');">跳到专辑</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToCategoryList(107, '破解游戏');">标签游戏</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToFeedBack()">意见反馈</a>
 	</div>
 </div>
 
 <div class="box">
 	<h2>版本1.4.1及以上</h2>
+
 	<div class="bd">
-		<a href="javascript:void(0)" onclick="window.android.onJsToProfileDetailsByPtUid('766064220')">个人主页(仅141使用，其他版本无视)</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJSClickLogin()">跳转到登陆页面(仅141使用，其他版本无视)</a><br/>
+		<a href="javascript:void(0)" onclick="window.android.onJsToProfileDetailsByPtUid('766064220')">个人主页(仅141使用，其他版本无视)</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJSClickLogin()">跳转到登陆页面(仅141使用，其他版本无视)</a><br />
 		<a href="javascript:;" onclick="var a = android.onJsGetDeviceId();alert(a)">获取设备号</a><br />
 		<a href="http://www.baidu.com/">测试链接1</a><br />
-		<a href="javascript:;" onclick="show();">获取游戏列表</a>
-		<a href="javascript:;" onclick="window.android.onJsToGameDetails('26444', 'yao0', 'wo-yaojiang');">跳转游戏详情 android.onJsToGameDetails(String gameId,String statFlag,String statTrace)</a><br/>
+		<a href="javascript:;" onclick="show();">获取游戏列表</a> <a href="javascript:;" onclick="window.android.onJsToGameDetails('26444', 'yao0', 'wo-yaojiang');">跳转游戏详情 android.onJsToGameDetails(String gameId,String statFlag,String statTrace)</a>
 	</div>
 </div>
 
 <div class="box">
 	<h2>版本1.4.2及以上</h2>
+
 	<div class="bd">
 		<a href="javascript:;" onclick="window.android.bindEvent('share','shareCallback');">分享回调(弹出分享前调用)</a><br />
 		<a href="javascript:;" onclick="window.android.bindEvent('login','shareCallback');">登陆回调</a><br />
@@ -82,10 +90,11 @@
 		<a href="javascript:;" onclick="window.android.unbindEvent('shake','shareCallback';">取消绑定摇一摇</a><br />
 		<a href="javascript:;" onclick="alert(window.android.getUniqueId());">获取udid</a><br />
 		<a href="javascript:;" onclick="window.android.onJsToActivityDetails(306, 'http://baidu.com');">活动跳转</a><br />
-		<a href="javascript:;" onclick="window.android.onJsToDianle();">跳转到赚零花钱页面</a><br />
+		<a href="javascript:;" onclick="window.android.onJsToDianle();">跳转到赚零花钱页面</a>
+
 		<h3>安卓客户端的webview下载游戏接口</h3>
-		<ul>
-		<script type="text/javascript">
+
+		<ul><script type="text/javascript">
 		    (function(){
 
 		        var json_data = {
@@ -288,11 +297,11 @@
 		        }
 
 		    })();
-		</script>
-
+				</script>
 		</ul>
-
 		<script type="text/javascript">
+			var AndroidDownloadApi = window.downloadAPI || window.android;
+
 		    var AndroidDownload = {
 		        NO_iNSTALLED : 0,
 
@@ -322,7 +331,8 @@
 		            }
 
 		            try{
-		                if(typeof android.getAppStatusByVersion === 'function'){
+		                if(typeof AndroidDownloadApi.getAppStatusByVersion === 'function'){
+		                	//alert('getAppStatusByVersion');
 		                    /*
 		                     * @function getAppStatusByVersion
 		                     * @description 根据包名和版本号获取游戏的下载状态
@@ -330,15 +340,16 @@
 		                     * @param string 传一个包名的字符串 多个包名用逗号分割
 		                     * @param string 传一个回调函数名 获取成功后会调用该函数并传一个包状态json的参数
 		                    */
-		                    android.getAppStatusByVersion(versions.join(","), package_names.join(','), "AndroidDownload.bind");
+		                    AndroidDownloadApi.getAppStatusByVersion(versions.join(","), package_names.join(','), "AndroidDownload.bind");
 		                } else {
+		                	//alert('getAppStatus');
 		                    /*
 		                     * @function getAppStatus
 		                     * @description 根据包名获取游戏的下载状态
 		                     * @param string 传一个包名的字符串 多个包名用逗号分割
 		                     * @param string 传一个回调函数名 获取成功后会调用该函数并传一个包状态json的参数
 		                    */
-		                    android.getAppStatus(package_names.join(','), "AndroidDownload.bind");
+		                    AndroidDownloadApi.getAppStatus(package_names.join(','), "AndroidDownload.bind");
 		                }
 		                
 		            } catch(e){
@@ -349,6 +360,7 @@
 		        bind : function(data){
 		            var _this = this;
 
+		            //alert("into js bind");
 		            try{
 		                data = (typeof data === 'string') ? JSON.parse(data) : data;
 
@@ -394,11 +406,11 @@
 		                             * @description 下载游戏
 		                             * @param string 一个经过字符串序列化的json数据
 		                             */
-		                            android.downloadApp(JSON.stringify(data));
+		                            AndroidDownloadApi.downloadApp(JSON.stringify(data));
 
 		                        } else if(status == _this.DOWNLOAD_ERROR){
 		                            
-		                            android.downloadApp(JSON.stringify(data));
+		                            AndroidDownloadApi.downloadApp(JSON.stringify(data));
 
 		                        } else if(status == _this.DOWNLOADING){
 		                            /*
@@ -406,11 +418,11 @@
 		                             * @description 暂停下载游戏
 		                             * @param string 包名
 		                             */
-		                            android.pauseDownload(packageName);
+		                            AndroidDownloadApi.pauseDownload(packageName);
 
 		                        } else if(status == _this.DOWNLOAD_PAUSE){
 
-		                            android.downloadApp(JSON.stringify(data));
+		                            AndroidDownloadApi.downloadApp(JSON.stringify(data));
 		                        
 		                        //} else if(status == _this.DOWNLOAD_WAIT){
 		                        } else if(status == _this.DOWNLOADED){
@@ -419,11 +431,11 @@
 		                             * @description 安装游戏
 		                             * @param string 包名
 		                             */
-		                            android.installApp(packageName);
+		                            AndroidDownloadApi.installApp(packageName);
 		                        
 		                        } else if(status == _this.INSTALL_ERROR){
 
-		                            android.installApp(packageName);
+		                            AndroidDownloadApi.installApp(packageName);
 		                        
 		                        //} else if(status == _this.INSTALLING){
 		                        } else if(status == _this.INSTALLED){
@@ -432,7 +444,7 @@
 		                             * @description 启动游戏
 		                             * @param string 包名
 		                             */
-		                            android.launchApp(packageName);
+		                            AndroidDownloadApi.launchApp(packageName);
 		                        }
 		                    });
 
@@ -444,7 +456,7 @@
 		                         * @param string 包名
 		                         */
 
-		                        android.cancelDownload(packageName);
+		                        AndroidDownloadApi.cancelDownload(packageName);
 		                    });
 		                }
 
@@ -455,8 +467,19 @@
 		                 * @param string //侦听回调函数 会调用该函数并传一个包状态json的参数
 		                 */
 
-		                android.bindEvent("download", "AndroidDownload.onDownloadProgressUpdate");
+		                
+
+		                try{
+		                	//alert("into bindEvent");
+		                	AndroidDownloadApi.bindEvent("download", "AndroidDownload.onDownloadProgressUpdate");
+		                } catch(e){
+			                console.log(e);
+			                //alert("bindEvent error");
+			            }
+		                
 		            } catch(e){
+
+		            	//alert("js bind error");
 		                console.log(e);
 		                alert(e.message);
 		            }
@@ -464,6 +487,10 @@
 
 		        onDownloadProgressUpdate : function(data){
 		            var _this = this;
+		            var console = document.getElementById("console");
+
+		            console.innerHTML += '<p>status:' + data.status + ', packageName:'+  data.packageName + '</p>';
+
 		            try{
 		                data = typeof data === 'string' ? JSON.parse(data) : data;
 
@@ -481,7 +508,7 @@
 		                    }
 		                }
 		            } catch(e){
-		                alert(e.message);
+		                //alert("onDownloadProgressUpdate");
 		            }
 		        },
 
@@ -526,7 +553,7 @@
 		    }
 
 		    window.addEventListener("DOMContentLoaded", function(){
-		        if(window.android){
+		        if(AndroidDownloadApi){
 		            AndroidDownload.init();
 		        }
 		    });
@@ -536,17 +563,19 @@
 
 <div class="box">
 	<h2>2.1版本新增接口</h2>
+
 	<div class="bd">
-		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('newgame')">新游</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('crackgame')">破解</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('girlgame')">女生</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('netgame')">网游</a><br/>
-		<a href="javascript:void(0)" onclick="window.android.onJsShareConfig('{"param":"manhua111","title":"妮可和王小岚111","desc":"分享描述111"}')">自定义分享信息</a><br/>
+		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('newgame')">新游</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('crackgame')">破解</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('girlgame')">女生</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsToTagDetail('netgame')">网游</a><br />
+		<a href="javascript:void(0)" onclick="window.android.onJsShareConfig('{">自定义分享信息</a>
 	</div>
 </div>
 
 <div class="box">
 	<h2>2.2版本新增接口</h2>
+
 	<div class="bd">
 		<a href="javascript:;" onclick="window.android.jumpToRecommend();">推荐页 android.jumpToRecommend()</a><br />
 		<a href="javascript:;" onclick="window.android.jumpToClass();">分类 android.jumpToClass()</a><br />
@@ -556,28 +585,46 @@
 		<a href="javascript:;" onclick="window.android.jumpToZone();">动态 android.jumpToZone()</a><br />
 		<a href="javascript:;" onclick="window.android.jumpToGameHub();">游戏圈 android.jumpToGameHub()</a><br />
 		<a href="javascript:;" onclick="window.android.jumpToSquare();">广场 android.jumpToSquare()</a><br />
-		<a href="javascript:;" onclick="window.android.jumpToMy();">我 android.jumpToMy()</a><br />
+		<a href="javascript:;" onclick="window.android.jumpToMy();">我 android.jumpToMy()</a>
 	</div>
 </div>
-<div id="console">&nbsp;<br/>
-<script>
-function reload(){
-	document.location.reload()
-}
-function shareCallback(){
-	alert(111);
-}
 
-function getShareConfig(){
-   alert(getShareConfig);
-   return '{"ext":"ext1","title":"title1","desc":"desc1"}';
-}
+<div class="box">
+	<h2>2.3版本新增接口</h2>
 
-function show(){
- document.getElementById('console').innerHTML = android.installedGames();
-}
-window.onload=function(){
-    android.webContentHaveComplete();
-}
+	<div class="bd">
+		<a href="javascript:;" onclick="window.android.onJsToNecessaryApp();">跳转到必备应用 android.onJsToNecessaryApp()</a>
+	</div>
+</div>
 
-</script>
+<div class="box">
+	<h2>2.4版本更新</h2>
+
+	<div class="bd">
+		<p>高速下载接口JS对象由 window.android 改成 window.downloadAPI，demo用142</p>
+	</div>
+</div>
+
+<div id="console">&nbsp;<br />
+	<script>
+		function reload(){
+			document.location.reload()
+		}
+		function shareCallback(){
+			alert(111);
+		}
+
+		function getShareConfig(){
+		   alert(getShareConfig);
+		   return '{"ext":"ext1","title":"title1","desc":"desc1"}';
+		}
+
+		function show(){
+		 document.getElementById('console').innerHTML = android.installedGames();
+		}
+		window.onload=function(){
+		    android.webContentHaveComplete();
+		}
+
+	</script>
+</div>

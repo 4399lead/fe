@@ -13,6 +13,9 @@
 .slide_demo2{ background-color:#F7F6E1; width:400px; height: 1020px; overflow: hidden; zoom:1; margin-bottom: 50px;}
 .slide_demo2 li{float: left; display: inline;}
 .slide_demo2 li,.slide_demo2 li img{height:510px; width:400px; }
+.leftbtn,.rightbtn{position: absolute; top: 250px;}
+.leftbtn{ left: -20px; }
+.rightbtn{ right: 110px; }
 </style>
 </head>
 
@@ -27,6 +30,8 @@
                 <li><a href="#" title="文本标题文本标题文本标题5"><img src="images/role4_1.jpg" alt="文本标题文本标题文本标题5"/></a></li>
             </ul>
         </div>
+        <a class="leftbtn j-left" href="javascript:void(0)">左移</a>
+        <a class="rightbtn j-right" href="javascript:void(0)">右移</a>
 
         <div class="slide_demo1 clearfix" id="j-demo2">     
             <ul class="slide_list">
@@ -63,6 +68,9 @@
         target : '#j-demo1 .slide_list',//滚动对象 一般为 ul
         items : '#j-demo1 .slide_list li', //滚动的详细列表
         speed : 1,//滚动速度，像素
+        leftbtn : ".j-left",
+        rightbtn : ".j-right",
+        movelength: 300,
         direction : ue.marqueeNew.LEFT//滚动方向
     });
 

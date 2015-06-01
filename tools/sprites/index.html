@@ -38,18 +38,18 @@
 		a:hover{text-decoration:underline;color:#f60}
 		html{background:#ededed}
 		html,body{background: #009872;min-width:1000px;width:100%; height: 100%;}
-		.image_list{ overflow: hidden; list-style: none;}
-		.image_list li{background: #333; float: left; margin: 10px; color: #fff; overflow: hidden;}
+		.image_list{ overflow: hidden; list-style: none; background: url(grid.jpg);}
+		.image_list li{margin: 10px; color: #fff; overflow: hidden;}
 		.image_list li img{ max-width: 100%;}
 		.image_list li dt,.image_list li dd{ float: left; line-height: 24px; font-size: 12px;}
 		.image_list li dt{clear: left;}
 
-		.wrap{position: absolute; width: 814px; left: 50%; top: 50%; height: 214px; margin-top: -100px;  margin-left: -400px;border:5px dashed #007255; text-align: center; background: #fff;color: #bfe5dc;font-size: 24px; }
-		.dropbox{line-height: 0; font-size: 0;  height: 100%;}
-		.dropbox .ico_plus{height: 64px; width: 64px; background: url(plus.png); display: inline-block;margin-top: 75px; opacity: .5; margin-right: 10px;}
-		.dropbox .txt{font-size: 24px; line-height: 64px;display: inline-block;height: 64px;vertical-align: top;margin-top: 75px;}
+		.wrap{position: absolute; width: 814px; left: 50%; top: 100px; min-height: 214px; margin-left: -400px;border:5px dashed #007255; text-align: center; background: #fff;color: #bfe5dc;font-size: 24px; }
+		.dropbox{line-height: 0; font-size: 0;  background: #f4f4f4; padding: 75px 0;}
+		.dropbox .ico_plus{height: 64px; width: 64px; background: url(plus.png); display: inline-block; opacity: .5; margin-right: 10px;}
+		.dropbox .txt{font-size: 24px; line-height: 64px;display: inline-block;height: 64px;vertical-align: top;}
 
-		.settings{ height: 40px; line-height: 4px; margin-top: 70px;}
+		.settings{line-height: 40px; margin: 30px 0;}
 		.settings input[type='text']{height: 30px; line-height: 30px; font-size: 16px; color: #666; text-align: center;}
 		.settings select{color: #fff; font-size: 16px; height: 30px; line-height: 20px; border:0px; background: #00906c; border-radius: 5px;padding: 5px;box-shadow: 1px 1px 1px rgba(0,0,0,.3);}
 		.settings .submit_btn{color: #fff; background: #00906c; padding: 0 20px; border: 0; height: 40px; line-height: 40px; font-size: 16px;border-radius: 5px;box-shadow: 1px 1px 1px rgba(0,0,0,.3); margin-left: 15px;}
@@ -66,7 +66,7 @@
 	<div class="wrap">
 		<div class="dropbox" id="dropbox">
 			<i class="ico_plus"></i>
-			<span class="txt">将要合并的图片拖拽到虚框内</span>
+			<span class="txt">将要合并的图片拖拽到灰框内</span>
 			<ul id="image_list" class="image_list"></ul>
 		</div>
 
@@ -141,8 +141,9 @@
 			    e.stopPropagation();  
 			    e.preventDefault();  
 			    console.log(e);  
-			    dropbox.style.display = "none";
+			    //dropbox.style.display = "none";
 			    settings.style.display = "block";
+
 			    handleFiles(e.dataTransfer.files, function(li){
 					image_list.appendChild(li);
 				});  
@@ -153,6 +154,7 @@
 					padding = parseInt(document.getElementById("padding").value),
 					filename = document.getElementById("filename").value;
 				
+				console.log(sprites);
 				drawSprites(type, padding);
 				css_code.value = generateCss(type, filename);
 
@@ -161,7 +163,7 @@
 				sprites_img.querySelector('img').src = data;
 				result_pop.style.display = 'block';
 				settings.style.display = "none";
-
+				dropbox.style.display = "none";
 			    var evt = document.createEvent("HTMLEvents");
 			    evt.initEvent("click", false, false);
 				sprites_img.download = filename;
@@ -256,70 +258,78 @@
 			var pre_x = 0,pre_y = 0;
 			workplace_width = 0;
 			workplace_height = 0;
-			if(type == "v_l"){
-				sprites.sort(function(a, b){
-					if(a.img.width == b.img.width){
-						return a.file.name < b.file.name ? 1 : -1
-					} else {
-						return a.img.width < b.img.width ? 1 : -1
-					}
-				});
 
-				workplace_width = sprites[0].img.width;
+			if(type == "v_l"){
+				for(var i = 0; i < sprites.length; i++){
+					if(workplace_width < sprites[i].img.width){
+						workplace_width = sprites[i].img.width;
+					}
+				}
 
 				for(var i = 0; i < sprites.length; i++){
 					sprites[i].x = 0;
-					sprites[i].y = workplace_height + padding;
-
-					workplace_height += sprites[i].img.height + padding;
+					if(i == 0){
+						sprites[i].y = workplace_height;
+						workplace_height += sprites[i].img.height;
+					} else {
+						sprites[i].y = workplace_height + padding;
+						workplace_height += sprites[i].img.height + padding;
+					}
 				}
 			} else if(type == "v_r"){
-				sprites.sort(function(a, b){
-					if(a.img.width == b.img.width){
-						return a.file.name < b.file.name ? 1 : -1
-					} else {
-						return a.img.width < b.img.width ? 1 : -1
+				for(var i = 0; i < sprites.length; i++){
+					if(workplace_width < sprites[i].img.width){
+						workplace_width = sprites[i].img.width;
 					}
-				});
-
-				workplace_width = sprites[0].img.width;
-
+				}
+				
 				for(var i = 0; i < sprites.length; i++){
 					sprites[i].x = workplace_width - sprites[i].img.width;
-					sprites[i].y = workplace_height + padding;
-					workplace_height += sprites[i].img.height + padding;
+
+					if(i == 0){
+						sprites[i].y = workplace_height;
+						workplace_height += sprites[i].img.height;
+					} else {
+						sprites[i].y = workplace_height + padding;
+						workplace_height += sprites[i].img.height + padding;
+					}
+					
 				}
 			} else if(type == "h_t"){
-				sprites.sort(function(a, b){
-					if(a.img.height == b.img.height){
-						return a.file.name < b.file.name ? 1 : -1
-					} else {
-						return a.img.height < b.img.height ? 1 : -1
+				for(var i = 0; i < sprites.length; i++){
+					if(workplace_height < sprites[i].img.height){
+						workplace_height = sprites[i].img.height;
 					}
-				});
-
-				workplace_height = sprites[0].img.height;
+				}
 
 				for(var i = 0; i < sprites.length; i++){
-					sprites[i].x = workplace_width + padding;
 					sprites[i].y = 0;
-					workplace_width += sprites[i].img.width + padding;
+					if(i == 0){
+						sprites[i].x = workplace_width;
+						workplace_width += sprites[i].img.width;
+					} else{
+						sprites[i].x = workplace_width + padding;
+						workplace_width += sprites[i].img.width + padding;
+					}
+					
 				}
 			} else if(type == "h_b"){
-				sprites.sort(function(a, b){
-					if(a.img.height == b.img.height){
-						return a.file.name < b.file.name ? 1 : -1
-					} else {
-						return a.img.height < b.img.height ? 1 : -1
+				for(var i = 0; i < sprites.length; i++){
+					if(workplace_height < sprites[i].img.height){
+						workplace_height = sprites[i].img.height;
 					}
-				});
-
-				workplace_height = sprites[0].img.height;
+				}
 
 				for(var i = 0; i < sprites.length; i++){
-					sprites[i].x = workplace_width + padding;
 					sprites[i].y = workplace_height - sprites[i].img.height;
-					workplace_width += sprites[i].img.width + padding;
+					if(i == 0){
+						sprites[i].x = workplace_width;
+						workplace_width += sprites[i].img.width;
+					} else {
+						sprites[i].x = workplace_width + padding;
+						workplace_width += sprites[i].img.width + padding;
+					}
+					
 				}
 			}
 

@@ -34,6 +34,8 @@
 				autoplay : true,//[bool] 自动滚动
 				loop : false,//[bool] 是否循环
 
+				whole: false,//[bool] 容器是否全屏宽度
+
 				beforeSlide : function(){},//[function] 切换前回调函数
 				afterSlide : function(){},//[function] 切换后回调函数
 
@@ -103,7 +105,29 @@
 				});
 			}
 
-			that.position = 0;
+			if(options.whole){
+				function reset(){
+					var targetWidth = that.target.width(),
+						liWidth = that.target.find("li").outerWidth(true);
+					initLeft = liWidth-(targetWidth-liWidth)/2;
+
+					if(initLeft>0){
+						that.list.css("margin-left",-initLeft);
+						that.position = -initLeft;
+					}else{
+						throw new Error('容器宽度应大于每个小块的宽度');
+					}
+				}
+
+				reset();
+				
+				$(window).bind("resize",function(){
+					reset();console.log(initLeft)
+				})
+			}else{
+				that.position = 0;
+			}
+			
 
 			!options.loop && that.checkBtn();
 			that.bind();

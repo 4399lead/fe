@@ -163,12 +163,24 @@ define(function(require,exports,module){
 
                         }
                     ]
-                }
+                },
+            {
+                "title":"多行垂直居中",
+                "href" : "m.mutiline-vertical.html",
+                "desc"  : "定高多行垂直居中",
+                "curTag" : "mutiline-vertical",
+                "author"  : [
+                    {
+                        createor:"0216.jpg"
+
+                    }
+                ]
+            }
             ],
         js:[
         	{
                 "title" : "页内定位组件",
-                "href"   : "resource/plugins/ks.scrollTo/index.html",
+                "href"   : "resource/plugins/ks.positionTo/index.html",
                 "desc"   : "本页面模块定位",
                 "curTag"  : "scrollTo",
                 "author"  : [
@@ -531,6 +543,17 @@ define(function(require,exports,module){
                 "href"   : "la/",
                 "desc"   : "轻异步webapp",
                 "curTag"  : "La",
+                "author"  : [
+                        {
+                            createor:"0876.jpg"
+                        }
+                    ]
+            },
+            {
+                "title" : "mSlide",
+                "href"   : "m_slidepage/",
+                "desc"   : "滑屏",
+                "curTag"  : "mSlide",
                 "author"  : [
                         {
                             createor:"0876.jpg"

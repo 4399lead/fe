@@ -68,7 +68,7 @@
         <li><a href="m4399://launch?type=indexGameHub" class="j-launch">游戏圈</a></li>
     </ul>
 
-
+    
     <script type="text/javascript">
         var AndroidConnect = {
             initLaunch : function(){
@@ -159,7 +159,34 @@
             }
         });
     </script>
+    
+    <h1>客户端端口通信demo</h1>
+    <ul>
+        <li><a href="m4399://service?type=start" class="j-launch">启动客户端的后台服务</a></li>
+        <li><a href="javascript:void(0)" id="j-port_interface">调用 http://127.0.0.1:4399/download</a></li>
+    </ul>
+    <script type="text/javascript">
+        document.getElementById("j-port_interface").onclick = function(){
+             var script = document.createElement("script");
 
+            window["app_dl_callback"] = function(data){
+                alert("端口通信成功，接口返回值是：" + data);
+            };
+            
+            script.onload = function(e){
+                delete window["app_dl_callback"];
+                document.body.removeChild(script);
+            }
+
+            script.onerror = function(e){
+                 alert("端口通信失败");
+                document.body.removeChild(script);
+            }
+
+            script.src = 'http://127.0.0.1:4399/download';
+            document.body.appendChild(script);
+        }
+    </script>
     <h2>安卓客户端和webview 通信接口 <a href="http://t2.a.4399.cn/mobile/activity-info.html?id=305">查看</a></h2>
 </body>
 </html>
