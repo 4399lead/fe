@@ -98,7 +98,13 @@
                     }
 
                     if (typeof top === "number"){
-                        target.stop().animate({"top": (s + top)}, 300);
+                        var curTop = s + top;
+                        var BH = $("body").height();
+                        if((s+top+height)>=BH){
+                            target.stop().animate({"top": (BH-height)}, 300);
+                        }else{
+                            target.stop().animate({"top": curTop}, 300);
+                        }
                     } else {
                         target.stop().animate({"top": (h + s - bottom - height)}, 300);
                     }
