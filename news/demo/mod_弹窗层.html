@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>弹窗层</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!-- css reset -->
+<link href="css/css_reset.css" rel="stylesheet" type="text/css" />
+<!-- css crumb -->
+<link href="css/css_pop.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="height:5000px;">
+<!-- 弹窗层 -->
+<div class="btn-pop" id="btn-pop">点击查看弹窗</div>
+<div style="height:4100px"></div>
+<script type="text/modal" id="tml-p">
+<div class="dialog">
+    <div class="dialog-box">
+        <div class="dialog-txt">随机文案随机文案随机文案随机文案随机文案随机文案随机文案随机文案随机文案随机文案。</div>
+        <div class="dialog-btn clearfix"> <a href="javascript:;" class="fl">下一步</a> <a href="javascript:;" class="fr close">关闭</a> </div>
+    </div>
+    <div class="closebar"> <a href="#" class="close i-close"><span class="l">></span><span class="r"><</span></a> </div>
+</div>
+</script>
+<!--/弹窗层-->
+</body>
+<script src="http://www.4399dmw.com/js/libs/public/v1/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://www.4399dmw.com/js/libs/public/v1/ks.dialog.js"></script>
+<script type="text/javascript">
+//控制弹层半透明改成制作图的透明度
+  /**** ie js ******/
+    var ie = $.browser.msie &&  ($.browser.version == '7.0' || $.browser.version == '8.0');
+    /******************** 弹窗  ********************/  
+    //控制弹层半透明
+    ue.dialog.maskConfig = {
+        "opacity" : 0.7,
+        //"background" : "#000"
+        "background" : "url(images/dialog_bg.png)"
+    };
+    if(ie){
+        ue.dialog.maskConfig = {
+        "opacity" : 0.8,
+        "background" : "url(images/dialog_bg.png)"
+    };
+}
+//控制弹层
+    $("#btn-pop").bind("click",function(){
+          ue.dialog({
+              content : $("#tml-p").html(),
+              lock : true,
+              init : function(){
+                  var _this = this;
+                  $this = this.obj;
+                  $this.find(".close").bind("click", function(){ 
+                      _this.close(); 
+                      return false; 
+                  });
+               $(".ui-dialog-mask").unbind("click");    
+             }
+          });
+          return false;
+      }); 
+</script>
+</html>
