@@ -1,0 +1,41 @@
+﻿正在测试当中，文档还没完整
+
+svn地址：svn://192.168.50.144/ued/project/news/DM_动漫/DMDY_动漫常规性共用模块调用
+备注：SVN地址，只供给技术那边进行线上更新与维护使用；页面上调用直接使用技术提供的线上地址。
+
+注意事项：
+  1.以后早教跟动漫相关新增的专题、模版或者项目等业务，对js组件的静态资源调用管理，使用以下对应的组件路径即可（不必每次重复拷贝文件）。另外一点：这里的相关组件，只能是在原基础上做代码调整，更新版本（每次更新，前端必须保证其兼容性，保证调用旧版之前的页面可正常运行）。如若，有新版本的组件js更新，svn提交的时候，必须写好备注，及版本更新的内容或原因，并及时告之相关技术人员@小钟，及时线上更新。
+
+  2.除了已有常用的这些组件外，之后如有新增的每一个组件，都当成是最初始版本；之后只能在此基础上更新。
+
+  3.不可随意更换文件命名，造成同功能类型不同的js文件，或者不同的js文件却是实现同功能的情况等。
+ 
+
+
+线上地址调用组件模版格式：固定前缀（http://www.4399dmw.com/js/libs/public/v1/）+调用组件名
+
+例如：
+http://www.4399dmw.com/js/libs/public/v1/DD_belatedPNG_0.0.8a-min.js
+http://www.4399dmw.com/js/libs/public/v1/jquery-1.4.4.min.js
+http://www.4399dmw.com/js/libs/public/v1/jquery-1.7.1.min.js
+http://www.4399dmw.com/js/libs/public/v1/jquery.simplyscroll.js（无缝滚动）
+http://www.4399dmw.com/css/public/v1/simplyscroll.css（simplyscroll.js组件配套的基础样式）
+http://www.4399dmw.com/js/libs/public/v1/ks.dialog.js（对话弹窗）
+http://www.4399dmw.com/js/libs/public/v1/ks.gototop.js（返回顶部，支持左右两侧）
+http://www.4399dmw.com/js/libs/public/v1/ks.lazyimg.js（图片延迟加载）
+http://www.4399dmw.com/js/libs/public/v1/ks.marquee.js（滚动组件）
+http://www.4399dmw.com/js/libs/public/v1/ks.slideCarousel.js（滚动幻灯片（大小图））
+http://www.4399dmw.com/js/libs/public/v1/ks.slide.js（渐隐渐现幻灯片）
+http://www.4399dmw.com/js/libs/public/v1/ks.tab.js（tab切换）
+http://www.4399dmw.com/js/libs/public/v1/nivo.slider.js（特效幻灯片组件配套的jquery调用1.7.1版本）
+
+
+
+
+动漫公共模块调用的样式：
+
+1.一般专题及页面可能涉及样式：
+http://www.4399dmw.com/css/public/v1/sim_common.css
+
+2.特殊专题可能涉及样式：
+http://www.4399dmw.com/css/public/v1/topic_common.css
