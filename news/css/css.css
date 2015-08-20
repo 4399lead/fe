@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS reset@ */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,a{ padding: 0; margin: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+del, ins { text-decoration:none;}
+fieldset, img { border: 0;}
+body,button,input,select,textarea{ font:12px "simsun",Tahoma,Helvetica,Arial;}
+input,select,img{ vertical-align:middle}
+input,select{ outline:none}
+input,button,select,textarea{outline:none}
+textarea {resize:none; overflow:hidden; }
+ul,ol{ list-style:none;}
+h1, h2, h3, h4, h5, h6 { font-size:12px; font-weight:400;}
+address,cite,dfn,em,var{font-style:normal;}
+legend{ display:none}
+td{ font-size:12px; line-height:160%;}
+input::-moz-focus-inner,button::-moz-focus-inner{ border:0;padding:0}
+.fl{ float:left;}
+.fr{ float:right;}
+.fl,.fr{ display:inline;}
+.tlef{ text-align:left;}
+.tcen{ text-align:center;}
+.trig{ text-align:right;}
+a{ text-decoration:none;}
+a:active, a:focus{-moz-outline:none;outline:none;ie-dummy:expression(this.hideFocus=true);} 
+.clearfix:after{ content:""; height:0; visibility:hidden; display:block; clear:both;}
+.clearfix{ zoom:1;}
+.clear{ clear:both; height:0; overflow:hidden;}
+
+.m-nav{background-color:#323436;width: 200px;height: 100%; position: fixed;left: 0;top: 0;}
+.m-nav ul{padding:20px 20px;}
+.m-nav ul a{ color: #fff; display: block; font-size: 14px;padding:10px 0;}
+
+.m-warp{margin: 40px 0 0 250px;width: 75%;}
+.m-warp h2{font-family: Georgia,"Times New Roman",Times,Kai,"Kaiti SC",KaiTi,BiauKai,"楷体","楷体_GB2312",serif;font-size: 28px;}
+.m-warp .m-box{margin:0 0 30px;}
+.m-warp .m-box .m-box_bd{padding-left:20px;}
+.m_fe_list{padding:10px 0;margin:0 0 10px 0}
+.m_fe_list li{float:left;width:298px;height:148px;border:1px solid #c4c3c3;margin:0 20px 20px 0;display:inline}
+.m_fe_list li:hover{-webkit-box-shadow:0 0 10px rgba(0,0,0,.3);-moz-box-shadow:0 0 10px rgba(0,0,0,.3)}
+.m_fe_list li a{display:block;width:260px;height:110px;padding:20px}
+.m_fe_list li a:hover{text-decoration:none}
+.m_fe_list li .m_fe_title{color:#08c;font-family:"microsoft yahei";font-size:18px}
+.m_fe_list li .m_fe_desc{color:#666;font-size:14px;display:block;margin-top:10px;height:32px;overflow:hidden}
+.m_fe_list li .m_author{margin:10px 0 0}
+.m_fe_list li .m_author img{width:32px;height:32px;border-radius:16px;opacity:.5}
+.m_fe_list li .m_author img:hover{opacity:1}
