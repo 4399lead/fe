@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="../global_ue.css" />
-<script src="../../../release/lib/jquery/jquery.min.1.7.2.js"></script>
+<script src="../../../release/lib/jquery/jquery-1.4.4.min.js"></script>
 <script src="../../../release/js/ks.marquee.js"></script>
 <title>滚动组件</title>
 <style>
@@ -11,7 +11,7 @@
 	height: 22px;
 	margin: 8px 0;
 	overflow: hidden;
-	width:600px;
+	width:449px;
 }
 
 .marquee_demo2 .scroll_list {
@@ -70,11 +70,11 @@
 
 		delay : 3000,//切换间隔时间
 		speed : 600,//切换速度
-		visiblenum : 4,//可见个数
-		scrollnum : 1,
+		visiblenum : 3,//可见个数
+		scrollnum : 3,
 		autoplay : true,//是否自动播放
 		
-		loop : 1,//循环模式 1 无限循环 0 不循环
+		loop : 0,//循环模式 1 无限循环 0 不循环
 		afterSlide : function(){},//每滚动一个完的回调函数
 		beforeSlide : function(){},//每滚动一个之前的回调函数
 		mode : 1,//0表示竖直方向滚动 1 表示水平方向滚动

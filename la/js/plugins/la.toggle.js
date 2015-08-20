@@ -60,7 +60,7 @@ La.toggle.prototype = {
             is_show = $btn.data("show");
 
             $text = $target.eq(index);
-            $text_in = $text.children().eq(0);
+            $text_in = $target.children().eq(0);
 
             if (is_show){
                 $btn.html(options.showText);
